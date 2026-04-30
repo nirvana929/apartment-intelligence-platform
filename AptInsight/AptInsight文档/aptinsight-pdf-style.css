@@ -1,0 +1,168 @@
+@page {
+  size: A4;
+  margin: 18mm 16mm 20mm;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #17202a;
+  font-family: "Noto Sans CJK SC", "Source Han Sans SC", "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.72;
+  letter-spacing: 0;
+  background: #ffffff;
+}
+
+body::before {
+  content: "AptInsight";
+  position: fixed;
+  top: 8mm;
+  right: 16mm;
+  color: #8a94a6;
+  font-size: 10px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3 {
+  color: #0f2a43;
+  font-weight: 700;
+  line-height: 1.35;
+  break-after: avoid;
+}
+
+h1 {
+  margin: 0 0 18px;
+  padding: 0 0 14px;
+  border-bottom: 3px solid #2f6f9f;
+  font-size: 28px;
+}
+
+h2 {
+  margin: 26px 0 12px;
+  padding-left: 10px;
+  border-left: 4px solid #2f6f9f;
+  font-size: 20px;
+}
+
+h3 {
+  margin: 20px 0 8px;
+  color: #244968;
+  font-size: 16px;
+}
+
+p {
+  margin: 8px 0 11px;
+}
+
+a {
+  color: #1d5f8f;
+  text-decoration: none;
+}
+
+blockquote {
+  margin: 14px 0;
+  padding: 12px 16px;
+  color: #17324a;
+  border-left: 4px solid #4b8db8;
+  background: #eef6fb;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 8px 0 12px 22px;
+  padding: 0;
+}
+
+li {
+  margin: 4px 0;
+}
+
+table {
+  width: 100%;
+  margin: 14px 0 18px;
+  border-collapse: collapse;
+  break-inside: avoid;
+  font-size: 12.5px;
+}
+
+thead {
+  display: table-header-group;
+}
+
+th {
+  color: #ffffff;
+  background: #245b83;
+  font-weight: 700;
+}
+
+th,
+td {
+  padding: 8px 10px;
+  border: 1px solid #cfd8e3;
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) {
+  background: #f6f9fc;
+}
+
+code {
+  color: #0f4c75;
+  font-family: "JetBrains Mono", "Cascadia Mono", Consolas, monospace;
+  font-size: 0.92em;
+  background: #eef3f7;
+  border-radius: 4px;
+  padding: 1px 4px;
+}
+
+pre {
+  margin: 14px 0 18px;
+  padding: 14px 16px;
+  color: #e9f1f7;
+  background: #102235;
+  border-radius: 6px;
+  overflow: hidden;
+  break-inside: avoid;
+}
+
+pre code {
+  color: inherit;
+  background: transparent;
+  padding: 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+
+hr {
+  height: 1px;
+  margin: 24px 0;
+  border: 0;
+  background: #d8e0e8;
+}
+
+strong {
+  color: #102235;
+  font-weight: 700;
+}
+
+img {
+  max-width: 100%;
+}
+
+h2,
+h3,
+table,
+pre,
+blockquote {
+  page-break-inside: avoid;
+}

@@ -1,0 +1,2 @@
+"""SQL AST guard placeholder."""
+

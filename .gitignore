@@ -1,0 +1,39 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Logs
+*.log
+logs/
+token.txt
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+dist/
+build/
+*.egg-info/
+
+# Node
+node_modules/
+dist/
+.vite/
+.turbo/
+coverage/
+*.timestamp-*.mjs
+
+# Java / Maven
+target/
+*.class
