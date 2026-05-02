@@ -138,3 +138,40 @@ async def test_separate_sessions_isolated(monkeypatch):
         assert resp_b.status_code == 200
         assert resp_a.json()["session_id"] == "session-a"
         assert resp_b.json()["session_id"] == "session-b"
+
+
+@pytest.mark.asyncio
+@pytest.mark.skip(reason="Requires running LLM and Milvus services")
+async def test_room_search_conversation():
+    """测试找房对话流程"""
+    from aptguide.main import app
+
+    async with AsyncClient(
+        transport=ASGITransport(app=app),
+        base_url="http://test",
+    ) as client:
+        # 第一轮：表达找房需求
+        response = await client.post(
+            "/api/chat",
+            json={
+                "session_id": "e2e-test-002",
+                "message": "想找安静、适合考研的房子",
+            },
+        )
+        assert response.status_code == 200
+        data = response.json()
+        assert data["intent"] == "room_search"
+        assert "预算" in data["reply"] or "区域" in data["reply"]
+
+        # 第二轮：补充预算和区域
+        response = await client.post(
+            "/api/chat",
+            json={
+                "session_id": "e2e-test-002",
+                "message": "预算3000，天河区",
+            },
+        )
+        assert response.status_code == 200
+        data = response.json()
+        assert len(data["cards"]) > 0
+        assert data["cards"][0]["type"] == "room"
