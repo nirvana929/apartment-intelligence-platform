@@ -175,3 +175,60 @@ async def test_room_search_conversation():
         data = response.json()
         assert len(data["cards"]) > 0
         assert data["cards"][0]["type"] == "room"
+
+
+@pytest.mark.asyncio
+@pytest.mark.skip(reason="Requires running LLM and Milvus services")
+async def test_appointment_conversation():
+    """测试预约对话流程"""
+    from aptguide.main import app
+
+    async with AsyncClient(
+        transport=ASGITransport(app=app),
+        base_url="http://test",
+    ) as client:
+        # 第一轮：表达找房需求
+        response = await client.post(
+            "/api/chat",
+            json={
+                "session_id": "e2e-test-003",
+                "message": "想找安静、适合考研的房子",
+            },
+        )
+        assert response.status_code == 200
+
+        # 第二轮：补充预算和区域
+        response = await client.post(
+            "/api/chat",
+            json={
+                "session_id": "e2e-test-003",
+                "message": "预算3000，天河区",
+            },
+        )
+        assert response.status_code == 200
+        data = response.json()
+        assert len(data["cards"]) > 0
+
+        # 第三轮：预约第一个房源
+        response = await client.post(
+            "/api/chat",
+            json={
+                "session_id": "e2e-test-003",
+                "message": "预约第一个房源明天下午3点看房",
+            },
+        )
+        assert response.status_code == 200
+        data = response.json()
+        assert data["pending_confirmation"] is not None
+
+        # 第四轮：确认预约
+        response = await client.post(
+            "/api/chat",
+            json={
+                "session_id": "e2e-test-003",
+                "message": "确认",
+            },
+        )
+        assert response.status_code == 200
+        data = response.json()
+        assert "预约成功" in data["reply"]
