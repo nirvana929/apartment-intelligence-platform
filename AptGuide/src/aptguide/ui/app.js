@@ -72,6 +72,35 @@ function addCards(cards, actions) {
     });
 }
 
+function addConfirmation(confirmation) {
+    const messageDiv = document.createElement("div");
+    messageDiv.className = "message assistant";
+
+    const summary = escapeHtml(confirmation.summary || "");
+    messageDiv.innerHTML = `
+        <div class="confirmation-container">
+            <div class="confirmation-summary">${summary}</div>
+            <div class="confirmation-actions">
+                <button class="btn-confirm">确认</button>
+                <button class="btn-cancel">取消</button>
+            </div>
+        </div>
+    `;
+
+    messageDiv.querySelector(".btn-confirm").addEventListener("click", () => {
+        messageInput.value = "确认";
+        sendMessage();
+    });
+
+    messageDiv.querySelector(".btn-cancel").addEventListener("click", () => {
+        messageInput.value = "取消";
+        sendMessage();
+    });
+
+    messagesContainer.appendChild(messageDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
 async function sendMessage() {
     const message = messageInput.value.trim();
     if (!message) return;
@@ -104,6 +133,11 @@ async function sendMessage() {
         // 如果有卡片数据，展示房间卡片
         if (data.cards && data.cards.length > 0) {
             addCards(data.cards, data.actions);
+        }
+
+        // 如果有待确认操作，展示确认卡片
+        if (data.pending_confirmation) {
+            addConfirmation(data.pending_confirmation);
         }
     } catch (error) {
         addMessage("抱歉，发生了错误。请稍后重试。", false);

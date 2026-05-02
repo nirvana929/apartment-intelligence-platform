@@ -227,3 +227,54 @@ body {
 .btn-appointment:hover {
     background-color: #0056CC;
 }
+
+/* Confirmation */
+.confirmation-container {
+    margin-top: 12px;
+    padding: 12px;
+    background-color: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 8px;
+    max-width: 80%;
+}
+
+.confirmation-summary {
+    font-size: 14px;
+    color: #856404;
+    margin-bottom: 12px;
+}
+
+.confirmation-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-confirm {
+    flex: 1;
+    padding: 8px 16px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btn-confirm:hover {
+    background-color: #218838;
+}
+
+.btn-cancel {
+    flex: 1;
+    padding: 8px 16px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btn-cancel:hover {
+    background-color: #c82333;
+}
