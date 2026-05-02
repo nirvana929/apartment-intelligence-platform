@@ -1,3 +1,4 @@
+import threading
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
@@ -49,13 +50,16 @@ def _create_agent_graph():
     return create_agent_graph(llm, kb, room_index)
 
 
-# Agent 图延迟初始化
+# Agent 图延迟初始化(线程安全)
+_agent_lock = threading.Lock()
 agent_graph = None
 
 
 def get_agent_graph():
-    """获取 Agent 图(懒加载)。"""
+    """获取 Agent 图(懒加载, 双重检查锁)。"""
     global agent_graph
     if agent_graph is None:
-        agent_graph = _create_agent_graph()
+        with _agent_lock:
+            if agent_graph is None:
+                agent_graph = _create_agent_graph()
     return agent_graph

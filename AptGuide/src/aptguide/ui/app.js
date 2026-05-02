@@ -4,14 +4,24 @@ const sendButton = document.getElementById("sendButton");
 
 let sessionId = "demo-" + Date.now();
 
+function escapeHtml(str) {
+    if (!str) return "";
+    return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
 function addMessage(content, isUser = false, sources = []) {
     const messageDiv = document.createElement("div");
     messageDiv.className = `message ${isUser ? "user" : "assistant"}`;
 
-    let html = `<div class="message-content">${content}</div>`;
+    let html = `<div class="message-content">${escapeHtml(content)}</div>`;
 
     if (sources.length > 0) {
-        html += `<div class="source">来源：${sources.join(", ")}</div>`;
+        html += `<div class="source">来源：${sources.map(escapeHtml).join(", ")}</div>`;
     }
 
     messageDiv.innerHTML = html;
@@ -23,21 +33,21 @@ function renderCards(cards) {
     let html = '<div class="cards-container">';
     for (const card of cards) {
         const tags = (card.tags || [])
-            .map((t) => `<span class="tag">${t}</span>`)
+            .map((t) => `<span class="tag">${escapeHtml(t)}</span>`)
             .join("");
         html += `
         <div class="room-card">
             <div class="room-card-header">
-                <span class="room-title">${card.title || ""}</span>
-                <span class="room-rent">${card.rent || ""}</span>
+                <span class="room-title">${escapeHtml(card.title)}</span>
+                <span class="room-rent">${escapeHtml(card.rent)}</span>
             </div>
             <div class="room-card-body">
-                <span class="room-district">${card.district || ""}</span>
+                <span class="room-district">${escapeHtml(card.district)}</span>
                 ${tags ? `<div class="room-tags">${tags}</div>` : ""}
-                ${card.description ? `<p class="room-desc">${card.description}</p>` : ""}
+                ${card.description ? `<p class="room-desc">${escapeHtml(card.description)}</p>` : ""}
             </div>
             <div class="room-card-actions">
-                <button class="btn-appointment" data-room-id="${card.id || ""}" data-room-title="${card.title || ""}">预约看房</button>
+                <button class="btn-appointment" data-room-id="${escapeHtml(card.id)}" data-room-title="${escapeHtml(card.title)}">预约看房</button>
             </div>
         </div>`;
     }
