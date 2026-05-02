@@ -1,0 +1,73 @@
+# 知识库条目 schema 参考。
+# scripts/validate_kb.py 会按照这里定义的字段、枚举、长度做校验。
+# 这是"参考文件"，不是数据文件——不会被 seed_kb.py 入库。
+
+schema:
+  fields:
+    doc_id:
+      type: string
+      required: true
+      pattern: "^KB-(RS|APT|LS|PAY|LIFE|ACCT|POL)-\\d{3,}$"
+      unique: true
+      desc: 全局唯一业务 ID
+
+    doc_type:
+      type: string
+      required: true
+      enum: [faq, rule, guide, policy, flow]
+
+    module:
+      type: string
+      required: true
+      enum: [room_search, appointment, lease, payment, life, account, policy]
+
+    title:
+      type: string
+      required: true
+      max_length: 30
+
+    content:
+      type: string
+      required: true
+      max_length: 600
+
+    tags:
+      type: list[string]
+      required: false
+      max_items: 8
+
+    version:
+      type: int
+      required: true
+      min: 1
+
+    updated_at:
+      type: date
+      required: true
+      format: "YYYY-MM-DD"
+
+    reviewed_by:
+      type: string
+      required: true
+      desc: 审核人标识，例如 "ops" / "legal" / "ops:zhangsan"
+
+  forbidden_phrases:
+    - 一定
+    - 保证
+    - 绝对
+    - 包退
+    - 100%
+
+  forbidden_patterns:
+    - "1[3-9]\\d{9}"          # 手机号
+    - "\\d{17}[\\dXx]"          # 身份证
+    - "\\d{16,19}"              # 银行卡
+
+doc_id_prefix:
+  room_search: KB-RS-
+  appointment: KB-APT-
+  lease: KB-LS-
+  payment: KB-PAY-
+  life: KB-LIFE-
+  account: KB-ACCT-
+  policy: KB-POL-

@@ -1,88 +1,99 @@
 # AGENTS.md
 
-This file is for coding agents working in the AptInsight repository.
+本文件面向在 AptInsight 仓库中工作的编码 Agent（Claude Code、Codex 等）。
 
-## Project Identity
+## 角色
 
-AptInsight is an intelligent operation analysis assistant for the Shangting Apartment management system. The first phase is an independent Python FastAPI Agent service that answers apartment operation questions by generating safe read-only SQL, querying the existing MySQL business database, and returning tables, charts, and concise business summaries.
+你正在协助构建 AptInsight——尚庭公寓系统的智能运营分析助手。
 
-This repository root is the AptInsight project root. Do not create another nested project root unless explicitly requested.
+MVP 是一个独立的 Python FastAPI Agent 服务。它接收中文自然语言运营问题，生成安全的只读 SQL，查询现有 MySQL 业务数据库，并返回表格、ECharts 兼容的图表选项和简洁的业务总结。
 
-## Communication Language
+## 仓库边界
 
-When talking with the user in chat, use Chinese by default. The user is Chinese and expects explanations, progress updates, questions, and final summaries in Chinese.
+当前目录是 AptInsight 项目根目录。保持此项目独立于现有的 `least` Spring Boot/Vue 代码库。Java 后端和 Vue 前端是第二阶段的集成目标，不是放置 Python Agent 代码的地方。
 
-Use English only when it is part of code, command output, dependency names, file names, API names, error messages, or when the user explicitly asks for English.
+## 交流语言
 
-## Source Of Truth
+与用户交流时，默认使用中文。进度更新、澄清问题、技术解释和最终回复都应使用中文。
 
-Read these documents before making architectural or behavior changes:
+仅在以下情况使用英文：代码、命令、日志、标识符、依赖名称、文件名、API 名称、精确错误信息，或用户明确要求英文。
 
-1. `AptInsight文档/01-助手总体设计.md`
-2. `AptInsight文档/03-技术架构与模块设计.md`
-3. `AptInsight文档/04-Agent设计与提示词规范.md`
-4. `AptInsight文档/05-数据库字典与指标口径.md`
-5. `AptInsight文档/06-接口契约与集成方案.md`
-6. `AptInsight文档/07-测试验收方案.md`
-7. `AptInsight文档/08-企业工程规范与Harness.md`
+## 必读文档
 
-If code and documentation conflict, pause and align the implementation with the documented MVP scope unless the user explicitly asks to update the docs.
+使用以下文档作为项目事实来源：
 
-## Current Architecture
+- `AptInsight文档/01-助手总体设计.md` — 项目定位、阶段规划
+- `AptInsight文档/03-技术架构与模块设计.md` — 架构、部署、配置
+- `AptInsight文档/04-Agent设计与提示词规范.md` — Agent 工作流、提示词
+- `AptInsight文档/05-数据库字典与指标口径.md` — 表结构、指标定义
+- `AptInsight文档/06-接口契约与集成方案.md` — API 契约、Spring Boot 集成
+- `AptInsight文档/07-测试验收方案.md` — 测试策略
+- `AptInsight文档/08-企业工程规范与Harness.md` — Harness 定义
 
-Use the current project layout:
+如果代码与文档冲突，暂停并将实现与文档化的 MVP 范围对齐，除非用户明确要求更新文档。
+
+## 预期技术栈
+
+- Python 3.12
+- `uv`
+- FastAPI
+- Pydantic v2
+- LangGraph
+- OpenAI 兼容 LLM 客户端
+- SQLAlchemy 2.x async
+- asyncmy
+- sqlglot
+- pandas
+- cryptography（MySQL 认证）
+- redis
+- langsmith（LLM 调用追踪）
+- pytest
+- Ruff
+
+没有明确理由不要引入更重的技术栈。
+
+## 目录指引
 
 ```text
-src/aptinsight/
-  api/          FastAPI routes and dependencies
-  agent/        LangGraph state, graph, nodes, prompts
-  core/         config, logging, shared errors
-  db/           SQLAlchemy async engine and read-only executor
-  llm/          OpenAI-compatible model client and schemas
-  security/     SQL guard, redaction, table policy
-  knowledge/    schema, metrics, few-shot knowledge
-  schemas/      Pydantic request and response models
-evals/          Agent Eval Harness datasets, runners, reports
-tests/          unit and contract tests
-docs/           engineering docs
-AptInsight文档/ product and architecture docs
+src/aptinsight/api/        HTTP API 路由
+src/aptinsight/agent/      LangGraph 工作流、状态、节点、提示词
+src/aptinsight/core/       配置、日志、错误处理
+src/aptinsight/db/         数据库引擎和查询执行器
+src/aptinsight/llm/        模型客户端和结构化 schema
+src/aptinsight/security/   SQL 守卫、脱敏、表白策略
+src/aptinsight/knowledge/  数据库 schema、指标、few-shot 示例
+src/aptinsight/schemas/    Pydantic 请求/响应模型
+evals/                    Agent 评测系统
+tests/                    测试
+docs/                     工程文档
+AptInsight文档/           产品和架构文档
 ```
 
-## Engineering Rules
+## 不可协商的安全规则
 
-- Prefer small, focused changes that match the existing directory structure.
-- Keep MVP scope tight: FastAPI, Pydantic v2, LangGraph, SQLAlchemy async, asyncmy, sqlglot, pytest, Ruff, and Agent Eval Harness.
-- Do not mix this Python AI service into the existing `least` Java/Vue project.
-- Use `uv` for dependency management.
-- Add or update tests when behavior changes.
-- Keep secrets out of the repository. Use `.env` locally and `.env.example` for placeholders.
-- Do not add large generated artifacts unless requested. Existing PDFs in `AptInsight文档/` are documentation deliverables.
+- SQL 守卫未批准前，绝不执行生成的 SQL。
+- 只允许 `SELECT`。
+- 拒绝写操作和 DDL。
+- 拒绝多语句 SQL。
+- 使用表和列白名单。
+- 保护敏感字段和凭据。
+- 仅使用只读 MySQL 账号。
+- 不要编造字段、表、指标、收入或业务原因。
+- 如果数据库 DDL 无法支持某个问题，说明限制。
 
-## Safety Rules
+## 编码风格
 
-AptInsight must be conservative with database access:
+- 保持路由处理函数简洁。
+- 将提示词放在 `src/aptinsight/agent/prompts/` 下的 Markdown 文件中。
+- 将业务 schema 知识放在 `src/aptinsight/knowledge/` 中。
+- 对外部契约使用 Pydantic 模型。
+- 对有意义的行为变更添加测试。
+- 优先使用清晰的模块边界，而非大型单体文件。
+- 保持注释有用且精简。
+- 优先使用异步数据库访问。
+- 使用结构化错误和 trace_id 进行请求级诊断。
 
-- Only generate and execute `SELECT` statements.
-- Always pass generated SQL through the SQL Guard before execution.
-- Use a dedicated read-only MySQL account.
-- Deny dangerous SQL, including `INSERT`, `UPDATE`, `DELETE`, `DROP`, `ALTER`, `TRUNCATE`, `CREATE`, `REPLACE`, stored procedures, and multi-statement SQL.
-- Deny system databases and non-whitelisted tables.
-- Deny sensitive fields such as identity numbers, passwords, tokens, salts, and credential-like values.
-- Do not claim actual received revenue if the schema only supports contract rent and has no payment-flow table.
-- If schema support is missing, say so clearly instead of fabricating results.
-
-## Coding Conventions
-
-- Python version: 3.12 or newer.
-- Use Pydantic models for API request and response contracts.
-- Keep API routes thin. Put orchestration in `agent/`, SQL work in `db/`, and validation/security in `security/`.
-- Use typed functions and clear module boundaries.
-- Prefer async database access.
-- Use structured errors and trace IDs for request-level diagnosis.
-- Keep prompts in `src/aptinsight/agent/prompts/`, not hardcoded inside Python modules.
-- Keep schema and metric knowledge in `src/aptinsight/knowledge/`.
-
-## Commands
+## 常用命令
 
 ```bash
 uv sync
@@ -96,26 +107,30 @@ make lint
 make eval
 ```
 
-## Implementation Priority
+## 开发顺序
 
-When continuing development, build in this order:
+建议的下一步实现顺序：
 
-1. Configuration and logging.
-2. SQL table policy and SQL Guard.
-3. Database engine and read-only executor.
-4. LLM client with structured outputs.
-5. LangGraph Agent state, nodes, and graph.
-6. `/api/chat` real implementation.
-7. Eval runner and regression dataset expansion.
-8. Spring Boot and Vue integration only after the independent Agent is stable.
+1. 完成配置和 JSON 日志。
+2. 实现表白名单和基于 `sqlglot` 的 SQL 守卫。
+3. 实现 async MySQL 引擎和只读执行器。
+4. 实现 LLM 客户端和结构化输出 schema。
+5. 实现 LangGraph 节点。
+6. 将 `/api/chat` 接入工作流。
+7. 扩展 `evals/datasets/text_to_sql_cases.yaml`。
+8. Agent 行为稳定后再接入 Spring Boot 和 Vue 集成。
 
-## Review Checklist
+## 审查清单
 
-Before finishing a change, verify:
+完成变更前，验证：
 
-- The change matches the documented MVP.
-- No secrets were introduced.
-- Generated SQL cannot bypass the guard.
-- Unsupported schema questions are refused or caveated.
-- API responses still match Pydantic schemas.
-- Tests or evals cover the behavior when appropriate.
+- 变更符合文档化的 MVP。
+- 未引入密钥。
+- 生成的 SQL 无法绕过守卫。
+- 不支持的 schema 问题被拒绝或加了警告。
+- API 响应仍匹配 Pydantic schema。
+- 在适当时测试或评测覆盖了行为。
+
+## 回复前的最终检查
+
+确认变更内容，提及运行的测试或检查，并清楚说明任何限制。
