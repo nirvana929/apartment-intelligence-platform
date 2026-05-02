@@ -19,6 +19,49 @@ function addMessage(content, isUser = false, sources = []) {
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
+function renderCards(cards) {
+    let html = '<div class="cards-container">';
+    for (const card of cards) {
+        const tags = (card.tags || [])
+            .map((t) => `<span class="tag">${t}</span>`)
+            .join("");
+        html += `
+        <div class="room-card">
+            <div class="room-card-header">
+                <span class="room-title">${card.title || ""}</span>
+                <span class="room-rent">${card.rent || ""}</span>
+            </div>
+            <div class="room-card-body">
+                <span class="room-district">${card.district || ""}</span>
+                ${tags ? `<div class="room-tags">${tags}</div>` : ""}
+                ${card.description ? `<p class="room-desc">${card.description}</p>` : ""}
+            </div>
+            <div class="room-card-actions">
+                <button class="btn-appointment" data-room-id="${card.id || ""}" data-room-title="${card.title || ""}">预约看房</button>
+            </div>
+        </div>`;
+    }
+    html += "</div>";
+    return html;
+}
+
+function addCards(cards, actions) {
+    const messageDiv = document.createElement("div");
+    messageDiv.className = "message assistant cards-message";
+    messageDiv.innerHTML = renderCards(cards);
+    messagesContainer.appendChild(messageDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+    // Bind appointment button clicks
+    messageDiv.querySelectorAll(".btn-appointment").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const title = btn.getAttribute("data-room-title") || "房源";
+            messageInput.value = `预约看房 ${title}`;
+            messageInput.focus();
+        });
+    });
+}
+
 async function sendMessage() {
     const message = messageInput.value.trim();
     if (!message) return;
@@ -47,6 +90,11 @@ async function sendMessage() {
 
         // 添加助手回复
         addMessage(data.reply, false, data.sources);
+
+        // 如果有卡片数据，展示房间卡片
+        if (data.cards && data.cards.length > 0) {
+            addCards(data.cards, data.actions);
+        }
     } catch (error) {
         addMessage("抱歉，发生了错误。请稍后重试。", false);
     } finally {

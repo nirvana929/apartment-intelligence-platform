@@ -133,3 +133,97 @@ body {
     background-color: #ccc;
     cursor: not-allowed;
 }
+
+/* Room cards */
+.cards-message {
+    max-width: 80%;
+}
+
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 80%;
+}
+
+.room-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.room-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.room-title {
+    font-weight: 600;
+    font-size: 15px;
+    color: #333;
+}
+
+.room-rent {
+    font-weight: 700;
+    font-size: 16px;
+    color: #007AFF;
+}
+
+.room-card-body {
+    padding: 12px 16px;
+}
+
+.room-district {
+    display: inline-block;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.room-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 2px 8px;
+    background-color: #e8f4fd;
+    color: #007AFF;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.room-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.4;
+}
+
+.room-card-actions {
+    padding: 8px 16px 12px;
+    display: flex;
+    gap: 8px;
+}
+
+.btn-appointment {
+    padding: 6px 16px;
+    background-color: #007AFF;
+    color: #fff;
+    border: none;
+    border-radius: 16px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.btn-appointment:hover {
+    background-color: #0056CC;
+}
