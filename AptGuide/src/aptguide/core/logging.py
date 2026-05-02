@@ -7,9 +7,10 @@ from aptguide.core.config import Settings
 
 
 def setup_logging(settings: Settings) -> None:
-    """配置 JSON 日志"""
+    """配置 JSON 日志。"""
     logger = logging.getLogger("aptguide")
-    logger.setLevel(getattr(logging, settings.log_level.upper()))
+    level = getattr(logging, settings.log_level.upper(), logging.INFO)
+    logger.setLevel(level)
 
     handler = logging.StreamHandler(sys.stdout)
     formatter = jsonlogger.JsonFormatter(

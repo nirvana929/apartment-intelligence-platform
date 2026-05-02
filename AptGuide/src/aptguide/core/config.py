@@ -1,16 +1,17 @@
+from pydantic import SecretStr
 from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    """应用配置"""
+    """应用配置。"""
 
     # LLM
-    llm_api_key: str
+    llm_api_key: SecretStr
     llm_base_url: str = "https://dashscope.aliyuncs.com/compatible-mode/v1"
     llm_model: str = "qwen-plus"
 
     # Embedding
-    embedding_api_key: str
+    embedding_api_key: SecretStr
     embedding_base_url: str = "https://dashscope.aliyuncs.com/compatible-mode/v1"
     embedding_model: str = "text-embedding-v3"
 

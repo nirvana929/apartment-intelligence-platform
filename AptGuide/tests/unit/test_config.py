@@ -16,7 +16,7 @@ def test_settings_load_from_env():
         from aptguide.core.config import Settings
 
         settings = Settings()
-        assert settings.llm_api_key == "test_key"
+        assert settings.llm_api_key.get_secret_value() == "test_key"
         assert settings.llm_model == "qwen-plus"
         assert settings.milvus_uri == "http://localhost:19530"
 
