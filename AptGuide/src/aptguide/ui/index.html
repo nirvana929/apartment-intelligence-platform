@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AptGuide - 智能找房助手</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>AptGuide</h1>
+            <p>智能找房助手</p>
+        </header>
+
+        <main class="chat-container">
+            <div id="messages" class="messages">
+                <div class="message assistant">
+                    <div class="message-content">
+                        你好！我是 AptGuide 智能找房助手。你可以问我关于租房规则的问题，比如押金、退租、预约等。
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="input-container">
+            <input
+                type="text"
+                id="messageInput"
+                placeholder="输入你的问题..."
+                autocomplete="off"
+            >
+            <button id="sendButton">发送</button>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
