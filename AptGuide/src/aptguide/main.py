@@ -39,6 +39,8 @@ def _create_agent_graph():
     """延迟创建 Agent 图 - 避免启动时需要 LLM/Milvus 连接。"""
     from aptguide.agent.graph import create_agent_graph
     from aptguide.llm.client import LLMClient
+    from aptguide.memory.session import SessionMemory
+    from aptguide.tools.mock import MockToolClient
     from aptguide.vector.client import MilvusClientWrapper
     from aptguide.vector.kb_search import KBSearch
     from aptguide.vector.room_index import RoomIndex
@@ -47,7 +49,10 @@ def _create_agent_graph():
     milvus = MilvusClientWrapper(settings)
     kb = KBSearch(milvus, settings)
     room_index = RoomIndex(milvus, settings)
-    return create_agent_graph(llm, kb, room_index)
+    tool_client = MockToolClient()
+    memory = SessionMemory(None)
+
+    return create_agent_graph(llm, kb, room_index, tool_client, memory)
 
 
 # Agent 图延迟初始化(线程安全)
