@@ -40,11 +40,13 @@ def _create_agent_graph():
     from aptguide.llm.client import LLMClient
     from aptguide.vector.client import MilvusClientWrapper
     from aptguide.vector.kb_search import KBSearch
+    from aptguide.vector.room_index import RoomIndex
 
     llm = LLMClient(settings)
     milvus = MilvusClientWrapper(settings)
     kb = KBSearch(milvus, settings)
-    return create_agent_graph(llm, kb)
+    room_index = RoomIndex(milvus, settings)
+    return create_agent_graph(llm, kb, room_index)
 
 
 # Agent 图延迟初始化
