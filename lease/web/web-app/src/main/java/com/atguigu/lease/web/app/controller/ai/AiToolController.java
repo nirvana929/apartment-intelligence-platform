@@ -129,7 +129,7 @@ public class AiToolController {
     @Operation(summary = "查询当前用户租约列表")
     @GetMapping("/lease/list-mine")
     public Result<List<LeaseVo>> listMyLeases(@RequestHeader("X-User-Id") Long userId) {
-        List<AgreementItemVo> items = leaseService.listItem(String.valueOf(userId));
+        List<AgreementItemVo> items = leaseService.listByUserId(userId);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         List<LeaseVo> result = items.stream().map(item -> {
             LeaseVo vo = new LeaseVo();
