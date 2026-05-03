@@ -1,6 +1,7 @@
 package com.atguigu.lease.web.app.service.impl;
 
 import com.atguigu.lease.common.constant.RedisConstant;
+import com.atguigu.lease.common.login.LoginUser;
 import com.atguigu.lease.common.login.LoginUserHolder;
 import com.atguigu.lease.model.entity.*;
 import com.atguigu.lease.model.enums.ItemType;
@@ -125,8 +126,11 @@ public class RoomInfoServiceImpl extends ServiceImpl<RoomInfoMapper, RoomInfo>
             stringObjectRedisTemplate.opsForValue().set(key, roomDetailVo);
         }
 
-        //10.保存浏览历史
-        browsingHistoryService.saveHistory(LoginUserHolder.getLoginUser().getUserId(), id);
+        //10.保存浏览历史（内部 API 调用时可能没有登录上下文）
+        LoginUser loginUser = LoginUserHolder.getLoginUser();
+        if (loginUser != null) {
+            browsingHistoryService.saveHistory(loginUser.getUserId(), id);
+        }
 
         return roomDetailVo;
     }

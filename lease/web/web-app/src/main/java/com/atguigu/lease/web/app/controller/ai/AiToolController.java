@@ -57,8 +57,7 @@ public class AiToolController {
     @Operation(summary = "搜索房间")
     @PostMapping("/room/search")
     public Result<RoomSearchResponse> searchRooms(@RequestBody RoomSearchRequest request,
-                                                  // userId is part of the internal API contract; reserved for future per-user filtering
-                                                  @RequestHeader("X-User-Id") Long userId) {
+                                                  @RequestHeader(value = "X-User-Id", required = false) Long userId) {
         List<RoomItemVo> roomItems;
 
         if (request.getRoomIds() != null && !request.getRoomIds().isEmpty()) {

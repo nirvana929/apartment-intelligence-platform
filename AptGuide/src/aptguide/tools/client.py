@@ -26,7 +26,7 @@ class LeaseToolClient:
 
     def __init__(self, settings: Settings):
         self.base_url = settings.lease_base_url.rstrip("/")
-        self.token = settings.lease_internal_token
+        self.token = settings.lease_internal_token.get_secret_value()
         self.timeout = settings.lease_request_timeout_seconds
         self._client: httpx.AsyncClient | None = None
 
@@ -81,18 +81,18 @@ class LeaseToolClient:
             response.raise_for_status()
         except httpx.HTTPStatusError as e:
             logger.error(
-                "HTTP error",
-                status=e.response.status_code,
-                path=path,
-                response=e.response.text,
+                "HTTP error: status=%s path=%s response=%s",
+                e.response.status_code,
+                path,
+                e.response.text,
             )
             raise
         except (httpx.TimeoutException, httpx.NetworkError) as e:
-            logger.error("Network error", path=path, error=str(e))
+            logger.error("Network error: path=%s error=%s", path, str(e))
             raise
 
         data = response.json()
-        if data.get("code") != 0:
+        if data.get("code") not in (0, 200):
             raise LeaseToolError(data["code"], data.get("message", "Unknown error"))
 
         return data.get("data", {})
@@ -105,7 +105,7 @@ class LeaseToolClient:
             data = await self._request("GET", "/internal/ai/tools/health")
             return data == "ok"
         except Exception as e:
-            logger.warning("Health check failed", error=str(e))
+            logger.warning("Health check failed: %s", str(e))
             return False
 
     # ========== 房源接口 ==========
