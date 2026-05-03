@@ -4,6 +4,8 @@ import com.atguigu.lease.common.result.Result;
 import com.atguigu.lease.model.entity.LabelInfo;
 import com.atguigu.lease.model.entity.LeaseTerm;
 import com.atguigu.lease.model.entity.PaymentType;
+import com.atguigu.lease.model.entity.ViewAppointment;
+import com.atguigu.lease.model.enums.AppointmentStatus;
 import com.atguigu.lease.model.enums.ReleaseStatus;
 import com.atguigu.lease.model.entity.UserInfo;
 import com.atguigu.lease.web.app.service.LeaseAgreementService;
@@ -11,6 +13,7 @@ import com.atguigu.lease.web.app.service.RoomInfoService;
 import com.atguigu.lease.web.app.service.UserInfoService;
 import com.atguigu.lease.web.app.service.ViewAppointmentService;
 import com.atguigu.lease.web.app.vo.agreement.AgreementItemVo;
+import com.atguigu.lease.web.app.vo.ai.AppointmentCreateRequest;
 import com.atguigu.lease.web.app.vo.ai.AppointmentVo;
 import com.atguigu.lease.web.app.vo.ai.LeaseVo;
 import com.atguigu.lease.web.app.vo.ai.RoomSearchRequest;
@@ -27,10 +30,14 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -110,6 +117,36 @@ public class AiToolController {
     @GetMapping("/health")
     public Result<String> health() {
         return Result.ok("ok");
+    }
+
+    @Operation(summary = "创建看房预约")
+    @PostMapping("/appointment/create")
+    public Result<Map<String, Object>> createAppointment(@RequestBody AppointmentCreateRequest request,
+                                                          @RequestHeader("X-User-Id") Long userId) {
+        ViewAppointment appointment = new ViewAppointment();
+        appointment.setUserId(userId);
+        appointment.setApartmentId(request.getApartmentId());
+        appointment.setAppointmentStatus(AppointmentStatus.WAITING);
+
+        // 解析预约时间
+        if (request.getAppointmentTime() != null) {
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                Date time = sdf.parse(request.getAppointmentTime());
+                appointment.setAppointmentTime(time);
+            } catch (ParseException e) {
+                return Result.fail(202, "时间格式不正确，应为 yyyy-MM-dd HH:mm");
+            }
+        }
+
+        appointment.setAdditionalInfo(request.getRemark());
+        appointmentService.save(appointment);
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("appointment_id", appointment.getId());
+        data.put("status", appointment.getAppointmentStatus().name());
+        data.put("appointment_time", request.getAppointmentTime());
+        return Result.ok(data);
     }
 
     @Operation(summary = "查询当前用户预约列表")

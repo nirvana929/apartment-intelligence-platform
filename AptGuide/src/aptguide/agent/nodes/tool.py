@@ -10,10 +10,15 @@
 4. room_id 的防御性处理：用户可能给字符串、整数或 None
 """
 
+import httpx
+
 from aptguide.agent.state import AgentState
+from aptguide.core.logging import get_logger
 from aptguide.llm.client import LLMClient
 from aptguide.memory.session import SessionMemory
-from aptguide.tools.client import LeaseToolClient
+from aptguide.tools.client import LeaseToolClient, LeaseToolError
+
+logger = get_logger(__name__)
 
 TOOL_REPLY_PROMPT = """你是一个租房助手。工具调用已完成，请生成回复。
 
@@ -21,6 +26,8 @@ TOOL_REPLY_PROMPT = """你是一个租房助手。工具调用已完成，请生
 工具结果：{tool_result}
 
 请生成一个友好的回复，告知用户操作结果。"""
+
+ERROR_REPLY = "抱歉，系统暂时无法完成您的请求，请稍后再试。如有紧急需求，请联系客服。"
 
 
 async def tool_node(
@@ -43,11 +50,13 @@ async def tool_node(
     # 查询操作不需要 confirmation，用户问"我的预约"就直接查
 
     if intent == "appointment_query":
-        # 调用 Java 后端查询预约列表
-        result = await tool_client.list_my_appointments(user_id=state.get("user_id", "1"))
-        appointments = result if isinstance(result, list) else result.get("appointments", [])
+        try:
+            result = await tool_client.list_my_appointments(user_id=state.get("user_id", "1"))
+            appointments = result if isinstance(result, list) else result.get("appointments", [])
+        except (httpx.HTTPStatusError, httpx.TimeoutException, httpx.NetworkError, LeaseToolError) as e:
+            logger.error("appointment_query failed: %s", str(e))
+            return {"reply": ERROR_REPLY, "cards": [], "confirmation": None}
 
-        # 列表推导式：把原始数据转换为前端卡片格式
         cards = [
             {
                 "type": "appointment",
@@ -60,7 +69,6 @@ async def tool_node(
             for a in appointments
         ]
 
-        # 让 LLM 把工具结果转化为自然语言回复
         prompt = TOOL_REPLY_PROMPT.format(
             tool_type="appointment_query",
             tool_result=result,
@@ -69,8 +77,13 @@ async def tool_node(
         return {"reply": reply, "cards": cards, "confirmation": None}
 
     if intent == "lease_query":
-        result = await tool_client.list_my_leases(user_id=state.get("user_id", "1"))
-        leases = result if isinstance(result, list) else result.get("leases", [])
+        try:
+            result = await tool_client.list_my_leases(user_id=state.get("user_id", "1"))
+            leases = result if isinstance(result, list) else result.get("leases", [])
+        except (httpx.HTTPStatusError, httpx.TimeoutException, httpx.NetworkError, LeaseToolError) as e:
+            logger.error("lease_query failed: %s", str(e))
+            return {"reply": ERROR_REPLY, "cards": [], "confirmation": None}
+
         cards = [
             {
                 "type": "lease",
@@ -108,16 +121,13 @@ async def tool_node(
     params = confirmation["params"]
 
     if tool_type == "appointment_create":
-        # room_id 和 apartment_id 的防御性处理：
-        # 用户可能给整数（123）、字符串（"123"）、None（没给）
-        # 需要统一转成整数
         room_id = params.get("room_id")
         if not room_id:
             room_id = params.get("room_title", "unknown")
         try:
             room_id = int(room_id)
         except (ValueError, TypeError):
-            room_id = 0  # 转换失败用 0 降级
+            room_id = 0
 
         apartment_id = params.get("apartment_id", 0)
         try:
@@ -125,13 +135,21 @@ async def tool_node(
         except (ValueError, TypeError):
             apartment_id = 0
 
-        result = await tool_client.create_appointment(
-            user_id=state.get("user_id", "1"),
-            apartment_id=apartment_id,
-            room_id=room_id,
-            appointment_time=params["appointment_time"],
-            remark=params.get("remark", "AptGuide 预约"),
-        )
+        try:
+            result = await tool_client.create_appointment(
+                user_id=state.get("user_id", "1"),
+                apartment_id=apartment_id,
+                room_id=room_id,
+                appointment_time=params["appointment_time"],
+                remark=params.get("remark", "AptGuide 预约"),
+            )
+        except (httpx.HTTPStatusError, httpx.TimeoutException, httpx.NetworkError, LeaseToolError) as e:
+            logger.error("appointment_create failed: %s", str(e))
+            await memory.clear_pending_confirmation(state["session_id"])
+            return {
+                "reply": "抱歉，预约创建失败，请稍后再试或联系客服。",
+                "confirmation": None,
+            }
     else:
         result = {"error": f"未知工具类型：{tool_type}"}
 

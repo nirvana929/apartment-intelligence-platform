@@ -1,12 +1,14 @@
 from aptguide.agent.state import AgentState
+from aptguide.core.logging import get_logger
 from aptguide.vector.room_index import RoomIndex
+
+logger = get_logger(__name__)
 
 
 async def room_search_node(state: AgentState, room_index: RoomIndex) -> dict:
     """房源召回节点。"""
     slots = state["slots"]
 
-    # 构建查询
     query_parts = []
     if slots.get("tags"):
         query_parts.extend(slots["tags"])
@@ -15,11 +17,14 @@ async def room_search_node(state: AgentState, room_index: RoomIndex) -> dict:
 
     query = " ".join(query_parts) if query_parts else state["message"]
 
-    # 检索房源
-    rooms = await room_index.search(
-        query=query,
-        max_rent=slots.get("max_rent"),
-        district=slots.get("district"),
-    )
+    try:
+        rooms = await room_index.search(
+            query=query,
+            max_rent=slots.get("max_rent"),
+            district=slots.get("district"),
+        )
+    except Exception as e:
+        logger.error("room_search failed: %s", str(e))
+        rooms = []
 
     return {"search_results": rooms}
