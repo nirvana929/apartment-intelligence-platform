@@ -40,4 +40,8 @@ aliyun:
     access-key-secret: ${ALIYUN_SMS_ACCESS_KEY_SECRET:change-me}
     endpoint: ${ALIYUN_SMS_ENDPOINT:dysmsapi.aliyuncs.com}
 
+ai:
+  internal:
+    token: ${AI_INTERNAL_TOKEN:aptguide-internal-token-2026}
+
 
