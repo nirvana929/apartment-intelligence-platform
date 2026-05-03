@@ -121,9 +121,11 @@ async def execute_sql(state: AgentState) -> AgentState:
             extra={"error": str(e), "execution_time_ms": round(execution_time_ms, 2)},
         )
 
+        # 使用已有的友好错误函数，不直接暴露原始异常
+        friendly_msg = get_user_friendly_error(str(e))
         return {
             **state,
-            "error": f"SQL 执行失败: {str(e)}",
+            "error": f"SQL 执行失败: {friendly_msg}",
         }
 
 

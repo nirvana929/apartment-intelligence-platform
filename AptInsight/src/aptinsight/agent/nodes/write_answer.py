@@ -26,6 +26,7 @@ from typing import Any
 
 from ...core.logging import get_logger
 from ...llm.client import LLMClient
+from ..failure import classify_failure
 from ..state import AgentState, INTENT_CHITCHAT, INTENT_OUT_OF_SCOPE
 
 # 获取日志记录器
@@ -120,6 +121,26 @@ OUT_OF_SCOPE_MESSAGE = (
     "请尝试用运营相关的角度重新提问。"
 )
 
+FAILURE_EXPLANATION_PROMPT = """你是尚庭公寓的运营分析助手，需要向用户解释为什么不能直接回答他的问题。
+
+## 要求
+1. 用中文回答，语气友好自然，像客服一样。
+2. 不要提 JSON、SQL、模型、prompt、后端、白名单、字段、列、表等任何技术术语。
+3. 先说明为什么不能查，再给出 1-2 个可以改问的例子。
+4. 不要编造数据。
+5. 控制在 120 字以内。
+
+## 用户问题
+{question}
+
+## 不能回答的原因
+{user_reason}
+
+## 建议改问
+{suggestions}
+
+请直接输出回复文本，不需要 JSON 格式。"""
+
 
 # ============================================================================
 # 答案生成节点函数
@@ -176,29 +197,38 @@ async def write_answer(state: AgentState, llm_client: LLMClient) -> AgentState:
 
     # ===== 分支 2：超出范围 =====
     if intent == INTENT_OUT_OF_SCOPE:
-        logger.info("超出范围意图，返回提示")
-        return {**state, "answer": OUT_OF_SCOPE_MESSAGE, "summary": "问题超出分析范围"}
+        logger.info("超出范围意图，使用失败归类生成回复")
+        failure_ctx = classify_failure(state)
+        answer = _generate_failure_answer(state, failure_ctx, llm_client)
+        return {
+            **state,
+            "answer": answer,
+            "summary": "无法直接回答该问题",
+            "warnings": state.get("warnings", []) + [failure_ctx.reason.value],
+        }
 
     # ===== 分支 3：有错误（SQL 生成失败 / SQL 被拦截等）=====
     if error:
-        logger.info(f"存在错误，生成错误提示: {error}")
-        warnings = state.get("warnings", [])
-        detail = error
-        if warnings:
-            detail = f"{error}（{'；'.join(warnings)}）"
+        logger.info(f"存在错误，使用失败归类生成回复: {error}")
+        failure_ctx = classify_failure(state)
+        answer = _generate_failure_answer(state, failure_ctx, llm_client)
         return {
             **state,
-            "answer": f"处理您的问题时遇到困难：{detail}。请尝试换一种方式描述您的问题。",
-            "summary": "处理失败",
+            "answer": answer,
+            "summary": "无法直接回答该问题",
+            "warnings": state.get("warnings", []) + [failure_ctx.reason.value],
         }
 
     # ===== 分支 4：没有数据（意外兜底）=====
     if not rows:
-        logger.warning("没有查询结果且无明确错误，生成兜底提示")
+        logger.warning("没有查询结果且无明确错误，使用失败归类生成回复")
+        failure_ctx = classify_failure(state)
+        answer = _generate_failure_answer(state, failure_ctx, llm_client)
         return {
             **state,
-            "answer": "抱歉，没有找到符合条件的数据。请尝试调整查询条件或问题描述。",
+            "answer": answer,
             "summary": "未找到符合条件的数据",
+            "warnings": state.get("warnings", []) + [failure_ctx.reason.value],
         }
 
     # ===== 分支 5：正常数据 → 调 LLM 生成分析答案 =====
@@ -403,3 +433,41 @@ def _generate_fallback_answer(
         lines.append(f"\n... 还有 {len(rows) - 3} 条数据")
 
     return "\n".join(lines)
+
+
+async def _generate_failure_answer(
+    state: AgentState,
+    failure_ctx: Any,
+    llm_client: LLMClient,
+) -> str:
+    """
+    生成用户友好的失败回复。
+
+    策略：规则归因 + LLM 润色 + 静态兜底。
+    LLM 润色失败时，回退到 generate_static_fallback()。
+    """
+    from ..failure import generate_static_fallback
+
+    question = state.get("question", "")
+    suggestions_text = "、".join(failure_ctx.suggestions[:2]) if failure_ctx.suggestions else ""
+
+    # 尝试让 LLM 润色
+    try:
+        prompt = FAILURE_EXPLANATION_PROMPT.format(
+            question=question,
+            user_reason=failure_ctx.user_reason,
+            suggestions=suggestions_text or "无",
+        )
+        response = await llm_client.chat(
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.5,
+            max_tokens=300,
+        )
+        answer = response.strip()
+        if answer and len(answer) > 10:
+            return answer
+    except Exception as e:
+        logger.warning(f"LLM 润色失败，使用静态兜底: {e}")
+
+    # 静态兜底
+    return generate_static_fallback(failure_ctx)

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AptInsight - 尚庭公寓智能分析助手</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' },
+            surface: { 50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 300: '#cbd5e1', 700: '#334155', 800: '#1e293b', 900: '#0f172a' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+    .scrollbar-thin::-webkit-scrollbar { width: 6px; }
+    .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+    .scrollbar-thin::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+    .scrollbar-thin::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    .typing-dot { animation: typing 1.4s infinite; }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typing { 0%, 60%, 100% { opacity: 0.3; } 30% { opacity: 1; } }
+    .fade-in { animation: fadeIn 0.3s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .message-content h1 { font-size: 1.25rem; font-weight: 700; margin: 0.5em 0; }
+    .message-content h2 { font-size: 1.125rem; font-weight: 600; margin: 0.5em 0; }
+    .message-content h3 { font-size: 1rem; font-weight: 600; margin: 0.5em 0; }
+    .message-content p { margin: 0.4em 0; }
+    .message-content ul, .message-content ol { padding-left: 1.5em; margin: 0.4em 0; }
+    .message-content li { margin: 0.2em 0; }
+    .message-content code { background: #f1f5f9; padding: 0.15em 0.4em; border-radius: 4px; font-size: 0.875em; }
+    .message-content pre { background: #1e293b; color: #e2e8f0; padding: 1em; border-radius: 8px; overflow-x: auto; margin: 0.5em 0; }
+    .message-content pre code { background: none; color: inherit; padding: 0; }
+    .message-content table { border-collapse: collapse; margin: 0.5em 0; }
+    .message-content th, .message-content td { border: 1px solid #e2e8f0; padding: 0.4em 0.8em; }
+    .message-content th { background: #f1f5f9; font-weight: 600; }
+    .chart-container { width: 100%; height: 360px; }
+    .sql-block { font-family: 'Menlo', 'Monaco', 'Consolas', monospace; font-size: 0.8125rem; line-height: 1.6; }
+    .preset-btn { transition: all 0.2s; }
+    .preset-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    #toast { position: fixed; top: 1rem; right: 1rem; z-index: 9999; max-width: 380px; }
+    .toast-enter { animation: toastIn 0.3s ease-out; }
+    @keyframes toastIn { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }
+  </style>
+</head>
+<body class="h-full bg-surface-50 text-surface-800">
+  <div id="toast"></div>
+  <div class="flex h-full">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white border-r border-surface-200 flex-col hidden lg:flex">
+      <div class="p-4 border-b border-surface-200">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          </div>
+          <div>
+            <h1 class="text-base font-bold text-surface-800">AptInsight</h1>
+            <p class="text-xs text-surface-300">智能运营分析</p>
+          </div>
+        </div>
+      </div>
+      <div class="flex-1 overflow-y-auto scrollbar-thin p-3">
+        <button onclick="newChat()" class="w-full mb-3 px-3 py-2.5 text-sm font-medium text-brand-600 bg-brand-50 rounded-lg hover:bg-brand-100 transition flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          新建对话
+        </button>
+        <div id="historyList" class="space-y-1"></div>
+      </div>
+      <div class="p-3 border-t border-surface-200">
+        <div class="flex items-center gap-2 text-xs text-surface-300">
+          <div class="w-2 h-2 rounded-full bg-emerald-400"></div>
+          <span>API 连接正常</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="flex-1 flex flex-col min-w-0">
+
+      <!-- Header (mobile) -->
+      <header class="lg:hidden flex items-center gap-3 px-4 py-3 bg-white border-b border-surface-200">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        </div>
+        <h1 class="text-base font-bold">AptInsight</h1>
+      </header>
+
+      <!-- Messages -->
+      <div id="messages" class="flex-1 overflow-y-auto scrollbar-thin px-4 lg:px-8 py-6">
+        <!-- Welcome -->
+        <div id="welcome" class="max-w-3xl mx-auto mt-12">
+          <div class="text-center mb-10">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center mx-auto mb-5">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            </div>
+            <h2 class="text-2xl font-bold text-surface-800 mb-2">尚庭公寓智能分析助手</h2>
+            <p class="text-surface-300 text-sm">输入自然语言问题，AI 帮你查询数据、生成图表、分析趋势</p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto" id="presetQuestions">
+            <button onclick="askPreset(this)" data-q="本月各公寓预约量排名" class="preset-btn text-left px-4 py-3.5 bg-white rounded-xl border border-surface-200 hover:border-brand-300 hover:bg-brand-50 transition">
+              <div class="text-sm font-medium text-surface-700">本月各公寓预约量排名</div>
+              <div class="text-xs text-surface-300 mt-1">查看各公寓本月预约数据对比</div>
+            </button>
+            <button onclick="askPreset(this)" data-q="最近半年签约趋势" class="preset-btn text-left px-4 py-3.5 bg-white rounded-xl border border-surface-200 hover:border-brand-300 hover:bg-brand-50 transition">
+              <div class="text-sm font-medium text-surface-700">最近半年签约趋势</div>
+              <div class="text-xs text-surface-300 mt-1">分析近6个月签约数量变化</div>
+            </button>
+            <button onclick="askPreset(this)" data-q="各户型出租率统计" class="preset-btn text-left px-4 py-3.5 bg-white rounded-xl border border-surface-200 hover:border-brand-300 hover:bg-brand-50 transition">
+              <div class="text-sm font-medium text-surface-700">各户型出租率统计</div>
+              <div class="text-xs text-surface-300 mt-1">对比不同户型的出租情况</div>
+            </button>
+            <button onclick="askPreset(this)" data-q="空置超过30天的房间" class="preset-btn text-left px-4 py-3.5 bg-white rounded-xl border border-surface-200 hover:border-brand-300 hover:bg-brand-50 transition">
+              <div class="text-sm font-medium text-surface-700">空置超过30天的房间</div>
+              <div class="text-xs text-surface-300 mt-1">找出长期空置需关注的房间</div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input -->
+      <div class="border-t border-surface-200 bg-white px-4 lg:px-8 py-4">
+        <div class="max-w-3xl mx-auto">
+          <div class="flex gap-3 items-end">
+            <div class="flex-1 relative">
+              <textarea id="input" rows="1" maxlength="500" placeholder="输入你的运营分析问题..."
+                class="w-full resize-none rounded-xl border border-surface-200 px-4 py-3 pr-12 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition placeholder:text-surface-300"
+                onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+              <div class="absolute right-3 bottom-2.5 text-xs text-surface-300" id="charCount">0/500</div>
+            </div>
+            <button id="sendBtn" onclick="sendMessage()" class="shrink-0 w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center hover:bg-brand-700 transition disabled:opacity-50 disabled:cursor-not-allowed">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+            </button>
+          </div>
+          <p class="text-xs text-surface-300 mt-2 text-center">AptInsight 尚庭公寓智能运营分析助手 &middot; 数据仅供参考</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // ========== State ==========
+    let conversations = [];
+    let currentConvId = null;
+    let isLoading = false;
+
+    // ========== API ==========
+    const API_BASE = window.location.origin;
+
+    async function callChat(question) {
+      const resp = await fetch(`${API_BASE}/api/chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question })
+      });
+      if (!resp.ok) {
+        const err = await resp.json().catch(() => ({}));
+        throw new Error(err.detail?.message || err.message || `请求失败 (${resp.status})`);
+      }
+      return resp.json();
+    }
+
+    // ========== Toast ==========
+    function showToast(msg, type) {
+      type = type || 'error';
+      var colors = { error: 'bg-red-600', success: 'bg-emerald-600', info: 'bg-brand-600' };
+      var el = document.createElement('div');
+      el.className = 'toast-enter ' + (colors[type] || colors.error) + ' text-white px-4 py-3 rounded-xl shadow-lg mb-2 text-sm';
+      el.textContent = msg;
+      $('toast').appendChild(el);
+      setTimeout(function() { el.remove(); }, 5000);
+    }
+
+    // ========== UI Helpers ==========
+    function $(id) { return document.getElementById(id); }
+
+    function autoResize(el) {
+      el.style.height = 'auto';
+      el.style.height = Math.min(el.scrollHeight, 160) + 'px';
+      $('charCount').textContent = el.value.length + '/500';
+    }
+
+    function handleKey(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    }
+
+    function scrollToBottom() {
+      var el = $('messages');
+      requestAnimationFrame(function() { el.scrollTop = el.scrollHeight; });
+    }
+
+    function renderMarkdown(text) {
+      try { return marked.parse(text || ''); }
+      catch(e) { return '<p>' + escapeHtml(text || '') + '</p>'; }
+    }
+
+    // ========== Conversations ==========
+    function newChat() {
+      currentConvId = Date.now().toString();
+      conversations.push({ id: currentConvId, title: '新对话', messages: [] });
+      renderHistory();
+      var msgArea = $('messages');
+      var welcome = $('welcome');
+      msgArea.innerHTML = '';
+      welcome.style.display = '';
+      msgArea.appendChild(welcome);
+      $('input').focus();
+    }
+
+    function renderHistory() {
+      var list = $('historyList');
+      var html = '';
+      for (var i = 0; i < conversations.length; i++) {
+        var c = conversations[i];
+        var cls = c.id === currentConvId ? 'bg-brand-50 text-brand-700 font-medium' : 'text-surface-700 hover:bg-surface-100';
+        html += '<button onclick="loadConv(\'' + c.id + '\')" class="w-full text-left px-3 py-2 text-sm rounded-lg transition ' + cls + ' truncate">' + escapeHtml(c.title) + '</button>';
+      }
+      list.innerHTML = html;
+    }
+
+    function loadConv(id) {
+      currentConvId = id;
+      var conv = getCurrentConv();
+      if (!conv) return;
+      renderHistory();
+      var msgArea = $('messages');
+      msgArea.innerHTML = '';
+      for (var i = 0; i < conv.messages.length; i++) {
+        var m = conv.messages[i];
+        if (m.role === 'user') appendUserMessage(m.text, false);
+        else appendBotMessage(m.data, false);
+      }
+      scrollToBottom();
+    }
+
+    function getCurrentConv() {
+      for (var i = 0; i < conversations.length; i++) {
+        if (conversations[i].id === currentConvId) return conversations[i];
+      }
+      return null;
+    }
+
+    function escapeHtml(s) {
+      var d = document.createElement('div');
+      d.textContent = s;
+      return d.innerHTML;
+    }
+
+    // ========== Messages ==========
+    function appendUserMessage(text, scroll) {
+      if (scroll === undefined) scroll = true;
+      $('welcome').style.display = 'none';
+      var div = document.createElement('div');
+      div.className = 'max-w-3xl mx-auto mb-6 fade-in';
+      div.innerHTML = '<div class="flex justify-end"><div class="max-w-[80%] bg-brand-600 text-white rounded-2xl rounded-br-md px-4 py-2.5 text-sm leading-relaxed">' + escapeHtml(text) + '</div></div>';
+      $('messages').appendChild(div);
+      if (scroll) scrollToBottom();
+    }
+
+    function appendLoading() {
+      var div = document.createElement('div');
+      div.id = 'loadingMsg';
+      div.className = 'max-w-3xl mx-auto mb-6 fade-in';
+      div.innerHTML = '<div class="flex gap-3"><div class="shrink-0 w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div><div class="bg-white rounded-2xl rounded-tl-md border border-surface-200 px-4 py-3"><div class="flex items-center gap-1.5"><span class="typing-dot w-2 h-2 bg-surface-300 rounded-full inline-block"></span><span class="typing-dot w-2 h-2 bg-surface-300 rounded-full inline-block"></span><span class="typing-dot w-2 h-2 bg-surface-300 rounded-full inline-block"></span></div></div></div>';
+      $('messages').appendChild(div);
+      scrollToBottom();
+    }
+
+    function removeLoading() {
+      var el = $('loadingMsg');
+      if (el) el.remove();
+    }
+
+    function appendBotMessage(data, scroll) {
+      if (scroll === undefined) scroll = true;
+      $('welcome').style.display = 'none';
+      var div = document.createElement('div');
+      div.className = 'max-w-3xl mx-auto mb-6 fade-in';
+      var content = '';
+
+      // 判断是否为拒绝回复
+      var isRefusal = data.summary === '无法直接回答该问题';
+
+      // Error（仅非拒绝时显示原始错误）
+      if (data.error && !isRefusal) {
+        content += '<div class="bg-red-50 border border-red-200 rounded-xl px-4 py-3 mb-3 text-sm text-red-700"><div class="font-medium mb-1">处理出错</div><div>' + escapeHtml(data.error) + '</div></div>';
+      }
+
+      // Answer（拒绝时用蓝色提示框，否则正常显示）
+      if (data.answer) {
+        if (isRefusal) {
+          content += '<div class="bg-blue-50 border border-blue-200 rounded-xl px-4 py-3 mb-4 text-sm text-blue-800 leading-relaxed"><div class="flex items-center gap-2 mb-2"><svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span class="font-medium">提示</span></div>' + renderMarkdown(data.answer) + '</div>';
+        } else {
+          content += '<div class="message-content text-sm leading-relaxed text-surface-700 mb-4">' + renderMarkdown(data.answer) + '</div>';
+        }
+      }
+
+      // Summary（拒绝时不显示重复的摘要）
+      if (data.summary && !isRefusal) {
+        content += '<div class="bg-brand-50 border border-brand-100 rounded-lg px-3 py-2 mb-4 text-sm text-brand-700 font-medium">' + escapeHtml(data.summary) + '</div>';
+      }
+
+      // Warnings（拒绝时不显示技术性的 reason code）
+      if (data.warnings && data.warnings.length > 0 && !isRefusal) {
+        content += '<div class="bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mb-4 text-sm text-amber-700">';
+        for (var w = 0; w < data.warnings.length; w++) content += '<div>- ' + escapeHtml(data.warnings[w]) + '</div>';
+        content += '</div>';
+      }
+
+      // Chart
+      if (data.chart && data.chart.option) {
+        var chartId = 'chart_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6);
+        content += '<div id="' + chartId + '" class="chart-container bg-white rounded-xl border border-surface-200 mb-4"></div>';
+        (function(cid, opt) {
+          requestAnimationFrame(function() {
+            var el = document.getElementById(cid);
+            if (el && typeof echarts !== 'undefined') {
+              var chart = echarts.init(el);
+              chart.setOption(opt);
+              window.addEventListener('resize', function() { chart.resize(); });
+            }
+          });
+        })(chartId, data.chart.option);
+      }
+
+      // Table
+      if (data.rows && data.rows.length > 0 && data.columns && data.columns.length > 0) {
+        var tableId = 'tbl_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6);
+        var cols = [];
+        for (var c = 0; c < data.columns.length; c++) cols.push(data.columns[c].name);
+        var maxRows = 100;
+        var displayRows = data.rows.slice(0, maxRows);
+        var hasMore = data.rows.length > maxRows;
+
+        content += '<div class="mb-4"><div class="flex items-center justify-between mb-2"><span class="text-xs font-medium text-surface-300 uppercase tracking-wide">查询结果</span><span class="text-xs text-surface-300">' + data.rows.length + ' 行</span></div><div class="overflow-x-auto rounded-xl border border-surface-200"><table id="' + tableId + '" class="w-full text-sm"><thead><tr class="bg-surface-50">';
+        for (var ci = 0; ci < cols.length; ci++) {
+          content += '<th class="text-left px-3 py-2.5 font-medium text-surface-500 border-b border-surface-200 whitespace-nowrap cursor-pointer hover:bg-surface-100 transition" onclick="sortTable(\'' + tableId + '\', this)">' + escapeHtml(cols[ci]) + ' <span class="text-surface-300">&#8693;</span></th>';
+        }
+        content += '</tr></thead><tbody class="divide-y divide-surface-100">';
+        for (var ri = 0; ri < displayRows.length; ri++) {
+          content += '<tr class="hover:bg-surface-50 transition">';
+          for (var ci2 = 0; ci2 < cols.length; ci2++) {
+            var val = displayRows[ri][cols[ci2]];
+            content += '<td class="px-3 py-2 text-surface-700 whitespace-nowrap">' + escapeHtml(val == null ? '' : String(val)) + '</td>';
+          }
+          content += '</tr>';
+        }
+        content += '</tbody></table></div>';
+        if (hasMore) content += '<div class="text-xs text-surface-300 mt-2 text-center">显示前 ' + maxRows + ' 行，共 ' + data.rows.length + ' 行</div>';
+        content += '</div>';
+      }
+
+      // SQL viewer
+      if (data.sql) {
+        var sqlId = 'sql_' + Date.now();
+        content += '<div class="mb-2"><button onclick="toggleSql(\'' + sqlId + '\')" class="flex items-center gap-1.5 text-xs text-surface-300 hover:text-surface-500 transition"><svg id="' + sqlId + '_icon" class="w-3.5 h-3.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg><span>查看执行的 SQL</span></button><div id="' + sqlId + '" class="hidden mt-2"><pre class="sql-block bg-surface-900 text-surface-200 rounded-xl p-4 overflow-x-auto"><code>' + escapeHtml(data.sql) + '</code></pre></div></div>';
+      }
+
+      // Footer
+      content += '<div class="flex items-center gap-4 text-xs text-surface-300">';
+      if (data.processing_time_ms) content += '<span>耗时 ' + (data.processing_time_ms / 1000).toFixed(1) + 's</span>';
+      if (data.trace_id) content += '<span>Trace: ' + data.trace_id.slice(0, 8) + '</span>';
+      content += '</div>';
+
+      div.innerHTML = '<div class="flex gap-3"><div class="shrink-0 w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div><div class="flex-1 min-w-0"><div class="bg-white rounded-2xl rounded-tl-md border border-surface-200 px-4 py-3">' + content + '</div></div></div>';
+      $('messages').appendChild(div);
+      if (scroll) scrollToBottom();
+    }
+
+    function toggleSql(id) {
+      var block = $(id);
+      var icon = $(id + '_icon');
+      block.classList.toggle('hidden');
+      icon.style.transform = block.classList.contains('hidden') ? '' : 'rotate(90deg)';
+    }
+
+    function sortTable(tableId, th) {
+      var table = $(tableId);
+      var tbody = table.querySelector('tbody');
+      var rows = Array.from(tbody.rows);
+      var colIdx = Array.from(th.parentNode.cells).indexOf(th);
+      var dir = th.dataset.dir === 'asc' ? 'desc' : 'asc';
+      th.dataset.dir = dir;
+      rows.sort(function(a, b) {
+        var av = a.cells[colIdx].textContent.trim();
+        var bv = b.cells[colIdx].textContent.trim();
+        var an = parseFloat(av), bn = parseFloat(bv);
+        if (!isNaN(an) && !isNaN(bn)) return dir === 'asc' ? an - bn : bn - an;
+        return dir === 'asc' ? av.localeCompare(bv, 'zh') : bv.localeCompare(av, 'zh');
+      });
+      for (var i = 0; i < rows.length; i++) tbody.appendChild(rows[i]);
+    }
+
+    // ========== Actions ==========
+    async function sendMessage() {
+      var input = $('input');
+      var text = input.value.trim();
+      if (!text || isLoading) return;
+
+      if (!currentConvId) newChat();
+      var conv = getCurrentConv();
+
+      if (conv.messages.length === 0) {
+        conv.title = text.slice(0, 30);
+        renderHistory();
+      }
+
+      conv.messages.push({ role: 'user', text: text });
+      appendUserMessage(text);
+
+      input.value = '';
+      input.style.height = 'auto';
+      $('charCount').textContent = '0/500';
+
+      isLoading = true;
+      $('sendBtn').disabled = true;
+      appendLoading();
+
+      try {
+        var data = await callChat(text);
+        removeLoading();
+        conv.messages.push({ role: 'bot', data: data });
+        appendBotMessage(data);
+      } catch (err) {
+        removeLoading();
+        showToast('请求失败: ' + err.message, 'error');
+        var errData = { error: err.message, answer: '' };
+        conv.messages.push({ role: 'bot', data: errData });
+        appendBotMessage(errData);
+      } finally {
+        isLoading = false;
+        $('sendBtn').disabled = false;
+        input.focus();
+      }
+    }
+
+    function askPreset(btn) {
+      var text = btn.getAttribute('data-q');
+      if (!text) {
+        // fallback: get first div's text
+        var firstDiv = btn.querySelector('div');
+        if (firstDiv) text = firstDiv.textContent;
+      }
+      if (!text) return;
+      $('input').value = text;
+      autoResize($('input'));
+      sendMessage();
+    }
+
+    // ========== Global Error Handler ==========
+    window.onerror = function(msg, url, line) {
+      console.error('JS Error:', msg, url, line);
+      showToast('页面脚本错误: ' + msg, 'error');
+    };
+    window.addEventListener('unhandledrejection', function(e) {
+      console.error('Unhandled rejection:', e.reason);
+      showToast('异步错误: ' + (e.reason && e.reason.message || e.reason), 'error');
+    });
+
+    // ========== Connection Check ==========
+    async function checkConnection() {
+      try {
+        var resp = await fetch(API_BASE + '/health', { signal: AbortSignal.timeout(5000) });
+        if (!resp.ok) throw new Error('status ' + resp.status);
+      } catch (e) {
+        showToast('无法连接后端 API (' + API_BASE + ')，请确认服务已启动', 'error');
+      }
+    }
+
+    // ========== Init ==========
+    newChat();
+    checkConnection();
+    $('input').focus();
+  </script>
+</body>
+</html>

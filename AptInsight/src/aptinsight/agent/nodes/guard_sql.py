@@ -100,10 +100,18 @@ async def guard_sql(state: AgentState) -> AgentState:
             violation = result.violation.value if result.violation else "unknown"
             logger.warning(f"SQL 安全检查失败，违规: {violation}，原因: {result.message}")
 
+            # 使用已有的友好消息函数，不直接暴露技术细节
+            if result.violation:
+                friendly_msg = get_violation_message(result.violation)
+                fix_hint = suggest_fix(result.violation, result.message)
+                error_detail = f"{friendly_msg}。{fix_hint}"
+            else:
+                error_detail = result.message
+
             return {
                 **state,
                 "sql_guard_result": guard_result,
-                "error": f"SQL 安全检查失败: {result.message}",
+                "error": f"SQL 安全检查失败: {error_detail}",
             }
 
     except Exception as e:

@@ -150,7 +150,7 @@ def create_agent_graph(llm_client: LLMClient):
             INTENT_ANALYSIS: "generate_sql",  # 业务分析 → SQL 生成
             INTENT_CHITCHAT: "write_answer",  # 闲聊 → 直接生成答案
             INTENT_OUT_OF_SCOPE: "write_answer",  # 超出范围 → 生成提示答案
-            "error": END,  # 错误 → 结束
+            "error": "write_answer",  # 错误 → 生成友好提示（不再直接 END）
         },
     )
 

@@ -5,6 +5,7 @@ description = "AptInsight intelligent apartment operation analysis agent"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "aiofiles>=24.0.0",
     "asyncmy>=0.2.10",
     "cryptography>=42.0.0",
     "fastapi>=0.115.0",

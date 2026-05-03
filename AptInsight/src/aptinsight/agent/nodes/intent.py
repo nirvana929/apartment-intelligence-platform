@@ -135,13 +135,12 @@ async def classify_intent(state: AgentState, llm_client: LLMClient) -> AgentStat
     # 读取用户问题
     question = state.get("question", "")
 
-    # 如果问题为空，设置为超出范围
+    # 如果问题为空，走 out_of_scope 路径（不设 error，避免跳过 write_answer）
     if not question.strip():
         logger.warning("用户问题为空")
         return {
             **state,
             "intent": INTENT_OUT_OF_SCOPE,
-            "error": "用户问题为空",
         }
 
     logger.info(f"开始意图识别，问题: {question[:50]}")
@@ -178,6 +177,7 @@ async def classify_intent(state: AgentState, llm_client: LLMClient) -> AgentStat
 
     except Exception as e:
         logger.error(f"意图识别失败，错误: {e}，类型: {type(e).__name__}")
+        # 不设 error，走 out_of_scope 路径到 write_answer，由 failure.py 归类
         return {
             **state,
             "intent": INTENT_OUT_OF_SCOPE,
