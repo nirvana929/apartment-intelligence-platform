@@ -5,8 +5,10 @@ import com.atguigu.lease.model.entity.LabelInfo;
 import com.atguigu.lease.model.entity.LeaseTerm;
 import com.atguigu.lease.model.entity.PaymentType;
 import com.atguigu.lease.model.enums.ReleaseStatus;
+import com.atguigu.lease.model.entity.UserInfo;
 import com.atguigu.lease.web.app.service.LeaseAgreementService;
 import com.atguigu.lease.web.app.service.RoomInfoService;
+import com.atguigu.lease.web.app.service.UserInfoService;
 import com.atguigu.lease.web.app.service.ViewAppointmentService;
 import com.atguigu.lease.web.app.vo.agreement.AgreementItemVo;
 import com.atguigu.lease.web.app.vo.ai.AppointmentVo;
@@ -40,13 +42,16 @@ public class AiToolController {
     private final RoomInfoService service;
     private final ViewAppointmentService appointmentService;
     private final LeaseAgreementService leaseService;
+    private final UserInfoService userInfoService;
 
     public AiToolController(RoomInfoService service,
                             ViewAppointmentService appointmentService,
-                            LeaseAgreementService leaseService) {
+                            LeaseAgreementService leaseService,
+                            UserInfoService userInfoService) {
         this.service = service;
         this.appointmentService = appointmentService;
         this.leaseService = leaseService;
+        this.userInfoService = userInfoService;
     }
 
     @Operation(summary = "搜索房间")
@@ -129,7 +134,11 @@ public class AiToolController {
     @Operation(summary = "查询当前用户租约列表")
     @GetMapping("/lease/list-mine")
     public Result<List<LeaseVo>> listMyLeases(@RequestHeader("X-User-Id") Long userId) {
-        List<AgreementItemVo> items = leaseService.listByUserId(userId);
+        UserInfo user = userInfoService.getById(userId);
+        if (user == null || user.getPhone() == null) {
+            return Result.ok(Collections.emptyList());
+        }
+        List<AgreementItemVo> items = leaseService.listItem(user.getPhone());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         List<LeaseVo> result = items.stream().map(item -> {
             LeaseVo vo = new LeaseVo();

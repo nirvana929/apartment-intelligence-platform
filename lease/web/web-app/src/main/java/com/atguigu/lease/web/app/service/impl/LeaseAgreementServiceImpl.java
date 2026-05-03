@@ -4,7 +4,6 @@ import com.atguigu.lease.model.entity.*;
 import com.atguigu.lease.model.enums.ItemType;
 import com.atguigu.lease.web.app.mapper.*;
 import com.atguigu.lease.web.app.service.LeaseAgreementService;
-import com.atguigu.lease.web.app.service.UserInfoService;
 import com.atguigu.lease.web.app.vo.agreement.AgreementDetailVo;
 import com.atguigu.lease.web.app.vo.agreement.AgreementItemVo;
 import com.atguigu.lease.web.app.vo.graph.GraphVo;
@@ -13,7 +12,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -27,9 +25,6 @@ public class LeaseAgreementServiceImpl extends ServiceImpl<LeaseAgreementMapper,
 
     @Autowired
     private LeaseAgreementMapper leaseAgreementMapper;
-
-    @Autowired
-    private UserInfoService userInfoService;
 
     @Autowired
     private ApartmentInfoMapper apartmentInfoMapper;
@@ -50,15 +45,6 @@ public class LeaseAgreementServiceImpl extends ServiceImpl<LeaseAgreementMapper,
     @Override
     public List<AgreementItemVo> listItem(String username) {
         return leaseAgreementMapper.listItem(username);
-    }
-
-    @Override
-    public List<AgreementItemVo> listByUserId(Long userId) {
-        UserInfo user = userInfoService.getById(userId);
-        if (user == null || user.getPhone() == null) {
-            return Collections.emptyList();
-        }
-        return leaseAgreementMapper.listItem(user.getPhone());
     }
 
     @Override
