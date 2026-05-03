@@ -37,12 +37,12 @@
 - ✅ 租约查询
 - ✅ 知识库问答（押金退还等）
 - ✅ 完整 Agent 链路（intent → slot → room_search → rerank → reply）
+- ✅ 预约创建（intent → slot → confirm → tool → reply）
+- ✅ 错误降级（lease 接口异常时返回友好提示）
 
 ## 待完成
 
-1. **前端 commit** — rentHouseH5 的改动需要提交
-2. **预约创建测试** — 需要用户确认流程的端到端测试
-3. **错误处理增强** — lease 接口超时/失败时的降级策略
+（全部完成）
 
 ## 架构原则（用户反馈）
 - AI 接口必须独立于前端接口，不改现有 service/mapper
