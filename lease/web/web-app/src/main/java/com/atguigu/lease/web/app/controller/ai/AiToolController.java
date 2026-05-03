@@ -1,6 +1,7 @@
 package com.atguigu.lease.web.app.controller.ai;
 
 import com.atguigu.lease.common.result.Result;
+import com.atguigu.lease.model.entity.LabelInfo;
 import com.atguigu.lease.model.entity.LeaseTerm;
 import com.atguigu.lease.model.entity.PaymentType;
 import com.atguigu.lease.model.enums.ReleaseStatus;
@@ -38,6 +39,7 @@ public class AiToolController {
     @Operation(summary = "搜索房间")
     @PostMapping("/room/search")
     public Result<RoomSearchResponse> searchRooms(@RequestBody RoomSearchRequest request,
+                                                  // userId is part of the internal API contract; reserved for future per-user filtering
                                                   @RequestHeader("X-User-Id") Long userId) {
         List<RoomItemVo> roomItems;
 
@@ -123,7 +125,7 @@ public class AiToolController {
         // Tags from labels
         vo.setTags(detail.getLabelInfoList() != null
                 ? detail.getLabelInfoList().stream()
-                        .map(label -> label.getName())
+                        .map(LabelInfo::getName)
                         .filter(Objects::nonNull)
                         .collect(Collectors.toList())
                 : Collections.emptyList());
@@ -137,7 +139,7 @@ public class AiToolController {
         vo.setLayout(null);
 
         // Appointable: only released rooms can be appointed
-        vo.setIsAppointable(detail.getIsRelease() == ReleaseStatus.RELEASED);
+        vo.setIsAppointable(ReleaseStatus.RELEASED.equals(detail.getIsRelease()));
 
         return vo;
     }
