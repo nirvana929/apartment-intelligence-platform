@@ -41,6 +41,8 @@ aliyun:
     endpoint: ${ALIYUN_SMS_ENDPOINT:dysmsapi.aliyuncs.com}
 
 ai:
+  guide:
+    url: ${APTGUIDE_URL:http://localhost:8100}
   internal:
     token: ${AI_INTERNAL_TOKEN:aptguide-internal-token-2026}
 
