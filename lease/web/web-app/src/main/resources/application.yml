@@ -4,9 +4,9 @@ server:
 spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: ${MYSQL_URL:jdbc:mysql://127.0.0.1:3306/lease?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2b8}
-    username: ${MYSQL_USERNAME:root}
-    password: ${MYSQL_PASSWORD:change-me}
+    url: ${MYSQL_URL:jdbc:mysql://192.168.211.128:3306/least?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2b8}
+    username: ${MYSQL_USERNAME:chove}
+    password: ${MYSQL_PASSWORD:123456}
     hikari:
       connection-test-query: SELECT 1 # 自动检测连接
       connection-timeout: 60000 #数据库连接超时时间,默认30秒
