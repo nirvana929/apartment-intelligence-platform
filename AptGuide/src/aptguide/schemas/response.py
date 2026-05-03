@@ -36,7 +36,7 @@ class ChatResponse(BaseModel):
     request_id: str
     intent: str
     reply: str
-    cards: list[Card] = []
+    cards: list[dict] = []  # room / appointment / lease 卡片，结构灵活
     actions: list[Action] = []
     pending_confirmation: PendingConfirmation | None = None
     sources: list[str] = []

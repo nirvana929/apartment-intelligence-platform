@@ -1,8 +1,12 @@
 const messagesContainer = document.getElementById("messages");
 const messageInput = document.getElementById("messageInput");
 const sendButton = document.getElementById("sendButton");
+const chatContainer = document.getElementById("chatContainer");
 
 let sessionId = "demo-" + Date.now();
+let welcomeHidden = false;
+
+// ========== 工具函数 ==========
 
 function escapeHtml(str) {
     if (!str) return "";
@@ -14,7 +18,31 @@ function escapeHtml(str) {
         .replace(/'/g, "&#039;");
 }
 
+function scrollToBottom() {
+    requestAnimationFrame(() => {
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    });
+}
+
+function hideWelcome() {
+    if (welcomeHidden) return;
+    welcomeHidden = true;
+    const welcome = document.querySelector(".welcome-section");
+    if (welcome) {
+        welcome.style.transition = "opacity 0.3s, max-height 0.3s";
+        welcome.style.opacity = "0";
+        welcome.style.maxHeight = "0";
+        welcome.style.overflow = "hidden";
+        welcome.style.padding = "0";
+        setTimeout(() => welcome.remove(), 300);
+    }
+}
+
+// ========== 消息渲染 ==========
+
 function addMessage(content, isUser = false, sources = []) {
+    hideWelcome();
+
     const messageDiv = document.createElement("div");
     messageDiv.className = `message ${isUser ? "user" : "assistant"}`;
 
@@ -26,10 +54,31 @@ function addMessage(content, isUser = false, sources = []) {
 
     messageDiv.innerHTML = html;
     messagesContainer.appendChild(messageDiv);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    scrollToBottom();
 }
 
-function renderCards(cards) {
+// ========== 加载动画 ==========
+
+function addLoadingIndicator() {
+    const div = document.createElement("div");
+    div.id = "loadingIndicator";
+    div.className = "message assistant";
+    div.innerHTML = `
+        <div class="message-content loading-msg">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </div>`;
+    messagesContainer.appendChild(div);
+    scrollToBottom();
+}
+
+function removeLoadingIndicator() {
+    const el = document.getElementById("loadingIndicator");
+    if (el) el.remove();
+}
+
+// ========== 房源卡片 ==========
+
+function renderRoomCards(cards) {
     let html = '<div class="cards-container">';
     for (const card of cards) {
         const tags = (card.tags || [])
@@ -39,7 +88,7 @@ function renderCards(cards) {
         <div class="room-card">
             <div class="room-card-header">
                 <span class="room-title">${escapeHtml(card.title)}</span>
-                <span class="room-rent">${escapeHtml(card.rent)}</span>
+                <span class="room-rent">&yen;${escapeHtml(card.rent)}/月</span>
             </div>
             <div class="room-card-body">
                 <span class="room-district">${escapeHtml(card.district)}</span>
@@ -47,7 +96,7 @@ function renderCards(cards) {
                 ${card.description ? `<p class="room-desc">${escapeHtml(card.description)}</p>` : ""}
             </div>
             <div class="room-card-actions">
-                <button class="btn-appointment" data-room-id="${escapeHtml(card.id)}" data-room-title="${escapeHtml(card.title)}">预约看房</button>
+                <button class="btn-appointment" data-room-id="${escapeHtml(card.room_id || card.id)}" data-room-title="${escapeHtml(card.title)}">预约看房</button>
             </div>
         </div>`;
     }
@@ -55,22 +104,90 @@ function renderCards(cards) {
     return html;
 }
 
-function addCards(cards, actions) {
+// ========== 预约卡片 ==========
+
+function renderAppointmentCards(cards) {
+    const statusMap = { pending: "待确认", confirmed: "已确认", cancelled: "已取消" };
+    let html = '<div class="cards-container">';
+    for (const card of cards) {
+        const statusText = statusMap[card.status] || card.status;
+        const statusClass = card.status === "confirmed" ? "status-confirmed" : "status-pending";
+        html += `
+        <div class="info-card appointment-card">
+            <div class="info-card-header">
+                <span class="info-card-icon">&#128197;</span>
+                <span class="info-card-title">${escapeHtml(card.room_title)}</span>
+                <span class="info-status ${statusClass}">${escapeHtml(statusText)}</span>
+            </div>
+            <div class="info-card-body">
+                <div class="info-row"><span class="info-label">预约时间</span><span class="info-value">${escapeHtml(card.appointment_time)}</span></div>
+                <div class="info-row"><span class="info-label">预约编号</span><span class="info-value">${escapeHtml(card.appointment_id)}</span></div>
+                ${card.created_at ? `<div class="info-row"><span class="info-label">创建时间</span><span class="info-value">${escapeHtml(card.created_at)}</span></div>` : ""}
+            </div>
+        </div>`;
+    }
+    html += "</div>";
+    return html;
+}
+
+// ========== 租约卡片 ==========
+
+function renderLeaseCards(cards) {
+    let html = '<div class="cards-container">';
+    for (const card of cards) {
+        const isActive = card.status === "active";
+        const statusText = isActive ? "生效中" : card.status;
+        const statusClass = isActive ? "status-active" : "status-inactive";
+        html += `
+        <div class="info-card lease-card">
+            <div class="info-card-header">
+                <span class="info-card-icon">&#128203;</span>
+                <span class="info-card-title">${escapeHtml(card.room_title)}</span>
+                <span class="info-status ${statusClass}">${escapeHtml(statusText)}</span>
+            </div>
+            <div class="info-card-body">
+                <div class="info-row"><span class="info-label">月租金</span><span class="info-value rent-value">&yen;${escapeHtml(card.rent)}</span></div>
+                <div class="info-row"><span class="info-label">起始日期</span><span class="info-value">${escapeHtml(card.start_date)}</span></div>
+                <div class="info-row"><span class="info-label">到期日期</span><span class="info-value">${escapeHtml(card.end_date)}</span></div>
+                <div class="info-row"><span class="info-label">合同编号</span><span class="info-value">${escapeHtml(card.lease_id)}</span></div>
+            </div>
+        </div>`;
+    }
+    html += "</div>";
+    return html;
+}
+
+// ========== 卡片分发 ==========
+
+function addCards(cards) {
+    if (!cards || cards.length === 0) return;
+
     const messageDiv = document.createElement("div");
     messageDiv.className = "message assistant cards-message";
-    messageDiv.innerHTML = renderCards(cards);
-    messagesContainer.appendChild(messageDiv);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-    // Bind appointment button clicks
+    const firstType = cards[0].type;
+    if (firstType === "appointment") {
+        messageDiv.innerHTML = renderAppointmentCards(cards);
+    } else if (firstType === "lease") {
+        messageDiv.innerHTML = renderLeaseCards(cards);
+    } else {
+        messageDiv.innerHTML = renderRoomCards(cards);
+    }
+
+    messagesContainer.appendChild(messageDiv);
+    scrollToBottom();
+
+    // 绑定预约按钮
     messageDiv.querySelectorAll(".btn-appointment").forEach((btn) => {
         btn.addEventListener("click", () => {
-            const title = btn.getAttribute("data-room-title") || "房源";
-            messageInput.value = `预约看房 ${title}`;
-            messageInput.focus();
+            const roomId = btn.getAttribute("data-room-id");
+            const roomTitle = btn.getAttribute("data-room-title");
+            openTimePicker(roomId, roomTitle);
         });
     });
 }
+
+// ========== 确认卡片 ==========
 
 function addConfirmation(confirmation) {
     const messageDiv = document.createElement("div");
@@ -98,59 +215,100 @@ function addConfirmation(confirmation) {
     });
 
     messagesContainer.appendChild(messageDiv);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    scrollToBottom();
 }
+
+// ========== 时间选择弹窗 ==========
+
+let pendingRoomId = null;
+let pendingRoomTitle = null;
+
+function openTimePicker(roomId, roomTitle) {
+    pendingRoomId = roomId;
+    pendingRoomTitle = roomTitle;
+    document.getElementById("modalRoomTitle").textContent = roomTitle;
+
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    document.getElementById("appointmentDate").value = tomorrow.toISOString().split("T")[0];
+
+    document.getElementById("timePickerModal").style.display = "flex";
+}
+
+function closeTimePicker() {
+    document.getElementById("timePickerModal").style.display = "none";
+    pendingRoomId = null;
+    pendingRoomTitle = null;
+}
+
+document.getElementById("modalConfirm").addEventListener("click", () => {
+    const date = document.getElementById("appointmentDate").value;
+    const time = document.getElementById("appointmentTime").value;
+    if (!date) { alert("请选择日期"); return; }
+    const msg = `预约看房 ${pendingRoomTitle}，房间号${pendingRoomId}，时间${date} ${time}`;
+    closeTimePicker();
+    messageInput.value = msg;
+    sendMessage();
+});
+
+document.getElementById("modalCancel").addEventListener("click", closeTimePicker);
+document.getElementById("timePickerModal").addEventListener("click", (e) => {
+    if (e.target === e.currentTarget) closeTimePicker();
+});
+
+// ========== 快捷操作 ==========
+
+function bindQuickActions(container) {
+    container.querySelectorAll(".quick-btn, .welcome-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            messageInput.value = btn.getAttribute("data-message");
+            sendMessage();
+        });
+    });
+}
+
+bindQuickActions(document);
+
+// ========== 发送消息 ==========
 
 async function sendMessage() {
     const message = messageInput.value.trim();
     if (!message) return;
 
-    // 添加用户消息
     addMessage(message, true);
     messageInput.value = "";
 
-    // 禁用发送按钮
     sendButton.disabled = true;
-    sendButton.textContent = "发送中...";
+    addLoadingIndicator();
 
     try {
         const response = await fetch("/api/chat", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                session_id: sessionId,
-                message: message,
-            }),
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ session_id: sessionId, message }),
         });
 
         const data = await response.json();
+        removeLoadingIndicator();
 
-        // 添加助手回复
         addMessage(data.reply, false, data.sources);
 
-        // 如果有卡片数据，展示房间卡片
         if (data.cards && data.cards.length > 0) {
-            addCards(data.cards, data.actions);
+            addCards(data.cards);
         }
 
-        // 如果有待确认操作，展示确认卡片
         if (data.pending_confirmation) {
             addConfirmation(data.pending_confirmation);
         }
     } catch (error) {
+        removeLoadingIndicator();
         addMessage("抱歉，发生了错误。请稍后重试。", false);
     } finally {
         sendButton.disabled = false;
-        sendButton.textContent = "发送";
     }
 }
 
-// 事件监听
 sendButton.addEventListener("click", sendMessage);
 messageInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-        sendMessage();
-    }
+    if (e.key === "Enter") sendMessage();
 });

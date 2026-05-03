@@ -9,29 +9,85 @@
 <body>
     <div class="container">
         <header class="header">
-            <h1>AptGuide</h1>
-            <p>智能找房助手</p>
+            <div class="header-content">
+                <h1>AptGuide</h1>
+                <p>智能找房助手</p>
+            </div>
         </header>
 
-        <main class="chat-container">
+        <main class="chat-container" id="chatContainer">
             <div id="messages" class="messages">
-                <div class="message assistant">
-                    <div class="message-content">
-                        你好！我是 AptGuide 智能找房助手。你可以问我关于租房规则的问题，比如押金、退租、预约等。
+                <!-- 欢迎区域 -->
+                <div class="welcome-section">
+                    <div class="welcome-icon">&#127968;</div>
+                    <h2>你好！我是 AptGuide</h2>
+                    <p>智能找房助手，帮你找房、预约看房、查询租约和解答租房规则。</p>
+                    <div class="welcome-actions">
+                        <button class="welcome-btn" data-message="帮我找天河区3000以内的房子">
+                            <span class="welcome-btn-icon">&#128269;</span>
+                            <span>找房</span>
+                        </button>
+                        <button class="welcome-btn" data-message="查看我的预约">
+                            <span class="welcome-btn-icon">&#128197;</span>
+                            <span>我的预约</span>
+                        </button>
+                        <button class="welcome-btn" data-message="查看我的租约">
+                            <span class="welcome-btn-icon">&#128203;</span>
+                            <span>我的租约</span>
+                        </button>
+                        <button class="welcome-btn" data-message="押金怎么退">
+                            <span class="welcome-btn-icon">&#10067;</span>
+                            <span>押金规则</span>
+                        </button>
                     </div>
                 </div>
             </div>
         </main>
 
-        <footer class="input-container">
-            <input
-                type="text"
-                id="messageInput"
-                placeholder="输入你的问题..."
-                autocomplete="off"
-            >
-            <button id="sendButton">发送</button>
+        <!-- 底部操作栏（始终可见） -->
+        <footer class="bottom-bar">
+            <div id="quickActions" class="quick-actions">
+                <button class="quick-btn" data-message="帮我找天河区3000以内的房子">找房</button>
+                <button class="quick-btn" data-message="查看我的预约">我的预约</button>
+                <button class="quick-btn" data-message="查看我的租约">我的租约</button>
+                <button class="quick-btn" data-message="押金怎么退">押金规则</button>
+            </div>
+            <div class="input-container">
+                <input
+                    type="text"
+                    id="messageInput"
+                    placeholder="输入你的问题..."
+                    autocomplete="off"
+                >
+                <button id="sendButton">
+                    <span class="send-icon">&#10148;</span>
+                </button>
+            </div>
         </footer>
+    </div>
+
+    <!-- 时间选择弹窗 -->
+    <div id="timePickerModal" class="modal" style="display:none">
+        <div class="modal-content">
+            <h3>选择预约时间</h3>
+            <p class="modal-room-title" id="modalRoomTitle"></p>
+            <input type="date" id="appointmentDate" class="modal-input">
+            <select id="appointmentTime" class="modal-input">
+                <option value="09:00">09:00</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="14:00" selected>14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+                <option value="19:00">19:00</option>
+                <option value="20:00">20:00</option>
+            </select>
+            <div class="modal-actions">
+                <button id="modalConfirm" class="btn-confirm">确认预约</button>
+                <button id="modalCancel" class="btn-cancel">取消</button>
+            </div>
+        </div>
     </div>
 
     <script src="app.js"></script>

@@ -19,3 +19,8 @@ def setup_logging(settings: Settings) -> None:
     )
     handler.setFormatter(formatter)
     logger.addHandler(handler)
+
+
+def get_logger(name: str) -> logging.Logger:
+    """获取命名日志器。"""
+    return logging.getLogger(f"aptguide.{name}")

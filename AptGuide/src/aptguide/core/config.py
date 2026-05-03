@@ -29,7 +29,7 @@ class Settings(BaseSettings):
     # Embedding 配置 —— 用于把文本转换为向量（数字数组），供 Milvus 做相似度搜索
     embedding_api_key: SecretStr
     embedding_base_url: str = "https://dashscope.aliyuncs.com/compatible-mode/v1"
-    embedding_model: str = "text-embedding-v3"
+    embedding_model: str = "text-embedding-v4"
 
     # Milvus 配置 —— 向量数据库，存储房源和知识库的 embedding
     milvus_uri: str = "http://localhost:19530"
