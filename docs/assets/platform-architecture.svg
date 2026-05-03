@@ -1,0 +1,58 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="720" rx="28" fill="#F7F8FA"/>
+  <rect x="56" y="56" width="1168" height="608" rx="24" fill="#FFFFFF" stroke="#D7DCE2" stroke-width="2"/>
+  <text x="640" y="112" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" fill="#1F2937">Apartment Intelligence Platform</text>
+  <text x="640" y="146" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#667085">Lease business system + admin frontend + mobile H5 + two AI agents</text>
+
+  <rect x="96" y="210" width="230" height="132" rx="16" fill="#ECFDF3" stroke="#8DD7A5" stroke-width="2"/>
+  <text x="211" y="252" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#166534">rentHouseH5</text>
+  <text x="211" y="285" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#344054">Tenant mobile app</text>
+  <text x="211" y="314" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#344054">Search / appointments / AI chat</text>
+
+  <rect x="96" y="410" width="230" height="132" rx="16" fill="#EFF6FF" stroke="#93B5FD" stroke-width="2"/>
+  <text x="211" y="452" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#1D4ED8">rentHouseAdmin</text>
+  <text x="211" y="485" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#344054">Admin console</text>
+  <text x="211" y="514" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#344054">Apartments / rooms / leases</text>
+
+  <rect x="446" y="210" width="256" height="332" rx="18" fill="#FFF7ED" stroke="#FDBA74" stroke-width="2"/>
+  <text x="574" y="254" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#C2410C">lease</text>
+  <text x="574" y="288" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#344054">Spring Boot 3 / Java 17</text>
+  <rect x="484" y="324" width="180" height="58" rx="10" fill="#FFFFFF" stroke="#FED7AA"/>
+  <text x="574" y="359" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#344054">web-admin :8080</text>
+  <rect x="484" y="404" width="180" height="58" rx="10" fill="#FFFFFF" stroke="#FED7AA"/>
+  <text x="574" y="439" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#344054">web-app :8081</text>
+  <rect x="484" y="484" width="180" height="34" rx="8" fill="#FFEDD5"/>
+  <text x="574" y="506" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#9A3412">JWT / Redis / MinIO / SMS</text>
+
+  <rect x="820" y="210" width="306" height="132" rx="16" fill="#F5F3FF" stroke="#C4B5FD" stroke-width="2"/>
+  <text x="973" y="252" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#6D28D9">AptGuide</text>
+  <text x="973" y="285" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#344054">Tenant AI room-search agent</text>
+  <text x="973" y="314" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#344054">LangGraph + Tools + Milvus RAG</text>
+
+  <rect x="820" y="410" width="306" height="132" rx="16" fill="#FDF2F8" stroke="#F9A8D4" stroke-width="2"/>
+  <text x="973" y="452" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#BE185D">AptInsight</text>
+  <text x="973" y="485" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#344054">Operations analysis agent</text>
+  <text x="973" y="514" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#344054">Text-to-SQL + SQL guard + charts</text>
+
+  <rect x="494" y="592" width="160" height="46" rx="12" fill="#F2F4F7" stroke="#CDD5DF"/>
+  <text x="574" y="621" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" fill="#344054">MySQL / Redis</text>
+
+  <path d="M326 276H446" stroke="#475467" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M326 476H446" stroke="#475467" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M702 276H820" stroke="#475467" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M820 302H702" stroke="#475467" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M574 542V592" stroke="#475467" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M702 476H820" stroke="#475467" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <text x="386" y="260" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#667085">/app APIs</text>
+  <text x="386" y="460" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#667085">/admin APIs</text>
+  <text x="761" y="260" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#667085">/api/chat</text>
+  <text x="761" y="326" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#667085">tool APIs</text>
+  <text x="761" y="460" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#667085">read-only SQL</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#475467"/>
+    </marker>
+  </defs>
+</svg>
