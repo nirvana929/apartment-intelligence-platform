@@ -5,10 +5,16 @@ import com.atguigu.lease.model.entity.LabelInfo;
 import com.atguigu.lease.model.entity.LeaseTerm;
 import com.atguigu.lease.model.entity.PaymentType;
 import com.atguigu.lease.model.enums.ReleaseStatus;
+import com.atguigu.lease.web.app.service.LeaseAgreementService;
 import com.atguigu.lease.web.app.service.RoomInfoService;
+import com.atguigu.lease.web.app.service.ViewAppointmentService;
+import com.atguigu.lease.web.app.vo.agreement.AgreementItemVo;
+import com.atguigu.lease.web.app.vo.ai.AppointmentVo;
+import com.atguigu.lease.web.app.vo.ai.LeaseVo;
 import com.atguigu.lease.web.app.vo.ai.RoomSearchRequest;
 import com.atguigu.lease.web.app.vo.ai.RoomSearchResponse;
 import com.atguigu.lease.web.app.vo.ai.RoomVo;
+import com.atguigu.lease.web.app.vo.appointment.AppointmentItemVo;
 import com.atguigu.lease.web.app.vo.room.RoomDetailVo;
 import com.atguigu.lease.web.app.vo.room.RoomItemVo;
 import com.atguigu.lease.web.app.vo.room.RoomQueryVo;
@@ -19,6 +25,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -31,9 +38,15 @@ import java.util.stream.Collectors;
 public class AiToolController {
 
     private final RoomInfoService service;
+    private final ViewAppointmentService appointmentService;
+    private final LeaseAgreementService leaseService;
 
-    public AiToolController(RoomInfoService service) {
+    public AiToolController(RoomInfoService service,
+                            ViewAppointmentService appointmentService,
+                            LeaseAgreementService leaseService) {
         this.service = service;
+        this.appointmentService = appointmentService;
+        this.leaseService = leaseService;
     }
 
     @Operation(summary = "搜索房间")
@@ -93,6 +106,45 @@ public class AiToolController {
     @GetMapping("/health")
     public Result<String> health() {
         return Result.ok("ok");
+    }
+
+    @Operation(summary = "查询当前用户预约列表")
+    @GetMapping("/appointment/list-mine")
+    public Result<List<AppointmentVo>> listMyAppointments(@RequestHeader("X-User-Id") Long userId) {
+        List<AppointmentItemVo> items = appointmentService.listItem(userId);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        List<AppointmentVo> result = items.stream().map(item -> {
+            AppointmentVo vo = new AppointmentVo();
+            vo.setAppointmentId(item.getId());
+            vo.setAppointmentNo(null); // not available in AppointmentItemVo
+            vo.setStatus(item.getAppointmentStatus() != null ? item.getAppointmentStatus().name() : null);
+            vo.setAppointmentTime(item.getAppointmentTime() != null ? sdf.format(item.getAppointmentTime()) : null);
+            vo.setApartmentName(item.getApartmentName());
+            vo.setRoomNumber(null); // not available in AppointmentItemVo
+            return vo;
+        }).collect(Collectors.toList());
+        return Result.ok(result);
+    }
+
+    @Operation(summary = "查询当前用户租约列表")
+    @GetMapping("/lease/list-mine")
+    public Result<List<LeaseVo>> listMyLeases(@RequestHeader("X-User-Id") Long userId) {
+        List<AgreementItemVo> items = leaseService.listItem(String.valueOf(userId));
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        List<LeaseVo> result = items.stream().map(item -> {
+            LeaseVo vo = new LeaseVo();
+            vo.setLeaseId(item.getId());
+            vo.setStatus(item.getLeaseStatus() != null ? item.getLeaseStatus().name() : null);
+            vo.setApartmentName(item.getApartmentName());
+            vo.setRoomNumber(item.getRoomNumber());
+            vo.setStartDate(item.getLeaseStartDate() != null ? sdf.format(item.getLeaseStartDate()) : null);
+            vo.setEndDate(item.getLeaseEndDate() != null ? sdf.format(item.getLeaseEndDate()) : null);
+            vo.setRent(item.getRent() != null ? item.getRent().intValue() : null);
+            vo.setPaymentType(null); // not available in AgreementItemVo
+            vo.setRenewalWindowDays(null); // not available in AgreementItemVo
+            return vo;
+        }).collect(Collectors.toList());
+        return Result.ok(result);
     }
 
     private RoomVo convertToRoomVo(RoomDetailVo detail) {
