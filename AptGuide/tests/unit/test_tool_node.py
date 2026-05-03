@@ -1,5 +1,6 @@
-import pytest
 from unittest.mock import AsyncMock
+
+import pytest
 
 
 @pytest.mark.asyncio
@@ -27,13 +28,15 @@ async def test_tool_node_create_appointment():
     }
 
     tool_client = AsyncMock()
-    tool_client.create_appointment = AsyncMock(return_value={
-        "appointment_id": "A20260503302",
-        "room_id": 3001,
-        "room_title": "天河公寓 302",
-        "appointment_time": "2026-05-03 15:00",
-        "status": "confirmed",
-    })
+    tool_client.create_appointment = AsyncMock(
+        return_value={
+            "appointment_id": "A20260503302",
+            "room_id": 3001,
+            "room_title": "天河公寓 302",
+            "appointment_time": "2026-05-03 15:00",
+            "status": "confirmed",
+        }
+    )
 
     memory = AsyncMock()
     memory.clear_pending_confirmation = AsyncMock()

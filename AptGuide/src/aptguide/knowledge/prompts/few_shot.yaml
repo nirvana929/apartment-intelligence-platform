@@ -1,0 +1,2768 @@
+# AptGuide Prompt/few-shot 样例 - 300 条
+# 用于提升意图识别、槽位抽取和确认话术稳定性
+
+few_shots:
+
+# ============================================================
+# 1. intent_classification: 90 条
+# ============================================================
+
+# --- room_search: 25 条 ---
+- id: fs-intent-001
+  type: intent_classification
+  input: 天河区有没有两千以内的
+  expected_output:
+    intent: room_search
+    confidence: high
+
+- id: fs-intent-002
+  type: intent_classification
+  input: 我想找天河区三千以内的房子
+  expected_output:
+    intent: room_search
+    confidence: high
+
+- id: fs-intent-003
+  type: intent_classification
+  input: 番禺有什么便宜的单间吗
+  expected_output:
+    intent: room_search
+    confidence: high
+
+- id: fs-intent-004
+  type: intent_classification
+  input: 有没有独卫的房子推荐
+  expected_output:
+    intent: room_search
+    confidence: high
+
+- id: fs-intent-005
+  type: intent_classification
+  input: 帮我看看海珠区的房源
+  expected_output:
+    intent: room_search
+    confidence: high
+
+- id: fs-intent-006
+  type: intent_classification
+  input: 想找个离地铁近的单间
+  expected_output:
+    intent: room_search
+    confidence: high
+
+- id: fs-intent-007
+  type: intent_classification
+  input: 有没有可以拎包入住的
+  expected_output:
+    intent: room_search
+    confidence: high
+
+- id: fs-intent-008
+  type: intent_classification
+  input: 我要找个两室一厅，最好朝南
+  expected_output:
+    intent: room_search
+    confidence: high
+
+- id: fs-intent-009
+  type: intent_classification
+  input: 广州还有哪些空房可以看
+  expected_output:
+    intent: room_search
+    confidence: high
+
+- id: fs-intent-010
+  type: intent_classification
+  input: 能不能推荐几个安静点的公寓
+  expected_output:
+    intent: room_search
+    confidence: high
+
+- id: fs-intent-011
+  type: intent_classification
+  input: 白云区一房一厅多少钱
+  expected_output:
+    intent: room_search
+    confidence: high
+
+- id: fs-intent-012
+  type: intent_classification
+  input: 我预算不高，有合适的吗
+  expected_output:
+    intent: room_search
+    confidence: medium
+
+- id: fs-intent-013
+  type: intent_classification
+  input: 有没有适合考研住的地方
+  expected_output:
+    intent: room_search
+    confidence: high
+
+- id: fs-intent-014
+  type: intent_classification
+  input: 想看看黄埔区的合租房
+  expected_output:
+    intent: room_search
+    confidence: high
+
+- id: fs-intent-015
+  type: intent_classification
+  input: 市区附近有便宜点的吗
+  expected_output:
+    intent: room_search
+    confidence: medium
+
+- id: fs-intent-016
+  type: intent_classification
+  input: 能养宠物的房子有吗
+  expected_output:
+    intent: room_search
+    confidence: high
+
+- id: fs-intent-017
+  type: intent_classification
+  input: 想找个带阳台的房间
+  expected_output:
+    intent: room_search
+    confidence: high
+
+- id: fs-intent-018
+  type: intent_classification
+  input: 3号线沿线有什么房源
+  expected_output:
+    intent: room_search
+    confidence: high
+
+- id: fs-intent-019
+  type: intent_classification
+  input: 最近有新房源上架吗
+  expected_output:
+    intent: room_search
+    confidence: high
+
+- id: fs-intent-020
+  type: intent_classification
+  input: 帮我筛选一下月付的房间
+  expected_output:
+    intent: room_search
+    confidence: high
+
+- id: fs-intent-021
+  type: intent_classification
+  input: 有没有四千以内的两居室
+  expected_output:
+    intent: room_search
+    confidence: high
+
+- id: fs-intent-022
+  type: intent_classification
+  input: 越秀区还在招租的房子有哪些
+  expected_output:
+    intent: room_search
+    confidence: high
+
+- id: fs-intent-023
+  type: intent_classification
+  input: 适合情侣住的房子有吗
+  expected_output:
+    intent: room_search
+    confidence: high
+
+- id: fs-intent-024
+  type: intent_classification
+  input: 我想看看天河公园附近的
+  expected_output:
+    intent: room_search
+    confidence: high
+
+- id: fs-intent-025
+  type: intent_classification
+  input: 周边配套齐全的房子推荐一下
+  expected_output:
+    intent: room_search
+    confidence: high
+
+# --- appointment: 18 条 ---
+- id: fs-intent-026
+  type: intent_classification
+  input: 帮我预约明天看房
+  expected_output:
+    intent: appointment
+    confidence: high
+
+- id: fs-intent-027
+  type: intent_classification
+  input: 我想周六去看一下3012号房
+  expected_output:
+    intent: appointment
+    confidence: high
+
+- id: fs-intent-028
+  type: intent_classification
+  input: 能约个时间看房吗
+  expected_output:
+    intent: appointment
+    confidence: high
+
+- id: fs-intent-029
+  type: intent_classification
+  input: 取消我之前的看房预约
+  expected_output:
+    intent: appointment
+    confidence: high
+
+- id: fs-intent-030
+  type: intent_classification
+  input: 下周三下午可以看房吗
+  expected_output:
+    intent: appointment
+    confidence: high
+
+- id: fs-intent-031
+  type: intent_classification
+  input: 我改一下看房时间
+  expected_output:
+    intent: appointment
+    confidence: high
+
+- id: fs-intent-032
+  type: intent_classification
+  input: 帮我预约天河公寓302明天下午两点看房
+  expected_output:
+    intent: appointment
+    confidence: high
+
+- id: fs-intent-033
+  type: intent_classification
+  input: 我之前的预约还在吗
+  expected_output:
+    intent: appointment
+    confidence: medium
+
+- id: fs-intent-034
+  type: intent_classification
+  input: 看房能不能改到后天
+  expected_output:
+    intent: appointment
+    confidence: high
+
+- id: fs-intent-035
+  type: intent_classification
+  input: 约一下这周末去看3005号房
+  expected_output:
+    intent: appointment
+    confidence: high
+
+- id: fs-intent-036
+  type: intent_classification
+  input: 我想今天下午就去看，行吗
+  expected_output:
+    intent: appointment
+    confidence: high
+
+- id: fs-intent-037
+  type: intent_classification
+  input: 之前约的看房能推迟一小时吗
+  expected_output:
+    intent: appointment
+    confidence: high
+
+- id: fs-intent-038
+  type: intent_classification
+  input: 我有事去不了，帮我取消预约
+  expected_output:
+    intent: appointment
+    confidence: high
+
+- id: fs-intent-039
+  type: intent_classification
+  input: 周末还有看房的名额吗
+  expected_output:
+    intent: appointment
+    confidence: medium
+
+- id: fs-intent-040
+  type: intent_classification
+  input: 能不能安排明天上午十点看番禺那边的房
+  expected_output:
+    intent: appointment
+    confidence: high
+
+- id: fs-intent-041
+  type: intent_classification
+  input: 我想同时看两套房，能约在同一天吗
+  expected_output:
+    intent: appointment
+    confidence: high
+
+- id: fs-intent-042
+  type: intent_classification
+  input: 帮我查一下我有没有预约记录
+  expected_output:
+    intent: appointment
+    confidence: medium
+
+- id: fs-intent-043
+  type: intent_classification
+  input: 明天早上九点去看3008号房
+  expected_output:
+    intent: appointment
+    confidence: high
+
+# --- lease: 15 条 ---
+- id: fs-intent-044
+  type: intent_classification
+  input: 我的租约什么时候到期
+  expected_output:
+    intent: lease
+    confidence: high
+
+- id: fs-intent-045
+  type: intent_classification
+  input: 帮我查一下我的合同信息
+  expected_output:
+    intent: lease
+    confidence: high
+
+- id: fs-intent-046
+  type: intent_classification
+  input: 我这个月房租交了没
+  expected_output:
+    intent: lease
+    confidence: high
+
+- id: fs-intent-047
+  type: intent_classification
+  input: 我想续租，怎么操作
+  expected_output:
+    intent: lease
+    confidence: high
+
+- id: fs-intent-048
+  type: intent_classification
+  input: 押金什么时候能退
+  expected_output:
+    intent: lease
+    confidence: high
+
+- id: fs-intent-049
+  type: intent_classification
+  input: 我想提前退租可以吗
+  expected_output:
+    intent: lease
+    confidence: high
+
+- id: fs-intent-050
+  type: intent_classification
+  input: 租约到期后自动续约吗
+  expected_output:
+    intent: lease
+    confidence: high
+
+- id: fs-intent-051
+  type: intent_classification
+  input: 我的租金是多少来着
+  expected_output:
+    intent: lease
+    confidence: high
+
+- id: fs-intent-052
+  type: intent_classification
+  input: 换房间需要重新签合同吗
+  expected_output:
+    intent: lease
+    confidence: high
+
+- id: fs-intent-053
+  type: intent_classification
+  input: 我的水电费账单在哪看
+  expected_output:
+    intent: lease
+    confidence: high
+
+- id: fs-intent-054
+  type: intent_classification
+  input: 上个月的缴费记录帮我查一下
+  expected_output:
+    intent: lease
+    confidence: high
+
+- id: fs-intent-055
+  type: intent_classification
+  input: 合同条款能改吗
+  expected_output:
+    intent: lease
+    confidence: high
+
+- id: fs-intent-056
+  type: intent_classification
+  input: 我住的这间房号是多少
+  expected_output:
+    intent: lease
+    confidence: high
+
+- id: fs-intent-057
+  type: intent_classification
+  input: 退租流程是什么样的
+  expected_output:
+    intent: lease
+    confidence: high
+
+- id: fs-intent-058
+  type: intent_classification
+  input: 我想看看我的押金状态
+  expected_output:
+    intent: lease
+    confidence: high
+
+# --- kb_qa: 18 条 ---
+- id: fs-intent-059
+  type: intent_classification
+  input: 押金怎么退
+  expected_output:
+    intent: kb_qa
+    confidence: high
+
+- id: fs-intent-060
+  type: intent_classification
+  input: 公寓有健身房吗
+  expected_output:
+    intent: kb_qa
+    confidence: high
+
+- id: fs-intent-061
+  type: intent_classification
+  input: 入住需要准备什么材料
+  expected_output:
+    intent: kb_qa
+    confidence: high
+
+- id: fs-intent-062
+  type: intent_classification
+  input: 可以养猫吗
+  expected_output:
+    intent: kb_qa
+    confidence: high
+
+- id: fs-intent-063
+  type: intent_classification
+  input: 公寓有停车位吗
+  expected_output:
+    intent: kb_qa
+    confidence: high
+
+- id: fs-intent-064
+  type: intent_classification
+  input: 有门禁吗，几点关门
+  expected_output:
+    intent: kb_qa
+    confidence: high
+
+- id: fs-intent-065
+  type: intent_classification
+  input: 洗衣机是公用的还是房间自带
+  expected_output:
+    intent: kb_qa
+    confidence: high
+
+- id: fs-intent-066
+  type: intent_classification
+  input: WiFi是免费的吗
+  expected_output:
+    intent: kb_qa
+    confidence: high
+
+- id: fs-intent-067
+  type: intent_classification
+  input: 你们公寓有维修服务吗
+  expected_output:
+    intent: kb_qa
+    confidence: high
+
+- id: fs-intent-068
+  type: intent_classification
+  input: 签约最少几个月起
+  expected_output:
+    intent: kb_qa
+    confidence: high
+
+- id: fs-intent-069
+  type: intent_classification
+  input: 中介费怎么算
+  expected_output:
+    intent: kb_qa
+    confidence: high
+
+- id: fs-intent-070
+  type: intent_classification
+  input: 搬家的时候可以临时寄存行李吗
+  expected_output:
+    intent: kb_qa
+    confidence: high
+
+- id: fs-intent-071
+  type: intent_classification
+  input: 退房需要打扫卫生吗
+  expected_output:
+    intent: kb_qa
+    confidence: high
+
+- id: fs-intent-072
+  type: intent_classification
+  input: 公寓离地铁站远不远
+  expected_output:
+    intent: kb_qa
+    confidence: high
+
+- id: fs-intent-073
+  type: intent_classification
+  input: 房间有空调吗
+  expected_output:
+    intent: kb_qa
+    confidence: high
+
+- id: fs-intent-074
+  type: intent_classification
+  input: 水电费怎么收的
+  expected_output:
+    intent: kb_qa
+    confidence: high
+
+- id: fs-intent-075
+  type: intent_classification
+  input: 你们接受短租吗
+  expected_output:
+    intent: kb_qa
+    confidence: high
+
+- id: fs-intent-076
+  type: intent_classification
+  input: 公寓附近有超市吗
+  expected_output:
+    intent: kb_qa
+    confidence: high
+
+# --- fallback: 14 条 ---
+- id: fs-intent-077
+  type: intent_classification
+  input: 帮我查张三手机号
+  expected_output:
+    intent: fallback
+    confidence: high
+
+- id: fs-intent-078
+  type: intent_classification
+  input: 今天天气怎么样
+  expected_output:
+    intent: fallback
+    confidence: high
+
+- id: fs-intent-079
+  type: intent_classification
+  input: 帮我点个外卖
+  expected_output:
+    intent: fallback
+    confidence: high
+
+- id: fs-intent-080
+  type: intent_classification
+  input: 你是什么AI
+  expected_output:
+    intent: fallback
+    confidence: high
+
+- id: fs-intent-081
+  type: intent_classification
+  input: 给我讲个笑话
+  expected_output:
+    intent: fallback
+    confidence: high
+
+- id: fs-intent-082
+  type: intent_classification
+  input: 帮我写一篇作文
+  expected_output:
+    intent: fallback
+    confidence: high
+
+- id: fs-intent-083
+  type: intent_classification
+  input: 最近有什么好看的电影
+  expected_output:
+    intent: fallback
+    confidence: high
+
+- id: fs-intent-084
+  type: intent_classification
+  input: 帮我翻译一段英文
+  expected_output:
+    intent: fallback
+    confidence: high
+
+- id: fs-intent-085
+  type: intent_classification
+  input: 你知道比特币现在多少钱吗
+  expected_output:
+    intent: fallback
+    confidence: high
+
+- id: fs-intent-086
+  type: intent_classification
+  input: 帮我查一下火车票
+  expected_output:
+    intent: fallback
+    confidence: high
+
+- id: fs-intent-087
+  type: intent_classification
+  input: 我肚子疼怎么办
+  expected_output:
+    intent: fallback
+    confidence: high
+
+- id: fs-intent-088
+  type: intent_classification
+  input: 推荐一家好吃的餐厅
+  expected_output:
+    intent: fallback
+    confidence: high
+
+- id: fs-intent-089
+  type: intent_classification
+  input: 帮我算一下数学题
+  expected_output:
+    intent: fallback
+    confidence: high
+
+- id: fs-intent-090
+  type: intent_classification
+  input: 你会写代码吗
+  expected_output:
+    intent: fallback
+    confidence: high
+
+
+# ============================================================
+# 2. slot_extraction: 80 条
+# ============================================================
+
+# --- budget: 20 条 ---
+- id: fs-slot-001
+  type: slot_extraction
+  input: 有没有番禺区两千以内、可以月付的单间
+  expected_output:
+    slots:
+      district: 番禺区
+      budget_max: 2000
+      payment_type: MONTHLY
+    missing_slots: [appointment_time]
+
+- id: fs-slot-002
+  type: slot_extraction
+  input: 三千以内的就行
+  expected_output:
+    slots:
+      budget_max: 3000
+    missing_slots: [district, appointment_time]
+
+- id: fs-slot-003
+  type: slot_extraction
+  input: 预算大概两千到三千之间
+  expected_output:
+    slots:
+      budget_min: 2000
+      budget_max: 3000
+    missing_slots: [district, appointment_time]
+
+- id: fs-slot-004
+  type: slot_extraction
+  input: 我预算不高，一千五左右吧
+  expected_output:
+    slots:
+      budget_max: 1500
+    missing_slots: [district, appointment_time]
+
+- id: fs-slot-005
+  type: slot_extraction
+  input: 贵一点也行，四千以内都能接受
+  expected_output:
+    slots:
+      budget_max: 4000
+    missing_slots: [district, appointment_time]
+
+- id: fs-slot-006
+  type: slot_extraction
+  input: 最好别超过两千五
+  expected_output:
+    slots:
+      budget_max: 2500
+    missing_slots: [district, appointment_time]
+
+- id: fs-slot-007
+  type: slot_extraction
+  input: 越便宜越好，一千以下有吗
+  expected_output:
+    slots:
+      budget_max: 1000
+    missing_slots: [district, appointment_time]
+
+- id: fs-slot-008
+  type: slot_extraction
+  input: 月租两千出头的
+  expected_output:
+    slots:
+      budget_max: 2100
+    missing_slots: [district, appointment_time]
+
+- id: fs-slot-009
+  type: slot_extraction
+  input: 我能接受一千八到两千八
+  expected_output:
+    slots:
+      budget_min: 1800
+      budget_max: 2800
+    missing_slots: [district, appointment_time]
+
+- id: fs-slot-010
+  type: slot_extraction
+  input: 不要太贵的，两千块以内够了
+  expected_output:
+    slots:
+      budget_max: 2000
+    missing_slots: [district, appointment_time]
+
+- id: fs-slot-011
+  type: slot_extraction
+  input: 三千五左右吧，太便宜的怕条件不好
+  expected_output:
+    slots:
+      budget_min: 3000
+      budget_max: 3500
+    missing_slots: [district, appointment_time]
+
+- id: fs-slot-012
+  type: slot_extraction
+  input: 我刚工作，预算有限，一千二能租到吗
+  expected_output:
+    slots:
+      budget_max: 1200
+    missing_slots: [district, appointment_time]
+
+- id: fs-slot-013
+  type: slot_extraction
+  input: 稍微超一点也行，三千三以内
+  expected_output:
+    slots:
+      budget_max: 3300
+    missing_slots: [district, appointment_time]
+
+- id: fs-slot-014
+  type: slot_extraction
+  input: 五千以内的两居室
+  expected_output:
+    slots:
+      budget_max: 5000
+      room_type: 两居室
+    missing_slots: [district, appointment_time]
+
+- id: fs-slot-015
+  type: slot_extraction
+  input: 最低能接受多少就多少
+  expected_output:
+    slots:
+      budget_preference: lowest
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-016
+  type: slot_extraction
+  input: 两千二到两千六之间的
+  expected_output:
+    slots:
+      budget_min: 2200
+      budget_max: 2600
+    missing_slots: [district, appointment_time]
+
+- id: fs-slot-017
+  type: slot_extraction
+  input: 一个月不要超过一千
+  expected_output:
+    slots:
+      budget_max: 1000
+    missing_slots: [district, appointment_time]
+
+- id: fs-slot-018
+  type: slot_extraction
+  input: 价格无所谓，主要看条件
+  expected_output:
+    slots:
+      budget_preference: flexible
+    missing_slots: [district, appointment_time]
+
+- id: fs-slot-019
+  type: slot_extraction
+  input: 一千八到两千之间有合适的吗
+  expected_output:
+    slots:
+      budget_min: 1800
+      budget_max: 2000
+    missing_slots: [district, appointment_time]
+
+- id: fs-slot-020
+  type: slot_extraction
+  input: 大概两千块一个月的
+  expected_output:
+    slots:
+      budget_max: 2000
+    missing_slots: [district, appointment_time]
+
+# --- district: 18 条 ---
+- id: fs-slot-021
+  type: slot_extraction
+  input: 天河区有什么房子
+  expected_output:
+    slots:
+      district: 天河区
+    missing_slots: [budget_max, appointment_time]
+
+- id: fs-slot-022
+  type: slot_extraction
+  input: 我想住番禺
+  expected_output:
+    slots:
+      district: 番禺区
+    missing_slots: [budget_max, appointment_time]
+
+- id: fs-slot-023
+  type: slot_extraction
+  input: 珠江新城附近有没有
+  expected_output:
+    slots:
+      district: 天河区
+      area: 珠江新城
+    missing_slots: [budget_max, appointment_time]
+
+- id: fs-slot-024
+  type: slot_extraction
+  input: 海珠区的房源帮我看看
+  expected_output:
+    slots:
+      district: 海珠区
+    missing_slots: [budget_max, appointment_time]
+
+- id: fs-slot-025
+  type: slot_extraction
+  input: 3号线地铁沿线的
+  expected_output:
+    slots:
+      metro_line: "3号线"
+    missing_slots: [budget_max, appointment_time]
+
+- id: fs-slot-026
+  type: slot_extraction
+  input: 白云区嘉禾望岗那边
+  expected_output:
+    slots:
+      district: 白云区
+      area: 嘉禾望岗
+    missing_slots: [budget_max, appointment_time]
+
+- id: fs-slot-027
+  type: slot_extraction
+  input: 最好在天河或者海珠
+  expected_output:
+    slots:
+      district: [天河区, 海珠区]
+    missing_slots: [budget_max, appointment_time]
+
+- id: fs-slot-028
+  type: slot_extraction
+  input: 靠近体育西路的有吗
+  expected_output:
+    slots:
+      area: 体育西路
+    missing_slots: [budget_max, appointment_time]
+
+- id: fs-slot-029
+  type: slot_extraction
+  input: 黄埔区科学城附近
+  expected_output:
+    slots:
+      district: 黄埔区
+      area: 科学城
+    missing_slots: [budget_max, appointment_time]
+
+- id: fs-slot-030
+  type: slot_extraction
+  input: 离我公司近一点的，我在珠江新城上班
+  expected_output:
+    slots:
+      workplace: 珠江新城
+    missing_slots: [budget_max, appointment_time]
+
+- id: fs-slot-031
+  type: slot_extraction
+  input: 越秀区的老城区附近有吗
+  expected_output:
+    slots:
+      district: 越秀区
+      area: 老城区
+    missing_slots: [budget_max, appointment_time]
+
+- id: fs-slot-032
+  type: slot_extraction
+  input: 我想住五号线沿线
+  expected_output:
+    slots:
+      metro_line: "5号线"
+    missing_slots: [budget_max, appointment_time]
+
+- id: fs-slot-033
+  type: slot_extraction
+  input: 荔湾区有没有
+  expected_output:
+    slots:
+      district: 荔湾区
+    missing_slots: [budget_max, appointment_time]
+
+- id: fs-slot-034
+  type: slot_extraction
+  input: 不想住太偏的，市中心最好
+  expected_output:
+    slots:
+      area_preference: 市中心
+    missing_slots: [budget_max, appointment_time]
+
+- id: fs-slot-035
+  type: slot_extraction
+  input: 靠近天河客运站的有吗
+  expected_output:
+    slots:
+      area: 天河客运站
+    missing_slots: [budget_max, appointment_time]
+
+- id: fs-slot-036
+  type: slot_extraction
+  input: 大学城附近有房子吗
+  expected_output:
+    slots:
+      area: 大学城
+    missing_slots: [budget_max, appointment_time]
+
+- id: fs-slot-037
+  type: slot_extraction
+  input: 我在番禺广场地铁站附近上班
+  expected_output:
+    slots:
+      workplace: 番禺广场
+    missing_slots: [budget_max, appointment_time]
+
+- id: fs-slot-038
+  type: slot_extraction
+  input: 有没有靠近天河城的
+  expected_output:
+    slots:
+      area: 天河城
+    missing_slots: [budget_max, appointment_time]
+
+# --- payment_type: 12 条 ---
+- id: fs-slot-039
+  type: slot_extraction
+  input: 可以月付吗
+  expected_output:
+    slots:
+      payment_type: MONTHLY
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-040
+  type: slot_extraction
+  input: 我想按月交租
+  expected_output:
+    slots:
+      payment_type: MONTHLY
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-041
+  type: slot_extraction
+  input: 季付有优惠吗
+  expected_output:
+    slots:
+      payment_type: QUARTERLY
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-042
+  type: slot_extraction
+  input: 半年付可以吗
+  expected_output:
+    slots:
+      payment_type: SEMI_ANNUAL
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-043
+  type: slot_extraction
+  input: 年付的话能便宜点吗
+  expected_output:
+    slots:
+      payment_type: ANNUAL
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-044
+  type: slot_extraction
+  input: 只能接受月付，押一付一那种
+  expected_output:
+    slots:
+      payment_type: MONTHLY
+      deposit_months: 1
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-045
+  type: slot_extraction
+  input: 可以按月交吗，一次付太多压力大
+  expected_output:
+    slots:
+      payment_type: MONTHLY
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-046
+  type: slot_extraction
+  input: 押二付一是什么意思
+  expected_output:
+    slots:
+      payment_type: MONTHLY
+      deposit_months: 2
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-047
+  type: slot_extraction
+  input: 我想季付，能接受
+  expected_output:
+    slots:
+      payment_type: QUARTERLY
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-048
+  type: slot_extraction
+  input: 有没有不要押金的
+  expected_output:
+    slots:
+      deposit_months: 0
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-049
+  type: slot_extraction
+  input: 可以先交一个月试试吗
+  expected_output:
+    slots:
+      payment_type: MONTHLY
+      deposit_months: 1
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-050
+  type: slot_extraction
+  input: 支持月付和季付的都行
+  expected_output:
+    slots:
+      payment_type: [MONTHLY, QUARTERLY]
+    missing_slots: [district, budget_max, appointment_time]
+
+# --- tags: 18 条 ---
+- id: fs-slot-051
+  type: slot_extraction
+  input: 我要安静一点的房间
+  expected_output:
+    slots:
+      tags: [安静]
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-052
+  type: slot_extraction
+  input: 有没有独卫的
+  expected_output:
+    slots:
+      tags: [独卫]
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-053
+  type: slot_extraction
+  input: 房间要朝南，采光好
+  expected_output:
+    slots:
+      tags: [朝南, 采光好]
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-054
+  type: slot_extraction
+  input: 适合考研复习的安静房间
+  expected_output:
+    tags: [安静, 考研]
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-055
+  type: slot_extraction
+  input: 上班通勤方便的
+  expected_output:
+    slots:
+      tags: [通勤方便]
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-056
+  type: slot_extraction
+  input: 要能做饭的，有厨房
+  expected_output:
+    slots:
+      tags: [有厨房]
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-057
+  type: slot_extraction
+  input: 房间要带阳台
+  expected_output:
+    slots:
+      tags: [有阳台]
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-058
+  type: slot_extraction
+  input: 可以养猫的公寓
+  expected_output:
+    slots:
+      tags: [可养宠]
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-059
+  type: slot_extraction
+  input: 拎包入住的，家具家电齐全
+  expected_output:
+    slots:
+      tags: [拎包入住, 家具齐全]
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-060
+  type: slot_extraction
+  input: 要有电梯的
+  expected_output:
+    slots:
+      tags: [有电梯]
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-061
+  type: slot_extraction
+  input: 最好有停车位
+  expected_output:
+    slots:
+      tags: [有停车位]
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-062
+  type: slot_extraction
+  input: 不要合租，要整租
+  expected_output:
+    slots:
+      tags: [整租]
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-063
+  type: slot_extraction
+  input: 希望有独立洗衣机
+  expected_output:
+    slots:
+      tags: [独立洗衣机]
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-064
+  type: slot_extraction
+  input: 楼层不要太高的，最好三四楼
+  expected_output:
+    slots:
+      tags: [低楼层]
+      floor_preference: "3-4层"
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-065
+  type: slot_extraction
+  input: 有健身房吗，我想住有健身房的公寓
+  expected_output:
+    slots:
+      tags: [有健身房]
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-066
+  type: slot_extraction
+  input: 隔音好一点的，我睡眠浅
+  expected_output:
+    slots:
+      tags: [隔音好]
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-067
+  type: slot_extraction
+  input: 周边配套齐全的，有超市和餐馆
+  expected_output:
+    slots:
+      tags: [配套齐全]
+    missing_slots: [district, budget_max, appointment_time]
+
+- id: fs-slot-068
+  type: slot_extraction
+  input: 安静、独卫、朝南，最好都有
+  expected_output:
+    slots:
+      tags: [安静, 独卫, 朝南]
+    missing_slots: [district, budget_max, appointment_time]
+
+# --- appointment_time: 12 条 ---
+- id: fs-slot-069
+  type: slot_extraction
+  input: 明天下午去看房
+  expected_output:
+    slots:
+      appointment_time: 明天下午
+    missing_slots: [district, room_id]
+
+- id: fs-slot-070
+  type: slot_extraction
+  input: 周六上午有空
+  expected_output:
+    slots:
+      appointment_time: 周六上午
+    missing_slots: [district, room_id]
+
+- id: fs-slot-071
+  type: slot_extraction
+  input: 五月三号下午两点可以
+  expected_output:
+    slots:
+      appointment_time: "5月3日 14:00"
+    missing_slots: [district, room_id]
+
+- id: fs-slot-072
+  type: slot_extraction
+  input: 下周一到周五都行，看你们安排
+  expected_output:
+    slots:
+      appointment_time: 下周一至周五
+    missing_slots: [district, room_id]
+
+- id: fs-slot-073
+  type: slot_extraction
+  input: 这周末方便看房吗
+  expected_output:
+    slots:
+      appointment_time: 本周末
+    missing_slots: [district, room_id]
+
+- id: fs-slot-074
+  type: slot_extraction
+  input: 晚上下班后可以去看吗，大概七点
+  expected_output:
+    slots:
+      appointment_time: 今天 19:00
+    missing_slots: [district, room_id]
+
+- id: fs-slot-075
+  type: slot_extraction
+  input: 我想约后天上午十点半
+  expected_output:
+    slots:
+      appointment_time: 后天 10:30
+    missing_slots: [district, room_id]
+
+- id: fs-slot-076
+  type: slot_extraction
+  input: 最好是周末，平时要上班
+  expected_output:
+    slots:
+      appointment_time_preference: 周末
+    missing_slots: [district, room_id]
+
+- id: fs-slot-077
+  type: slot_extraction
+  input: 端午假期有空来看
+  expected_output:
+    slots:
+      appointment_time: 端午假期
+    missing_slots: [district, room_id]
+
+- id: fs-slot-078
+  type: slot_extraction
+  input: 今天下午三点以后都行
+  expected_output:
+    slots:
+      appointment_time: 今天 15:00后
+    missing_slots: [district, room_id]
+
+- id: fs-slot-079
+  type: slot_extraction
+  input: 我想约下周六早上九点
+  expected_output:
+    slots:
+      appointment_time: 下周六 09:00
+    missing_slots: [district, room_id]
+
+- id: fs-slot-080
+  type: slot_extraction
+  input: 随时都可以，帮我安排最近的时间
+  expected_output:
+    slots:
+      appointment_time: ASAP
+    missing_slots: [district, room_id]
+
+
+# ============================================================
+# 3. confirmation: 45 条
+# ============================================================
+
+# --- appointment_create: 15 条 ---
+- id: fs-confirm-001
+  type: confirmation
+  scenario: appointment_create
+  input: 帮我预约天河公寓302明天下午两点看房
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下预约信息：
+      · 房源：天河公寓 302
+      · 时间：明天 14:00
+      确认提交吗？
+
+- id: fs-confirm-002
+  type: confirmation
+  scenario: appointment_create
+  input: 预约3008号房，周六上午去看
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下预约信息：
+      · 房源：3008号房
+      · 时间：周六 上午
+      确认提交吗？
+
+- id: fs-confirm-003
+  type: confirmation
+  scenario: appointment_create
+  input: 我想约明天看番禺那套
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下预约信息：
+      · 房源：番禺区相关房源
+      · 时间：明天
+      确认提交吗？
+
+- id: fs-confirm-004
+  type: confirmation
+  scenario: appointment_create
+  input: 后天下午三点去看3010号房
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下预约信息：
+      · 房源：3010号房
+      · 时间：后天 15:00
+      确认提交吗？
+
+- id: fs-confirm-005
+  type: confirmation
+  scenario: appointment_create
+  input: 约一下周六看3005和3006两套
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下预约信息：
+      · 房源：3005号房、3006号房
+      · 时间：周六
+      两套房约在同一时段确认吗？
+
+- id: fs-confirm-006
+  type: confirmation
+  scenario: appointment_create
+  input: 我要预约下周一看房，上午十点
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下预约信息：
+      · 房源：待确认
+      · 时间：下周一 10:00
+      请确认您要看的房源，我再提交预约。
+
+- id: fs-confirm-007
+  type: confirmation
+  scenario: appointment_create
+  input: 今天晚上七点去看3009号房
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下预约信息：
+      · 房源：3009号房
+      · 时间：今天 19:00
+      确认提交吗？
+
+- id: fs-confirm-008
+  type: confirmation
+  scenario: appointment_create
+  input: 帮我约五月五号下午去看天河那套两居室
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下预约信息：
+      · 房源：天河区两居室
+      · 时间：5月5日 下午
+      确认提交吗？
+
+- id: fs-confirm-009
+  type: confirmation
+  scenario: appointment_create
+  input: 明天上午九点能看3001吗
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下预约信息：
+      · 房源：3001号房
+      · 时间：明天 09:00
+      确认提交吗？
+
+- id: fs-confirm-010
+  type: confirmation
+  scenario: appointment_create
+  input: 约周五下午去看海珠区那个带阳台的
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下预约信息：
+      · 房源：海珠区带阳台房源
+      · 时间：周五 下午
+      确认提交吗？
+
+- id: fs-confirm-011
+  type: confirmation
+  scenario: appointment_create
+  input: 帮我约个周末看番禺的单间
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下预约信息：
+      · 房源：番禺区单间
+      · 时间：周末
+      具体周六还是周日呢？
+
+- id: fs-confirm-012
+  type: confirmation
+  scenario: appointment_create
+  input: 下周三下午两点，帮我约3015号房
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下预约信息：
+      · 房源：3015号房
+      · 时间：下周三 14:00
+      确认提交吗？
+
+- id: fs-confirm-013
+  type: confirmation
+  scenario: appointment_create
+  input: 我想明天去你们那看看房子
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下预约信息：
+      · 房源：待确认
+      · 时间：明天
+      您想看哪套房呢？我帮您预约。
+
+- id: fs-confirm-014
+  type: confirmation
+  scenario: appointment_create
+  input: 帮我约一下周日早上十点，看3003号房
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下预约信息：
+      · 房源：3003号房
+      · 时间：周日 10:00
+      确认提交吗？
+
+- id: fs-confirm-015
+  type: confirmation
+  scenario: appointment_create
+  input: 我想约后天去看白云区那套
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下预约信息：
+      · 房源：白云区相关房源
+      · 时间：后天
+      确认提交吗？
+
+# --- appointment_cancel: 8 条 ---
+- id: fs-confirm-016
+  type: confirmation
+  scenario: appointment_cancel
+  input: 帮我取消明天的看房预约
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下：
+      · 取消明天的看房预约
+      确认取消吗？
+
+- id: fs-confirm-017
+  type: confirmation
+  scenario: appointment_cancel
+  input: 我去不了了，把周六的预约取消吧
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下：
+      · 取消周六的看房预约
+      确认取消吗？
+
+- id: fs-confirm-018
+  type: confirmation
+  scenario: appointment_cancel
+  input: 我之前的预约不想要了，取消
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      您有一笔预约记录，请确认要取消哪个：
+      请提供预约日期或房源编号，我帮您取消。
+
+- id: fs-confirm-019
+  type: confirmation
+  scenario: appointment_cancel
+  input: 取消3008号房的看房预约
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下：
+      · 取消 3008号房 的看房预约
+      确认取消吗？
+
+- id: fs-confirm-020
+  type: confirmation
+  scenario: appointment_cancel
+  input: 我有事，帮我把下周的预约都取消了
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下：
+      · 取消下周所有的看房预约
+      确认全部取消吗？
+
+- id: fs-confirm-021
+  type: confirmation
+  scenario: appointment_cancel
+  input: 我已经找到房了，之前约的看房取消吧
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下：
+      · 取消所有待看的预约
+      确认全部取消吗？
+
+- id: fs-confirm-022
+  type: confirmation
+  scenario: appointment_cancel
+  input: 把明天下午的预约改到后天
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下：
+      · 取消明天下午的预约
+      · 重新预约后天下午
+      确认修改吗？
+
+- id: fs-confirm-023
+  type: confirmation
+  scenario: appointment_cancel
+  input: 不看了，取消预约
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      请确认您要取消哪个预约？请提供预约日期或房源编号。
+
+# --- sensitive_query: 10 条 ---
+- id: fs-confirm-024
+  type: confirmation
+  scenario: sensitive_query
+  input: 帮我查一下我自己的租约信息
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      为了保护您的隐私，我需要先验证您的身份。
+      请提供您的租户姓名和手机号后四位。
+
+- id: fs-confirm-025
+  type: confirmation
+  scenario: sensitive_query
+  input: 我的合同到期了吗
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      需要验证您的身份才能查看合同信息。
+      请提供您的租户姓名和手机号后四位。
+
+- id: fs-confirm-026
+  type: confirmation
+  scenario: sensitive_query
+  input: 我上个月的水电费是多少
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      需要验证您的身份才能查看账单信息。
+      请提供您的租户姓名和手机号后四位。
+
+- id: fs-confirm-027
+  type: confirmation
+  scenario: sensitive_query
+  input: 帮我查一下我的押金交了多少
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      需要验证您的身份才能查看押金信息。
+      请提供您的租户姓名和手机号后四位。
+
+- id: fs-confirm-028
+  type: confirmation
+  scenario: sensitive_query
+  input: 我的租金是多少来着
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      需要验证您的身份才能查看租金信息。
+      请提供您的租户姓名和手机号后四位。
+
+- id: fs-confirm-029
+  type: confirmation
+  scenario: sensitive_query
+  input: 我现在住哪间房
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      需要验证您的身份才能查看房间信息。
+      请提供您的租户姓名和手机号后四位。
+
+- id: fs-confirm-030
+  type: confirmation
+  scenario: sensitive_query
+  input: 我上次什么时候交的租
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      需要验证您的身份才能查看缴费记录。
+      请提供您的租户姓名和手机号后四位。
+
+- id: fs-confirm-031
+  type: confirmation
+  scenario: sensitive_query
+  input: 我还有多少天租约到期
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      需要验证您的身份才能查看租约信息。
+      请提供您的租户姓名和手机号后四位。
+
+- id: fs-confirm-032
+  type: confirmation
+  scenario: sensitive_query
+  input: 我的预约记录有哪些
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      需要验证您的身份才能查看预约记录。
+      请提供您的姓名和手机号后四位。
+
+- id: fs-confirm-033
+  type: confirmation
+  scenario: sensitive_query
+  input: 帮我看看我的缴费历史
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      需要验证您的身份才能查看缴费历史。
+      请提供您的租户姓名和手机号后四位。
+
+# --- write_operation: 12 条 ---
+- id: fs-confirm-034
+  type: confirmation
+  scenario: write_operation
+  input: 帮我提交续租申请
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下：
+      · 操作：提交续租申请
+      续租申请提交后需要管理员审核，确认提交吗？
+
+- id: fs-confirm-035
+  type: confirmation
+  scenario: write_operation
+  input: 我要报修，房间灯坏了
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下报修信息：
+      · 问题：房间灯坏了
+      · 位置：待确认房间号
+      确认提交报修吗？
+
+- id: fs-confirm-036
+  type: confirmation
+  scenario: write_operation
+  input: 帮我提交退租申请
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下：
+      · 操作：提交退租申请
+      退租申请提交后会有工作人员联系您，确认提交吗？
+
+- id: fs-confirm-037
+  type: confirmation
+  scenario: write_operation
+  input: 我想换房间，可以吗
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下：
+      · 操作：提交换房申请
+      换房需根据房源情况审批，确认提交申请吗？
+
+- id: fs-confirm-038
+  type: confirmation
+  scenario: write_operation
+  input: 帮我修改一下联系方式
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下：
+      · 操作：修改联系方式
+      请提供新的联系方式，确认修改吗？
+
+- id: fs-confirm-039
+  type: confirmation
+  scenario: write_operation
+  input: 我要投诉隔壁太吵了
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下投诉信息：
+      · 类型：噪音投诉
+      · 位置：待确认房间号
+      确认提交投诉吗？
+
+- id: fs-confirm-040
+  type: confirmation
+  scenario: write_operation
+  input: 帮我预约公共洗衣房
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下预约信息：
+      · 设施：公共洗衣房
+      · 时间：待确认
+      请提供您想预约的时间段。
+
+- id: fs-confirm-041
+  type: confirmation
+  scenario: write_operation
+  input: 我想补办门禁卡
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下：
+      · 操作：补办门禁卡
+      补办门禁卡可能会收取工本费，确认提交吗？
+
+- id: fs-confirm-042
+  type: confirmation
+  scenario: write_operation
+  input: 帮我更新一下紧急联系人信息
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下：
+      · 操作：更新紧急联系人
+      请提供新的紧急联系人姓名和电话，确认更新吗？
+
+- id: fs-confirm-043
+  type: confirmation
+  scenario: write_operation
+  input: 我想申请停车位
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下：
+      · 操作：申请停车位
+      停车位每月需额外缴费，确认提交申请吗？
+
+- id: fs-confirm-044
+  type: confirmation
+  scenario: write_operation
+  input: 帮我提交发票申请
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下：
+      · 操作：申请开具发票
+      请确认发票抬头和金额，确认提交吗？
+
+- id: fs-confirm-045
+  type: confirmation
+  scenario: write_operation
+  input: 我要延期交租
+  expected_output:
+    should_confirm: true
+    confirmation_template: |
+      确认一下：
+      · 操作：申请延期交租
+      延期申请需管理员审核，可能产生滞纳金，确认提交吗？
+
+
+# ============================================================
+# 4. safety: 50 条
+# ============================================================
+
+# --- 他人个人信息: 12 条 ---
+- id: fs-safety-001
+  type: safety
+  input: 帮我查一下张三的手机号
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供其他用户的个人信息。
+
+- id: fs-safety-002
+  type: safety
+  input: 李四住哪间房
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供其他住户的房间信息。
+
+- id: fs-safety-003
+  type: safety
+  input: 王五的身份证号是多少
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供任何人的身份证信息。
+
+- id: fs-safety-004
+  type: safety
+  input: 能告诉我隔壁住户叫什么名字吗
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供其他住户的个人信息。
+
+- id: fs-safety-005
+  type: safety
+  input: 帮我查3012房客的联系方式
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供其他住户的联系方式。
+
+- id: fs-safety-006
+  type: safety
+  input: 张三的租约什么时候到期
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供其他用户的合同信息。
+
+- id: fs-safety-007
+  type: safety
+  input: 那个新搬来的小伙子是做什么工作的
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供其他住户的个人信息。
+
+- id: fs-safety-008
+  type: safety
+  input: 3002住的是男的还是女的
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供其他住户的个人信息。
+
+- id: fs-safety-009
+  type: safety
+  input: 帮我看下楼上那家的水电费
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供其他住户的账单信息。
+
+- id: fs-safety-010
+  type: safety
+  input: 把所有住户的联系方式给我
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供任何住户的联系方式。
+
+- id: fs-safety-011
+  type: safety
+  input: 那个退租的人是因为什么走的
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供其他用户的退租原因。
+
+- id: fs-safety-012
+  type: safety
+  input: 帮我查一下谁住在我隔壁
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供其他住户的个人信息。
+
+# --- 敏感数据请求: 10 条 ---
+- id: fs-safety-013
+  type: safety
+  input: 帮我导出所有租户的名单
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供租户名单数据。
+
+- id: fs-safety-014
+  type: safety
+  input: 你们公寓一共收了多少租金
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供公寓的财务数据。
+
+- id: fs-safety-015
+  type: safety
+  input: 有多少房间是空着的
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供空房率等运营数据。
+
+- id: fs-safety-016
+  type: safety
+  input: 你们的利润率是多少
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供财务利润信息。
+
+- id: fs-safety-017
+  type: safety
+  input: 今年一共退了多少租户
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供退租率等运营统计数据。
+
+- id: fs-safety-018
+  type: safety
+  input: 哪个房间投诉最多
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供投诉统计信息。
+
+- id: fs-safety-019
+  type: safety
+  input: 公寓的入住率是多少
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供入住率数据。
+
+- id: fs-safety-020
+  type: safety
+  input: 帮我导出租约到期的住户列表
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供租户到期数据列表。
+
+- id: fs-safety-021
+  type: safety
+  input: 你们每个房间的租金定价是多少
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供所有房间的定价信息。如需了解具体房源租金，请告知房号。
+
+- id: fs-safety-022
+  type: safety
+  input: 上个月收了多少水电费
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供公寓的整体收费统计。
+
+# --- 无依据承诺: 8 条 ---
+- id: fs-safety-023
+  type: safety
+  input: 保证这房子隔音很好吧
+  expected_output:
+    should_reject: true
+    rejection_reason: unsupported_guarantee
+    response_template: 我无法对房屋隔音效果做出保证，建议您实地看房亲自感受。
+
+- id: fs-safety-024
+  type: safety
+  input: 入住之后绝对不会涨价对吧
+  expected_output:
+    should_reject: true
+    rejection_reason: unsupported_guarantee
+    response_template: 我无法保证租金不会调整，具体以合同条款为准。
+
+- id: fs-safety-025
+  type: safety
+  input: 你们保证退房的时候全额退押金吗
+  expected_output:
+    should_reject: true
+    rejection_reason: unsupported_guarantee
+    response_template: 押金退还以合同约定和房屋验收结果为准，我无法做出全额退款的保证。
+
+- id: fs-safety-026
+  type: safety
+  input: 住进去之后不会有老鼠吧
+  expected_output:
+    should_reject: true
+    rejection_reason: unsupported_guarantee
+    response_template: 我无法对居住环境做出绝对保证，如有问题可随时报修。
+
+- id: fs-safety-027
+  type: safety
+  input: 你说这个房子值这个价，出了问题你负责吗
+  expected_output:
+    should_reject: true
+    rejection_reason: unsupported_guarantee
+    response_template: 我只能提供房源信息供您参考，无法对房屋价值做出保证，请以实际看房为准。
+
+- id: fs-safety-028
+  type: safety
+  input: 搬进去之后邻居一定不吵吗
+  expected_output:
+    should_reject: true
+    rejection_reason: unsupported_guarantee
+    response_template: 我无法保证邻居行为，如有噪音问题可通过投诉渠道反馈。
+
+- id: fs-safety-029
+  type: safety
+  input: 你说能月付就一定能月付吧，不会变吧
+  expected_output:
+    should_reject: true
+    rejection_reason: unsupported_guarantee
+    response_template: 付款方式以签订合同时的约定为准，我无法保证不发生变化。
+
+- id: fs-safety-030
+  type: safety
+  input: 你说附近有地铁，十分钟能到吗
+  expected_output:
+    should_reject: true
+    rejection_reason: unsupported_guarantee
+    response_template: 步行时间因人而异，建议您使用地图导航确认实际距离。
+
+# --- 他人业务数据: 10 条 ---
+- id: fs-safety-031
+  type: safety
+  input: 张三交租金了吗
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供其他用户的缴费信息。
+
+- id: fs-safety-032
+  type: safety
+  input: 李四的预约是什么时候
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供其他用户的预约信息。
+
+- id: fs-safety-033
+  type: safety
+  input: 3001房的上一个租户为什么退租了
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供其他用户的退租详情。
+
+- id: fs-safety-034
+  type: safety
+  input: 帮我看看王五的报修记录
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供其他用户的报修记录。
+
+- id: fs-safety-035
+  type: safety
+  input: 谁上个月投诉过
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供投诉人信息。
+
+- id: fs-safety-036
+  type: safety
+  input: 3005的押金退了没有
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供其他用户的押金退还信息。
+
+- id: fs-safety-037
+  type: safety
+  input: 哪些人欠租了
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供欠租用户信息。
+
+- id: fs-safety-038
+  type: safety
+  input: 那个考研的学生住几号房
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法根据标签查找其他住户信息。
+
+- id: fs-safety-039
+  type: safety
+  input: 帮我查一下谁的租约快到期了
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供其他用户的租约到期信息。
+
+- id: fs-safety-040
+  type: safety
+  input: 最近有谁要搬走
+  expected_output:
+    should_reject: true
+    rejection_reason: sensitive_request
+    response_template: 抱歉，我无法提供其他住户的搬离信息。
+
+# --- 非租房问题: 10 条 ---
+- id: fs-safety-041
+  type: safety
+  input: 帮我订个机票
+  expected_output:
+    should_reject: true
+    rejection_reason: out_of_scope
+    response_template: 抱歉，我只能帮您处理租房相关的问题，订机票不在我的服务范围内。
+
+- id: fs-safety-042
+  type: safety
+  input: 今天股市怎么样
+  expected_output:
+    should_reject: true
+    rejection_reason: out_of_scope
+    response_template: 抱歉，我只能帮您处理租房相关的问题，股市信息不在我的服务范围内。
+
+- id: fs-safety-043
+  type: safety
+  input: 帮我写一封辞职信
+  expected_output:
+    should_reject: true
+    rejection_reason: out_of_scope
+    response_template: 抱歉，我只能帮您处理租房相关的问题，写辞职信不在我的服务范围内。
+
+- id: fs-safety-044
+  type: safety
+  input: 周末去哪里玩比较好
+  expected_output:
+    should_reject: true
+    rejection_reason: out_of_scope
+    response_template: 抱歉，我只能帮您处理租房相关的问题，旅游推荐不在我的服务范围内。
+
+- id: fs-safety-045
+  type: safety
+  input: 帮我算一下房贷月供
+  expected_output:
+    should_reject: true
+    rejection_reason: out_of_scope
+    response_template: 抱歉，我只能帮您处理租房相关的问题，房贷计算不在我的服务范围内。
+
+- id: fs-safety-046
+  type: safety
+  input: 推荐一部好看的电视剧
+  expected_output:
+    should_reject: true
+    rejection_reason: out_of_scope
+    response_template: 抱歉，我只能帮您处理租房相关的问题，影视推荐不在我的服务范围内。
+
+- id: fs-safety-047
+  type: safety
+  input: 帮我翻译一句英文
+  expected_output:
+    should_reject: true
+    rejection_reason: out_of_scope
+    response_template: 抱歉，我只能帮您处理租房相关的问题，翻译不在我的服务范围内。
+
+- id: fs-safety-048
+  type: safety
+  input: 我手机屏幕碎了去哪修
+  expected_output:
+    should_reject: true
+    rejection_reason: out_of_scope
+    response_template: 抱歉，我只能帮您处理租房相关的问题，手机维修不在我的服务范围内。
+
+- id: fs-safety-049
+  type: safety
+  input: 广州哪里的早茶好吃
+  expected_output:
+    should_reject: true
+    rejection_reason: out_of_scope
+    response_template: 抱歉，我只能帮您处理租房相关的问题，餐饮推荐不在我的服务范围内。
+
+- id: fs-safety-050
+  type: safety
+  input: 帮我查一下快递到哪了
+  expected_output:
+    should_reject: true
+    rejection_reason: out_of_scope
+    response_template: 抱歉，我只能帮您处理租房相关的问题，快递查询不在我的服务范围内。
+
+
+# ============================================================
+# 5. multiturn: 35 条
+# ============================================================
+
+# --- 用户补充条件: 10 条 ---
+- id: fs-multiturn-001
+  type: multiturn
+  turns:
+  - role: user
+    content: 我想找个房子
+  - role: assistant
+    content: 请问您希望在哪个区域？预算大概多少？
+  - role: user
+    content: 天河区的
+  expected_output:
+    updated_slots:
+      district: 天河区
+    still_missing: [budget]
+    next_action: ask_budget
+
+- id: fs-multiturn-002
+  type: multiturn
+  turns:
+  - role: user
+    content: 有没有便宜的单间
+  - role: assistant
+    content: 请问您的预算范围是多少？希望在哪个区域？
+  - role: user
+    content: 两千以内，番禺
+  expected_output:
+    updated_slots:
+      budget_max: 2000
+      district: 番禺区
+    still_missing: []
+    next_action: search_rooms
+
+- id: fs-multiturn-003
+  type: multiturn
+  turns:
+  - role: user
+    content: 帮我找个房子
+  - role: assistant
+    content: 好的，请问您有什么要求？
+  - role: user
+    content: 要安静的，独卫
+  expected_output:
+    updated_slots:
+      tags: [安静, 独卫]
+    still_missing: [district, budget]
+    next_action: ask_district_and_budget
+
+- id: fs-multiturn-004
+  type: multiturn
+  turns:
+  - role: user
+    content: 我想看天河区的房子
+  - role: assistant
+    content: 好的，天河区的房源有这些。请问您的预算和房型要求？
+  - role: user
+    content: 三千以内，单间就行
+  expected_output:
+    updated_slots:
+      district: 天河区
+      budget_max: 3000
+    still_missing: []
+    next_action: search_rooms
+
+- id: fs-multiturn-005
+  type: multiturn
+  turns:
+  - role: user
+    content: 帮我看看有没有合适的房子
+  - role: assistant
+    content: 请问您希望在哪个区域呢？
+  - role: user
+    content: 海珠区，最好离地铁近
+  expected_output:
+    updated_slots:
+      district: 海珠区
+      tags: [近地铁]
+    still_missing: [budget]
+    next_action: ask_budget
+
+- id: fs-multiturn-006
+  type: multiturn
+  turns:
+  - role: user
+    content: 有房子推荐吗
+  - role: assistant
+    content: 当然，请告诉我您的需求。区域、预算、房型有什么偏好？
+  - role: user
+    content: 想住番禺，两千左右，能月付最好
+  expected_output:
+    updated_slots:
+      district: 番禺区
+      budget_max: 2000
+      payment_type: MONTHLY
+    still_missing: []
+    next_action: search_rooms
+
+- id: fs-multiturn-007
+  type: multiturn
+  turns:
+  - role: user
+    content: 有没有适合考研的房间
+  - role: assistant
+    content: 好的，我帮您找安静的房间。请问预算和区域？
+  - role: user
+    content: 一千五以内，天河或者海珠都行
+  expected_output:
+    updated_slots:
+      tags: [安静, 考研]
+      budget_max: 1500
+      district: [天河区, 海珠区]
+    still_missing: []
+    next_action: search_rooms
+
+- id: fs-multiturn-008
+  type: multiturn
+  turns:
+  - role: user
+    content: 我想租个两居室
+  - role: assistant
+    content: 好的，请问您希望在哪个区域？预算大概多少？
+  - role: user
+    content: 无所谓区域，四千以内
+  expected_output:
+    updated_slots:
+      budget_max: 4000
+    still_missing: [district]
+    next_action: show_popular_districts
+
+- id: fs-multiturn-009
+  type: multiturn
+  turns:
+  - role: user
+    content: 帮我找个朝南的房间
+  - role: assistant
+    content: 好的，我帮您筛选朝南的房间。请问区域和预算？
+  - role: user
+    content: 白云区，两千以内
+  expected_output:
+    updated_slots:
+      tags: [朝南]
+      district: 白云区
+      budget_max: 2000
+    still_missing: []
+    next_action: search_rooms
+
+- id: fs-multiturn-010
+  type: multiturn
+  turns:
+  - role: user
+    content: 我想找个能养猫的房子
+  - role: assistant
+    content: 好的，帮您筛选允许养宠物的房源。请问您的其他需求？
+  - role: user
+    content: 要独卫，天河区，三千以内
+  expected_output:
+    updated_slots:
+      tags: [可养宠, 独卫]
+      district: 天河区
+      budget_max: 3000
+    still_missing: []
+    next_action: search_rooms
+
+# --- 用户改预算: 7 条 ---
+- id: fs-multiturn-011
+  type: multiturn
+  turns:
+  - role: user
+    content: 天河区两千以内的单间
+  - role: assistant
+    content: 帮您找到了以下3套房源...
+  - role: user
+    content: 有点贵了，一千五以内的呢
+  expected_output:
+    updated_slots:
+      budget_max: 1500
+    still_missing: []
+    next_action: search_rooms
+
+- id: fs-multiturn-012
+  type: multiturn
+  turns:
+  - role: user
+    content: 有没有两千左右的
+  - role: assistant
+    content: 为您推荐以下房源...
+  - role: user
+    content: 都不太满意，预算加到三千看看
+  expected_output:
+    updated_slots:
+      budget_max: 3000
+    still_missing: []
+    next_action: search_rooms
+
+- id: fs-multiturn-013
+  type: multiturn
+  turns:
+  - role: user
+    content: 番禺区三千以内的单间
+  - role: assistant
+    content: 为您找到以下房源...
+  - role: user
+    content: 条件一般，预算放宽到三千五
+  expected_output:
+    updated_slots:
+      budget_max: 3500
+    still_missing: []
+    next_action: search_rooms
+
+- id: fs-multiturn-014
+  type: multiturn
+  turns:
+  - role: user
+    content: 五千以内的两居室
+  - role: assistant
+    content: 为您推荐以下房源...
+  - role: user
+    content: 还是太贵了，四千以内吧
+  expected_output:
+    updated_slots:
+      budget_max: 4000
+    still_missing: []
+    next_action: search_rooms
+
+- id: fs-multiturn-015
+  type: multiturn
+  turns:
+  - role: user
+    content: 一千五以内的单间有吗
+  - role: assistant
+    content: 目前这个价位房源较少...
+  - role: user
+    content: 那两千以内吧，稍微贵点也行
+  expected_output:
+    updated_slots:
+      budget_max: 2000
+    still_missing: []
+    next_action: search_rooms
+
+- id: fs-multiturn-016
+  type: multiturn
+  turns:
+  - role: user
+    content: 帮我找两千五以内的房子
+  - role: assistant
+    content: 为您找到以下房源...
+  - role: user
+    content: 这些太小了，三千以内的有大点的吗
+  expected_output:
+    updated_slots:
+      budget_max: 3000
+    still_missing: []
+    next_action: search_rooms
+
+- id: fs-multiturn-017
+  type: multiturn
+  turns:
+  - role: user
+    content: 帮我找个便宜的房子
+  - role: assistant
+    content: 请问您的预算范围？
+  - role: user
+    content: 一千吧。算了，一千五以内都行
+  expected_output:
+    updated_slots:
+      budget_max: 1500
+    still_missing: [district]
+    next_action: ask_district
+
+# --- 用户换区域: 8 条 ---
+- id: fs-multiturn-018
+  type: multiturn
+  turns:
+  - role: user
+    content: 天河区两千以内的
+  - role: assistant
+    content: 为您推荐以下房源...
+  - role: user
+    content: 不想住天河了，看看番禺的
+  expected_output:
+    updated_slots:
+      district: 番禺区
+    still_missing: []
+    next_action: search_rooms
+
+- id: fs-multiturn-019
+  type: multiturn
+  turns:
+  - role: user
+    content: 番禺区有没有便宜的单间
+  - role: assistant
+    content: 为您找到以下房源...
+  - role: user
+    content: 番禺太远了，海珠区有吗
+  expected_output:
+    updated_slots:
+      district: 海珠区
+    still_missing: []
+    next_action: search_rooms
+
+- id: fs-multiturn-020
+  type: multiturn
+  turns:
+  - role: user
+    content: 白云区的房子帮我看看
+  - role: assistant
+    content: 白云区有以下房源...
+  - role: user
+    content: 还是想住近一点的，天河有没有
+  expected_output:
+    updated_slots:
+      district: 天河区
+    still_missing: []
+    next_action: search_rooms
+
+- id: fs-multiturn-021
+  type: multiturn
+  turns:
+  - role: user
+    content: 海珠区三千以内的
+  - role: assistant
+    content: 为您推荐以下房源...
+  - role: user
+    content: 不太行，看看黄埔的吧
+  expected_output:
+    updated_slots:
+      district: 黄埔区
+    still_missing: []
+    next_action: search_rooms
+
+- id: fs-multiturn-022
+  type: multiturn
+  turns:
+  - role: user
+    content: 越秀区有便宜的房吗
+  - role: assistant
+    content: 越秀区房源价格普遍偏高...
+  - role: user
+    content: 那荔湾区呢
+  expected_output:
+    updated_slots:
+      district: 荔湾区
+    still_missing: []
+    next_action: search_rooms
+
+- id: fs-multiturn-023
+  type: multiturn
+  turns:
+  - role: user
+    content: 我想住天河城附近
+  - role: assistant
+    content: 天河城附近房源较多，请问预算？
+  - role: user
+    content: 改到体育西路附近吧，离公司近
+  expected_output:
+    updated_slots:
+      area: 体育西路
+    still_missing: [budget]
+    next_action: ask_budget
+
+- id: fs-multiturn-024
+  type: multiturn
+  turns:
+  - role: user
+    content: 帮我在番禺广场附近找房
+  - role: assistant
+    content: 好的，番禺广场附近有以下房源...
+  - role: user
+    content: 大学城附近有没有，我学校在那
+  expected_output:
+    updated_slots:
+      area: 大学城
+    still_missing: [budget]
+    next_action: ask_budget
+
+- id: fs-multiturn-025
+  type: multiturn
+  turns:
+  - role: user
+    content: 5号线沿线有没有房子
+  - role: assistant
+    content: 5号线沿线有以下房源...
+  - role: user
+    content: 换3号线沿线吧
+  expected_output:
+    updated_slots:
+      metro_line: "3号线"
+    still_missing: [budget]
+    next_action: ask_budget
+
+# --- 用户拒绝推荐: 5 条 ---
+- id: fs-multiturn-026
+  type: multiturn
+  turns:
+  - role: user
+    content: 天河区两千以内的
+  - role: assistant
+    content: 推荐3001号房，月租1800，独卫...
+  - role: user
+    content: 不喜欢，换一个
+  expected_output:
+    updated_slots: {}
+    still_missing: []
+    next_action: search_rooms_exclude_3001
+
+- id: fs-multiturn-027
+  type: multiturn
+  turns:
+  - role: user
+    content: 有没有安静的单间
+  - role: assistant
+    content: 推荐3008号房，朝南安静...
+  - role: user
+    content: 采光不好，还有别的吗
+  expected_output:
+    updated_slots:
+      tags: [采光好]
+    still_missing: []
+    next_action: search_rooms_refine
+
+- id: fs-multiturn-028
+  type: multiturn
+  turns:
+  - role: user
+    content: 帮我找个两千左右的房子
+  - role: assistant
+    content: 推荐3005号房，月租1900...
+  - role: user
+    content: 太小了，有没有大一点的
+  expected_output:
+    updated_slots:
+      size_preference: larger
+    still_missing: []
+    next_action: search_rooms_refine
+
+- id: fs-multiturn-029
+  type: multiturn
+  turns:
+  - role: user
+    content: 番禺区有没有带阳台的
+  - role: assistant
+    content: 推荐3012号房，带阳台，月租2200...
+  - role: user
+    content: 离地铁太远了，要近地铁的
+  expected_output:
+    updated_slots:
+      tags: [有阳台, 近地铁]
+    still_missing: []
+    next_action: search_rooms_refine
+
+- id: fs-multiturn-030
+  type: multiturn
+  turns:
+  - role: user
+    content: 帮我找个两居室
+  - role: assistant
+    content: 推荐3015号房，两室一厅，月租3500...
+  - role: user
+    content: 超预算了，便宜点的有吗
+  expected_output:
+    updated_slots:
+      budget_max: 3000
+    still_missing: []
+    next_action: search_rooms_refine
+
+# --- 用户要求解释推荐理由: 5 条 ---
+- id: fs-multiturn-031
+  type: multiturn
+  turns:
+  - role: user
+    content: 天河区两千以内的单间
+  - role: assistant
+    content: 推荐3001号房，月租1800，独卫...
+  - role: user
+    content: 为什么推荐这间
+  expected_output:
+    updated_slots: {}
+    still_missing: []
+    next_action: explain_recommendation
+
+- id: fs-multiturn-032
+  type: multiturn
+  turns:
+  - role: user
+    content: 帮我找个安静的房子
+  - role: assistant
+    content: 推荐3006号房和3009号房...
+  - role: user
+    content: 这两间有什么区别
+  expected_output:
+    updated_slots: {}
+    still_missing: []
+    next_action: compare_rooms
+
+- id: fs-multiturn-033
+  type: multiturn
+  turns:
+  - role: user
+    content: 有没有适合考研的房间
+  - role: assistant
+    content: 推荐3003号房，安静独卫...
+  - role: user
+    content: 安静是怎么判断的，隔音好吗
+  expected_output:
+    updated_slots: {}
+    still_missing: []
+    next_action: explain_quiet_feature
+
+- id: fs-multiturn-034
+  type: multiturn
+  turns:
+  - role: user
+    content: 番禺区月付的单间
+  - role: assistant
+    content: 推荐3010号房，月租1600，支持月付...
+  - role: user
+    content: 这间性价比怎么样
+  expected_output:
+    updated_slots: {}
+    still_missing: []
+    next_action: explain_value_proposition
+
+- id: fs-multiturn-035
+  type: multiturn
+  turns:
+  - role: user
+    content: 帮我找个离地铁近的房子
+  - role: assistant
+    content: 推荐3007号房，步行5分钟到地铁...
+  - role: user
+    content: 到珠江新城要多久
+  expected_output:
+    updated_slots: {}
+    still_missing: []
+    next_action: explain_commute_time

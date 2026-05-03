@@ -168,3 +168,54 @@ Milvus 内只存以下内容：
 - **回退率**：阈值之下回退到"暂无明确答案"的比例可被监控。
 
 具体指标见 `07-测试验收方案.md`。
+
+## 8. 原材料文件清单
+
+知识库条目以 YAML 文件维护在 `src/aptguide/knowledge/rules/`，由 `scripts/seed_kb.py` 读取、向量化后写入 Milvus `apt_rental_kb` Collection。
+
+### 8.1 文件列表
+
+| 文件 | 模块 | 条目数 | doc_id 前缀 | 说明 |
+|------|------|--------|-------------|------|
+| `_schema.yaml` | — | — | — | 字段定义、枚举、禁用词、敏感模式正则（校验规则） |
+| `room_search.yaml` | room_search | 5 | KB-ROOM- | 找房相关 FAQ（预算、户型、配套、通勤、短租） |
+| `appointment.yaml` | appointment | 6 | KB-APPT- | 预约看房规则（流程、时间、取消、材料、迟到、变更） |
+| `lease.yaml` | lease | 7 | KB-LEASE- | 租约相关（签约、续租、退租、转租、押金、维修、提前退租） |
+| `payment.yaml` | payment | 6 | KB-PAY- | 费用支付（付款方式、账单、逾期、退款、发票、优惠） |
+| `life.yaml` | life | 5 | KB-LIFE- | 生活服务（报修、保洁、快递、噪音、公共设施） |
+| `account.yaml` | account | 8 | KB-ACCT- | 账号相关（注册实名、手机号登录、修改信息、隐私保护、密码安全、注销、多设备） |
+| `policy.yaml` | policy | 10 | KB-POL- | 社区规则（同住人、宠物、装修、安全禁止、退租清算、噪音公约、公共区域、访客、转租禁止、投诉处理） |
+
+**总计：47 条规则，覆盖 7 个模块。**
+
+### 8.2 每条条目的标准字段
+
+```yaml
+- doc_id: KB-ACCT-001          # 唯一标识，模块前缀 + 序号
+  doc_type: faq                 # faq | rule | guide | policy | flow
+  module: account               # 模块名，与文件名一致
+  title: 注册与实名认证         # 标题，≤ 30 字
+  content: |                    # 正文，≤ 600 字
+    ...
+  tags: [注册, 实名, 认证]      # 标签，3~5 个
+  version: 1                    # 版本号
+  updated_at: 2026-05-02        # 更新日期
+  reviewed_by: ops              # 审核人
+```
+
+### 8.3 seed_kb.py 加载约定
+
+```text
+scripts/seed_kb.py
+  1. 读取 src/aptguide/knowledge/rules/*.yaml（跳过 _schema.yaml）
+  2. 按 _schema.yaml 校验：唯一 doc_id、长度、枚举、禁用词、敏感正则
+  3. 拼接向量化文本："[{title}] {content}"
+  4. 调用 embedding 模型生成向量
+  5. 写入 Milvus apt_rental_kb（按 doc_id 去重，支持重放）
+```
+
+**触发时机：**
+
+- 运营 PR 合并 YAML 后，CI 自动触发
+- 手动执行：`make seed-kb`
+- 本地开发：`uv run python scripts/seed_kb.py`

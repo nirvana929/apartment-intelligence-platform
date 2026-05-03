@@ -28,8 +28,15 @@ def test_graph_has_expected_nodes():
     graph = _make_graph()
 
     expected_nodes = {
-        "intent", "kb_search", "reply", "slot", "ask",
-        "room_search", "rerank", "confirm", "tool",
+        "intent",
+        "kb_search",
+        "reply",
+        "slot",
+        "ask",
+        "room_search",
+        "rerank",
+        "confirm",
+        "tool",
     }
 
     # LangGraph CompiledGraph 的节点信息

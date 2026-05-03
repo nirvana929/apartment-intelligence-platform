@@ -1,5 +1,5 @@
 from aptguide.schemas.request import ChatRequest
-from aptguide.schemas.response import ChatResponse, Card
+from aptguide.schemas.response import Card, ChatResponse
 
 
 def test_chat_request():

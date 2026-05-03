@@ -1,6 +1,7 @@
 import json
-import pytest
 from unittest.mock import AsyncMock
+
+import pytest
 
 
 @pytest.mark.asyncio
@@ -35,13 +36,17 @@ async def test_memory_get_pending_confirmation():
     from aptguide.memory.session import SessionMemory
 
     redis = AsyncMock()
-    redis.get = AsyncMock(return_value=json.dumps({
-        "pending_confirmation": {
-            "type": "appointment_create",
-            "params": {"room_id": 3001, "appointment_time": "2026-05-03 15:00"},
-            "summary": "天河公寓 302，2026-05-03 15:00",
-        }
-    }))
+    redis.get = AsyncMock(
+        return_value=json.dumps(
+            {
+                "pending_confirmation": {
+                    "type": "appointment_create",
+                    "params": {"room_id": 3001, "appointment_time": "2026-05-03 15:00"},
+                    "summary": "天河公寓 302，2026-05-03 15:00",
+                }
+            }
+        )
+    )
 
     memory = SessionMemory(redis)
     result = await memory.get_pending_confirmation("test-001")
@@ -54,10 +59,14 @@ async def test_memory_clear_pending_confirmation():
     from aptguide.memory.session import SessionMemory
 
     redis = AsyncMock()
-    redis.get = AsyncMock(return_value=json.dumps({
-        "pending_confirmation": {"type": "appointment_create"},
-        "other_key": "value",
-    }))
+    redis.get = AsyncMock(
+        return_value=json.dumps(
+            {
+                "pending_confirmation": {"type": "appointment_create"},
+                "other_key": "value",
+            }
+        )
+    )
     redis.set = AsyncMock()
 
     memory = SessionMemory(redis)

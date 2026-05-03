@@ -1,0 +1,3504 @@
+# AptGuide AI 行为事件 mock 数据 - 用于 AptInsight 分析 AI 推荐效果
+# 共 500 条事件
+
+events:
+- event_id: evt-001
+  session_id: session-048
+  request_id: req-428
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-01 02:13:53'
+  query: 合同可以转租吗
+- event_id: evt-002
+  session_id: session-041
+  request_id: req-491
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-01 07:36:14'
+  room_id: 3137
+- event_id: evt-003
+  session_id: session-004
+  request_id: req-397
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-01 09:09:17'
+  room_id: 3093
+- event_id: evt-004
+  session_id: session-013
+  request_id: req-055
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-01 09:53:08'
+  room_id: 3117
+- event_id: evt-005
+  session_id: session-006
+  request_id: req-476
+  event_type: fallback_triggered
+  source: AI_CHAT
+  occurred_at: '2026-05-01 10:26:37'
+  reason: sensitive_request
+- event_id: evt-006
+  session_id: session-013
+  request_id: req-056
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-01 10:43:00'
+  room_id: 3117
+- event_id: evt-007
+  session_id: session-044
+  request_id: req-494
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-01 10:59:21'
+  room_id: 3073
+- event_id: evt-008
+  session_id: session-070
+  request_id: req-329
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-01 11:07:48'
+  room_id: 3025
+- event_id: evt-009
+  session_id: session-013
+  request_id: req-057
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-01 11:20:56'
+  room_id: 3117
+- event_id: evt-010
+  session_id: session-059
+  request_id: req-493
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-01 11:31:11'
+  room_id: 3075
+- event_id: evt-011
+  session_id: session-070
+  request_id: req-330
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-01 11:38:46'
+  room_id: 3025
+- event_id: evt-012
+  session_id: session-013
+  request_id: req-058
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-01 11:54:09'
+  room_id: 3117
+- event_id: evt-013
+  session_id: session-011
+  request_id: req-417
+  event_type: rag_answer_viewed
+  source: AI_CHAT
+  occurred_at: '2026-05-01 12:28:39'
+  query: 租期内房东可以涨租吗
+- event_id: evt-014
+  session_id: session-016
+  request_id: req-500
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-01 12:28:48'
+  room_id: 3069
+- event_id: evt-015
+  session_id: session-070
+  request_id: req-331
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-01 12:29:29'
+  room_id: 3025
+- event_id: evt-016
+  session_id: session-044
+  request_id: req-414
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-01 12:30:55'
+  room_id: 3122
+- event_id: evt-017
+  session_id: session-036
+  request_id: req-169
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-01 12:40:14'
+  room_id: 3030
+- event_id: evt-018
+  session_id: session-044
+  request_id: req-415
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-01 13:01:40'
+  room_id: 3122
+- event_id: evt-019
+  session_id: session-070
+  request_id: req-332
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-01 13:06:21'
+  room_id: 3025
+- event_id: evt-020
+  session_id: session-076
+  request_id: req-453
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-01 13:24:58'
+  query: 公共区域使用时间
+- event_id: evt-021
+  session_id: session-036
+  request_id: req-170
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-01 13:32:35'
+  room_id: 3030
+- event_id: evt-022
+  session_id: session-070
+  request_id: req-333
+  event_type: appointment_created
+  source: AI_CHAT
+  occurred_at: '2026-05-01 13:57:01'
+  room_id: 3025
+- event_id: evt-023
+  session_id: session-036
+  request_id: req-171
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-01 14:13:56'
+  room_id: 3030
+- event_id: evt-024
+  session_id: session-004
+  request_id: req-435
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-01 14:16:47'
+  query: 物业费包含哪些项目
+- event_id: evt-025
+  session_id: session-032
+  request_id: req-421
+  event_type: rag_answer_viewed
+  source: AI_CHAT
+  occurred_at: '2026-05-01 14:35:59'
+  query: 停车费多少钱一个月
+- event_id: evt-026
+  session_id: session-036
+  request_id: req-172
+  event_type: appointment_confirmed
+  source: AI_CHAT
+  occurred_at: '2026-05-01 15:04:59'
+  room_id: 3030
+- event_id: evt-027
+  session_id: session-074
+  request_id: req-497
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-01 16:36:43'
+  room_id: 3050
+- event_id: evt-028
+  session_id: session-039
+  request_id: req-458
+  event_type: fallback_triggered
+  source: AI_GUIDE
+  occurred_at: '2026-05-01 17:18:41'
+  reason: sensitive_request
+- event_id: evt-029
+  session_id: session-080
+  request_id: req-394
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-01 17:27:22'
+  room_id: 3081
+- event_id: evt-030
+  session_id: session-080
+  request_id: req-395
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-01 18:15:48'
+  room_id: 3081
+- event_id: evt-031
+  session_id: session-080
+  request_id: req-396
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-01 18:35:33'
+  room_id: 3081
+- event_id: evt-032
+  session_id: session-063
+  request_id: req-444
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 06:38:52'
+  query: 小区门禁卡怎么补办
+- event_id: evt-033
+  session_id: session-067
+  request_id: req-425
+  event_type: rag_answer_viewed
+  source: AI_CHAT
+  occurred_at: '2026-05-02 09:20:59'
+  query: 停车费多少钱一个月
+- event_id: evt-034
+  session_id: session-051
+  request_id: req-436
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 10:49:37'
+  query: 物业费可以按月交吗
+- event_id: evt-035
+  session_id: session-068
+  request_id: req-400
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-02 10:57:30'
+  room_id: 3050
+- event_id: evt-036
+  session_id: session-068
+  request_id: req-401
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 11:53:24'
+  room_id: 3050
+- event_id: evt-037
+  session_id: session-072
+  request_id: req-337
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 12:24:51'
+  room_id: 3092
+- event_id: evt-038
+  session_id: session-072
+  request_id: req-338
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-02 12:33:11'
+  room_id: 3092
+- event_id: evt-039
+  session_id: session-029
+  request_id: req-130
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 13:13:00'
+  room_id: 3099
+- event_id: evt-040
+  session_id: session-018
+  request_id: req-466
+  event_type: fallback_triggered
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 13:15:13'
+  reason: sensitive_request
+- event_id: evt-041
+  session_id: session-072
+  request_id: req-339
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 13:29:26'
+  room_id: 3092
+- event_id: evt-042
+  session_id: session-038
+  request_id: req-457
+  event_type: fallback_triggered
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 13:41:13'
+  reason: no_match
+- event_id: evt-043
+  session_id: session-029
+  request_id: req-131
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 13:57:47'
+  room_id: 3099
+- event_id: evt-044
+  session_id: session-072
+  request_id: req-340
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 14:14:40'
+  room_id: 3092
+- event_id: evt-045
+  session_id: session-009
+  request_id: req-040
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-02 14:31:53'
+  room_id: 3055
+- event_id: evt-046
+  session_id: session-048
+  request_id: req-471
+  event_type: fallback_triggered
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 14:35:23'
+  reason: out_of_scope
+- event_id: evt-047
+  session_id: session-029
+  request_id: req-132
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-02 14:49:02'
+  room_id: 3099
+- event_id: evt-048
+  session_id: session-029
+  request_id: req-133
+  event_type: appointment_confirm_shown
+  source: AI_CHAT
+  occurred_at: '2026-05-02 14:56:18'
+  room_id: 3099
+- event_id: evt-049
+  session_id: session-072
+  request_id: req-341
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 14:58:19'
+  room_id: 3092
+- event_id: evt-050
+  session_id: session-009
+  request_id: req-041
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 15:10:51'
+  room_id: 3055
+- event_id: evt-051
+  session_id: session-029
+  request_id: req-134
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 15:11:14'
+  room_id: 3099
+- event_id: evt-052
+  session_id: session-009
+  request_id: req-042
+  event_type: appointment_confirm_shown
+  source: AI_CHAT
+  occurred_at: '2026-05-02 15:27:26'
+  room_id: 3055
+- event_id: evt-053
+  session_id: session-050
+  request_id: req-430
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 15:40:50'
+  query: 租约未到期退租违约金
+- event_id: evt-054
+  session_id: session-019
+  request_id: req-386
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 15:50:16'
+  room_id: 3114
+- event_id: evt-055
+  session_id: session-072
+  request_id: req-342
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 15:52:01'
+  query: 物业费可以按月交吗
+- event_id: evt-056
+  session_id: session-029
+  request_id: req-463
+  event_type: fallback_triggered
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 15:55:39'
+  reason: no_match
+- event_id: evt-057
+  session_id: session-029
+  request_id: req-135
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 15:58:44'
+  room_id: 3099
+- event_id: evt-058
+  session_id: session-066
+  request_id: req-462
+  event_type: fallback_triggered
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 16:07:17'
+  reason: no_match
+- event_id: evt-059
+  session_id: session-029
+  request_id: req-136
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 16:15:44'
+  query: 公共区域使用时间
+- event_id: evt-060
+  session_id: session-019
+  request_id: req-387
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 16:25:14'
+  room_id: 3114
+- event_id: evt-061
+  session_id: session-069
+  request_id: req-325
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 16:43:17'
+  room_id: 3144
+- event_id: evt-062
+  session_id: session-069
+  request_id: req-326
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 16:47:35'
+  room_id: 3144
+- event_id: evt-063
+  session_id: session-008
+  request_id: req-037
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-02 17:19:27'
+  room_id: 3057
+- event_id: evt-064
+  session_id: session-008
+  request_id: req-038
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 17:23:28'
+  room_id: 3057
+- event_id: evt-065
+  session_id: session-008
+  request_id: req-039
+  event_type: appointment_confirm_shown
+  source: AI_CHAT
+  occurred_at: '2026-05-02 17:25:36'
+  room_id: 3057
+- event_id: evt-066
+  session_id: session-069
+  request_id: req-327
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 17:35:26'
+  room_id: 3144
+- event_id: evt-067
+  session_id: session-069
+  request_id: req-328
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-02 18:03:18'
+  room_id: 3144
+- event_id: evt-068
+  session_id: session-045
+  request_id: req-215
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-03 10:22:51'
+  room_id: 3030
+- event_id: evt-069
+  session_id: session-073
+  request_id: req-343
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-03 10:33:49'
+  room_id: 3142
+- event_id: evt-070
+  session_id: session-073
+  request_id: req-344
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-03 10:56:14'
+  room_id: 3142
+- event_id: evt-071
+  session_id: session-045
+  request_id: req-216
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-03 11:02:14'
+  room_id: 3030
+- event_id: evt-072
+  session_id: session-045
+  request_id: req-217
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-03 11:05:53'
+  room_id: 3030
+- event_id: evt-073
+  session_id: session-028
+  request_id: req-402
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-03 11:26:38'
+  room_id: 3045
+- event_id: evt-074
+  session_id: session-028
+  request_id: req-403
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-03 12:11:22'
+  room_id: 3045
+- event_id: evt-075
+  session_id: session-045
+  request_id: req-455
+  event_type: rag_answer_viewed
+  source: AI_CHAT
+  occurred_at: '2026-05-03 12:57:45'
+  query: 宽带安装需要物业配合吗
+- event_id: evt-076
+  session_id: session-028
+  request_id: req-404
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-03 13:04:07'
+  room_id: 3045
+- event_id: evt-077
+  session_id: session-059
+  request_id: req-282
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-03 14:19:47'
+  room_id: 3102
+- event_id: evt-078
+  session_id: session-063
+  request_id: req-300
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-03 14:54:23'
+  room_id: 3109
+- event_id: evt-079
+  session_id: session-059
+  request_id: req-283
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-03 15:05:49'
+  room_id: 3102
+- event_id: evt-080
+  session_id: session-072
+  request_id: req-479
+  event_type: fallback_triggered
+  source: AI_GUIDE
+  occurred_at: '2026-05-03 15:09:52'
+  reason: out_of_scope
+- event_id: evt-081
+  session_id: session-063
+  request_id: req-301
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-03 15:15:00'
+  room_id: 3109
+- event_id: evt-082
+  session_id: session-043
+  request_id: req-449
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-03 15:28:02'
+  query: 噪音投诉怎么处理
+- event_id: evt-083
+  session_id: session-059
+  request_id: req-284
+  event_type: appointment_confirm_shown
+  source: AI_CHAT
+  occurred_at: '2026-05-03 15:31:45'
+  room_id: 3102
+- event_id: evt-084
+  session_id: session-063
+  request_id: req-302
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-03 15:41:15'
+  room_id: 3109
+- event_id: evt-085
+  session_id: session-063
+  request_id: req-303
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-03 15:57:26'
+  room_id: 3109
+- event_id: evt-086
+  session_id: session-059
+  request_id: req-285
+  event_type: appointment_confirmed
+  source: AI_CHAT
+  occurred_at: '2026-05-03 16:14:32'
+  room_id: 3102
+- event_id: evt-087
+  session_id: session-036
+  request_id: req-443
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-03 16:23:59'
+  query: 物业费涨价通知流程
+- event_id: evt-088
+  session_id: session-026
+  request_id: req-465
+  event_type: fallback_triggered
+  source: AI_GUIDE
+  occurred_at: '2026-05-03 17:29:31'
+  reason: sensitive_request
+- event_id: evt-089
+  session_id: session-007
+  request_id: req-030
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-03 17:34:43'
+  room_id: 3068
+- event_id: evt-090
+  session_id: session-044
+  request_id: req-210
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-03 17:46:03'
+  room_id: 3012
+- event_id: evt-091
+  session_id: session-007
+  request_id: req-031
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-03 17:49:10'
+  room_id: 3068
+- event_id: evt-092
+  session_id: session-044
+  request_id: req-211
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-03 17:54:40'
+  room_id: 3012
+- event_id: evt-093
+  session_id: session-007
+  request_id: req-032
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-03 18:40:43'
+  room_id: 3068
+- event_id: evt-094
+  session_id: session-044
+  request_id: req-212
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-03 18:46:03'
+  room_id: 3012
+- event_id: evt-095
+  session_id: session-007
+  request_id: req-033
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-03 18:54:26'
+  room_id: 3068
+- event_id: evt-096
+  session_id: session-007
+  request_id: req-034
+  event_type: appointment_confirm_shown
+  source: AI_CHAT
+  occurred_at: '2026-05-03 19:21:40'
+  room_id: 3068
+- event_id: evt-097
+  session_id: session-044
+  request_id: req-213
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-03 19:45:37'
+  room_id: 3012
+- event_id: evt-098
+  session_id: session-044
+  request_id: req-214
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-03 20:05:01'
+  room_id: 3012
+- event_id: evt-099
+  session_id: session-007
+  request_id: req-035
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-03 20:06:01'
+  room_id: 3068
+- event_id: evt-100
+  session_id: session-007
+  request_id: req-036
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-03 20:41:20'
+  room_id: 3068
+- event_id: evt-101
+  session_id: session-073
+  request_id: req-441
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-04 09:55:41'
+  query: 物业费可以按月交吗
+- event_id: evt-102
+  session_id: session-034
+  request_id: req-496
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-04 10:46:29'
+  room_id: 3066
+- event_id: evt-103
+  session_id: session-022
+  request_id: req-439
+  event_type: rag_answer_viewed
+  source: AI_CHAT
+  occurred_at: '2026-05-04 12:56:02'
+  query: 家电损坏谁负责维修
+- event_id: evt-104
+  session_id: session-047
+  request_id: req-226
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-04 13:53:56'
+  room_id: 3041
+- event_id: evt-105
+  session_id: session-047
+  request_id: req-227
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-04 13:54:06'
+  room_id: 3041
+- event_id: evt-106
+  session_id: session-056
+  request_id: req-265
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-04 14:48:52'
+  room_id: 3018
+- event_id: evt-107
+  session_id: session-056
+  request_id: req-266
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-04 15:17:11'
+  room_id: 3018
+- event_id: evt-108
+  session_id: session-056
+  request_id: req-267
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-04 16:13:11'
+  room_id: 3018
+- event_id: evt-109
+  session_id: session-012
+  request_id: req-398
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-04 16:23:59'
+  room_id: 3102
+- event_id: evt-110
+  session_id: session-023
+  request_id: req-419
+  event_type: rag_answer_viewed
+  source: AI_CHAT
+  occurred_at: '2026-05-04 16:29:49'
+  query: 租期内房东可以涨租吗
+- event_id: evt-111
+  session_id: session-012
+  request_id: req-399
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-04 16:46:43'
+  room_id: 3102
+- event_id: evt-112
+  session_id: session-056
+  request_id: req-268
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-04 17:02:44'
+  room_id: 3018
+- event_id: evt-113
+  session_id: session-038
+  request_id: req-454
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-05 09:39:18'
+  query: 消防安全通道管理
+- event_id: evt-114
+  session_id: session-014
+  request_id: req-059
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-05 10:28:50'
+  room_id: 3139
+- event_id: evt-115
+  session_id: session-014
+  request_id: req-060
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-05 10:32:15'
+  room_id: 3139
+- event_id: evt-116
+  session_id: session-014
+  request_id: req-061
+  event_type: appointment_confirm_shown
+  source: AI_CHAT
+  occurred_at: '2026-05-05 11:06:34'
+  room_id: 3139
+- event_id: evt-117
+  session_id: session-014
+  request_id: req-062
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-05 11:42:49'
+  room_id: 3139
+- event_id: evt-118
+  session_id: session-008
+  request_id: req-482
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-05 12:19:49'
+  room_id: 3074
+- event_id: evt-119
+  session_id: session-077
+  request_id: req-363
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-05 15:51:16'
+  room_id: 3030
+- event_id: evt-120
+  session_id: session-031
+  request_id: req-467
+  event_type: fallback_triggered
+  source: AI_CHAT
+  occurred_at: '2026-05-05 16:18:34'
+  reason: low_confidence
+- event_id: evt-121
+  session_id: session-027
+  request_id: req-121
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-05 16:20:46'
+  room_id: 3083
+- event_id: evt-122
+  session_id: session-077
+  request_id: req-364
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-05 16:28:54'
+  room_id: 3030
+- event_id: evt-123
+  session_id: session-027
+  request_id: req-122
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-05 16:35:21'
+  room_id: 3083
+- event_id: evt-124
+  session_id: session-077
+  request_id: req-365
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-05 16:43:34'
+  room_id: 3030
+- event_id: evt-125
+  session_id: session-005
+  request_id: req-020
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-05 16:53:20'
+  room_id: 3028
+- event_id: evt-126
+  session_id: session-077
+  request_id: req-366
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-05 16:59:09'
+  room_id: 3030
+- event_id: evt-127
+  session_id: session-035
+  request_id: req-163
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-05 17:18:12'
+  room_id: 3021
+- event_id: evt-128
+  session_id: session-050
+  request_id: req-238
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-05 17:18:13'
+  room_id: 3011
+- event_id: evt-129
+  session_id: session-035
+  request_id: req-164
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-05 17:21:45'
+  room_id: 3021
+- event_id: evt-130
+  session_id: session-005
+  request_id: req-021
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-05 17:27:59'
+  room_id: 3028
+- event_id: evt-131
+  session_id: session-027
+  request_id: req-123
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-05 17:29:32'
+  room_id: 3083
+- event_id: evt-132
+  session_id: session-050
+  request_id: req-239
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-05 17:35:18'
+  room_id: 3011
+- event_id: evt-133
+  session_id: session-005
+  request_id: req-022
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-05 17:38:25'
+  room_id: 3028
+- event_id: evt-134
+  session_id: session-035
+  request_id: req-165
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-05 17:45:38'
+  room_id: 3021
+- event_id: evt-135
+  session_id: session-005
+  request_id: req-023
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-05 17:49:26'
+  room_id: 3028
+- event_id: evt-136
+  session_id: session-035
+  request_id: req-166
+  event_type: appointment_confirm_shown
+  source: AI_CHAT
+  occurred_at: '2026-05-05 17:50:19'
+  room_id: 3021
+- event_id: evt-137
+  session_id: session-050
+  request_id: req-240
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-05 17:50:55'
+  room_id: 3011
+- event_id: evt-138
+  session_id: session-077
+  request_id: req-367
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-05 17:55:38'
+  room_id: 3030
+- event_id: evt-139
+  session_id: session-027
+  request_id: req-124
+  event_type: appointment_confirm_shown
+  source: AI_CHAT
+  occurred_at: '2026-05-05 18:23:52'
+  room_id: 3083
+- event_id: evt-140
+  session_id: session-077
+  request_id: req-368
+  event_type: appointment_confirmed
+  source: AI_CHAT
+  occurred_at: '2026-05-05 18:24:01'
+  room_id: 3030
+- event_id: evt-141
+  session_id: session-035
+  request_id: req-167
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-05 18:34:48'
+  room_id: 3021
+- event_id: evt-142
+  session_id: session-035
+  request_id: req-168
+  event_type: appointment_created
+  source: AI_CHAT
+  occurred_at: '2026-05-05 18:36:55'
+  room_id: 3021
+- event_id: evt-143
+  session_id: session-005
+  request_id: req-024
+  event_type: appointment_confirm_shown
+  source: AI_CHAT
+  occurred_at: '2026-05-05 18:42:35'
+  room_id: 3028
+- event_id: evt-144
+  session_id: session-005
+  request_id: req-025
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-05 18:42:37'
+  room_id: 3028
+- event_id: evt-145
+  session_id: session-077
+  request_id: req-369
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-05 18:45:21'
+  room_id: 3030
+- event_id: evt-146
+  session_id: session-050
+  request_id: req-241
+  event_type: appointment_confirm_shown
+  source: AI_CHAT
+  occurred_at: '2026-05-05 18:47:59'
+  room_id: 3011
+- event_id: evt-147
+  session_id: session-027
+  request_id: req-125
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-05 19:08:50'
+  room_id: 3083
+- event_id: evt-148
+  session_id: session-005
+  request_id: req-026
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-05 19:15:58'
+  room_id: 3028
+- event_id: evt-149
+  session_id: session-059
+  request_id: req-411
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-06 07:36:27'
+  room_id: 3024
+- event_id: evt-150
+  session_id: session-059
+  request_id: req-412
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-06 08:08:02'
+  room_id: 3024
+- event_id: evt-151
+  session_id: session-059
+  request_id: req-413
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-06 09:02:05'
+  room_id: 3024
+- event_id: evt-152
+  session_id: session-068
+  request_id: req-424
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-06 11:25:32'
+  query: 车位可以转租吗
+- event_id: evt-153
+  session_id: session-041
+  request_id: req-437
+  event_type: rag_answer_viewed
+  source: AI_CHAT
+  occurred_at: '2026-05-06 11:53:49'
+  query: 租约未到期退租违约金
+- event_id: evt-154
+  session_id: session-064
+  request_id: req-304
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-06 13:02:26'
+  room_id: 3102
+- event_id: evt-155
+  session_id: session-064
+  request_id: req-305
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-06 13:49:15'
+  room_id: 3102
+- event_id: evt-156
+  session_id: session-064
+  request_id: req-306
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-06 14:30:38'
+  room_id: 3102
+- event_id: evt-157
+  session_id: session-025
+  request_id: req-445
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-06 14:42:18'
+  query: 退房清洁标准是什么
+- event_id: evt-158
+  session_id: session-067
+  request_id: req-315
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-06 14:48:13'
+  room_id: 3066
+- event_id: evt-159
+  session_id: session-017
+  request_id: req-447
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-06 15:17:40'
+  query: 水电费怎么交
+- event_id: evt-160
+  session_id: session-078
+  request_id: req-370
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-06 15:36:25'
+  room_id: 3024
+- event_id: evt-161
+  session_id: session-067
+  request_id: req-316
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-06 15:47:38'
+  room_id: 3066
+- event_id: evt-162
+  session_id: session-067
+  request_id: req-317
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-06 15:55:29'
+  room_id: 3066
+- event_id: evt-163
+  session_id: session-067
+  request_id: req-318
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-06 16:00:37'
+  room_id: 3066
+- event_id: evt-164
+  session_id: session-067
+  request_id: req-319
+  event_type: appointment_confirmed
+  source: AI_CHAT
+  occurred_at: '2026-05-06 16:16:01'
+  room_id: 3066
+- event_id: evt-165
+  session_id: session-042
+  request_id: req-204
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-06 16:25:33'
+  room_id: 3065
+- event_id: evt-166
+  session_id: session-078
+  request_id: req-371
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-06 16:27:14'
+  room_id: 3024
+- event_id: evt-167
+  session_id: session-042
+  request_id: req-205
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-06 16:33:42'
+  room_id: 3065
+- event_id: evt-168
+  session_id: session-067
+  request_id: req-320
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-06 17:05:27'
+  room_id: 3066
+- event_id: evt-169
+  session_id: session-078
+  request_id: req-372
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-06 17:22:39'
+  room_id: 3024
+- event_id: evt-170
+  session_id: session-078
+  request_id: req-373
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-06 17:26:44'
+  room_id: 3024
+- event_id: evt-171
+  session_id: session-064
+  request_id: req-433
+  event_type: rag_answer_viewed
+  source: AI_CHAT
+  occurred_at: '2026-05-07 10:33:23'
+  query: 租约到期续租流程
+- event_id: evt-172
+  session_id: session-076
+  request_id: req-358
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-07 10:37:15'
+  room_id: 3114
+- event_id: evt-173
+  session_id: session-076
+  request_id: req-359
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-07 10:47:22'
+  room_id: 3114
+- event_id: evt-174
+  session_id: session-076
+  request_id: req-360
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-07 11:06:08'
+  room_id: 3114
+- event_id: evt-175
+  session_id: session-065
+  request_id: req-499
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-07 11:08:30'
+  room_id: 3083
+- event_id: evt-176
+  session_id: session-055
+  request_id: req-261
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-07 11:18:02'
+  room_id: 3040
+- event_id: evt-177
+  session_id: session-076
+  request_id: req-361
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-07 11:46:05'
+  room_id: 3114
+- event_id: evt-178
+  session_id: session-055
+  request_id: req-262
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-07 12:06:11'
+  room_id: 3040
+- event_id: evt-179
+  session_id: session-076
+  request_id: req-362
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-07 12:08:16'
+  room_id: 3114
+- event_id: evt-180
+  session_id: session-023
+  request_id: req-460
+  event_type: fallback_triggered
+  source: AI_GUIDE
+  occurred_at: '2026-05-07 12:21:38'
+  reason: out_of_scope
+- event_id: evt-181
+  session_id: session-055
+  request_id: req-263
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-07 12:38:25'
+  room_id: 3040
+- event_id: evt-182
+  session_id: session-055
+  request_id: req-264
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-07 13:16:02'
+  room_id: 3040
+- event_id: evt-183
+  session_id: session-064
+  request_id: req-468
+  event_type: fallback_triggered
+  source: AI_GUIDE
+  occurred_at: '2026-05-07 13:46:23'
+  reason: no_match
+- event_id: evt-184
+  session_id: session-009
+  request_id: req-391
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-07 16:12:53'
+  room_id: 3059
+- event_id: evt-185
+  session_id: session-073
+  request_id: req-388
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-07 16:48:45'
+  room_id: 3079
+- event_id: evt-186
+  session_id: session-009
+  request_id: req-392
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-07 17:07:55'
+  room_id: 3059
+- event_id: evt-187
+  session_id: session-004
+  request_id: req-469
+  event_type: fallback_triggered
+  source: AI_GUIDE
+  occurred_at: '2026-05-07 17:12:23'
+  reason: sensitive_request
+- event_id: evt-188
+  session_id: session-053
+  request_id: req-253
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-07 17:28:54'
+  room_id: 3139
+- event_id: evt-189
+  session_id: session-024
+  request_id: req-105
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-07 17:33:12'
+  room_id: 3030
+- event_id: evt-190
+  session_id: session-009
+  request_id: req-393
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-07 17:35:01'
+  room_id: 3059
+- event_id: evt-191
+  session_id: session-024
+  request_id: req-106
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-07 17:51:19'
+  room_id: 3030
+- event_id: evt-192
+  session_id: session-053
+  request_id: req-254
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-07 18:04:17'
+  room_id: 3139
+- event_id: evt-193
+  session_id: session-024
+  request_id: req-107
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-07 18:14:54'
+  room_id: 3030
+- event_id: evt-194
+  session_id: session-024
+  request_id: req-108
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-07 18:36:18'
+  room_id: 3030
+- event_id: evt-195
+  session_id: session-053
+  request_id: req-255
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-07 18:46:58'
+  room_id: 3139
+- event_id: evt-196
+  session_id: session-053
+  request_id: req-256
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-07 18:50:29'
+  room_id: 3139
+- event_id: evt-197
+  session_id: session-042
+  request_id: req-438
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-08 11:04:45'
+  query: 租约未到期退租违约金
+- event_id: evt-198
+  session_id: session-047
+  request_id: req-427
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-08 11:48:45'
+  query: 小区绿化维护时间
+- event_id: evt-199
+  session_id: session-049
+  request_id: req-490
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-08 12:48:18'
+  room_id: 3083
+- event_id: evt-200
+  session_id: session-075
+  request_id: req-352
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-08 15:07:00'
+  room_id: 3028
+- event_id: evt-201
+  session_id: session-040
+  request_id: req-191
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-08 15:33:25'
+  room_id: 3127
+- event_id: evt-202
+  session_id: session-075
+  request_id: req-353
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-08 15:48:59'
+  room_id: 3028
+- event_id: evt-203
+  session_id: session-040
+  request_id: req-192
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-08 15:57:38'
+  room_id: 3127
+- event_id: evt-204
+  session_id: session-072
+  request_id: req-486
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-08 16:13:12'
+  room_id: 3138
+- event_id: evt-205
+  session_id: session-040
+  request_id: req-193
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-08 16:20:52'
+  room_id: 3127
+- event_id: evt-206
+  session_id: session-075
+  request_id: req-354
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-08 16:42:27'
+  room_id: 3028
+- event_id: evt-207
+  session_id: session-054
+  request_id: req-408
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-08 16:44:09'
+  room_id: 3071
+- event_id: evt-208
+  session_id: session-054
+  request_id: req-409
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-08 16:49:12'
+  room_id: 3071
+- event_id: evt-209
+  session_id: session-040
+  request_id: req-194
+  event_type: appointment_confirm_shown
+  source: AI_CHAT
+  occurred_at: '2026-05-08 17:01:33'
+  room_id: 3127
+- event_id: evt-210
+  session_id: session-049
+  request_id: req-405
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-08 17:12:05'
+  room_id: 3145
+- event_id: evt-211
+  session_id: session-054
+  request_id: req-410
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-08 17:20:03'
+  room_id: 3071
+- event_id: evt-212
+  session_id: session-040
+  request_id: req-195
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-08 17:20:24'
+  room_id: 3127
+- event_id: evt-213
+  session_id: session-058
+  request_id: req-276
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-08 17:27:13'
+  room_id: 3039
+- event_id: evt-214
+  session_id: session-075
+  request_id: req-355
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-08 17:27:25'
+  room_id: 3028
+- event_id: evt-215
+  session_id: session-049
+  request_id: req-406
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-08 17:34:08'
+  room_id: 3145
+- event_id: evt-216
+  session_id: session-040
+  request_id: req-196
+  event_type: appointment_created
+  source: AI_CHAT
+  occurred_at: '2026-05-08 17:55:40'
+  room_id: 3127
+- event_id: evt-217
+  session_id: session-075
+  request_id: req-356
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-08 17:58:41'
+  room_id: 3028
+- event_id: evt-218
+  session_id: session-075
+  request_id: req-357
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-08 18:00:48'
+  room_id: 3028
+- event_id: evt-219
+  session_id: session-058
+  request_id: req-277
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-08 18:07:30'
+  room_id: 3039
+- event_id: evt-220
+  session_id: session-058
+  request_id: req-278
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-08 18:14:21'
+  room_id: 3039
+- event_id: evt-221
+  session_id: session-049
+  request_id: req-407
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-08 18:16:57'
+  room_id: 3145
+- event_id: evt-222
+  session_id: session-058
+  request_id: req-279
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-08 18:44:24'
+  room_id: 3039
+- event_id: evt-223
+  session_id: session-040
+  request_id: req-197
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-08 18:44:49'
+  query: 垃圾分类投放点
+- event_id: evt-224
+  session_id: session-058
+  request_id: req-280
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-08 19:15:35'
+  room_id: 3039
+- event_id: evt-225
+  session_id: session-058
+  request_id: req-281
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-08 19:25:25'
+  room_id: 3039
+- event_id: evt-226
+  session_id: session-060
+  request_id: req-472
+  event_type: fallback_triggered
+  source: AI_CHAT
+  occurred_at: '2026-05-09 09:02:02'
+  reason: out_of_scope
+- event_id: evt-227
+  session_id: session-001
+  request_id: req-001
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-09 09:11:01'
+  room_id: 3143
+- event_id: evt-228
+  session_id: session-001
+  request_id: req-002
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-09 10:03:28'
+  room_id: 3143
+- event_id: evt-229
+  session_id: session-001
+  request_id: req-003
+  event_type: appointment_confirm_shown
+  source: AI_CHAT
+  occurred_at: '2026-05-09 10:19:06'
+  room_id: 3143
+- event_id: evt-230
+  session_id: session-079
+  request_id: req-374
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-09 10:29:52'
+  room_id: 3109
+- event_id: evt-231
+  session_id: session-057
+  request_id: req-422
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-09 10:48:10'
+  query: 楼道堆放物品怎么处理
+- event_id: evt-232
+  session_id: session-042
+  request_id: req-487
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-09 11:06:39'
+  room_id: 3062
+- event_id: evt-233
+  session_id: session-079
+  request_id: req-375
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-09 11:10:51'
+  room_id: 3109
+- event_id: evt-234
+  session_id: session-079
+  request_id: req-376
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-09 11:17:55'
+  room_id: 3109
+- event_id: evt-235
+  session_id: session-015
+  request_id: req-063
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-09 11:32:11'
+  room_id: 3018
+- event_id: evt-236
+  session_id: session-079
+  request_id: req-377
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-09 11:32:26'
+  room_id: 3109
+- event_id: evt-237
+  session_id: session-006
+  request_id: req-420
+  event_type: rag_answer_viewed
+  source: AI_CHAT
+  occurred_at: '2026-05-09 11:52:12'
+  query: 噪音投诉怎么处理
+- event_id: evt-238
+  session_id: session-079
+  request_id: req-378
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-09 12:05:21'
+  room_id: 3109
+- event_id: evt-239
+  session_id: session-062
+  request_id: req-293
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-09 12:09:37'
+  room_id: 3021
+- event_id: evt-240
+  session_id: session-015
+  request_id: req-064
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-09 12:11:04'
+  room_id: 3018
+- event_id: evt-241
+  session_id: session-079
+  request_id: req-379
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-09 12:12:44'
+  room_id: 3109
+- event_id: evt-242
+  session_id: session-079
+  request_id: req-380
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-09 12:50:42'
+  room_id: 3109
+- event_id: evt-243
+  session_id: session-025
+  request_id: req-109
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-09 12:51:31'
+  room_id: 3112
+- event_id: evt-244
+  session_id: session-015
+  request_id: req-065
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-09 12:51:39'
+  room_id: 3018
+- event_id: evt-245
+  session_id: session-062
+  request_id: req-294
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-09 12:56:15'
+  room_id: 3021
+- event_id: evt-246
+  session_id: session-015
+  request_id: req-066
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-09 12:57:14'
+  room_id: 3018
+- event_id: evt-247
+  session_id: session-025
+  request_id: req-110
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-09 13:28:16'
+  room_id: 3112
+- event_id: evt-248
+  session_id: session-054
+  request_id: req-257
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-09 13:30:54'
+  room_id: 3125
+- event_id: evt-249
+  session_id: session-062
+  request_id: req-295
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-09 13:36:03'
+  room_id: 3021
+- event_id: evt-250
+  session_id: session-057
+  request_id: req-475
+  event_type: fallback_triggered
+  source: AI_GUIDE
+  occurred_at: '2026-05-09 13:45:36'
+  reason: sensitive_request
+- event_id: evt-251
+  session_id: session-062
+  request_id: req-296
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-09 14:07:31'
+  room_id: 3021
+- event_id: evt-252
+  session_id: session-054
+  request_id: req-258
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-09 14:12:27'
+  room_id: 3125
+- event_id: evt-253
+  session_id: session-025
+  request_id: req-111
+  event_type: appointment_confirm_shown
+  source: AI_CHAT
+  occurred_at: '2026-05-09 14:18:55'
+  room_id: 3112
+- event_id: evt-254
+  session_id: session-028
+  request_id: req-126
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-09 14:21:12'
+  room_id: 3061
+- event_id: evt-255
+  session_id: session-028
+  request_id: req-127
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-09 14:31:15'
+  room_id: 3061
+- event_id: evt-256
+  session_id: session-025
+  request_id: req-112
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-09 14:32:22'
+  room_id: 3112
+- event_id: evt-257
+  session_id: session-025
+  request_id: req-113
+  event_type: appointment_created
+  source: AI_CHAT
+  occurred_at: '2026-05-09 14:37:08'
+  room_id: 3112
+- event_id: evt-258
+  session_id: session-062
+  request_id: req-297
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-09 14:38:53'
+  room_id: 3021
+- event_id: evt-259
+  session_id: session-062
+  request_id: req-298
+  event_type: appointment_confirmed
+  source: AI_CHAT
+  occurred_at: '2026-05-09 14:39:31'
+  room_id: 3021
+- event_id: evt-260
+  session_id: session-055
+  request_id: req-452
+  event_type: rag_answer_viewed
+  source: AI_CHAT
+  occurred_at: '2026-05-09 14:41:17'
+  query: 公摊水电怎么分摊
+- event_id: evt-261
+  session_id: session-028
+  request_id: req-128
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-09 14:47:57'
+  room_id: 3061
+- event_id: evt-262
+  session_id: session-054
+  request_id: req-259
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-09 15:00:54'
+  room_id: 3125
+- event_id: evt-263
+  session_id: session-074
+  request_id: req-423
+  event_type: rag_answer_viewed
+  source: AI_CHAT
+  occurred_at: '2026-05-09 15:05:58'
+  query: 装修需要报备吗
+- event_id: evt-264
+  session_id: session-062
+  request_id: req-299
+  event_type: appointment_created
+  source: AI_CHAT
+  occurred_at: '2026-05-09 15:11:16'
+  room_id: 3021
+- event_id: evt-265
+  session_id: session-028
+  request_id: req-129
+  event_type: appointment_confirm_shown
+  source: AI_CHAT
+  occurred_at: '2026-05-09 15:29:40'
+  room_id: 3061
+- event_id: evt-266
+  session_id: session-054
+  request_id: req-260
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-09 15:38:30'
+  room_id: 3125
+- event_id: evt-267
+  session_id: session-076
+  request_id: req-470
+  event_type: fallback_triggered
+  source: AI_GUIDE
+  occurred_at: '2026-05-09 17:17:52'
+  reason: low_confidence
+- event_id: evt-268
+  session_id: session-005
+  request_id: req-440
+  event_type: rag_answer_viewed
+  source: AI_CHAT
+  occurred_at: '2026-05-09 17:30:16'
+  query: 可以养宠物吗
+- event_id: evt-269
+  session_id: session-039
+  request_id: req-434
+  event_type: rag_answer_viewed
+  source: AI_CHAT
+  occurred_at: '2026-05-09 17:35:01'
+  query: 漏水维修责任划分
+- event_id: evt-270
+  session_id: session-026
+  request_id: req-114
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 11:08:03'
+  room_id: 3077
+- event_id: evt-271
+  session_id: session-044
+  request_id: req-416
+  event_type: rag_answer_viewed
+  source: AI_CHAT
+  occurred_at: '2026-05-10 11:11:53'
+  query: 押金退还多久到账
+- event_id: evt-272
+  session_id: session-026
+  request_id: req-115
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 11:30:19'
+  room_id: 3077
+- event_id: evt-273
+  session_id: session-026
+  request_id: req-116
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 11:50:30'
+  room_id: 3077
+- event_id: evt-274
+  session_id: session-026
+  request_id: req-117
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 12:03:35'
+  room_id: 3077
+- event_id: evt-275
+  session_id: session-026
+  request_id: req-118
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 12:29:27'
+  room_id: 3077
+- event_id: evt-276
+  session_id: session-052
+  request_id: req-389
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 12:38:58'
+  room_id: 3036
+- event_id: evt-277
+  session_id: session-052
+  request_id: req-390
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 12:39:29'
+  room_id: 3036
+- event_id: evt-278
+  session_id: session-026
+  request_id: req-119
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 12:41:19'
+  room_id: 3077
+- event_id: evt-279
+  session_id: session-026
+  request_id: req-120
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 13:01:51'
+  room_id: 3077
+- event_id: evt-280
+  session_id: session-040
+  request_id: req-474
+  event_type: fallback_triggered
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 15:39:47'
+  reason: sensitive_request
+- event_id: evt-281
+  session_id: session-016
+  request_id: req-067
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 15:48:09'
+  room_id: 3053
+- event_id: evt-282
+  session_id: session-067
+  request_id: req-484
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-10 15:57:25'
+  room_id: 3089
+- event_id: evt-283
+  session_id: session-016
+  request_id: req-068
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 16:06:16'
+  room_id: 3053
+- event_id: evt-284
+  session_id: session-034
+  request_id: req-158
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 16:21:28'
+  room_id: 3007
+- event_id: evt-285
+  session_id: session-080
+  request_id: req-381
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-10 16:36:09'
+  room_id: 3143
+- event_id: evt-286
+  session_id: session-016
+  request_id: req-069
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 16:52:07'
+  room_id: 3053
+- event_id: evt-287
+  session_id: session-016
+  request_id: req-070
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-10 17:13:42'
+  room_id: 3053
+- event_id: evt-288
+  session_id: session-016
+  request_id: req-071
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 17:18:39'
+  room_id: 3053
+- event_id: evt-289
+  session_id: session-034
+  request_id: req-159
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 17:20:38'
+  room_id: 3007
+- event_id: evt-290
+  session_id: session-034
+  request_id: req-160
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 17:24:03'
+  room_id: 3007
+- event_id: evt-291
+  session_id: session-057
+  request_id: req-269
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 17:28:12'
+  room_id: 3115
+- event_id: evt-292
+  session_id: session-080
+  request_id: req-382
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 17:32:46'
+  room_id: 3143
+- event_id: evt-293
+  session_id: session-080
+  request_id: req-383
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 17:34:44'
+  room_id: 3143
+- event_id: evt-294
+  session_id: session-034
+  request_id: req-161
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 17:46:23'
+  room_id: 3007
+- event_id: evt-295
+  session_id: session-057
+  request_id: req-270
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-10 18:05:52'
+  room_id: 3115
+- event_id: evt-296
+  session_id: session-034
+  request_id: req-162
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 18:08:41'
+  room_id: 3007
+- event_id: evt-297
+  session_id: session-080
+  request_id: req-384
+  event_type: appointment_confirmed
+  source: AI_CHAT
+  occurred_at: '2026-05-10 18:22:42'
+  room_id: 3143
+- event_id: evt-298
+  session_id: session-057
+  request_id: req-271
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 18:31:37'
+  room_id: 3115
+- event_id: evt-299
+  session_id: session-080
+  request_id: req-385
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 18:45:53'
+  room_id: 3143
+- event_id: evt-300
+  session_id: session-057
+  request_id: req-272
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-10 18:53:35'
+  room_id: 3115
+- event_id: evt-301
+  session_id: session-057
+  request_id: req-273
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 19:41:11'
+  room_id: 3115
+- event_id: evt-302
+  session_id: session-057
+  request_id: req-274
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 20:07:19'
+  room_id: 3115
+- event_id: evt-303
+  session_id: session-057
+  request_id: req-275
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 21:00:15'
+  room_id: 3115
+- event_id: evt-304
+  session_id: session-017
+  request_id: req-072
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 23:22:40'
+  room_id: 3055
+- event_id: evt-305
+  session_id: session-017
+  request_id: req-073
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-10 23:46:29'
+  room_id: 3055
+- event_id: evt-306
+  session_id: session-051
+  request_id: req-242
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-10 23:46:36'
+  room_id: 3069
+- event_id: evt-307
+  session_id: session-051
+  request_id: req-243
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-10 23:58:33'
+  room_id: 3069
+- event_id: evt-308
+  session_id: session-062
+  request_id: req-488
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-11 09:14:03'
+  room_id: 3026
+- event_id: evt-309
+  session_id: session-021
+  request_id: req-426
+  event_type: rag_answer_viewed
+  source: AI_CHAT
+  occurred_at: '2026-05-11 11:08:02'
+  query: 租期内房东可以涨租吗
+- event_id: evt-310
+  session_id: session-018
+  request_id: req-079
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-11 11:34:42'
+  room_id: 3028
+- event_id: evt-311
+  session_id: session-018
+  request_id: req-080
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-11 11:49:04'
+  room_id: 3028
+- event_id: evt-312
+  session_id: session-018
+  request_id: req-081
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-11 12:02:57'
+  room_id: 3028
+- event_id: evt-313
+  session_id: session-017
+  request_id: req-074
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-11 14:18:09'
+  room_id: 3055
+- event_id: evt-314
+  session_id: session-010
+  request_id: req-451
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-11 14:23:28'
+  query: 租约到期续租流程
+- event_id: evt-315
+  session_id: session-017
+  request_id: req-075
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-11 15:15:04'
+  room_id: 3055
+- event_id: evt-316
+  session_id: session-017
+  request_id: req-076
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-11 15:35:43'
+  room_id: 3055
+- event_id: evt-317
+  session_id: session-017
+  request_id: req-077
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-11 16:30:48'
+  room_id: 3055
+- event_id: evt-318
+  session_id: session-017
+  request_id: req-078
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-11 16:31:20'
+  room_id: 3055
+- event_id: evt-319
+  session_id: session-046
+  request_id: req-495
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-11 16:56:08'
+  room_id: 3130
+- event_id: evt-320
+  session_id: session-051
+  request_id: req-244
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-11 16:58:01'
+  room_id: 3069
+- event_id: evt-321
+  session_id: session-071
+  request_id: req-334
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-11 17:26:33'
+  room_id: 3072
+- event_id: evt-322
+  session_id: session-051
+  request_id: req-245
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-11 17:37:58'
+  room_id: 3069
+- event_id: evt-323
+  session_id: session-069
+  request_id: req-448
+  event_type: rag_answer_viewed
+  source: AI_CHAT
+  occurred_at: '2026-05-11 17:51:47'
+  query: 押金退还多久到账
+- event_id: evt-324
+  session_id: session-071
+  request_id: req-335
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-11 17:56:49'
+  room_id: 3072
+- event_id: evt-325
+  session_id: session-071
+  request_id: req-336
+  event_type: appointment_confirm_shown
+  source: AI_CHAT
+  occurred_at: '2026-05-11 18:12:56'
+  room_id: 3072
+- event_id: evt-326
+  session_id: session-051
+  request_id: req-246
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-11 18:33:33'
+  room_id: 3069
+- event_id: evt-327
+  session_id: session-051
+  request_id: req-247
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-11 18:39:46'
+  room_id: 3069
+- event_id: evt-328
+  session_id: session-051
+  request_id: req-248
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-11 19:07:38'
+  room_id: 3069
+- event_id: evt-329
+  session_id: session-046
+  request_id: req-480
+  event_type: fallback_triggered
+  source: AI_GUIDE
+  occurred_at: '2026-05-12 09:28:20'
+  reason: no_match
+- event_id: evt-330
+  session_id: session-018
+  request_id: req-483
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-12 10:22:35'
+  room_id: 3071
+- event_id: evt-331
+  session_id: session-068
+  request_id: req-489
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-12 11:00:35'
+  room_id: 3041
+- event_id: evt-332
+  session_id: session-061
+  request_id: req-290
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-12 13:06:27'
+  room_id: 3008
+- event_id: evt-333
+  session_id: session-061
+  request_id: req-291
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-12 13:26:28'
+  room_id: 3008
+- event_id: evt-334
+  session_id: session-048
+  request_id: req-228
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-12 13:50:13'
+  room_id: 3074
+- event_id: evt-335
+  session_id: session-048
+  request_id: req-229
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-12 13:55:04'
+  room_id: 3074
+- event_id: evt-336
+  session_id: session-061
+  request_id: req-292
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-12 13:55:52'
+  room_id: 3008
+- event_id: evt-337
+  session_id: session-048
+  request_id: req-230
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-12 14:13:07'
+  room_id: 3074
+- event_id: evt-338
+  session_id: session-047
+  request_id: req-461
+  event_type: fallback_triggered
+  source: AI_GUIDE
+  occurred_at: '2026-05-12 14:25:08'
+  reason: sensitive_request
+- event_id: evt-339
+  session_id: session-005
+  request_id: req-477
+  event_type: fallback_triggered
+  source: AI_CHAT
+  occurred_at: '2026-05-12 14:38:30'
+  reason: sensitive_request
+- event_id: evt-340
+  session_id: session-048
+  request_id: req-231
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-12 14:55:47'
+  room_id: 3074
+- event_id: evt-341
+  session_id: session-080
+  request_id: req-432
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-12 15:00:39'
+  query: 访客登记流程是什么
+- event_id: evt-342
+  session_id: session-037
+  request_id: req-429
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-12 15:07:49'
+  query: 租期内房东可以涨租吗
+- event_id: evt-343
+  session_id: session-032
+  request_id: req-147
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-12 15:54:44'
+  room_id: 3139
+- event_id: evt-344
+  session_id: session-003
+  request_id: req-009
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-12 15:56:55'
+  room_id: 3036
+- event_id: evt-345
+  session_id: session-003
+  request_id: req-010
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-12 16:00:07'
+  room_id: 3036
+- event_id: evt-346
+  session_id: session-003
+  request_id: req-011
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-12 16:10:33'
+  room_id: 3036
+- event_id: evt-347
+  session_id: session-019
+  request_id: req-446
+  event_type: rag_answer_viewed
+  source: AI_CHAT
+  occurred_at: '2026-05-12 16:22:28'
+  query: 可以养宠物吗
+- event_id: evt-348
+  session_id: session-032
+  request_id: req-148
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-12 16:51:35'
+  room_id: 3139
+- event_id: evt-349
+  session_id: session-003
+  request_id: req-012
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-12 17:04:37'
+  room_id: 3036
+- event_id: evt-350
+  session_id: session-032
+  request_id: req-149
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-12 17:44:08'
+  room_id: 3139
+- event_id: evt-351
+  session_id: session-003
+  request_id: req-013
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-12 17:45:19'
+  room_id: 3036
+- event_id: evt-352
+  session_id: session-067
+  request_id: req-481
+  event_type: fallback_triggered
+  source: AI_CHAT
+  occurred_at: '2026-05-12 17:49:39'
+  reason: no_match
+- event_id: evt-353
+  session_id: session-003
+  request_id: req-014
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-12 18:11:22'
+  room_id: 3036
+- event_id: evt-354
+  session_id: session-032
+  request_id: req-150
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-12 18:31:36'
+  room_id: 3139
+- event_id: evt-355
+  session_id: session-003
+  request_id: req-015
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-12 18:43:19'
+  room_id: 3036
+- event_id: evt-356
+  session_id: session-032
+  request_id: req-151
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-12 19:23:51'
+  room_id: 3139
+- event_id: evt-357
+  session_id: session-032
+  request_id: req-152
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-12 19:56:24'
+  room_id: 3139
+- event_id: evt-358
+  session_id: session-027
+  request_id: req-485
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 09:18:45'
+  room_id: 3021
+- event_id: evt-359
+  session_id: session-011
+  request_id: req-048
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 09:41:22'
+  room_id: 3115
+- event_id: evt-360
+  session_id: session-011
+  request_id: req-049
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 10:12:56'
+  room_id: 3115
+- event_id: evt-361
+  session_id: session-011
+  request_id: req-050
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 10:18:04'
+  room_id: 3115
+- event_id: evt-362
+  session_id: session-010
+  request_id: req-043
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 10:35:36'
+  room_id: 3111
+- event_id: evt-363
+  session_id: session-074
+  request_id: req-345
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 11:07:15'
+  room_id: 3034
+- event_id: evt-364
+  session_id: session-074
+  request_id: req-346
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 11:09:00'
+  room_id: 3034
+- event_id: evt-365
+  session_id: session-011
+  request_id: req-051
+  event_type: appointment_confirmed
+  source: AI_CHAT
+  occurred_at: '2026-05-13 11:16:52'
+  room_id: 3115
+- event_id: evt-366
+  session_id: session-011
+  request_id: req-052
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 11:23:33'
+  room_id: 3115
+- event_id: evt-367
+  session_id: session-021
+  request_id: req-459
+  event_type: fallback_triggered
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 11:29:04'
+  reason: low_confidence
+- event_id: evt-368
+  session_id: session-074
+  request_id: req-347
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-13 11:33:27'
+  room_id: 3034
+- event_id: evt-369
+  session_id: session-010
+  request_id: req-044
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-13 11:34:34'
+  room_id: 3111
+- event_id: evt-370
+  session_id: session-074
+  request_id: req-348
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 11:49:41'
+  room_id: 3034
+- event_id: evt-371
+  session_id: session-074
+  request_id: req-349
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 11:50:45'
+  room_id: 3034
+- event_id: evt-372
+  session_id: session-074
+  request_id: req-350
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 11:54:19'
+  room_id: 3034
+- event_id: evt-373
+  session_id: session-010
+  request_id: req-045
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 12:20:32'
+  room_id: 3111
+- event_id: evt-374
+  session_id: session-074
+  request_id: req-351
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 12:23:03'
+  room_id: 3034
+- event_id: evt-375
+  session_id: session-049
+  request_id: req-232
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 12:30:39'
+  room_id: 3039
+- event_id: evt-376
+  session_id: session-066
+  request_id: req-309
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 12:33:56'
+  room_id: 3011
+- event_id: evt-377
+  session_id: session-049
+  request_id: req-233
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 12:34:43'
+  room_id: 3039
+- event_id: evt-378
+  session_id: session-049
+  request_id: req-234
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 12:55:42'
+  room_id: 3039
+- event_id: evt-379
+  session_id: session-043
+  request_id: req-206
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 13:03:14'
+  room_id: 3124
+- event_id: evt-380
+  session_id: session-010
+  request_id: req-046
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 13:04:38'
+  room_id: 3111
+- event_id: evt-381
+  session_id: session-066
+  request_id: req-310
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 13:13:29'
+  room_id: 3011
+- event_id: evt-382
+  session_id: session-066
+  request_id: req-311
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 13:22:27'
+  room_id: 3011
+- event_id: evt-383
+  session_id: session-002
+  request_id: req-004
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 13:25:41'
+  room_id: 3146
+- event_id: evt-384
+  session_id: session-010
+  request_id: req-047
+  event_type: appointment_confirmed
+  source: AI_CHAT
+  occurred_at: '2026-05-13 13:32:07'
+  room_id: 3111
+- event_id: evt-385
+  session_id: session-066
+  request_id: req-312
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 13:42:35'
+  room_id: 3011
+- event_id: evt-386
+  session_id: session-049
+  request_id: req-235
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 13:51:58'
+  room_id: 3039
+- event_id: evt-387
+  session_id: session-043
+  request_id: req-207
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 13:55:07'
+  room_id: 3124
+- event_id: evt-388
+  session_id: session-046
+  request_id: req-218
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 13:57:26'
+  room_id: 3031
+- event_id: evt-389
+  session_id: session-020
+  request_id: req-084
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 13:58:57'
+  room_id: 3114
+- event_id: evt-390
+  session_id: session-020
+  request_id: req-085
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 13:59:36'
+  room_id: 3114
+- event_id: evt-391
+  session_id: session-002
+  request_id: req-005
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 13:59:45'
+  room_id: 3146
+- event_id: evt-392
+  session_id: session-043
+  request_id: req-208
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-13 14:01:58'
+  room_id: 3124
+- event_id: evt-393
+  session_id: session-066
+  request_id: req-313
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 14:10:56'
+  room_id: 3011
+- event_id: evt-394
+  session_id: session-049
+  request_id: req-236
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 14:11:40'
+  room_id: 3039
+- event_id: evt-395
+  session_id: session-020
+  request_id: req-478
+  event_type: fallback_triggered
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 14:14:46'
+  reason: low_confidence
+- event_id: evt-396
+  session_id: session-066
+  request_id: req-314
+  event_type: appointment_created
+  source: AI_CHAT
+  occurred_at: '2026-05-13 14:19:57'
+  room_id: 3011
+- event_id: evt-397
+  session_id: session-043
+  request_id: req-209
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 14:22:11'
+  room_id: 3124
+- event_id: evt-398
+  session_id: session-062
+  request_id: req-450
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 14:24:36'
+  query: 可以养宠物吗
+- event_id: evt-399
+  session_id: session-031
+  request_id: req-141
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 14:32:36'
+  room_id: 3134
+- event_id: evt-400
+  session_id: session-046
+  request_id: req-219
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-13 14:38:07'
+  room_id: 3031
+- event_id: evt-401
+  session_id: session-077
+  request_id: req-456
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 14:42:22'
+  query: 租约到期续租流程
+- event_id: evt-402
+  session_id: session-002
+  request_id: req-006
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 14:43:38'
+  room_id: 3146
+- event_id: evt-403
+  session_id: session-049
+  request_id: req-237
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 14:43:39'
+  room_id: 3039
+- event_id: evt-404
+  session_id: session-020
+  request_id: req-086
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-13 14:46:46'
+  room_id: 3114
+- event_id: evt-405
+  session_id: session-021
+  request_id: req-091
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 14:49:14'
+  room_id: 3064
+- event_id: evt-406
+  session_id: session-002
+  request_id: req-007
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 14:53:09'
+  room_id: 3146
+- event_id: evt-407
+  session_id: session-046
+  request_id: req-220
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-13 14:53:31'
+  room_id: 3031
+- event_id: evt-408
+  session_id: session-031
+  request_id: req-142
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 15:02:37'
+  room_id: 3134
+- event_id: evt-409
+  session_id: session-046
+  request_id: req-221
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 15:19:29'
+  room_id: 3031
+- event_id: evt-410
+  session_id: session-031
+  request_id: req-143
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 15:22:07'
+  room_id: 3134
+- event_id: evt-411
+  session_id: session-020
+  request_id: req-087
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 15:24:00'
+  room_id: 3114
+- event_id: evt-412
+  session_id: session-002
+  request_id: req-008
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 15:31:28'
+  room_id: 3146
+- event_id: evt-413
+  session_id: session-031
+  request_id: req-144
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 15:45:02'
+  room_id: 3134
+- event_id: evt-414
+  session_id: session-007
+  request_id: req-442
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 15:47:28'
+  query: 漏水维修责任划分
+- event_id: evt-415
+  session_id: session-021
+  request_id: req-092
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 15:48:56'
+  room_id: 3064
+- event_id: evt-416
+  session_id: session-020
+  request_id: req-088
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 15:49:12'
+  room_id: 3114
+- event_id: evt-417
+  session_id: session-046
+  request_id: req-222
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 15:49:42'
+  room_id: 3031
+- event_id: evt-418
+  session_id: session-033
+  request_id: req-153
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 15:49:50'
+  room_id: 3140
+- event_id: evt-419
+  session_id: session-020
+  request_id: req-089
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 15:59:18'
+  room_id: 3114
+- event_id: evt-420
+  session_id: session-020
+  request_id: req-090
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 16:02:09'
+  room_id: 3114
+- event_id: evt-421
+  session_id: session-033
+  request_id: req-154
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 16:08:27'
+  room_id: 3140
+- event_id: evt-422
+  session_id: session-017
+  request_id: req-473
+  event_type: fallback_triggered
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 16:09:38'
+  reason: out_of_scope
+- event_id: evt-423
+  session_id: session-033
+  request_id: req-155
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 16:10:25'
+  room_id: 3140
+- event_id: evt-424
+  session_id: session-031
+  request_id: req-145
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 16:21:54'
+  room_id: 3134
+- event_id: evt-425
+  session_id: session-038
+  request_id: req-179
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 16:27:16'
+  room_id: 3110
+- event_id: evt-426
+  session_id: session-046
+  request_id: req-223
+  event_type: appointment_confirmed
+  source: AI_CHAT
+  occurred_at: '2026-05-13 16:29:52'
+  room_id: 3031
+- event_id: evt-427
+  session_id: session-021
+  request_id: req-093
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-13 16:31:18'
+  room_id: 3064
+- event_id: evt-428
+  session_id: session-031
+  request_id: req-146
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 16:32:11'
+  room_id: 3134
+- event_id: evt-429
+  session_id: session-038
+  request_id: req-180
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 16:50:33'
+  room_id: 3110
+- event_id: evt-430
+  session_id: session-046
+  request_id: req-224
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 16:50:42'
+  room_id: 3031
+- event_id: evt-431
+  session_id: session-033
+  request_id: req-156
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 16:59:51'
+  room_id: 3140
+- event_id: evt-432
+  session_id: session-065
+  request_id: req-418
+  event_type: rag_answer_viewed
+  source: AI_CHAT
+  occurred_at: '2026-05-13 17:15:19'
+  query: 小区绿化维护时间
+- event_id: evt-433
+  session_id: session-038
+  request_id: req-181
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-13 17:19:13'
+  room_id: 3110
+- event_id: evt-434
+  session_id: session-038
+  request_id: req-182
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 17:26:25'
+  room_id: 3110
+- event_id: evt-435
+  session_id: session-021
+  request_id: req-094
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 17:30:19'
+  room_id: 3064
+- event_id: evt-436
+  session_id: session-033
+  request_id: req-157
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-13 17:31:45'
+  room_id: 3140
+- event_id: evt-437
+  session_id: session-041
+  request_id: req-198
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 17:35:52'
+  room_id: 3126
+- event_id: evt-438
+  session_id: session-046
+  request_id: req-225
+  event_type: rag_answer_viewed
+  source: AI_CHAT
+  occurred_at: '2026-05-13 17:41:13'
+  query: 停车费多少钱一个月
+- event_id: evt-439
+  session_id: session-060
+  request_id: req-286
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 17:45:44'
+  room_id: 3018
+- event_id: evt-440
+  session_id: session-038
+  request_id: req-183
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 17:51:08'
+  room_id: 3110
+- event_id: evt-441
+  session_id: session-041
+  request_id: req-199
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 17:55:57'
+  room_id: 3126
+- event_id: evt-442
+  session_id: session-060
+  request_id: req-287
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-13 18:05:21'
+  room_id: 3018
+- event_id: evt-443
+  session_id: session-030
+  request_id: req-137
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-13 18:17:27'
+  room_id: 3082
+- event_id: evt-444
+  session_id: session-041
+  request_id: req-200
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 18:43:10'
+  room_id: 3126
+- event_id: evt-445
+  session_id: session-030
+  request_id: req-138
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 18:51:54'
+  room_id: 3082
+- event_id: evt-446
+  session_id: session-022
+  request_id: req-095
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 18:55:56'
+  room_id: 3086
+- event_id: evt-447
+  session_id: session-060
+  request_id: req-288
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 18:56:19'
+  room_id: 3018
+- event_id: evt-448
+  session_id: session-030
+  request_id: req-139
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-13 19:02:45'
+  room_id: 3082
+- event_id: evt-449
+  session_id: session-060
+  request_id: req-289
+  event_type: appointment_confirmed
+  source: AI_CHAT
+  occurred_at: '2026-05-13 19:03:02'
+  room_id: 3018
+- event_id: evt-450
+  session_id: session-041
+  request_id: req-201
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 19:28:29'
+  room_id: 3126
+- event_id: evt-451
+  session_id: session-030
+  request_id: req-140
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 19:35:09'
+  room_id: 3082
+- event_id: evt-452
+  session_id: session-022
+  request_id: req-096
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-13 19:46:06'
+  room_id: 3086
+- event_id: evt-453
+  session_id: session-041
+  request_id: req-202
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 20:00:47'
+  room_id: 3126
+- event_id: evt-454
+  session_id: session-022
+  request_id: req-097
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 20:04:18'
+  room_id: 3086
+- event_id: evt-455
+  session_id: session-041
+  request_id: req-203
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 20:24:15'
+  room_id: 3126
+- event_id: evt-456
+  session_id: session-037
+  request_id: req-173
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 20:45:55'
+  room_id: 3007
+- event_id: evt-457
+  session_id: session-022
+  request_id: req-098
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 20:52:10'
+  room_id: 3086
+- event_id: evt-458
+  session_id: session-037
+  request_id: req-174
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 21:11:32'
+  room_id: 3007
+- event_id: evt-459
+  session_id: session-037
+  request_id: req-175
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 22:00:20'
+  room_id: 3007
+- event_id: evt-460
+  session_id: session-037
+  request_id: req-176
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 22:40:45'
+  room_id: 3007
+- event_id: evt-461
+  session_id: session-037
+  request_id: req-177
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-13 23:23:34'
+  room_id: 3007
+- event_id: evt-462
+  session_id: session-006
+  request_id: req-027
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-14 09:21:46'
+  room_id: 3146
+- event_id: evt-463
+  session_id: session-006
+  request_id: req-028
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 10:17:28'
+  room_id: 3146
+- event_id: evt-464
+  session_id: session-006
+  request_id: req-029
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 11:09:23'
+  room_id: 3146
+- event_id: evt-465
+  session_id: session-012
+  request_id: req-053
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 11:27:32'
+  room_id: 3061
+- event_id: evt-466
+  session_id: session-065
+  request_id: req-307
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 11:34:41'
+  room_id: 3091
+- event_id: evt-467
+  session_id: session-039
+  request_id: req-184
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 11:45:37'
+  room_id: 3134
+- event_id: evt-468
+  session_id: session-065
+  request_id: req-308
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-14 12:20:57'
+  room_id: 3091
+- event_id: evt-469
+  session_id: session-039
+  request_id: req-185
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-14 12:22:21'
+  room_id: 3134
+- event_id: evt-470
+  session_id: session-012
+  request_id: req-054
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 12:26:33'
+  room_id: 3061
+- event_id: evt-471
+  session_id: session-068
+  request_id: req-321
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 12:27:02'
+  room_id: 3004
+- event_id: evt-472
+  session_id: session-068
+  request_id: req-322
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 12:52:11'
+  room_id: 3004
+- event_id: evt-473
+  session_id: session-039
+  request_id: req-186
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 12:54:05'
+  room_id: 3134
+- event_id: evt-474
+  session_id: session-068
+  request_id: req-323
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 13:32:05'
+  room_id: 3004
+- event_id: evt-475
+  session_id: session-039
+  request_id: req-187
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 13:43:59'
+  room_id: 3134
+- event_id: evt-476
+  session_id: session-037
+  request_id: req-178
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 13:54:09'
+  room_id: 3007
+- event_id: evt-477
+  session_id: session-053
+  request_id: req-431
+  event_type: rag_answer_viewed
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 14:01:40'
+  query: 电动车充电桩位置
+- event_id: evt-478
+  session_id: session-039
+  request_id: req-188
+  event_type: appointment_confirm_shown
+  source: AI_CHAT
+  occurred_at: '2026-05-14 14:05:59'
+  room_id: 3134
+- event_id: evt-479
+  session_id: session-068
+  request_id: req-324
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-14 14:15:40'
+  room_id: 3004
+- event_id: evt-480
+  session_id: session-039
+  request_id: req-189
+  event_type: appointment_confirmed
+  source: AI_CHAT
+  occurred_at: '2026-05-14 15:02:41'
+  room_id: 3134
+- event_id: evt-481
+  session_id: session-039
+  request_id: req-190
+  event_type: appointment_created
+  source: AI_CHAT
+  occurred_at: '2026-05-14 15:21:43'
+  room_id: 3134
+- event_id: evt-482
+  session_id: session-025
+  request_id: req-498
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 15:52:27'
+  room_id: 3132
+- event_id: evt-483
+  session_id: session-004
+  request_id: req-016
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 16:00:11'
+  room_id: 3138
+- event_id: evt-484
+  session_id: session-004
+  request_id: req-017
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 16:07:47'
+  room_id: 3138
+- event_id: evt-485
+  session_id: session-004
+  request_id: req-018
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 16:18:34'
+  room_id: 3138
+- event_id: evt-486
+  session_id: session-023
+  request_id: req-099
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-14 16:35:02'
+  room_id: 3118
+- event_id: evt-487
+  session_id: session-052
+  request_id: req-249
+  event_type: recommendation_exposed
+  source: AI_CHAT
+  occurred_at: '2026-05-14 16:40:03'
+  room_id: 3074
+- event_id: evt-488
+  session_id: session-052
+  request_id: req-250
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 16:42:33'
+  room_id: 3074
+- event_id: evt-489
+  session_id: session-019
+  request_id: req-082
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 17:00:15'
+  room_id: 3014
+- event_id: evt-490
+  session_id: session-019
+  request_id: req-083
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 17:03:15'
+  room_id: 3014
+- event_id: evt-491
+  session_id: session-052
+  request_id: req-251
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 17:04:01'
+  room_id: 3074
+- event_id: evt-492
+  session_id: session-004
+  request_id: req-019
+  event_type: appointment_confirm_shown
+  source: AI_CHAT
+  occurred_at: '2026-05-14 17:07:51'
+  room_id: 3138
+- event_id: evt-493
+  session_id: session-052
+  request_id: req-252
+  event_type: appointment_confirm_shown
+  source: AI_CHAT
+  occurred_at: '2026-05-14 17:11:55'
+  room_id: 3074
+- event_id: evt-494
+  session_id: session-023
+  request_id: req-100
+  event_type: recommendation_exposed
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 17:34:30'
+  room_id: 3118
+- event_id: evt-495
+  session_id: session-023
+  request_id: req-101
+  event_type: room_card_clicked
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 17:36:06'
+  room_id: 3118
+- event_id: evt-496
+  session_id: session-016
+  request_id: req-464
+  event_type: fallback_triggered
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 17:59:36'
+  reason: sensitive_request
+- event_id: evt-497
+  session_id: session-023
+  request_id: req-102
+  event_type: appointment_confirm_shown
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 18:03:18'
+  room_id: 3118
+- event_id: evt-498
+  session_id: session-023
+  request_id: req-103
+  event_type: appointment_confirmed
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 19:02:18'
+  room_id: 3118
+- event_id: evt-499
+  session_id: session-023
+  request_id: req-492
+  event_type: room_card_clicked
+  source: AI_CHAT
+  occurred_at: '2026-05-14 19:11:26'
+  room_id: 3046
+- event_id: evt-500
+  session_id: session-023
+  request_id: req-104
+  event_type: appointment_created
+  source: AI_GUIDE
+  occurred_at: '2026-05-14 19:55:05'
+  room_id: 3118

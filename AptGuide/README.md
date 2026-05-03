@@ -34,6 +34,7 @@ AptGuide **不直接访问 MySQL**。所有业务数据通过 `lease`（Spring B
 - **Web 框架**：FastAPI + Pydantic v2
 - **Agent 编排**：LangGraph
 - **LLM**：OpenAI 兼容客户端（默认 Qwen / DashScope）
+- **Embedding**：阿里 DashScope `text-embedding-v4`（默认 1024 维）
 - **向量库**：Milvus 2.4
 - **会话状态**：Redis
 - **流式响应**：SSE

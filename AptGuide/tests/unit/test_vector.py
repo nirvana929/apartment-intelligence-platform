@@ -92,14 +92,14 @@ async def test_kb_search_filters_low_score():
         {
             "id": "KB-RULE-008",
             "content": "提前退租规则",
-            "score": 0.85,
+            "distance": 0.85,
             "category": "规则",
             "title": "退租",
         },
         {
             "id": "KB-LOW-001",
             "content": "低分内容",
-            "score": 0.5,
+            "distance": 0.5,
             "category": "其他",
             "title": "低分",
         },
@@ -130,8 +130,8 @@ async def test_kb_search_filters_low_score():
 async def test_kb_search_all_low_score():
     mock_milvus = MagicMock()
     mock_milvus.search.return_value = [
-        {"id": "KB-LOW-001", "content": "内容A", "score": 0.3},
-        {"id": "KB-LOW-002", "content": "内容B", "score": 0.4},
+        {"id": "KB-LOW-001", "content": "内容A", "distance": 0.3},
+        {"id": "KB-LOW-002", "content": "内容B", "distance": 0.4},
     ]
 
     with patch("aptguide.vector.kb_search.EmbeddingClient") as mock_emb_cls:

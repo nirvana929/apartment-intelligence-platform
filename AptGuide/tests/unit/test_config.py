@@ -34,4 +34,4 @@ def test_settings_default_values():
         settings = Settings()
         assert settings.llm_base_url == "https://dashscope.aliyuncs.com/compatible-mode/v1"
         assert settings.llm_model == "qwen-plus"
-        assert settings.app_env == "development"
+        assert settings.app_env == "dev"

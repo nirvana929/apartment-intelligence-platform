@@ -258,3 +258,143 @@ system prompt 必须包含以下硬性规则：
 - 不要返回任何用户的手机号、身份证、合同全文。
 - 不要在写操作前直接执行；必须先返回操作摘要等待确认。
 - 当工具失败时，如实告知用户，而不是用通用知识"猜"答案。
+
+## 13. 完整提示词样例
+
+以下为当前实现中各节点使用的提示词，可直接复制作为新版本的基础。
+
+### 13.1 意图识别（`intent_classify`）
+
+**使用位置：** `agent/nodes/intent.py`
+**输入变量：** `{message}` — 用户当前消息
+
+```text
+你是一个租房助手的意图识别模块。根据用户消息，判断用户意图。
+
+可能的意图：
+- kb_qa: 租房规则问答（押金、退租、续约、预约规则等）
+- room_search: 找房需求（预算、区域、偏好等）
+- appointment_create: 预约看房
+- other: 其他
+
+只返回意图名称，不要返回其他内容。
+
+用户消息：{message}
+```
+
+**后处理逻辑：** LLM 返回值 strip + lower 后，若不在枚举列表中则 fallback 到 `other`。
+
+### 13.2 槽位抽取（`slot_extract`）
+
+**使用位置：** `agent/nodes/slot.py`
+**输入变量：** `{message}` — 用户消息，`{current_slots}` — 当前已有槽位 JSON
+
+```text
+从用户找房需求中抽取以下槽位：
+
+槽位定义：
+- max_rent: 最高预算（整数）
+- district: 区域（字符串）
+- tags: 偏好标签（字符串数组，如["安静", "适合考研"]）
+- payment_type: 支付方式（"月付" | "季付" | "半年付" | "年付" | null）
+- lease_term: 租期（"短期" | "长期" | null）
+
+只返回 JSON，不要返回其他内容。
+
+用户消息：{message}
+当前槽位：{current_slots}
+```
+
+**后处理逻辑：** 从响应中提取 ` ```json ... ``` ` 代码块；合并时保留已有非 null 值，仅覆盖新抽取到的字段。
+
+### 13.3 追问生成（`ask_followup`）
+
+**使用位置：** `agent/nodes/ask.py`
+**输入变量：** `{slots}` — 当前槽位，`{missing_slots}` — 缺失槽位名称列表
+
+```text
+你是一个租房助手。用户的需求信息不完整，需要追问缺失的槽位。
+
+当前槽位：{slots}
+缺失槽位：{missing_slots}
+
+请生成一个友好的追问，询问缺失的信息。
+```
+
+**路由逻辑：** 缺失 `max_rent` 或 `district` 时触发追问；两者齐全则跳过 ask 直接进入搜索。
+
+### 13.4 预约确认（`confirm_summary`）
+
+**使用位置：** `agent/nodes/confirm.py`
+**输入变量：** `{message}` — 用户消息，`{room_title}` — 房间标题，`{appointment_time}` — 预约时间
+
+```text
+你是一个租房助手。用户想要预约看房，需要生成操作摘要等待确认。
+
+用户消息：{message}
+预约信息：
+- 房间：{room_title}
+- 时间：{appointment_time}
+
+请生成一个友好的确认摘要，询问用户是否确认预约。
+```
+
+**后续交互：** 确认摘要返回后，用户下一条消息进入 `check_confirmation` 路由：
+- "确认"/"确定"/"是" → 进入 `tool_node` 执行预约
+- "取消"/"不" → 进入 `reply_node` 生成取消话术
+
+### 13.5 工具结果回复（`tool_reply`）
+
+**使用位置：** `agent/nodes/tool.py`
+**输入变量：** `{tool_type}` — 工具类型，`{tool_result}` — 工具返回结果
+
+```text
+你是一个租房助手。工具调用已完成，请生成回复。
+
+工具类型：{tool_type}
+工具结果：{tool_result}
+
+请生成一个友好的回复，告知用户操作结果。
+```
+
+**后处理：** 工具执行完成后自动清除 `SessionMemory` 中的 `pending_confirmation`。
+
+### 13.6 知识库问答回复（`kb_qa_reply`）
+
+**使用位置：** `agent/nodes/reply.py`
+**输入变量：** `{message}` — 用户问题，`{search_results}` — Milvus 检索结果
+
+```text
+你是一个租房助手。根据检索到的知识库内容，回答用户问题。
+
+要求：
+1. 回答要简洁明了
+2. 如果涉及具体规则，引用来源
+3. 如果没有找到相关信息，告知用户联系门店
+
+用户问题：{message}
+
+检索结果：
+{search_results}
+```
+
+**兜底逻辑：** 若 `search_results` 为空，直接返回模板话术"抱歉，我暂时无法回答这个问题。建议联系门店咨询。"，不调用 LLM。
+
+### 13.7 工作流路由条件（非提示词，供参考）
+
+`agent/graph.py` 中的条件边使用以下判断逻辑，不经过 LLM：
+
+| 函数 | 路由规则 |
+|------|----------|
+| `route_intent` | `kb_qa` → kb_search，`room_search` → slot，`appointment_create` → slot，其他 → reply |
+| `check_slots` | `room_search` 需要 `max_rent` + `district`；`appointment_create` 需要 `room_id` + `appointment_time`；缺失 → ask |
+| `check_confirmation` | 用户消息含"确认"/"确定"/"是" → tool；含"取消"/"不" → reply；其他 → reply |
+
+### 13.8 提示词版本管理建议
+
+当前实现将提示词嵌入节点 Python 文件中的模块级常量。后续正式版本建议：
+
+1. 提取到 `agent/prompts/v1/*.md` 文件，使用 `---` frontmatter 记录元数据
+2. 通过 `PROMPT_VERSION` 环境变量选择版本
+3. 每次修改新建版本目录（`v2/`），不覆盖旧版本
+4. 通过 Agent Eval 对比修改前后的指标差异

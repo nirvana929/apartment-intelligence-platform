@@ -93,3 +93,68 @@
   version: 1
   updated_at: 2026-05-01
   reviewed_by: ops
+
+- doc_id: KB-APT-007
+  doc_type: faq
+  module: appointment
+  title: 预约后多久收到确认
+  content: |
+    预约提交后：
+    · 通过 App 预约：通常即时收到确认通知，包含预约号与门店联系方式。
+    · 通过 AI 助手预约：确认提交后会返回预约摘要，同步生效。
+    · 如预约时段接近满员，门店可能会电话确认，请保持手机畅通。
+    · 未收到确认的，请检查 App 消息中心或联系门店。
+    建议在预约日前一天再次确认，避免门店临时调整。
+  tags: [确认, 通知, 预约]
+  version: 1
+  updated_at: 2026-05-02
+  reviewed_by: ops
+
+- doc_id: KB-APT-008
+  doc_type: faq
+  module: appointment
+  title: 可以同时预约多套房吗
+  content: |
+    可以同时预约多套不同房源，但请注意：
+    · 同一天同一时段最多预约 1 套，请合理安排看房时间。
+    · 建议同一区域的看房安排在相近时段，减少通勤。
+    · 不再需要的预约请及时取消，避免占用他人名额。
+    · 同时预约多套不会影响后续签约选择。
+    如需批量看房规划，可在 AI 助手中说明需求，助手会帮你合理安排。
+  tags: [多套, 预约, 安排]
+  version: 1
+  updated_at: 2026-05-02
+  reviewed_by: ops
+
+- doc_id: KB-APT-009
+  doc_type: guide
+  module: appointment
+  title: 线上看房与视频看房
+  content: |
+    部分房源支持线上看房方式：
+    · 视频看房：门店工作人员通过视频通话实时展示房间。
+    · VR 全景：房源详情页有 VR 入口的可在线浏览。
+    · 线上看房的预约流程与线下看房相同。
+    线上看房可作为初步筛选手段，建议签约前实地确认。
+    如需线上看房，可在预约时备注或在 AI 助手中说明。
+  tags: [线上, 视频, VR]
+  version: 1
+  updated_at: 2026-05-02
+  reviewed_by: ops
+
+- doc_id: KB-APT-010
+  doc_type: rule
+  module: appointment
+  title: 爽约与预约限制
+  content: |
+    关于爽约的规则：
+    · 未在预约时段开始前 2 小时取消且未到店的，视为爽约。
+    · 累计爽约 3 次：限制预约功能 7 天，期间无法新建预约。
+    · 限制期满后自动恢复，爽约计数不清零。
+    · 因不可抗力（如恶劣天气）无法到店的，可联系门店申请豁免。
+    · 门店确认的特殊情况不计入爽约。
+    建议合理安排时间，无法到店请提前取消。
+  tags: [爽约, 限制, 规则]
+  version: 1
+  updated_at: 2026-05-02
+  reviewed_by: ops

@@ -1,137 +1,135 @@
 # 项目进度记录
 
 > 用途：记录 AptGuide 当前的工程进度与下一步要做的事，便于跨天 / 跨人续接。
-> 更新时间：2026-05-01
+> 更新时间：2026-05-03
 
 ---
 
 ## 一、已完成
 
-### 1. 目录骨架
+### 1. 阶段一：项目骨架与基础设施
 
-```text
-AptGuide/
-├── src/aptguide/{api,agent/{nodes,prompts},tools,vector,
-│                 core,llm,knowledge/rules,schemas,security}/
-├── scripts/
-├── evals/datasets/
-├── tests/{unit,contract}/
-├── docs/{architecture,api,security}/
-└── AptGuide文档/
-```
-
-各 `src/aptguide/*/__init__.py` 已 touch。
-
-### 2. 顶层文件（4 份）
-
-- ✅ `README.md` — 项目定位、与 AptInsight 对比、目录结构、快速开始
-- ✅ `CLAUDE.md` — Claude Code 工作指引
-- ✅ `AGENTS.md` — 通用 AI 编码 Agent 指引
-- ✅ `SECURITY.md` — 安全约束总览
-
-### 3. 工程化配置
-
-- ✅ `pyproject.toml`（uv，FastAPI/LangGraph/pymilvus/httpx/openai 等，**不含** SQLAlchemy 系）
+- ✅ 目录骨架（`src/aptguide/{api,agent/{nodes,prompts},tools,vector,core,llm,knowledge/rules,schemas,security,memory,ui}/`）
+- ✅ 顶层文件：README.md、CLAUDE.md、AGENTS.md、SECURITY.md
+- ✅ `pyproject.toml`（uv，FastAPI/LangGraph/pymilvus/httpx/openai 等）
 - ✅ `Makefile`（dev / test / lint / fmt / typecheck / eval / sync-vectors / seed-kb）
-- ✅ `.env.example`（LLM、Embedding、Milvus、lease 后端、内部 token）
-- ✅ `.gitignore`
+- ✅ `.env.example` + `.env`（LLM、Embedding、Milvus、Redis 配置）
+- ✅ `core/config.py`（pydantic-settings，`extra: "ignore"` 处理多余环境变量）
+- ✅ `core/logging.py`（JSON 结构化日志）
+- ✅ 7 份设计文档（`AptGuide文档/` 目录）
 
-### 4. 设计文档（`AptGuide文档/`，7 份）
+### 2. 阶段二：核心对话能力
 
-- ✅ `README.md` — 文档索引
-- ✅ `01-助手总体设计.md`
-- ✅ `02-产品需求文档.md`
-- ✅ `03-技术架构与模块设计.md`
-- ✅ `04-Agent设计与提示词规范.md`
-- ✅ `05-Java工具接口契约.md`
-- ✅ `06-Milvus知识库设计.md`
-- ✅ `07-测试验收方案.md`
+- ✅ `llm/client.py` — OpenAI 兼容 LLM 客户端（DashScope/Qwen）
+- ✅ `vector/client.py` — Milvus 客户端封装
+- ✅ `vector/embedding.py` — Embedding 客户端封装
+- ✅ `vector/kb_search.py` — 知识库检索
+- ✅ `vector/room_index.py` — 房源向量索引
+- ✅ `agent/state.py` — LangGraph 状态定义
+- ✅ `agent/graph.py` — 工作流图（9 个节点）
+- ✅ Agent 节点：`intent.py`、`slot.py`、`ask.py`、`kb_search.py`、`room_search.py`、`rerank.py`、`reply.py`
+- ✅ `api/chat.py` — POST `/api/chat` 路由
+- ✅ `api/health.py` — GET `/health`、`/health/deps`
+- ✅ `main.py` — FastAPI 应用入口，线程安全的 Agent 图初始化
+- ✅ `schemas/request.py` + `schemas/response.py` — Pydantic 请求/响应模型
+- ✅ 前端 UI：`ui/index.html`、`ui/app.js`、`ui/style.css`
+  - XSS 防护（`escapeHtml()`）
+  - 房源卡片渲染（含预约看房按钮 + 时间选择弹窗）
+  - 预约确认交互（确认/取消按钮）
+  - 预约列表卡片、租约卡片
+  - 加载动画（三点跳动）
+  - 快捷操作按钮（找房、我的预约、我的租约、押金规则）
+
+### 3. 阶段三：预约流程与会话管理
+
+- ✅ `tools/schemas.py` — 6 个工具接口 Pydantic 模型
+- ✅ `tools/mock.py` — MockToolClient（MVP 阶段模拟预约创建/查询、租约查询）
+- ✅ `memory/session.py` — SessionMemory（支持 Redis / 内存降级）
+- ✅ `agent/nodes/confirm.py` — 确认节点（LLM 生成确认摘要）
+- ✅ `agent/nodes/tool.py` — 工具调用节点（预约创建、预约查询、租约查询）
+- ✅ 意图识别支持：`appointment_query`、`lease_query`
+- ✅ Docker 服务：etcd + minio + Milvus v2.4.17 + Redis 7
+- ✅ 知识库已注入：70 条 KB 规则（7 个模块）+ 150 条房源向量
+
+### 4. 测试
+
+- ✅ 48 个测试通过
+- ⏭️ 2 个跳过（e2e 测试需要服务运行）
 
 ### 5. 知识库原材料（`src/aptguide/knowledge/rules/`）
 
-- ✅ `README.md` — 维护规范、schema 说明、写作要求
 - ✅ `_schema.yaml` — 字段、枚举、禁用词、敏感模式正则
-- ✅ `room_search.yaml` — 5 条
-- ✅ `appointment.yaml` — 6 条
-- ✅ `lease.yaml` — 7 条
-- ✅ `payment.yaml` — 6 条
-- ✅ `life.yaml` — 5 条
-
-### 6. 仓库根 README
-
-- ✅ 已把 AptGuide 加入 `apartment-intelligence-platform/README.md` 的项目结构与说明
+- ✅ `room_search.yaml`（5 条）
+- ✅ `appointment.yaml`（6 条）
+- ✅ `lease.yaml`（7 条）
+- ✅ `payment.yaml`（6 条）
+- ✅ `life.yaml`（5 条）
+- ✅ `account.yaml`（8 条）
+- ✅ `policy.yaml`（10 条）
 
 ---
 
-## 二、未完成（明天优先做）
+## 二、未完成
 
-### A. 知识库剩余 YAML（约 9 条）
+### A. 知识库 YAML
 
-- [ ] `src/aptguide/knowledge/rules/account.yaml`（4 条）
-  - KB-ACCT-001 注册与实名
-  - KB-ACCT-002 修改个人信息和绑定手机
-  - KB-ACCT-003 隐私和数据保护
-  - KB-ACCT-004 注销账号
+- [x] `src/aptguide/knowledge/rules/account.yaml`（8 条）
+- [x] `src/aptguide/knowledge/rules/policy.yaml`（10 条）
 
-- [ ] `src/aptguide/knowledge/rules/policy.yaml`（5 条）
-  - KB-POL-001 同住人规则
-  - KB-POL-002 宠物政策
-  - KB-POL-003 装修和软装变更
-  - KB-POL-004 安全与禁止事项
-  - KB-POL-005 退租清算细则
+知识库共 47 条规则，覆盖 7 个模块。✅
 
-完成后知识库共 38 条，覆盖 7 个模块。
+### B. 测试修复
 
-### B. 设计文档收尾
+- [x] `tests/unit/test_config.py::test_settings_default_values` — 已修复（`app_env` 默认值 `"dev"`）
+- [x] `tests/unit/test_llm.py::test_llm_client_generate` — 已修复（改为直接 mock 实例属性）
 
-- [ ] 更新 `AptGuide文档/06-Milvus知识库设计.md`，加一节"原材料文件清单"，指向 `knowledge/rules/*.yaml`，并说明 `seed_kb.py` 的加载约定。
-- [ ] 在 `AptGuide文档/04-Agent设计与提示词规范.md` 第 6 节末尾追加 1~2 个**具体提示词样例**（如 `intent_classify.md`、`recommend_reason.md` 的完整内容），让开发者照搬即可起步。
+### C. 文档收尾
 
-### C. 知识库工具脚本
+- [x] 更新 `AptGuide文档/06-Milvus知识库设计.md`，加"原材料文件清单"节
+- [x] 在 `AptGuide文档/04-Agent设计与提示词规范.md` 追加完整提示词样例
 
-- [ ] `scripts/validate_kb.py` — 按 `_schema.yaml` 校验：唯一 doc_id、长度、枚举、禁用词、敏感正则。CI 入口。
-- [ ] `scripts/seed_kb.py` — 读取 `knowledge/rules/*.yaml` → embedding → 写入 Milvus `apt_rental_kb`。
+### D. Mock → 真实工具对接
+
+- [ ] 替换 `MockToolClient` 为真实 Java 后端客户端（`LEASE_BASE_URL` 已在 `.env.example` 预留）
+- [ ] 实现 `tools/client.py`（httpx，注入鉴权头，超时 + tenacity 重试）
 
 ---
 
-## 三、下一阶段（代码骨架）
+## 三、当前运行状态
 
-按 `CLAUDE.md`「开发顺序」启动，建议每一步独立提一次 PR：
+| 服务 | 端口 | 状态 |
+|------|------|------|
+| AptGuide FastAPI | 8100 | 运行中 |
+| Milvus | 19530 | 运行中（Docker） |
+| Redis | 6379 | 运行中（系统服务） |
+| etcd | 2379 | 运行中（Docker） |
+| MinIO | 9000 | 运行中（Docker） |
 
-1. **配置与日志** — `core/config.py`（pydantic-settings 加载 `.env`）+ `core/logging.py`（JSON 日志）。
-2. **Java 工具客户端骨架** — `tools/client.py`（httpx，注入 `X-Internal-Token`、`X-User-Id`、`X-Request-Id`，超时 + tenacity 重试）。
-3. **Milvus 客户端** — `vector/client.py`（pymilvus 连接）+ `vector/embedding.py`（embedding 客户端封装）+ `vector/room_index.py` + `vector/kb_search.py`。
-4. **LLM 客户端** — `llm/client.py`（OpenAI 兼容）+ `llm/schemas.py`（结构化输出 Pydantic）。
-5. **LangGraph 节点** — `agent/state.py` → `agent/nodes/{intent,slot,ask,tool,confirm,rerank,reply}.py` → `agent/graph.py`。
-6. **HTTP 路由** — `api/chat.py`（POST `/api/chat`）+ `api/health.py`（GET `/health`、`/health/deps`）+ `main.py`。
-7. **评测集** — `evals/datasets/{room_search,appointment,lease,kb_qa,multi_turn}_cases.yaml` + `evals/runner.py`。
-8. **联调** — 与 `lease`（Java）打通 happy path。
-
----
-
-## 四、未决问题（明天可与团队确认）
-
-1. **lease 内部接口前缀**：文档中暂定 `/internal/ai/tools/`，需 Java 同事确认是否冲突 / 鉴权方案是否一致。
-2. **embedding 模型**：默认 `text-embedding-v3`（DashScope，1024 维），需确认账号 / 配额可用。
-3. **Milvus 实例位置**：MVP 期间是否本地起 Milvus standalone，还是直接接公司已有集群？
-4. **知识库审核流程**：YAML 改动是否走 PR + 运营 review，还是单独维护一个运营后台？
-5. **AI 写操作授权**：MVP 是否允许 AI 创建预约？还是先纯只读、写操作仅给"建议"？
+访问地址：`http://<Ubuntu-IP>:8100`
 
 ---
 
-## 五、明天续接的最简起手方式
+## 四、未决问题
+
+1. **lease 内部接口前缀**：文档中暂定 `/internal/ai/tools/`，需 Java 同事确认。
+2. **embedding 模型**：默认 `text-embedding-v3`（DashScope，1024 维），需确认配额。
+3. **Milvus 实例位置**：MVP 本地 standalone，后续是否接公司集群？
+4. **知识库审核流程**：YAML 改动走 PR + 运营 review，还是运营后台？
+5. **AI 写操作授权**：MVP 用 MockToolClient 模拟，后续是否允许真实创建预约？
+
+---
+
+## 五、续接起手方式
 
 ```bash
-# 1. 快速回顾上下文
 cd /home/chove/桌面/apartment-intelligence-platform/AptGuide
 cat AptGuide文档/PROGRESS.md
 cat CLAUDE.md
 
-# 2. 续写知识库（先把剩余两个 YAML 写完）
+# 补写知识库
 $EDITOR src/aptguide/knowledge/rules/account.yaml
 $EDITOR src/aptguide/knowledge/rules/policy.yaml
 
-# 3. 然后继续设计文档收尾或开始写代码
+# 或开始 Mock → 真实工具对接
+$EDITOR src/aptguide/tools/client.py
 ```
-
-或者直接告诉 Claude："继续完成 PROGRESS.md 里未完成的 A、B 部分"。

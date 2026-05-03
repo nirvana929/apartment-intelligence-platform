@@ -1,5 +1,6 @@
-import pytest
 from unittest.mock import AsyncMock
+
+import pytest
 
 
 @pytest.mark.asyncio
@@ -32,7 +33,9 @@ async def test_confirm_node():
     memory.store_pending_confirmation = AsyncMock()
 
     llm = AsyncMock()
-    llm.generate = AsyncMock(return_value="准备为你创建预约：\n房源：天河公寓 302\n时间：2026-05-03 15:00\n是否确认？")
+    llm.generate = AsyncMock(
+        return_value="准备为你创建预约：\n房源：天河公寓 302\n时间：2026-05-03 15:00\n是否确认？"
+    )
 
     result = await confirm_node(state, llm, memory)
 

@@ -1,6 +1,7 @@
 """同步房源向量到 Milvus。"""
 
-import json
+import yaml
+from pathlib import Path
 from pymilvus import MilvusClient, DataType
 
 from aptguide.core.config import Settings
@@ -47,40 +48,46 @@ def create_collection(client: MilvusClient) -> None:
     print(f"Collection {COLLECTION_NAME} created")
 
 
-def load_mock_rooms() -> list[dict]:
-    """加载 Mock 房源数据。"""
-    return [
-        {
-            "id": 3001,
-            "title": "天河公寓 302",
-            "description": "周边安静，适合备考，靠近图书馆",
-            "rent": 2800,
-            "district": "天河区",
-            "tags": '["独卫", "朝南", "安静"]',
-            "payment_type": "月付",
-            "status": "available",
-        },
-        {
-            "id": 3002,
-            "title": "科韵公寓 506",
-            "description": "靠近地铁站，交通便利",
-            "rent": 2950,
-            "district": "天河区",
-            "tags": '["独卫", "近地铁"]',
-            "payment_type": "月付",
-            "status": "available",
-        },
-        {
-            "id": 3003,
-            "title": "棠德公寓 412",
-            "description": "户型紧凑，性价比高",
-            "rent": 2700,
-            "district": "天河区",
-            "tags": '["独卫", "性价比"]',
-            "payment_type": "季付",
-            "status": "available",
-        },
-    ]
+def load_rooms_from_yaml() -> list[dict]:
+    """从 rooms.yaml 加载房源数据。"""
+    rooms_file = Path("src/aptguide/knowledge/mock/rooms.yaml")
+    with open(rooms_file, "r", encoding="utf-8") as f:
+        raw_rooms = yaml.safe_load(f)
+
+    rooms = []
+    for r in raw_rooms:
+        # 构造向量化文本
+        tags_str = ", ".join(r.get("tags", []))
+        facilities_str = ", ".join(r.get("facilities", []))
+        description = (
+            f"{r['apartment_name']} {r['room_number']}，"
+            f"{r['city_name']}{r['district_name']}，"
+            f"{r['layout']}，{r['area']}㎡，"
+            f"月租{r['rent']}元。"
+            f"标签：{tags_str}。"
+            f"配套：{facilities_str}。"
+        )
+
+        # 支付方式取第一个
+        payment_types = r.get("payment_types", ["MONTHLY"])
+        payment_map = {
+            "MONTHLY": "月付", "QUARTERLY": "季付",
+            "HALF_YEARLY": "半年付", "YEARLY": "年付",
+        }
+        payment_type = payment_map.get(payment_types[0], "月付")
+
+        rooms.append({
+            "id": r["room_id"],
+            "title": f"{r['apartment_name']} {r['room_number']}",
+            "description": description,
+            "rent": r["rent"],
+            "district": r["district_name"],
+            "tags": str(r.get("tags", [])),
+            "payment_type": payment_type,
+            "status": "available" if r.get("is_release", True) else "unavailable",
+        })
+
+    return rooms
 
 
 async def sync_room_vectors() -> None:
@@ -95,7 +102,7 @@ async def sync_room_vectors() -> None:
     create_collection(milvus)
 
     # 加载房源
-    rooms = load_mock_rooms()
+    rooms = load_rooms_from_yaml()
     print(f"Loaded {len(rooms)} rooms")
 
     # 生成向量并插入
@@ -119,6 +126,7 @@ async def sync_room_vectors() -> None:
         )
         print(f"Inserted room {room['id']}: {room['title']}")
 
+    milvus.flush(COLLECTION_NAME)
     print(f"Successfully synced {len(rooms)} rooms")
 
 

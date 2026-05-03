@@ -1,0 +1,7052 @@
+# tool_data.yaml
+# AptGuide 工具业务 Mock 数据
+# 用途：为 AptGuide 智能找房助手的工具调用提供模拟数据，
+#       包括预约、租约、浏览历史、收藏和房源详情缓存。
+# 注意：所有 user_id 均为虚拟演示 ID（demo-user-001 ~ demo-user-010），
+#       不包含任何真实个人信息。
+# 总计：300 条（appointments 40 + leases 30 + browse_history 60 + favorites 20 + room_detail_cache 150）
+# 生成日期：2026-05-02
+appointments:
+- appointment_id: apt-001
+  user_id: demo-user-001
+  room_id: 3001
+  apartment_name: 天河公寓
+  room_number: '103'
+  appointment_time: 2026-05-01 09:00
+  status: pending
+  created_at: 2026-05-01 08:00
+  note: ''
+- appointment_id: apt-002
+  user_id: demo-user-002
+  room_id: 3002
+  apartment_name: 珠江寓
+  room_number: '105'
+  appointment_time: 2026-05-02 10:15
+  status: pending
+  created_at: 2026-05-01 09:07
+  note: 想看朝南的房间
+- appointment_id: apt-003
+  user_id: demo-user-003
+  room_id: 3003
+  apartment_name: 越秀家园
+  room_number: '107'
+  appointment_time: 2026-05-03 11:30
+  status: confirmed
+  created_at: 2026-05-01 10:14
+  note: 预算3000以内
+- appointment_id: apt-004
+  user_id: demo-user-004
+  room_id: 3004
+  apartment_name: 番禺青年社区
+  room_number: '109'
+  appointment_time: 2026-05-04 12:45
+  status: cancelled
+  created_at: 2026-05-03 11:21
+  note: 带朋友一起看
+- appointment_id: apt-005
+  user_id: demo-user-005
+  room_id: 3005
+  apartment_name: 白云阳光居
+  room_number: '111'
+  appointment_time: 2026-05-05 13:00
+  status: completed
+  created_at: 2026-05-03 12:28
+  note: ''
+- appointment_id: apt-006
+  user_id: demo-user-006
+  room_id: 3006
+  apartment_name: 南山科技园公寓
+  room_number: '113'
+  appointment_time: 2026-05-06 14:15
+  status: completed
+  created_at: 2026-05-03 13:35
+  note: 周末方便
+- appointment_id: apt-007
+  user_id: demo-user-007
+  room_id: 3007
+  apartment_name: 福田中心寓
+  room_number: '115'
+  appointment_time: 2026-05-07 15:30
+  status: completed
+  created_at: 2026-05-06 14:42
+  note: 工作日晚上可以
+- appointment_id: apt-008
+  user_id: demo-user-008
+  room_id: 3008
+  apartment_name: 宝安青年汇
+  room_number: '117'
+  appointment_time: 2026-05-08 16:45
+  status: confirmed
+  created_at: 2026-05-06 15:49
+  note: 想了解周边配套
+- appointment_id: apt-009
+  user_id: demo-user-009
+  room_id: 3009
+  apartment_name: 龙华乐活居
+  room_number: '119'
+  appointment_time: 2026-05-09 17:00
+  status: pending
+  created_at: 2026-05-06 16:56
+  note: ''
+- appointment_id: apt-010
+  user_id: demo-user-010
+  room_id: 3010
+  apartment_name: 罗湖东门寓
+  room_number: '121'
+  appointment_time: 2026-05-10 09:15
+  status: cancelled
+  created_at: 2026-05-09 17:03
+  note: 希望安静一点
+- appointment_id: apt-011
+  user_id: demo-user-001
+  room_id: 3011
+  apartment_name: 天河智慧城公寓
+  room_number: '113'
+  appointment_time: 2026-05-11 10:30
+  status: confirmed
+  created_at: 2026-05-09 08:10
+  note: 需要停车位
+- appointment_id: apt-012
+  user_id: demo-user-002
+  room_id: 3012
+  apartment_name: 海珠江景寓
+  room_number: '115'
+  appointment_time: 2026-05-12 11:45
+  status: completed
+  created_at: 2026-05-09 09:17
+  note: 带宠物
+- appointment_id: apt-013
+  user_id: demo-user-003
+  room_id: 3013
+  apartment_name: 番禺万博公寓
+  room_number: '117'
+  appointment_time: 2026-05-13 12:00
+  status: completed
+  created_at: 2026-05-12 10:24
+  note: ''
+- appointment_id: apt-014
+  user_id: demo-user-004
+  room_id: 3014
+  apartment_name: 白云嘉禾寓
+  room_number: '119'
+  appointment_time: 2026-05-14 13:15
+  status: confirmed
+  created_at: 2026-05-12 11:31
+  note: 想看高层
+- appointment_id: apt-015
+  user_id: demo-user-005
+  room_id: 3015
+  apartment_name: 越秀淘金居
+  room_number: '121'
+  appointment_time: 2026-05-01 14:30
+  status: confirmed
+  created_at: 2026-05-01 12:38
+  note: 尽快入住
+- appointment_id: apt-016
+  user_id: demo-user-006
+  room_id: 3016
+  apartment_name: 南山蛇口寓
+  room_number: '123'
+  appointment_time: 2026-05-02 15:45
+  status: cancelled
+  created_at: 2026-05-01 13:45
+  note: ''
+- appointment_id: apt-017
+  user_id: demo-user-007
+  room_id: 3017
+  apartment_name: 龙岗坂田公寓
+  room_number: '125'
+  appointment_time: 2026-05-03 16:00
+  status: cancelled
+  created_at: 2026-05-01 14:52
+  note: ''
+- appointment_id: apt-018
+  user_id: demo-user-008
+  room_id: 3018
+  apartment_name: 宝安固戍寓
+  room_number: '127'
+  appointment_time: 2026-05-04 17:15
+  status: completed
+  created_at: 2026-05-01 15:59
+  note: 有独卫需求
+- appointment_id: apt-019
+  user_id: demo-user-009
+  room_id: 3019
+  apartment_name: 龙华清湖居
+  room_number: '129'
+  appointment_time: 2026-05-05 09:30
+  status: confirmed
+  created_at: 2026-05-04 16:06
+  note: 想了解月付方案
+- appointment_id: apt-020
+  user_id: demo-user-010
+  room_id: 3020
+  apartment_name: 福田景田寓
+  room_number: '131'
+  appointment_time: 2026-05-06 10:45
+  status: completed
+  created_at: 2026-05-04 17:13
+  note: ''
+- appointment_id: apt-021
+  user_id: demo-user-001
+  room_id: 3021
+  apartment_name: 天河公寓
+  room_number: '203'
+  appointment_time: 2026-05-07 11:00
+  status: confirmed
+  created_at: 2026-05-04 08:20
+  note: 第一次看房
+- appointment_id: apt-022
+  user_id: demo-user-002
+  room_id: 3022
+  apartment_name: 珠江寓
+  room_number: '205'
+  appointment_time: 2026-05-08 12:15
+  status: completed
+  created_at: 2026-05-07 09:27
+  note: ''
+- appointment_id: apt-023
+  user_id: demo-user-003
+  room_id: 3023
+  apartment_name: 越秀家园
+  room_number: '207'
+  appointment_time: 2026-05-09 13:30
+  status: no_show
+  created_at: 2026-05-07 10:34
+  note: 想对比几间
+- appointment_id: apt-024
+  user_id: demo-user-004
+  room_id: 3024
+  apartment_name: 番禺青年社区
+  room_number: '209'
+  appointment_time: 2026-05-10 14:45
+  status: completed
+  created_at: 2026-05-07 11:41
+  note: ''
+- appointment_id: apt-025
+  user_id: demo-user-005
+  room_id: 3025
+  apartment_name: 白云阳光居
+  room_number: '211'
+  appointment_time: 2026-05-11 15:00
+  status: confirmed
+  created_at: 2026-05-10 12:48
+  note: 交通方便最重要
+- appointment_id: apt-026
+  user_id: demo-user-006
+  room_id: 3026
+  apartment_name: 南山科技园公寓
+  room_number: '213'
+  appointment_time: 2026-05-12 16:15
+  status: confirmed
+  created_at: 2026-05-10 13:55
+  note: ''
+- appointment_id: apt-027
+  user_id: demo-user-007
+  room_id: 3027
+  apartment_name: 福田中心寓
+  room_number: '215'
+  appointment_time: 2026-05-13 17:30
+  status: no_show
+  created_at: 2026-05-10 14:02
+  note: ''
+- appointment_id: apt-028
+  user_id: demo-user-008
+  room_id: 3028
+  apartment_name: 宝安青年汇
+  room_number: '217'
+  appointment_time: 2026-05-14 09:45
+  status: cancelled
+  created_at: 2026-05-13 15:09
+  note: ''
+- appointment_id: apt-029
+  user_id: demo-user-009
+  room_id: 3029
+  apartment_name: 龙华乐活居
+  room_number: '219'
+  appointment_time: 2026-05-01 10:00
+  status: pending
+  created_at: 2026-05-01 16:16
+  note: 周边有超市吗
+- appointment_id: apt-030
+  user_id: demo-user-010
+  room_id: 3030
+  apartment_name: 罗湖东门寓
+  room_number: '221'
+  appointment_time: 2026-05-02 11:15
+  status: pending
+  created_at: 2026-05-01 17:23
+  note: ''
+- appointment_id: apt-031
+  user_id: demo-user-001
+  room_id: 3031
+  apartment_name: 天河智慧城公寓
+  room_number: '213'
+  appointment_time: 2026-05-03 12:30
+  status: no_show
+  created_at: 2026-05-02 08:30
+  note: ''
+- appointment_id: apt-032
+  user_id: demo-user-002
+  room_id: 3032
+  apartment_name: 海珠江景寓
+  room_number: '215'
+  appointment_time: 2026-05-04 13:45
+  status: completed
+  created_at: 2026-05-02 09:37
+  note: 想看两居室
+- appointment_id: apt-033
+  user_id: demo-user-003
+  room_id: 3033
+  apartment_name: 番禺万博公寓
+  room_number: '217'
+  appointment_time: 2026-05-05 14:00
+  status: pending
+  created_at: 2026-05-02 10:44
+  note: ''
+- appointment_id: apt-034
+  user_id: demo-user-004
+  room_id: 3034
+  apartment_name: 白云嘉禾寓
+  room_number: '219'
+  appointment_time: 2026-05-06 15:15
+  status: pending
+  created_at: 2026-05-05 11:51
+  note: ''
+- appointment_id: apt-035
+  user_id: demo-user-005
+  room_id: 3035
+  apartment_name: 越秀淘金居
+  room_number: '221'
+  appointment_time: 2026-05-07 16:30
+  status: pending
+  created_at: 2026-05-05 12:58
+  note: 希望有阳台
+- appointment_id: apt-036
+  user_id: demo-user-006
+  room_id: 3036
+  apartment_name: 南山蛇口寓
+  room_number: '223'
+  appointment_time: 2026-05-08 17:45
+  status: confirmed
+  created_at: 2026-05-05 13:05
+  note: ''
+- appointment_id: apt-037
+  user_id: demo-user-007
+  room_id: 3037
+  apartment_name: 龙岗坂田公寓
+  room_number: '225'
+  appointment_time: 2026-05-09 09:00
+  status: confirmed
+  created_at: 2026-05-08 14:12
+  note: ''
+- appointment_id: apt-038
+  user_id: demo-user-008
+  room_id: 3038
+  apartment_name: 宝安固戍寓
+  room_number: '227'
+  appointment_time: 2026-05-10 10:15
+  status: confirmed
+  created_at: 2026-05-08 15:19
+  note: ''
+- appointment_id: apt-039
+  user_id: demo-user-009
+  room_id: 3039
+  apartment_name: 龙华清湖居
+  room_number: '229'
+  appointment_time: 2026-05-11 11:30
+  status: pending
+  created_at: 2026-05-08 16:26
+  note: ''
+- appointment_id: apt-040
+  user_id: demo-user-010
+  room_id: 3040
+  apartment_name: 福田景田寓
+  room_number: '231'
+  appointment_time: 2026-05-12 12:45
+  status: pending
+  created_at: 2026-05-11 17:33
+  note: ''
+leases:
+- lease_id: lease-001
+  user_id: demo-user-001
+  room_id: 3006
+  apartment_name: 南山科技园公寓
+  room_number: '113'
+  start_date: '2025-03-01'
+  end_date: '2027-02-01'
+  rent: 4700
+  payment_type: MONTHLY
+  status: renewed
+  deposit: 4700
+- lease_id: lease-002
+  user_id: demo-user-002
+  room_id: 3007
+  apartment_name: 福田中心寓
+  room_number: '115'
+  start_date: '2025-01-02'
+  end_date: '2025-12-02'
+  rent: 4300
+  payment_type: QUARTERLY
+  status: expired
+  deposit: 4300
+- lease_id: lease-003
+  user_id: demo-user-003
+  room_id: 3008
+  apartment_name: 宝安青年汇
+  room_number: '117'
+  start_date: '2026-01-03'
+  end_date: '2026-12-03'
+  rent: 2200
+  payment_type: HALF_YEARLY
+  status: active
+  deposit: 2200
+- lease_id: lease-004
+  user_id: demo-user-004
+  room_id: 3009
+  apartment_name: 龙华乐活居
+  room_number: '119'
+  start_date: '2025-01-04'
+  end_date: '2025-12-04'
+  rent: 2600
+  payment_type: YEARLY
+  status: expired
+  deposit: 2600
+- lease_id: lease-005
+  user_id: demo-user-005
+  room_id: 3010
+  apartment_name: 罗湖东门寓
+  room_number: '121'
+  start_date: '2026-01-05'
+  end_date: '2026-12-05'
+  rent: 2900
+  payment_type: MONTHLY
+  status: active
+  deposit: 2900
+- lease_id: lease-006
+  user_id: demo-user-006
+  room_id: 3011
+  apartment_name: 天河智慧城公寓
+  room_number: '113'
+  start_date: '2026-01-06'
+  end_date: '2026-12-06'
+  rent: 3500
+  payment_type: QUARTERLY
+  status: active
+  deposit: 3500
+- lease_id: lease-007
+  user_id: demo-user-007
+  room_id: 3012
+  apartment_name: 海珠江景寓
+  room_number: '115'
+  start_date: '2026-01-07'
+  end_date: '2026-12-07'
+  rent: 3900
+  payment_type: HALF_YEARLY
+  status: active
+  deposit: 3900
+- lease_id: lease-008
+  user_id: demo-user-008
+  room_id: 3013
+  apartment_name: 番禺万博公寓
+  room_number: '117'
+  start_date: '2025-03-08'
+  end_date: '2027-02-08'
+  rent: 2400
+  payment_type: YEARLY
+  status: renewed
+  deposit: 2400
+- lease_id: lease-009
+  user_id: demo-user-009
+  room_id: 3014
+  apartment_name: 白云嘉禾寓
+  room_number: '119'
+  start_date: '2026-01-09'
+  end_date: '2026-12-09'
+  rent: 2200
+  payment_type: MONTHLY
+  status: active
+  deposit: 2200
+- lease_id: lease-010
+  user_id: demo-user-010
+  room_id: 3015
+  apartment_name: 越秀淘金居
+  room_number: '121'
+  start_date: '2025-06-10'
+  end_date: '2026-05-19'
+  rent: 2800
+  payment_type: QUARTERLY
+  status: expiring
+  deposit: 2800
+- lease_id: lease-011
+  user_id: demo-user-001
+  room_id: 3016
+  apartment_name: 南山蛇口寓
+  room_number: '123'
+  start_date: '2026-01-11'
+  end_date: '2026-12-11'
+  rent: 4000
+  payment_type: HALF_YEARLY
+  status: active
+  deposit: 4000
+- lease_id: lease-012
+  user_id: demo-user-002
+  room_id: 3017
+  apartment_name: 龙岗坂田公寓
+  room_number: '125'
+  start_date: '2025-03-12'
+  end_date: '2027-02-12'
+  rent: 2100
+  payment_type: YEARLY
+  status: renewed
+  deposit: 2100
+- lease_id: lease-013
+  user_id: demo-user-003
+  room_id: 3018
+  apartment_name: 宝安固戍寓
+  room_number: '127'
+  start_date: '2025-06-13'
+  end_date: '2026-05-22'
+  rent: 2100
+  payment_type: MONTHLY
+  status: expiring
+  deposit: 2100
+- lease_id: lease-014
+  user_id: demo-user-004
+  room_id: 3019
+  apartment_name: 龙华清湖居
+  room_number: '129'
+  start_date: '2025-01-14'
+  end_date: '2025-12-14'
+  rent: 2700
+  payment_type: QUARTERLY
+  status: expired
+  deposit: 2700
+- lease_id: lease-015
+  user_id: demo-user-005
+  room_id: 3020
+  apartment_name: 福田景田寓
+  room_number: '131'
+  start_date: '2025-06-15'
+  end_date: '2026-05-24'
+  rent: 4000
+  payment_type: HALF_YEARLY
+  status: expiring
+  deposit: 4000
+- lease_id: lease-016
+  user_id: demo-user-006
+  room_id: 3021
+  apartment_name: 天河公寓
+  room_number: '203'
+  start_date: '2026-03-16'
+  end_date: '2026-09-16'
+  rent: 3100
+  payment_type: YEARLY
+  status: terminating
+  deposit: 3100
+- lease_id: lease-017
+  user_id: demo-user-007
+  room_id: 3022
+  apartment_name: 珠江寓
+  room_number: '205'
+  start_date: '2026-01-17'
+  end_date: '2026-12-17'
+  rent: 2900
+  payment_type: MONTHLY
+  status: active
+  deposit: 2900
+- lease_id: lease-018
+  user_id: demo-user-008
+  room_id: 3023
+  apartment_name: 越秀家园
+  room_number: '207'
+  start_date: '2025-01-18'
+  end_date: '2025-12-18'
+  rent: 2400
+  payment_type: QUARTERLY
+  status: expired
+  deposit: 2400
+- lease_id: lease-019
+  user_id: demo-user-009
+  room_id: 3024
+  apartment_name: 番禺青年社区
+  room_number: '209'
+  start_date: '2026-01-19'
+  end_date: '2026-12-19'
+  rent: 1700
+  payment_type: HALF_YEARLY
+  status: active
+  deposit: 1700
+- lease_id: lease-020
+  user_id: demo-user-010
+  room_id: 3025
+  apartment_name: 白云阳光居
+  room_number: '211'
+  start_date: '2025-06-20'
+  end_date: '2026-05-28'
+  rent: 2000
+  payment_type: YEARLY
+  status: expiring
+  deposit: 2000
+- lease_id: lease-021
+  user_id: demo-user-001
+  room_id: 3026
+  apartment_name: 南山科技园公寓
+  room_number: '213'
+  start_date: '2026-01-21'
+  end_date: '2026-12-21'
+  rent: 4600
+  payment_type: MONTHLY
+  status: active
+  deposit: 4600
+- lease_id: lease-022
+  user_id: demo-user-002
+  room_id: 3027
+  apartment_name: 福田中心寓
+  room_number: '215'
+  start_date: '2025-06-22'
+  end_date: '2026-05-28'
+  rent: 4200
+  payment_type: QUARTERLY
+  status: expiring
+  deposit: 4200
+- lease_id: lease-023
+  user_id: demo-user-003
+  room_id: 3028
+  apartment_name: 宝安青年汇
+  room_number: '217'
+  start_date: '2025-06-23'
+  end_date: '2026-05-28'
+  rent: 2800
+  payment_type: HALF_YEARLY
+  status: expiring
+  deposit: 2800
+- lease_id: lease-024
+  user_id: demo-user-004
+  room_id: 3029
+  apartment_name: 龙华乐活居
+  room_number: '219'
+  start_date: '2025-03-24'
+  end_date: '2027-02-24'
+  rent: 2500
+  payment_type: YEARLY
+  status: renewed
+  deposit: 2500
+- lease_id: lease-025
+  user_id: demo-user-005
+  room_id: 3030
+  apartment_name: 罗湖东门寓
+  room_number: '221'
+  start_date: '2026-01-25'
+  end_date: '2026-12-25'
+  rent: 2800
+  payment_type: MONTHLY
+  status: active
+  deposit: 2800
+- lease_id: lease-026
+  user_id: demo-user-006
+  room_id: 3031
+  apartment_name: 天河智慧城公寓
+  room_number: '213'
+  start_date: '2026-01-26'
+  end_date: '2026-12-26'
+  rent: 3400
+  payment_type: QUARTERLY
+  status: active
+  deposit: 3400
+- lease_id: lease-027
+  user_id: demo-user-007
+  room_id: 3032
+  apartment_name: 海珠江景寓
+  room_number: '215'
+  start_date: '2025-01-27'
+  end_date: '2025-12-27'
+  rent: 3800
+  payment_type: HALF_YEARLY
+  status: expired
+  deposit: 3800
+- lease_id: lease-028
+  user_id: demo-user-008
+  room_id: 3033
+  apartment_name: 番禺万博公寓
+  room_number: '217'
+  start_date: '2026-03-28'
+  end_date: '2026-09-28'
+  rent: 2300
+  payment_type: YEARLY
+  status: terminating
+  deposit: 2300
+- lease_id: lease-029
+  user_id: demo-user-009
+  room_id: 3034
+  apartment_name: 白云嘉禾寓
+  room_number: '219'
+  start_date: '2026-03-01'
+  end_date: '2026-09-01'
+  rent: 2100
+  payment_type: MONTHLY
+  status: terminating
+  deposit: 2100
+- lease_id: lease-030
+  user_id: demo-user-010
+  room_id: 3035
+  apartment_name: 越秀淘金居
+  room_number: '221'
+  start_date: '2026-01-02'
+  end_date: '2026-12-02'
+  rent: 3400
+  payment_type: QUARTERLY
+  status: active
+  deposit: 3400
+browse_history:
+- history_id: hist-001
+  user_id: demo-user-001
+  room_id: 3001
+  viewed_at: 2026-04-20 08:00
+- history_id: hist-002
+  user_id: demo-user-002
+  room_id: 3001
+  viewed_at: 2026-04-23 09:11
+- history_id: hist-003
+  user_id: demo-user-003
+  room_id: 3001
+  viewed_at: 2026-04-26 10:22
+- history_id: hist-004
+  user_id: demo-user-004
+  room_id: 3001
+  viewed_at: 2026-04-29 11:33
+- history_id: hist-005
+  user_id: demo-user-005
+  room_id: 3001
+  viewed_at: 2026-05-02 12:44
+- history_id: hist-006
+  user_id: demo-user-006
+  room_id: 3005
+  viewed_at: 2026-04-22 13:55
+- history_id: hist-007
+  user_id: demo-user-007
+  room_id: 3005
+  viewed_at: 2026-04-25 14:06
+- history_id: hist-008
+  user_id: demo-user-008
+  room_id: 3005
+  viewed_at: 2026-04-28 15:17
+- history_id: hist-009
+  user_id: demo-user-009
+  room_id: 3010
+  viewed_at: 2026-05-01 16:28
+- history_id: hist-010
+  user_id: demo-user-010
+  room_id: 3010
+  viewed_at: 2026-04-21 17:39
+- history_id: hist-011
+  user_id: demo-user-001
+  room_id: 3010
+  viewed_at: 2026-04-24 18:50
+- history_id: hist-012
+  user_id: demo-user-002
+  room_id: 3010
+  viewed_at: 2026-04-27 19:01
+- history_id: hist-013
+  user_id: demo-user-003
+  room_id: 3088
+  viewed_at: 2026-04-30 20:12
+- history_id: hist-014
+  user_id: demo-user-004
+  room_id: 3095
+  viewed_at: 2026-04-20 21:23
+- history_id: hist-015
+  user_id: demo-user-005
+  room_id: 3102
+  viewed_at: 2026-04-23 08:34
+- history_id: hist-016
+  user_id: demo-user-006
+  room_id: 3109
+  viewed_at: 2026-04-26 09:45
+- history_id: hist-017
+  user_id: demo-user-007
+  room_id: 3116
+  viewed_at: 2026-04-29 10:56
+- history_id: hist-018
+  user_id: demo-user-008
+  room_id: 3123
+  viewed_at: 2026-05-02 11:07
+- history_id: hist-019
+  user_id: demo-user-009
+  room_id: 3130
+  viewed_at: 2026-04-22 12:18
+- history_id: hist-020
+  user_id: demo-user-010
+  room_id: 3137
+  viewed_at: 2026-04-25 13:29
+- history_id: hist-021
+  user_id: demo-user-001
+  room_id: 3144
+  viewed_at: 2026-04-28 14:40
+- history_id: hist-022
+  user_id: demo-user-002
+  room_id: 3001
+  viewed_at: 2026-05-01 15:51
+- history_id: hist-023
+  user_id: demo-user-003
+  room_id: 3008
+  viewed_at: 2026-04-21 16:02
+- history_id: hist-024
+  user_id: demo-user-004
+  room_id: 3015
+  viewed_at: 2026-04-24 17:13
+- history_id: hist-025
+  user_id: demo-user-005
+  room_id: 3022
+  viewed_at: 2026-04-27 18:24
+- history_id: hist-026
+  user_id: demo-user-006
+  room_id: 3029
+  viewed_at: 2026-04-30 19:35
+- history_id: hist-027
+  user_id: demo-user-007
+  room_id: 3036
+  viewed_at: 2026-04-20 20:46
+- history_id: hist-028
+  user_id: demo-user-008
+  room_id: 3043
+  viewed_at: 2026-04-23 21:57
+- history_id: hist-029
+  user_id: demo-user-009
+  room_id: 3050
+  viewed_at: 2026-04-26 08:08
+- history_id: hist-030
+  user_id: demo-user-010
+  room_id: 3057
+  viewed_at: 2026-04-29 09:19
+- history_id: hist-031
+  user_id: demo-user-001
+  room_id: 3064
+  viewed_at: 2026-05-02 10:30
+- history_id: hist-032
+  user_id: demo-user-002
+  room_id: 3071
+  viewed_at: 2026-04-22 11:41
+- history_id: hist-033
+  user_id: demo-user-003
+  room_id: 3078
+  viewed_at: 2026-04-25 12:52
+- history_id: hist-034
+  user_id: demo-user-004
+  room_id: 3085
+  viewed_at: 2026-04-28 13:03
+- history_id: hist-035
+  user_id: demo-user-005
+  room_id: 3092
+  viewed_at: 2026-05-01 14:14
+- history_id: hist-036
+  user_id: demo-user-006
+  room_id: 3099
+  viewed_at: 2026-04-21 15:25
+- history_id: hist-037
+  user_id: demo-user-007
+  room_id: 3106
+  viewed_at: 2026-04-24 16:36
+- history_id: hist-038
+  user_id: demo-user-008
+  room_id: 3113
+  viewed_at: 2026-04-27 17:47
+- history_id: hist-039
+  user_id: demo-user-009
+  room_id: 3120
+  viewed_at: 2026-04-30 18:58
+- history_id: hist-040
+  user_id: demo-user-010
+  room_id: 3127
+  viewed_at: 2026-04-20 19:09
+- history_id: hist-041
+  user_id: demo-user-001
+  room_id: 3134
+  viewed_at: 2026-04-23 20:20
+- history_id: hist-042
+  user_id: demo-user-002
+  room_id: 3141
+  viewed_at: 2026-04-26 21:31
+- history_id: hist-043
+  user_id: demo-user-003
+  room_id: 3148
+  viewed_at: 2026-04-29 08:42
+- history_id: hist-044
+  user_id: demo-user-004
+  room_id: 3005
+  viewed_at: 2026-05-02 09:53
+- history_id: hist-045
+  user_id: demo-user-005
+  room_id: 3012
+  viewed_at: 2026-04-22 10:04
+- history_id: hist-046
+  user_id: demo-user-006
+  room_id: 3019
+  viewed_at: 2026-04-25 11:15
+- history_id: hist-047
+  user_id: demo-user-007
+  room_id: 3026
+  viewed_at: 2026-04-28 12:26
+- history_id: hist-048
+  user_id: demo-user-008
+  room_id: 3033
+  viewed_at: 2026-05-01 13:37
+- history_id: hist-049
+  user_id: demo-user-009
+  room_id: 3040
+  viewed_at: 2026-04-21 14:48
+- history_id: hist-050
+  user_id: demo-user-010
+  room_id: 3047
+  viewed_at: 2026-04-24 15:59
+- history_id: hist-051
+  user_id: demo-user-001
+  room_id: 3054
+  viewed_at: 2026-04-27 16:10
+- history_id: hist-052
+  user_id: demo-user-002
+  room_id: 3061
+  viewed_at: 2026-04-30 17:21
+- history_id: hist-053
+  user_id: demo-user-003
+  room_id: 3068
+  viewed_at: 2026-04-20 18:32
+- history_id: hist-054
+  user_id: demo-user-004
+  room_id: 3075
+  viewed_at: 2026-04-23 19:43
+- history_id: hist-055
+  user_id: demo-user-005
+  room_id: 3082
+  viewed_at: 2026-04-26 20:54
+- history_id: hist-056
+  user_id: demo-user-006
+  room_id: 3089
+  viewed_at: 2026-04-29 21:05
+- history_id: hist-057
+  user_id: demo-user-007
+  room_id: 3096
+  viewed_at: 2026-05-02 08:16
+- history_id: hist-058
+  user_id: demo-user-008
+  room_id: 3103
+  viewed_at: 2026-04-22 09:27
+- history_id: hist-059
+  user_id: demo-user-009
+  room_id: 3110
+  viewed_at: 2026-04-25 10:38
+- history_id: hist-060
+  user_id: demo-user-010
+  room_id: 3117
+  viewed_at: 2026-04-28 11:49
+favorites:
+- favorite_id: fav-001
+  user_id: demo-user-001
+  room_id: 3003
+  created_at: 2026-05-01 09:00
+- favorite_id: fav-002
+  user_id: demo-user-002
+  room_id: 3008
+  created_at: 2026-05-02 10:13
+- favorite_id: fav-003
+  user_id: demo-user-003
+  room_id: 3013
+  created_at: 2026-05-03 11:26
+- favorite_id: fav-004
+  user_id: demo-user-004
+  room_id: 3018
+  created_at: 2026-05-04 12:39
+- favorite_id: fav-005
+  user_id: demo-user-005
+  room_id: 3023
+  created_at: 2026-05-05 13:52
+- favorite_id: fav-006
+  user_id: demo-user-006
+  room_id: 3028
+  created_at: 2026-05-06 14:05
+- favorite_id: fav-007
+  user_id: demo-user-007
+  room_id: 3033
+  created_at: 2026-05-07 15:18
+- favorite_id: fav-008
+  user_id: demo-user-008
+  room_id: 3038
+  created_at: 2026-05-08 16:31
+- favorite_id: fav-009
+  user_id: demo-user-009
+  room_id: 3043
+  created_at: 2026-05-09 17:44
+- favorite_id: fav-010
+  user_id: demo-user-010
+  room_id: 3048
+  created_at: 2026-05-10 18:57
+- favorite_id: fav-011
+  user_id: demo-user-001
+  room_id: 3053
+  created_at: 2026-05-11 09:10
+- favorite_id: fav-012
+  user_id: demo-user-002
+  room_id: 3058
+  created_at: 2026-05-12 10:23
+- favorite_id: fav-013
+  user_id: demo-user-003
+  room_id: 3063
+  created_at: 2026-05-13 11:36
+- favorite_id: fav-014
+  user_id: demo-user-004
+  room_id: 3068
+  created_at: 2026-05-14 12:49
+- favorite_id: fav-015
+  user_id: demo-user-005
+  room_id: 3073
+  created_at: 2026-05-01 13:02
+- favorite_id: fav-016
+  user_id: demo-user-006
+  room_id: 3078
+  created_at: 2026-05-02 14:15
+- favorite_id: fav-017
+  user_id: demo-user-007
+  room_id: 3083
+  created_at: 2026-05-03 15:28
+- favorite_id: fav-018
+  user_id: demo-user-008
+  room_id: 3088
+  created_at: 2026-05-04 16:41
+- favorite_id: fav-019
+  user_id: demo-user-009
+  room_id: 3093
+  created_at: 2026-05-05 17:54
+- favorite_id: fav-020
+  user_id: demo-user-010
+  room_id: 3098
+  created_at: 2026-05-06 18:07
+room_detail_cache:
+- room_id: 3001
+  room_number: '103'
+  apartment_id: 2001
+  apartment_name: 天河公寓
+  city_name: 广州
+  district_name: 天河区
+  address: 天河区科韵路附近
+  rent: 2500
+  area: 20
+  layout: 1室1卫
+  payment_types:
+  - MONTHLY
+  lease_terms:
+  - 3
+  tags:
+  - 独卫
+  - 朝南
+  - 朝北
+  facilities:
+  - 空调
+  - 洗衣机
+  - 热水器
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3001.jpg
+  is_release: true
+  is_appointable: false
+  audience_summary: 适合预算 2700 元以内、希望通勤方便和居住品质的租客。
+  description: '房间 103，位于天河公寓，广州天河区，地址在天河区科韵路附近。
+
+    月租 2500 元，支持MONTHLY，租期可选 3 个月。
+
+    户型 1室1卫，面积 20 平方米，标签包括独卫、朝南、朝北。
+
+    公寓配套包括空调、洗衣机、热水器。
+
+    适合预算 2700 元以内、希望通勤方便和居住品质的租客。'
+- room_id: 3002
+  room_number: '105'
+  apartment_id: 2002
+  apartment_name: 珠江寓
+  city_name: 广州
+  district_name: 海珠区
+  address: 海珠区新港东路
+  rent: 3000
+  area: 25
+  layout: 1室1卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  lease_terms:
+  - 6
+  tags:
+  - 安静
+  - 近地铁
+  - 适合备考
+  - 新装修
+  facilities:
+  - 热水器
+  - 电梯
+  - 冰箱
+  - 微波炉
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3002.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 3200 元以内的安静学习环境租客。
+  description: '房间 105，位于珠江寓，广州海珠区，地址在海珠区新港东路。
+
+    月租 3000 元，支持QUARTERLY、HALF_YEARLY，租期可选 6 个月。
+
+    户型 1室1卫，面积 25 平方米，标签包括安静、近地铁、适合备考、新装修。
+
+    公寓配套包括热水器、电梯、冰箱、微波炉。
+
+    适合预算 3200 元以内的安静学习环境租客。'
+- room_id: 3003
+  room_number: '107'
+  apartment_id: 2003
+  apartment_name: 越秀家园
+  city_name: 广州
+  district_name: 越秀区
+  address: 越秀区东风中路
+  rent: 2500
+  area: 28
+  layout: 1室1卫
+  payment_types:
+  - HALF_YEARLY
+  - YEARLY
+  - MONTHLY
+  lease_terms:
+  - 3
+  - 6
+  tags:
+  - 新装修
+  - 采光好
+  - 拎包入住
+  - 可月付
+  - 押一付一
+  facilities:
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3003.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合追求生活便利和性价比高的年轻上班族。
+  description: '房间 107，位于越秀家园，广州越秀区，地址在越秀区东风中路。
+
+    月租 2500 元，支持HALF_YEARLY、YEARLY、MONTHLY，租期可选 3、6 个月。
+
+    户型 1室1卫，面积 28 平方米，标签包括新装修、采光好、拎包入住、可月付、押一付一。
+
+    公寓配套包括冰箱、微波炉、独立卫浴、衣柜、书桌。
+
+    适合追求生活便利和性价比高的年轻上班族。'
+- room_id: 3004
+  room_number: '109'
+  apartment_id: 2004
+  apartment_name: 番禺青年社区
+  city_name: 广州
+  district_name: 番禺区
+  address: 番禺区市桥大北路
+  rent: 1800
+  area: 30
+  layout: 1室1厅1卫
+  payment_types:
+  - YEARLY
+  lease_terms:
+  - 6
+  - 12
+  tags:
+  - 可月付
+  - 押一付一
+  - 电梯房
+  - 高层视野
+  - 独立阳台
+  - 可做饭
+  facilities:
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  - 宽带
+  - 电视
+  - 抽油烟机
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3004.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 2000 元以内、注重居住品质的租客。
+  description: '房间 109，位于番禺青年社区，广州番禺区，地址在番禺区市桥大北路。
+
+    月租 1800 元，支持YEARLY，租期可选 6、12 个月。
+
+    户型 1室1厅1卫，面积 30 平方米，标签包括可月付、押一付一、电梯房、高层视野、独立阳台、可做饭。
+
+    公寓配套包括独立卫浴、衣柜、书桌、宽带、电视、抽油烟机。
+
+    适合预算 2000 元以内、注重居住品质的租客。'
+- room_id: 3005
+  room_number: '111'
+  apartment_id: 2005
+  apartment_name: 白云阳光居
+  city_name: 广州
+  district_name: 白云区
+  address: 白云区嘉禾望岗
+  rent: 2100
+  area: 35
+  layout: 1室1厅1卫
+  payment_types:
+  - MONTHLY
+  - QUARTERLY
+  lease_terms:
+  - 3
+  - 6
+  - 12
+  tags:
+  - 高层视野
+  - 独立阳台
+  - 可做饭
+  facilities:
+  - 书桌
+  - 宽带
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  - 茶几
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3005.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望空间宽敞、预算 2300 元以内的配套完善租客。
+  description: '房间 111，位于白云阳光居，广州白云区，地址在白云区嘉禾望岗。
+
+    月租 2100 元，支持MONTHLY、QUARTERLY，租期可选 3、6、12 个月。
+
+    户型 1室1厅1卫，面积 35 平方米，标签包括高层视野、独立阳台、可做饭。
+
+    公寓配套包括书桌、宽带、电视、抽油烟机、燃气灶、沙发、茶几。
+
+    适合希望空间宽敞、预算 2300 元以内的配套完善租客。'
+- room_id: 3006
+  room_number: '113'
+  apartment_id: 2006
+  apartment_name: 南山科技园公寓
+  city_name: 深圳
+  district_name: 南山区
+  address: 南山区科技园科发路
+  rent: 4700
+  area: 40
+  layout: 1室1厅1卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  - YEARLY
+  lease_terms:
+  - 3
+  - 12
+  tags:
+  - 养宠友好
+  - 短租可
+  - 长租优惠
+  - 商圈附近
+  facilities:
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3006.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 4900 元以内、希望性价比高和独立空间的租客。
+  description: '房间 113，位于南山科技园公寓，深圳南山区，地址在南山区科技园科发路。
+
+    月租 4700 元，支持QUARTERLY、HALF_YEARLY、YEARLY，租期可选 3、12 个月。
+
+    户型 1室1厅1卫，面积 40 平方米，标签包括养宠友好、短租可、长租优惠、商圈附近。
+
+    公寓配套包括电视、抽油烟机、燃气灶。
+
+    适合预算 4900 元以内、希望性价比高和独立空间的租客。'
+- room_id: 3007
+  room_number: '115'
+  apartment_id: 2007
+  apartment_name: 福田中心寓
+  city_name: 深圳
+  district_name: 福田区
+  address: 福田区华强北路
+  rent: 4300
+  area: 50
+  layout: 2室1厅1卫
+  payment_types:
+  - HALF_YEARLY
+  lease_terms:
+  - 12
+  tags:
+  - 商圈附近
+  - 通勤方便
+  - 配套齐全
+  - 花园小区
+  - 智能门锁
+  facilities:
+  - 燃气灶
+  - 沙发
+  - 茶几
+  - 床头柜
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3007.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 4500 元以内的交通便利租客。
+  description: '房间 115，位于福田中心寓，深圳福田区，地址在福田区华强北路。
+
+    月租 4300 元，支持HALF_YEARLY，租期可选 12 个月。
+
+    户型 2室1厅1卫，面积 50 平方米，标签包括商圈附近、通勤方便、配套齐全、花园小区、智能门锁。
+
+    公寓配套包括燃气灶、沙发、茶几、床头柜。
+
+    适合预算 4500 元以内的交通便利租客。'
+- room_id: 3008
+  room_number: '117'
+  apartment_id: 2008
+  apartment_name: 宝安青年汇
+  city_name: 深圳
+  district_name: 宝安区
+  address: 宝安区西乡街道
+  rent: 2200
+  area: 55
+  layout: 2室1厅1卫
+  payment_types:
+  - YEARLY
+  - MONTHLY
+  lease_terms:
+  - 3
+  tags:
+  - 花园小区
+  - 智能门锁
+  - 楼下便利店
+  - 有车位
+  - 独卫
+  - 朝南
+  facilities:
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  - 空调
+  - 洗衣机
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3008.jpg
+  is_release: true
+  is_appointable: false
+  audience_summary: 适合追求配套完善和通勤方便的年轻上班族。
+  description: '房间 117，位于宝安青年汇，深圳宝安区，地址在宝安区西乡街道。
+
+    月租 2200 元，支持YEARLY、MONTHLY，租期可选 3 个月。
+
+    户型 2室1厅1卫，面积 55 平方米，标签包括花园小区、智能门锁、楼下便利店、有车位、独卫、朝南。
+
+    公寓配套包括茶几、床头柜、晾衣架、空调、洗衣机。
+
+    适合追求配套完善和通勤方便的年轻上班族。'
+- room_id: 3009
+  room_number: '119'
+  apartment_id: 2009
+  apartment_name: 龙华乐活居
+  city_name: 深圳
+  district_name: 龙华区
+  address: 龙华区民治街道
+  rent: 2600
+  area: 60
+  layout: 2室1厅1卫
+  payment_types:
+  - MONTHLY
+  - QUARTERLY
+  - HALF_YEARLY
+  lease_terms:
+  - 6
+  tags:
+  - 有车位
+  - 独卫
+  - 朝南
+  facilities:
+  - 晾衣架
+  - 空调
+  - 洗衣机
+  - 热水器
+  - 电梯
+  - 冰箱
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3009.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 2800 元以内、注重独立空间的租客。
+  description: '房间 119，位于龙华乐活居，深圳龙华区，地址在龙华区民治街道。
+
+    月租 2600 元，支持MONTHLY、QUARTERLY、HALF_YEARLY，租期可选 6 个月。
+
+    户型 2室1厅1卫，面积 60 平方米，标签包括有车位、独卫、朝南。
+
+    公寓配套包括晾衣架、空调、洗衣机、热水器、电梯、冰箱。
+
+    适合预算 2800 元以内、注重独立空间的租客。'
+- room_id: 3010
+  room_number: '121'
+  apartment_id: 2010
+  apartment_name: 罗湖东门寓
+  city_name: 深圳
+  district_name: 罗湖区
+  address: 罗湖区东门南路
+  rent: 2900
+  area: 65
+  layout: 2室1厅1卫
+  payment_types:
+  - QUARTERLY
+  lease_terms:
+  - 3
+  - 6
+  tags:
+  - 朝北
+  - 安静
+  - 近地铁
+  - 适合备考
+  facilities:
+  - 洗衣机
+  - 热水器
+  - 电梯
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3010.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望采光通风好、预算 3100 元以内的生活便利租客。
+  description: '房间 121，位于罗湖东门寓，深圳罗湖区，地址在罗湖区东门南路。
+
+    月租 2900 元，支持QUARTERLY，租期可选 3、6 个月。
+
+    户型 2室1厅1卫，面积 65 平方米，标签包括朝北、安静、近地铁、适合备考。
+
+    公寓配套包括洗衣机、热水器、电梯、冰箱、微波炉、独立卫浴、衣柜。
+
+    适合希望采光通风好、预算 3100 元以内的生活便利租客。'
+- room_id: 3011
+  room_number: '113'
+  apartment_id: 2011
+  apartment_name: 天河智慧城公寓
+  city_name: 广州
+  district_name: 天河区
+  address: 天河区高唐路
+  rent: 3500
+  area: 70
+  layout: 2室2厅1卫
+  payment_types:
+  - HALF_YEARLY
+  - YEARLY
+  lease_terms:
+  - 6
+  - 12
+  tags:
+  - 适合备考
+  - 新装修
+  - 采光好
+  - 拎包入住
+  - 可月付
+  facilities:
+  - 电梯
+  - 冰箱
+  - 微波炉
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3011.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 3700 元以内、希望通勤方便和居住品质的租客。
+  description: '房间 113，位于天河智慧城公寓，广州天河区，地址在天河区高唐路。
+
+    月租 3500 元，支持HALF_YEARLY、YEARLY，租期可选 6、12 个月。
+
+    户型 2室2厅1卫，面积 70 平方米，标签包括适合备考、新装修、采光好、拎包入住、可月付。
+
+    公寓配套包括电梯、冰箱、微波炉。
+
+    适合预算 3700 元以内、希望通勤方便和居住品质的租客。'
+- room_id: 3012
+  room_number: '115'
+  apartment_id: 2012
+  apartment_name: 海珠江景寓
+  city_name: 广州
+  district_name: 海珠区
+  address: 海珠区滨江东路
+  rent: 3900
+  area: 75
+  layout: 2室2厅1卫
+  payment_types:
+  - YEARLY
+  - MONTHLY
+  - QUARTERLY
+  lease_terms:
+  - 3
+  - 6
+  - 12
+  tags:
+  - 拎包入住
+  - 可月付
+  - 押一付一
+  - 电梯房
+  - 高层视野
+  - 独立阳台
+  facilities:
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3012.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 4100 元以内的安静学习环境租客。
+  description: '房间 115，位于海珠江景寓，广州海珠区，地址在海珠区滨江东路。
+
+    月租 3900 元，支持YEARLY、MONTHLY、QUARTERLY，租期可选 3、6、12 个月。
+
+    户型 2室2厅1卫，面积 75 平方米，标签包括拎包入住、可月付、押一付一、电梯房、高层视野、独立阳台。
+
+    公寓配套包括微波炉、独立卫浴、衣柜、书桌。
+
+    适合预算 4100 元以内的安静学习环境租客。'
+- room_id: 3013
+  room_number: '117'
+  apartment_id: 2013
+  apartment_name: 番禺万博公寓
+  city_name: 广州
+  district_name: 番禺区
+  address: 番禺区万博翠湖
+  rent: 2400
+  area: 80
+  layout: 3室1厅1卫
+  payment_types:
+  - MONTHLY
+  lease_terms:
+  - 3
+  - 12
+  tags:
+  - 电梯房
+  - 高层视野
+  - 独立阳台
+  facilities:
+  - 衣柜
+  - 书桌
+  - 宽带
+  - 电视
+  - 抽油烟机
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3013.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合追求生活便利和性价比高的年轻上班族。
+  description: '房间 117，位于番禺万博公寓，广州番禺区，地址在番禺区万博翠湖。
+
+    月租 2400 元，支持MONTHLY，租期可选 3、12 个月。
+
+    户型 3室1厅1卫，面积 80 平方米，标签包括电梯房、高层视野、独立阳台。
+
+    公寓配套包括衣柜、书桌、宽带、电视、抽油烟机。
+
+    适合追求生活便利和性价比高的年轻上班族。'
+- room_id: 3014
+  room_number: '119'
+  apartment_id: 2014
+  apartment_name: 白云嘉禾寓
+  city_name: 广州
+  district_name: 白云区
+  address: 白云区嘉禾望岗大道
+  rent: 2200
+  area: 90
+  layout: 3室2厅1卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  lease_terms:
+  - 12
+  tags:
+  - 可做饭
+  - 养宠友好
+  - 短租可
+  - 长租优惠
+  facilities:
+  - 宽带
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  - 茶几
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3014.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 2400 元以内、注重居住品质的租客。
+  description: '房间 119，位于白云嘉禾寓，广州白云区，地址在白云区嘉禾望岗大道。
+
+    月租 2200 元，支持QUARTERLY、HALF_YEARLY，租期可选 12 个月。
+
+    户型 3室2厅1卫，面积 90 平方米，标签包括可做饭、养宠友好、短租可、长租优惠。
+
+    公寓配套包括宽带、电视、抽油烟机、燃气灶、沙发、茶几。
+
+    适合预算 2400 元以内、注重居住品质的租客。'
+- room_id: 3015
+  room_number: '121'
+  apartment_id: 2015
+  apartment_name: 越秀淘金居
+  city_name: 广州
+  district_name: 越秀区
+  address: 越秀区淘金路
+  rent: 2800
+  area: 100
+  layout: 3室2厅2卫
+  payment_types:
+  - HALF_YEARLY
+  - YEARLY
+  - MONTHLY
+  lease_terms:
+  - 3
+  tags:
+  - 长租优惠
+  - 商圈附近
+  - 通勤方便
+  - 配套齐全
+  - 花园小区
+  facilities:
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  - 空调
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3015.jpg
+  is_release: true
+  is_appointable: false
+  audience_summary: 适合希望空间宽敞、预算 3000 元以内的配套完善租客。
+  description: '房间 121，位于越秀淘金居，广州越秀区，地址在越秀区淘金路。
+
+    月租 2800 元，支持HALF_YEARLY、YEARLY、MONTHLY，租期可选 3 个月。
+
+    户型 3室2厅2卫，面积 100 平方米，标签包括长租优惠、商圈附近、通勤方便、配套齐全、花园小区。
+
+    公寓配套包括抽油烟机、燃气灶、沙发、茶几、床头柜、晾衣架、空调。
+
+    适合希望空间宽敞、预算 3000 元以内的配套完善租客。'
+- room_id: 3016
+  room_number: '123'
+  apartment_id: 2016
+  apartment_name: 南山蛇口寓
+  city_name: 深圳
+  district_name: 南山区
+  address: 南山区蛇口工业区
+  rent: 4000
+  area: 20
+  layout: 1室1卫
+  payment_types:
+  - YEARLY
+  lease_terms:
+  - 6
+  tags:
+  - 配套齐全
+  - 花园小区
+  - 智能门锁
+  - 楼下便利店
+  - 有车位
+  - 独卫
+  facilities:
+  - 沙发
+  - 茶几
+  - 床头柜
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3016.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 4200 元以内、希望性价比高和独立空间的租客。
+  description: '房间 123，位于南山蛇口寓，深圳南山区，地址在南山区蛇口工业区。
+
+    月租 4000 元，支持YEARLY，租期可选 6 个月。
+
+    户型 1室1卫，面积 20 平方米，标签包括配套齐全、花园小区、智能门锁、楼下便利店、有车位、独卫。
+
+    公寓配套包括沙发、茶几、床头柜。
+
+    适合预算 4200 元以内、希望性价比高和独立空间的租客。'
+- room_id: 3017
+  room_number: '125'
+  apartment_id: 2017
+  apartment_name: 龙岗坂田公寓
+  city_name: 深圳
+  district_name: 龙岗区
+  address: 龙岗区坂田街道
+  rent: 2100
+  area: 25
+  layout: 1室1卫
+  payment_types:
+  - MONTHLY
+  - QUARTERLY
+  lease_terms:
+  - 3
+  - 6
+  tags:
+  - 楼下便利店
+  - 有车位
+  - 独卫
+  facilities:
+  - 床头柜
+  - 晾衣架
+  - 空调
+  - 洗衣机
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3017.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 2300 元以内的交通便利租客。
+  description: '房间 125，位于龙岗坂田公寓，深圳龙岗区，地址在龙岗区坂田街道。
+
+    月租 2100 元，支持MONTHLY、QUARTERLY，租期可选 3、6 个月。
+
+    户型 1室1卫，面积 25 平方米，标签包括楼下便利店、有车位、独卫。
+
+    公寓配套包括床头柜、晾衣架、空调、洗衣机。
+
+    适合预算 2300 元以内的交通便利租客。'
+- room_id: 3018
+  room_number: '127'
+  apartment_id: 2018
+  apartment_name: 宝安固戍寓
+  city_name: 深圳
+  district_name: 宝安区
+  address: 宝安区固戍二路
+  rent: 2100
+  area: 28
+  layout: 1室1卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  - YEARLY
+  lease_terms:
+  - 6
+  - 12
+  tags:
+  - 朝南
+  - 朝北
+  - 安静
+  - 近地铁
+  facilities:
+  - 空调
+  - 洗衣机
+  - 热水器
+  - 电梯
+  - 冰箱
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3018.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合追求配套完善和通勤方便的年轻上班族。
+  description: '房间 127，位于宝安固戍寓，深圳宝安区，地址在宝安区固戍二路。
+
+    月租 2100 元，支持QUARTERLY、HALF_YEARLY、YEARLY，租期可选 6、12 个月。
+
+    户型 1室1卫，面积 28 平方米，标签包括朝南、朝北、安静、近地铁。
+
+    公寓配套包括空调、洗衣机、热水器、电梯、冰箱。
+
+    适合追求配套完善和通勤方便的年轻上班族。'
+- room_id: 3019
+  room_number: '129'
+  apartment_id: 2019
+  apartment_name: 龙华清湖居
+  city_name: 深圳
+  district_name: 龙华区
+  address: 龙华区清湖路
+  rent: 2700
+  area: 30
+  layout: 1室1厅1卫
+  payment_types:
+  - HALF_YEARLY
+  lease_terms:
+  - 3
+  - 6
+  - 12
+  tags:
+  - 近地铁
+  - 适合备考
+  - 新装修
+  - 采光好
+  - 拎包入住
+  facilities:
+  - 热水器
+  - 电梯
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3019.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 2900 元以内、注重独立空间的租客。
+  description: '房间 129，位于龙华清湖居，深圳龙华区，地址在龙华区清湖路。
+
+    月租 2700 元，支持HALF_YEARLY，租期可选 3、6、12 个月。
+
+    户型 1室1厅1卫，面积 30 平方米，标签包括近地铁、适合备考、新装修、采光好、拎包入住。
+
+    公寓配套包括热水器、电梯、冰箱、微波炉、独立卫浴、衣柜。
+
+    适合预算 2900 元以内、注重独立空间的租客。'
+- room_id: 3020
+  room_number: '131'
+  apartment_id: 2020
+  apartment_name: 福田景田寓
+  city_name: 深圳
+  district_name: 福田区
+  address: 福田区景田东路
+  rent: 4000
+  area: 35
+  layout: 1室1厅1卫
+  payment_types:
+  - YEARLY
+  - MONTHLY
+  lease_terms:
+  - 3
+  - 12
+  tags:
+  - 采光好
+  - 拎包入住
+  - 可月付
+  - 押一付一
+  - 电梯房
+  - 高层视野
+  facilities:
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  - 宽带
+  - 电视
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3020.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望采光通风好、预算 4200 元以内的生活便利租客。
+  description: '房间 131，位于福田景田寓，深圳福田区，地址在福田区景田东路。
+
+    月租 4000 元，支持YEARLY、MONTHLY，租期可选 3、12 个月。
+
+    户型 1室1厅1卫，面积 35 平方米，标签包括采光好、拎包入住、可月付、押一付一、电梯房、高层视野。
+
+    公寓配套包括冰箱、微波炉、独立卫浴、衣柜、书桌、宽带、电视。
+
+    适合希望采光通风好、预算 4200 元以内的生活便利租客。'
+- room_id: 3021
+  room_number: '203'
+  apartment_id: 2001
+  apartment_name: 天河公寓
+  city_name: 广州
+  district_name: 天河区
+  address: 天河区科韵路附近
+  rent: 3100
+  area: 40
+  layout: 1室1厅1卫
+  payment_types:
+  - MONTHLY
+  - QUARTERLY
+  - HALF_YEARLY
+  lease_terms:
+  - 12
+  tags:
+  - 押一付一
+  - 电梯房
+  - 高层视野
+  facilities:
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3021.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 3300 元以内、希望通勤方便和居住品质的租客。
+  description: '房间 203，位于天河公寓，广州天河区，地址在天河区科韵路附近。
+
+    月租 3100 元，支持MONTHLY、QUARTERLY、HALF_YEARLY，租期可选 12 个月。
+
+    户型 1室1厅1卫，面积 40 平方米，标签包括押一付一、电梯房、高层视野。
+
+    公寓配套包括独立卫浴、衣柜、书桌。
+
+    适合预算 3300 元以内、希望通勤方便和居住品质的租客。'
+- room_id: 3022
+  room_number: '205'
+  apartment_id: 2002
+  apartment_name: 珠江寓
+  city_name: 广州
+  district_name: 海珠区
+  address: 海珠区新港东路
+  rent: 2900
+  area: 50
+  layout: 2室1厅1卫
+  payment_types:
+  - QUARTERLY
+  lease_terms:
+  - 3
+  tags:
+  - 独立阳台
+  - 可做饭
+  - 养宠友好
+  - 短租可
+  facilities:
+  - 书桌
+  - 宽带
+  - 电视
+  - 抽油烟机
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3022.jpg
+  is_release: true
+  is_appointable: false
+  audience_summary: 适合预算 3100 元以内的安静学习环境租客。
+  description: '房间 205，位于珠江寓，广州海珠区，地址在海珠区新港东路。
+
+    月租 2900 元，支持QUARTERLY，租期可选 3 个月。
+
+    户型 2室1厅1卫，面积 50 平方米，标签包括独立阳台、可做饭、养宠友好、短租可。
+
+    公寓配套包括书桌、宽带、电视、抽油烟机。
+
+    适合预算 3100 元以内的安静学习环境租客。'
+- room_id: 3023
+  room_number: '207'
+  apartment_id: 2003
+  apartment_name: 越秀家园
+  city_name: 广州
+  district_name: 越秀区
+  address: 越秀区东风中路
+  rent: 2400
+  area: 55
+  layout: 2室1厅1卫
+  payment_types:
+  - HALF_YEARLY
+  - YEARLY
+  lease_terms:
+  - 6
+  tags:
+  - 短租可
+  - 长租优惠
+  - 商圈附近
+  - 通勤方便
+  - 配套齐全
+  facilities:
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  - 茶几
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3023.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合追求生活便利和性价比高的年轻上班族。
+  description: '房间 207，位于越秀家园，广州越秀区，地址在越秀区东风中路。
+
+    月租 2400 元，支持HALF_YEARLY、YEARLY，租期可选 6 个月。
+
+    户型 2室1厅1卫，面积 55 平方米，标签包括短租可、长租优惠、商圈附近、通勤方便、配套齐全。
+
+    公寓配套包括电视、抽油烟机、燃气灶、沙发、茶几。
+
+    适合追求生活便利和性价比高的年轻上班族。'
+- room_id: 3024
+  room_number: '209'
+  apartment_id: 2004
+  apartment_name: 番禺青年社区
+  city_name: 广州
+  district_name: 番禺区
+  address: 番禺区市桥大北路
+  rent: 1700
+  area: 60
+  layout: 2室1厅1卫
+  payment_types:
+  - YEARLY
+  - MONTHLY
+  - QUARTERLY
+  lease_terms:
+  - 3
+  - 6
+  tags:
+  - 通勤方便
+  - 配套齐全
+  - 花园小区
+  - 智能门锁
+  - 楼下便利店
+  - 有车位
+  facilities:
+  - 燃气灶
+  - 沙发
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  - 空调
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3024.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 1900 元以内、注重居住品质的租客。
+  description: '房间 209，位于番禺青年社区，广州番禺区，地址在番禺区市桥大北路。
+
+    月租 1700 元，支持YEARLY、MONTHLY、QUARTERLY，租期可选 3、6 个月。
+
+    户型 2室1厅1卫，面积 60 平方米，标签包括通勤方便、配套齐全、花园小区、智能门锁、楼下便利店、有车位。
+
+    公寓配套包括燃气灶、沙发、茶几、床头柜、晾衣架、空调。
+
+    适合预算 1900 元以内、注重居住品质的租客。'
+- room_id: 3025
+  room_number: '211'
+  apartment_id: 2005
+  apartment_name: 白云阳光居
+  city_name: 广州
+  district_name: 白云区
+  address: 白云区嘉禾望岗
+  rent: 2000
+  area: 65
+  layout: 2室1厅1卫
+  payment_types:
+  - MONTHLY
+  lease_terms:
+  - 6
+  - 12
+  tags:
+  - 智能门锁
+  - 楼下便利店
+  - 有车位
+  facilities:
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  - 空调
+  - 洗衣机
+  - 热水器
+  - 电梯
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3025.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望空间宽敞、预算 2200 元以内的配套完善租客。
+  description: '房间 211，位于白云阳光居，广州白云区，地址在白云区嘉禾望岗。
+
+    月租 2000 元，支持MONTHLY，租期可选 6、12 个月。
+
+    户型 2室1厅1卫，面积 65 平方米，标签包括智能门锁、楼下便利店、有车位。
+
+    公寓配套包括茶几、床头柜、晾衣架、空调、洗衣机、热水器、电梯。
+
+    适合希望空间宽敞、预算 2200 元以内的配套完善租客。'
+- room_id: 3026
+  room_number: '213'
+  apartment_id: 2006
+  apartment_name: 南山科技园公寓
+  city_name: 深圳
+  district_name: 南山区
+  address: 南山区科技园科发路
+  rent: 4600
+  area: 70
+  layout: 2室2厅1卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  lease_terms:
+  - 3
+  - 6
+  - 12
+  tags:
+  - 独卫
+  - 朝南
+  - 朝北
+  - 安静
+  facilities:
+  - 晾衣架
+  - 空调
+  - 洗衣机
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3026.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 4800 元以内、希望性价比高和独立空间的租客。
+  description: '房间 213，位于南山科技园公寓，深圳南山区，地址在南山区科技园科发路。
+
+    月租 4600 元，支持QUARTERLY、HALF_YEARLY，租期可选 3、6、12 个月。
+
+    户型 2室2厅1卫，面积 70 平方米，标签包括独卫、朝南、朝北、安静。
+
+    公寓配套包括晾衣架、空调、洗衣机。
+
+    适合预算 4800 元以内、希望性价比高和独立空间的租客。'
+- room_id: 3027
+  room_number: '215'
+  apartment_id: 2007
+  apartment_name: 福田中心寓
+  city_name: 深圳
+  district_name: 福田区
+  address: 福田区华强北路
+  rent: 4200
+  area: 75
+  layout: 2室2厅1卫
+  payment_types:
+  - HALF_YEARLY
+  - YEARLY
+  - MONTHLY
+  lease_terms:
+  - 3
+  - 12
+  tags:
+  - 安静
+  - 近地铁
+  - 适合备考
+  - 新装修
+  - 采光好
+  facilities:
+  - 洗衣机
+  - 热水器
+  - 电梯
+  - 冰箱
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3027.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 4400 元以内的交通便利租客。
+  description: '房间 215，位于福田中心寓，深圳福田区，地址在福田区华强北路。
+
+    月租 4200 元，支持HALF_YEARLY、YEARLY、MONTHLY，租期可选 3、12 个月。
+
+    户型 2室2厅1卫，面积 75 平方米，标签包括安静、近地铁、适合备考、新装修、采光好。
+
+    公寓配套包括洗衣机、热水器、电梯、冰箱。
+
+    适合预算 4400 元以内的交通便利租客。'
+- room_id: 3028
+  room_number: '217'
+  apartment_id: 2008
+  apartment_name: 宝安青年汇
+  city_name: 深圳
+  district_name: 宝安区
+  address: 宝安区西乡街道
+  rent: 2800
+  area: 80
+  layout: 3室1厅1卫
+  payment_types:
+  - YEARLY
+  lease_terms:
+  - 12
+  tags:
+  - 新装修
+  - 采光好
+  - 拎包入住
+  - 可月付
+  - 押一付一
+  - 电梯房
+  facilities:
+  - 电梯
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3028.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合追求配套完善和通勤方便的年轻上班族。
+  description: '房间 217，位于宝安青年汇，深圳宝安区，地址在宝安区西乡街道。
+
+    月租 2800 元，支持YEARLY，租期可选 12 个月。
+
+    户型 3室1厅1卫，面积 80 平方米，标签包括新装修、采光好、拎包入住、可月付、押一付一、电梯房。
+
+    公寓配套包括电梯、冰箱、微波炉、独立卫浴、衣柜。
+
+    适合追求配套完善和通勤方便的年轻上班族。'
+- room_id: 3029
+  room_number: '219'
+  apartment_id: 2009
+  apartment_name: 龙华乐活居
+  city_name: 深圳
+  district_name: 龙华区
+  address: 龙华区民治街道
+  rent: 2500
+  area: 90
+  layout: 3室2厅1卫
+  payment_types:
+  - MONTHLY
+  - QUARTERLY
+  lease_terms:
+  - 3
+  tags:
+  - 可月付
+  - 押一付一
+  - 电梯房
+  facilities:
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  - 宽带
+  - 电视
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3029.jpg
+  is_release: true
+  is_appointable: false
+  audience_summary: 适合预算 2700 元以内、注重独立空间的租客。
+  description: '房间 219，位于龙华乐活居，深圳龙华区，地址在龙华区民治街道。
+
+    月租 2500 元，支持MONTHLY、QUARTERLY，租期可选 3 个月。
+
+    户型 3室2厅1卫，面积 90 平方米，标签包括可月付、押一付一、电梯房。
+
+    公寓配套包括微波炉、独立卫浴、衣柜、书桌、宽带、电视。
+
+    适合预算 2700 元以内、注重独立空间的租客。'
+- room_id: 3030
+  room_number: '221'
+  apartment_id: 2010
+  apartment_name: 罗湖东门寓
+  city_name: 深圳
+  district_name: 罗湖区
+  address: 罗湖区东门南路
+  rent: 2800
+  area: 100
+  layout: 3室2厅2卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  - YEARLY
+  lease_terms:
+  - 6
+  tags:
+  - 高层视野
+  - 独立阳台
+  - 可做饭
+  - 养宠友好
+  facilities:
+  - 衣柜
+  - 书桌
+  - 宽带
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3030.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望采光通风好、预算 3000 元以内的生活便利租客。
+  description: '房间 221，位于罗湖东门寓，深圳罗湖区，地址在罗湖区东门南路。
+
+    月租 2800 元，支持QUARTERLY、HALF_YEARLY、YEARLY，租期可选 6 个月。
+
+    户型 3室2厅2卫，面积 100 平方米，标签包括高层视野、独立阳台、可做饭、养宠友好。
+
+    公寓配套包括衣柜、书桌、宽带、电视、抽油烟机、燃气灶、沙发。
+
+    适合希望采光通风好、预算 3000 元以内的生活便利租客。'
+- room_id: 3031
+  room_number: '213'
+  apartment_id: 2011
+  apartment_name: 天河智慧城公寓
+  city_name: 广州
+  district_name: 天河区
+  address: 天河区高唐路
+  rent: 3400
+  area: 20
+  layout: 1室1卫
+  payment_types:
+  - HALF_YEARLY
+  lease_terms:
+  - 3
+  - 6
+  tags:
+  - 养宠友好
+  - 短租可
+  - 长租优惠
+  - 商圈附近
+  - 通勤方便
+  facilities:
+  - 宽带
+  - 电视
+  - 抽油烟机
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3031.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 3600 元以内、希望通勤方便和居住品质的租客。
+  description: '房间 213，位于天河智慧城公寓，广州天河区，地址在天河区高唐路。
+
+    月租 3400 元，支持HALF_YEARLY，租期可选 3、6 个月。
+
+    户型 1室1卫，面积 20 平方米，标签包括养宠友好、短租可、长租优惠、商圈附近、通勤方便。
+
+    公寓配套包括宽带、电视、抽油烟机。
+
+    适合预算 3600 元以内、希望通勤方便和居住品质的租客。'
+- room_id: 3032
+  room_number: '215'
+  apartment_id: 2012
+  apartment_name: 海珠江景寓
+  city_name: 广州
+  district_name: 海珠区
+  address: 海珠区滨江东路
+  rent: 3800
+  area: 25
+  layout: 1室1卫
+  payment_types:
+  - YEARLY
+  - MONTHLY
+  lease_terms:
+  - 6
+  - 12
+  tags:
+  - 商圈附近
+  - 通勤方便
+  - 配套齐全
+  - 花园小区
+  - 智能门锁
+  - 楼下便利店
+  facilities:
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  - 茶几
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3032.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 4000 元以内的安静学习环境租客。
+  description: '房间 215，位于海珠江景寓，广州海珠区，地址在海珠区滨江东路。
+
+    月租 3800 元，支持YEARLY、MONTHLY，租期可选 6、12 个月。
+
+    户型 1室1卫，面积 25 平方米，标签包括商圈附近、通勤方便、配套齐全、花园小区、智能门锁、楼下便利店。
+
+    公寓配套包括抽油烟机、燃气灶、沙发、茶几。
+
+    适合预算 4000 元以内的安静学习环境租客。'
+- room_id: 3033
+  room_number: '217'
+  apartment_id: 2013
+  apartment_name: 番禺万博公寓
+  city_name: 广州
+  district_name: 番禺区
+  address: 番禺区万博翠湖
+  rent: 2300
+  area: 28
+  layout: 1室1卫
+  payment_types:
+  - MONTHLY
+  - QUARTERLY
+  - HALF_YEARLY
+  lease_terms:
+  - 3
+  - 6
+  - 12
+  tags:
+  - 花园小区
+  - 智能门锁
+  - 楼下便利店
+  facilities:
+  - 沙发
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  - 空调
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3033.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合追求生活便利和性价比高的年轻上班族。
+  description: '房间 217，位于番禺万博公寓，广州番禺区，地址在番禺区万博翠湖。
+
+    月租 2300 元，支持MONTHLY、QUARTERLY、HALF_YEARLY，租期可选 3、6、12 个月。
+
+    户型 1室1卫，面积 28 平方米，标签包括花园小区、智能门锁、楼下便利店。
+
+    公寓配套包括沙发、茶几、床头柜、晾衣架、空调。
+
+    适合追求生活便利和性价比高的年轻上班族。'
+- room_id: 3034
+  room_number: '219'
+  apartment_id: 2014
+  apartment_name: 白云嘉禾寓
+  city_name: 广州
+  district_name: 白云区
+  address: 白云区嘉禾望岗大道
+  rent: 2100
+  area: 30
+  layout: 1室1厅1卫
+  payment_types:
+  - QUARTERLY
+  lease_terms:
+  - 3
+  - 12
+  tags:
+  - 有车位
+  - 独卫
+  - 朝南
+  - 朝北
+  facilities:
+  - 床头柜
+  - 晾衣架
+  - 空调
+  - 洗衣机
+  - 热水器
+  - 电梯
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3034.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 2300 元以内、注重居住品质的租客。
+  description: '房间 219，位于白云嘉禾寓，广州白云区，地址在白云区嘉禾望岗大道。
+
+    月租 2100 元，支持QUARTERLY，租期可选 3、12 个月。
+
+    户型 1室1厅1卫，面积 30 平方米，标签包括有车位、独卫、朝南、朝北。
+
+    公寓配套包括床头柜、晾衣架、空调、洗衣机、热水器、电梯。
+
+    适合预算 2300 元以内、注重居住品质的租客。'
+- room_id: 3035
+  room_number: '221'
+  apartment_id: 2015
+  apartment_name: 越秀淘金居
+  city_name: 广州
+  district_name: 越秀区
+  address: 越秀区淘金路
+  rent: 3400
+  area: 35
+  layout: 1室1厅1卫
+  payment_types:
+  - HALF_YEARLY
+  - YEARLY
+  lease_terms:
+  - 12
+  tags:
+  - 朝北
+  - 安静
+  - 近地铁
+  - 适合备考
+  - 新装修
+  facilities:
+  - 空调
+  - 洗衣机
+  - 热水器
+  - 电梯
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3035.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望空间宽敞、预算 3600 元以内的配套完善租客。
+  description: '房间 221，位于越秀淘金居，广州越秀区，地址在越秀区淘金路。
+
+    月租 3400 元，支持HALF_YEARLY、YEARLY，租期可选 12 个月。
+
+    户型 1室1厅1卫，面积 35 平方米，标签包括朝北、安静、近地铁、适合备考、新装修。
+
+    公寓配套包括空调、洗衣机、热水器、电梯、冰箱、微波炉、独立卫浴。
+
+    适合希望空间宽敞、预算 3600 元以内的配套完善租客。'
+- room_id: 3036
+  room_number: '223'
+  apartment_id: 2016
+  apartment_name: 南山蛇口寓
+  city_name: 深圳
+  district_name: 南山区
+  address: 南山区蛇口工业区
+  rent: 3900
+  area: 40
+  layout: 1室1厅1卫
+  payment_types:
+  - YEARLY
+  - MONTHLY
+  - QUARTERLY
+  lease_terms:
+  - 3
+  tags:
+  - 适合备考
+  - 新装修
+  - 采光好
+  - 拎包入住
+  - 可月付
+  - 押一付一
+  facilities:
+  - 热水器
+  - 电梯
+  - 冰箱
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3036.jpg
+  is_release: true
+  is_appointable: false
+  audience_summary: 适合预算 4100 元以内、希望性价比高和独立空间的租客。
+  description: '房间 223，位于南山蛇口寓，深圳南山区，地址在南山区蛇口工业区。
+
+    月租 3900 元，支持YEARLY、MONTHLY、QUARTERLY，租期可选 3 个月。
+
+    户型 1室1厅1卫，面积 40 平方米，标签包括适合备考、新装修、采光好、拎包入住、可月付、押一付一。
+
+    公寓配套包括热水器、电梯、冰箱。
+
+    适合预算 4100 元以内、希望性价比高和独立空间的租客。'
+- room_id: 3037
+  room_number: '225'
+  apartment_id: 2017
+  apartment_name: 龙岗坂田公寓
+  city_name: 深圳
+  district_name: 龙岗区
+  address: 龙岗区坂田街道
+  rent: 2000
+  area: 50
+  layout: 2室1厅1卫
+  payment_types:
+  - MONTHLY
+  lease_terms:
+  - 6
+  tags:
+  - 拎包入住
+  - 可月付
+  - 押一付一
+  facilities:
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3037.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 2200 元以内的交通便利租客。
+  description: '房间 225，位于龙岗坂田公寓，深圳龙岗区，地址在龙岗区坂田街道。
+
+    月租 2000 元，支持MONTHLY，租期可选 6 个月。
+
+    户型 2室1厅1卫，面积 50 平方米，标签包括拎包入住、可月付、押一付一。
+
+    公寓配套包括冰箱、微波炉、独立卫浴、衣柜。
+
+    适合预算 2200 元以内的交通便利租客。'
+- room_id: 3038
+  room_number: '227'
+  apartment_id: 2018
+  apartment_name: 宝安固戍寓
+  city_name: 深圳
+  district_name: 宝安区
+  address: 宝安区固戍二路
+  rent: 2000
+  area: 55
+  layout: 2室1厅1卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  lease_terms:
+  - 3
+  - 6
+  tags:
+  - 电梯房
+  - 高层视野
+  - 独立阳台
+  - 可做饭
+  facilities:
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  - 宽带
+  - 电视
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3038.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合追求配套完善和通勤方便的年轻上班族。
+  description: '房间 227，位于宝安固戍寓，深圳宝安区，地址在宝安区固戍二路。
+
+    月租 2000 元，支持QUARTERLY、HALF_YEARLY，租期可选 3、6 个月。
+
+    户型 2室1厅1卫，面积 55 平方米，标签包括电梯房、高层视野、独立阳台、可做饭。
+
+    公寓配套包括独立卫浴、衣柜、书桌、宽带、电视。
+
+    适合追求配套完善和通勤方便的年轻上班族。'
+- room_id: 3039
+  room_number: '229'
+  apartment_id: 2019
+  apartment_name: 龙华清湖居
+  city_name: 深圳
+  district_name: 龙华区
+  address: 龙华区清湖路
+  rent: 2600
+  area: 60
+  layout: 2室1厅1卫
+  payment_types:
+  - HALF_YEARLY
+  - YEARLY
+  - MONTHLY
+  lease_terms:
+  - 6
+  - 12
+  tags:
+  - 可做饭
+  - 养宠友好
+  - 短租可
+  - 长租优惠
+  - 商圈附近
+  facilities:
+  - 书桌
+  - 宽带
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3039.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 2800 元以内、注重独立空间的租客。
+  description: '房间 229，位于龙华清湖居，深圳龙华区，地址在龙华区清湖路。
+
+    月租 2600 元，支持HALF_YEARLY、YEARLY、MONTHLY，租期可选 6、12 个月。
+
+    户型 2室1厅1卫，面积 60 平方米，标签包括可做饭、养宠友好、短租可、长租优惠、商圈附近。
+
+    公寓配套包括书桌、宽带、电视、抽油烟机、燃气灶、沙发。
+
+    适合预算 2800 元以内、注重独立空间的租客。'
+- room_id: 3040
+  room_number: '231'
+  apartment_id: 2020
+  apartment_name: 福田景田寓
+  city_name: 深圳
+  district_name: 福田区
+  address: 福田区景田东路
+  rent: 3900
+  area: 65
+  layout: 2室1厅1卫
+  payment_types:
+  - YEARLY
+  lease_terms:
+  - 3
+  - 6
+  - 12
+  tags:
+  - 长租优惠
+  - 商圈附近
+  - 通勤方便
+  - 配套齐全
+  - 花园小区
+  - 智能门锁
+  facilities:
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3040.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望采光通风好、预算 4100 元以内的生活便利租客。
+  description: '房间 231，位于福田景田寓，深圳福田区，地址在福田区景田东路。
+
+    月租 3900 元，支持YEARLY，租期可选 3、6、12 个月。
+
+    户型 2室1厅1卫，面积 65 平方米，标签包括长租优惠、商圈附近、通勤方便、配套齐全、花园小区、智能门锁。
+
+    公寓配套包括电视、抽油烟机、燃气灶、沙发、茶几、床头柜、晾衣架。
+
+    适合希望采光通风好、预算 4100 元以内的生活便利租客。'
+- room_id: 3041
+  room_number: '303'
+  apartment_id: 2001
+  apartment_name: 天河公寓
+  city_name: 广州
+  district_name: 天河区
+  address: 天河区科韵路附近
+  rent: 3000
+  area: 70
+  layout: 2室2厅1卫
+  payment_types:
+  - MONTHLY
+  - QUARTERLY
+  lease_terms:
+  - 3
+  - 12
+  tags:
+  - 配套齐全
+  - 花园小区
+  - 智能门锁
+  facilities:
+  - 燃气灶
+  - 沙发
+  - 茶几
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3041.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 3200 元以内、希望通勤方便和居住品质的租客。
+  description: '房间 303，位于天河公寓，广州天河区，地址在天河区科韵路附近。
+
+    月租 3000 元，支持MONTHLY、QUARTERLY，租期可选 3、12 个月。
+
+    户型 2室2厅1卫，面积 70 平方米，标签包括配套齐全、花园小区、智能门锁。
+
+    公寓配套包括燃气灶、沙发、茶几。
+
+    适合预算 3200 元以内、希望通勤方便和居住品质的租客。'
+- room_id: 3042
+  room_number: '305'
+  apartment_id: 2002
+  apartment_name: 珠江寓
+  city_name: 广州
+  district_name: 海珠区
+  address: 海珠区新港东路
+  rent: 3500
+  area: 75
+  layout: 2室2厅1卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  - YEARLY
+  lease_terms:
+  - 12
+  tags:
+  - 楼下便利店
+  - 有车位
+  - 独卫
+  - 朝南
+  facilities:
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  - 空调
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3042.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 3700 元以内的安静学习环境租客。
+  description: '房间 305，位于珠江寓，广州海珠区，地址在海珠区新港东路。
+
+    月租 3500 元，支持QUARTERLY、HALF_YEARLY、YEARLY，租期可选 12 个月。
+
+    户型 2室2厅1卫，面积 75 平方米，标签包括楼下便利店、有车位、独卫、朝南。
+
+    公寓配套包括茶几、床头柜、晾衣架、空调。
+
+    适合预算 3700 元以内的安静学习环境租客。'
+- room_id: 3043
+  room_number: '307'
+  apartment_id: 2003
+  apartment_name: 越秀家园
+  city_name: 广州
+  district_name: 越秀区
+  address: 越秀区东风中路
+  rent: 2300
+  area: 80
+  layout: 3室1厅1卫
+  payment_types:
+  - HALF_YEARLY
+  lease_terms:
+  - 3
+  tags:
+  - 朝南
+  - 朝北
+  - 安静
+  - 近地铁
+  - 适合备考
+  facilities:
+  - 晾衣架
+  - 空调
+  - 洗衣机
+  - 热水器
+  - 电梯
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3043.jpg
+  is_release: true
+  is_appointable: false
+  audience_summary: 适合追求生活便利和性价比高的年轻上班族。
+  description: '房间 307，位于越秀家园，广州越秀区，地址在越秀区东风中路。
+
+    月租 2300 元，支持HALF_YEARLY，租期可选 3 个月。
+
+    户型 3室1厅1卫，面积 80 平方米，标签包括朝南、朝北、安静、近地铁、适合备考。
+
+    公寓配套包括晾衣架、空调、洗衣机、热水器、电梯。
+
+    适合追求生活便利和性价比高的年轻上班族。'
+- room_id: 3044
+  room_number: '309'
+  apartment_id: 2004
+  apartment_name: 番禺青年社区
+  city_name: 广州
+  district_name: 番禺区
+  address: 番禺区市桥大北路
+  rent: 1600
+  area: 90
+  layout: 3室2厅1卫
+  payment_types:
+  - YEARLY
+  - MONTHLY
+  lease_terms:
+  - 6
+  tags:
+  - 近地铁
+  - 适合备考
+  - 新装修
+  - 采光好
+  - 拎包入住
+  - 可月付
+  facilities:
+  - 洗衣机
+  - 热水器
+  - 电梯
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3044.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 1800 元以内、注重居住品质的租客。
+  description: '房间 309，位于番禺青年社区，广州番禺区，地址在番禺区市桥大北路。
+
+    月租 1600 元，支持YEARLY、MONTHLY，租期可选 6 个月。
+
+    户型 3室2厅1卫，面积 90 平方米，标签包括近地铁、适合备考、新装修、采光好、拎包入住、可月付。
+
+    公寓配套包括洗衣机、热水器、电梯、冰箱、微波炉、独立卫浴。
+
+    适合预算 1800 元以内、注重居住品质的租客。'
+- room_id: 3045
+  room_number: '311'
+  apartment_id: 2005
+  apartment_name: 白云阳光居
+  city_name: 广州
+  district_name: 白云区
+  address: 白云区嘉禾望岗
+  rent: 1900
+  area: 100
+  layout: 3室2厅2卫
+  payment_types:
+  - MONTHLY
+  - QUARTERLY
+  - HALF_YEARLY
+  lease_terms:
+  - 3
+  - 6
+  tags:
+  - 采光好
+  - 拎包入住
+  - 可月付
+  facilities:
+  - 电梯
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  - 宽带
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3045.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望空间宽敞、预算 2100 元以内的配套完善租客。
+  description: '房间 311，位于白云阳光居，广州白云区，地址在白云区嘉禾望岗。
+
+    月租 1900 元，支持MONTHLY、QUARTERLY、HALF_YEARLY，租期可选 3、6 个月。
+
+    户型 3室2厅2卫，面积 100 平方米，标签包括采光好、拎包入住、可月付。
+
+    公寓配套包括电梯、冰箱、微波炉、独立卫浴、衣柜、书桌、宽带。
+
+    适合希望空间宽敞、预算 2100 元以内的配套完善租客。'
+- room_id: 3046
+  room_number: '313'
+  apartment_id: 2006
+  apartment_name: 南山科技园公寓
+  city_name: 深圳
+  district_name: 南山区
+  address: 南山区科技园科发路
+  rent: 4500
+  area: 20
+  layout: 1室1卫
+  payment_types:
+  - QUARTERLY
+  lease_terms:
+  - 6
+  - 12
+  tags:
+  - 押一付一
+  - 电梯房
+  - 高层视野
+  - 独立阳台
+  facilities:
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3046.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 4700 元以内、希望性价比高和独立空间的租客。
+  description: '房间 313，位于南山科技园公寓，深圳南山区，地址在南山区科技园科发路。
+
+    月租 4500 元，支持QUARTERLY，租期可选 6、12 个月。
+
+    户型 1室1卫，面积 20 平方米，标签包括押一付一、电梯房、高层视野、独立阳台。
+
+    公寓配套包括微波炉、独立卫浴、衣柜。
+
+    适合预算 4700 元以内、希望性价比高和独立空间的租客。'
+- room_id: 3047
+  room_number: '315'
+  apartment_id: 2007
+  apartment_name: 福田中心寓
+  city_name: 深圳
+  district_name: 福田区
+  address: 福田区华强北路
+  rent: 4100
+  area: 25
+  layout: 1室1卫
+  payment_types:
+  - HALF_YEARLY
+  - YEARLY
+  lease_terms:
+  - 3
+  - 6
+  - 12
+  tags:
+  - 独立阳台
+  - 可做饭
+  - 养宠友好
+  - 短租可
+  - 长租优惠
+  facilities:
+  - 衣柜
+  - 书桌
+  - 宽带
+  - 电视
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3047.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 4300 元以内的交通便利租客。
+  description: '房间 315，位于福田中心寓，深圳福田区，地址在福田区华强北路。
+
+    月租 4100 元，支持HALF_YEARLY、YEARLY，租期可选 3、6、12 个月。
+
+    户型 1室1卫，面积 25 平方米，标签包括独立阳台、可做饭、养宠友好、短租可、长租优惠。
+
+    公寓配套包括衣柜、书桌、宽带、电视。
+
+    适合预算 4300 元以内的交通便利租客。'
+- room_id: 3048
+  room_number: '317'
+  apartment_id: 2008
+  apartment_name: 宝安青年汇
+  city_name: 深圳
+  district_name: 宝安区
+  address: 宝安区西乡街道
+  rent: 2700
+  area: 28
+  layout: 1室1卫
+  payment_types:
+  - YEARLY
+  - MONTHLY
+  - QUARTERLY
+  lease_terms:
+  - 3
+  - 12
+  tags:
+  - 短租可
+  - 长租优惠
+  - 商圈附近
+  - 通勤方便
+  - 配套齐全
+  - 花园小区
+  facilities:
+  - 宽带
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3048.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合追求配套完善和通勤方便的年轻上班族。
+  description: '房间 317，位于宝安青年汇，深圳宝安区，地址在宝安区西乡街道。
+
+    月租 2700 元，支持YEARLY、MONTHLY、QUARTERLY，租期可选 3、12 个月。
+
+    户型 1室1卫，面积 28 平方米，标签包括短租可、长租优惠、商圈附近、通勤方便、配套齐全、花园小区。
+
+    公寓配套包括宽带、电视、抽油烟机、燃气灶、沙发。
+
+    适合追求配套完善和通勤方便的年轻上班族。'
+- room_id: 3049
+  room_number: '319'
+  apartment_id: 2009
+  apartment_name: 龙华乐活居
+  city_name: 深圳
+  district_name: 龙华区
+  address: 龙华区民治街道
+  rent: 3100
+  area: 30
+  layout: 1室1厅1卫
+  payment_types:
+  - MONTHLY
+  lease_terms:
+  - 12
+  tags:
+  - 通勤方便
+  - 配套齐全
+  - 花园小区
+  facilities:
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3049.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 3300 元以内、注重独立空间的租客。
+  description: '房间 319，位于龙华乐活居，深圳龙华区，地址在龙华区民治街道。
+
+    月租 3100 元，支持MONTHLY，租期可选 12 个月。
+
+    户型 1室1厅1卫，面积 30 平方米，标签包括通勤方便、配套齐全、花园小区。
+
+    公寓配套包括抽油烟机、燃气灶、沙发、茶几、床头柜、晾衣架。
+
+    适合预算 3300 元以内、注重独立空间的租客。'
+- room_id: 3050
+  room_number: '321'
+  apartment_id: 2010
+  apartment_name: 罗湖东门寓
+  city_name: 深圳
+  district_name: 罗湖区
+  address: 罗湖区东门南路
+  rent: 2700
+  area: 35
+  layout: 1室1厅1卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  lease_terms:
+  - 3
+  tags:
+  - 智能门锁
+  - 楼下便利店
+  - 有车位
+  - 独卫
+  facilities:
+  - 沙发
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  - 空调
+  - 洗衣机
+  - 热水器
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3050.jpg
+  is_release: true
+  is_appointable: false
+  audience_summary: 适合希望采光通风好、预算 2900 元以内的生活便利租客。
+  description: '房间 321，位于罗湖东门寓，深圳罗湖区，地址在罗湖区东门南路。
+
+    月租 2700 元，支持QUARTERLY、HALF_YEARLY，租期可选 3 个月。
+
+    户型 1室1厅1卫，面积 35 平方米，标签包括智能门锁、楼下便利店、有车位、独卫。
+
+    公寓配套包括沙发、茶几、床头柜、晾衣架、空调、洗衣机、热水器。
+
+    适合希望采光通风好、预算 2900 元以内的生活便利租客。'
+- room_id: 3051
+  room_number: '313'
+  apartment_id: 2011
+  apartment_name: 天河智慧城公寓
+  city_name: 广州
+  district_name: 天河区
+  address: 天河区高唐路
+  rent: 3300
+  area: 40
+  layout: 1室1厅1卫
+  payment_types:
+  - HALF_YEARLY
+  - YEARLY
+  - MONTHLY
+  lease_terms:
+  - 6
+  tags:
+  - 独卫
+  - 朝南
+  - 朝北
+  - 安静
+  - 近地铁
+  facilities:
+  - 床头柜
+  - 晾衣架
+  - 空调
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3051.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 3500 元以内、希望通勤方便和居住品质的租客。
+  description: '房间 313，位于天河智慧城公寓，广州天河区，地址在天河区高唐路。
+
+    月租 3300 元，支持HALF_YEARLY、YEARLY、MONTHLY，租期可选 6 个月。
+
+    户型 1室1厅1卫，面积 40 平方米，标签包括独卫、朝南、朝北、安静、近地铁。
+
+    公寓配套包括床头柜、晾衣架、空调。
+
+    适合预算 3500 元以内、希望通勤方便和居住品质的租客。'
+- room_id: 3052
+  room_number: '315'
+  apartment_id: 2012
+  apartment_name: 海珠江景寓
+  city_name: 广州
+  district_name: 海珠区
+  address: 海珠区滨江东路
+  rent: 3700
+  area: 50
+  layout: 2室1厅1卫
+  payment_types:
+  - YEARLY
+  lease_terms:
+  - 3
+  - 6
+  tags:
+  - 安静
+  - 近地铁
+  - 适合备考
+  - 新装修
+  - 采光好
+  - 拎包入住
+  facilities:
+  - 空调
+  - 洗衣机
+  - 热水器
+  - 电梯
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3052.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 3900 元以内的安静学习环境租客。
+  description: '房间 315，位于海珠江景寓，广州海珠区，地址在海珠区滨江东路。
+
+    月租 3700 元，支持YEARLY，租期可选 3、6 个月。
+
+    户型 2室1厅1卫，面积 50 平方米，标签包括安静、近地铁、适合备考、新装修、采光好、拎包入住。
+
+    公寓配套包括空调、洗衣机、热水器、电梯。
+
+    适合预算 3900 元以内的安静学习环境租客。'
+- room_id: 3053
+  room_number: '317'
+  apartment_id: 2013
+  apartment_name: 番禺万博公寓
+  city_name: 广州
+  district_name: 番禺区
+  address: 番禺区万博翠湖
+  rent: 2200
+  area: 55
+  layout: 2室1厅1卫
+  payment_types:
+  - MONTHLY
+  - QUARTERLY
+  lease_terms:
+  - 6
+  - 12
+  tags:
+  - 新装修
+  - 采光好
+  - 拎包入住
+  facilities:
+  - 热水器
+  - 电梯
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3053.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合追求生活便利和性价比高的年轻上班族。
+  description: '房间 317，位于番禺万博公寓，广州番禺区，地址在番禺区万博翠湖。
+
+    月租 2200 元，支持MONTHLY、QUARTERLY，租期可选 6、12 个月。
+
+    户型 2室1厅1卫，面积 55 平方米，标签包括新装修、采光好、拎包入住。
+
+    公寓配套包括热水器、电梯、冰箱、微波炉、独立卫浴。
+
+    适合追求生活便利和性价比高的年轻上班族。'
+- room_id: 3054
+  room_number: '319'
+  apartment_id: 2014
+  apartment_name: 白云嘉禾寓
+  city_name: 广州
+  district_name: 白云区
+  address: 白云区嘉禾望岗大道
+  rent: 2000
+  area: 60
+  layout: 2室1厅1卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  - YEARLY
+  lease_terms:
+  - 3
+  - 6
+  - 12
+  tags:
+  - 可月付
+  - 押一付一
+  - 电梯房
+  - 高层视野
+  facilities:
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  - 宽带
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3054.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 2200 元以内、注重居住品质的租客。
+  description: '房间 319，位于白云嘉禾寓，广州白云区，地址在白云区嘉禾望岗大道。
+
+    月租 2000 元，支持QUARTERLY、HALF_YEARLY、YEARLY，租期可选 3、6、12 个月。
+
+    户型 2室1厅1卫，面积 60 平方米，标签包括可月付、押一付一、电梯房、高层视野。
+
+    公寓配套包括冰箱、微波炉、独立卫浴、衣柜、书桌、宽带。
+
+    适合预算 2200 元以内、注重居住品质的租客。'
+- room_id: 3055
+  room_number: '321'
+  apartment_id: 2015
+  apartment_name: 越秀淘金居
+  city_name: 广州
+  district_name: 越秀区
+  address: 越秀区淘金路
+  rent: 3300
+  area: 65
+  layout: 2室1厅1卫
+  payment_types:
+  - HALF_YEARLY
+  lease_terms:
+  - 3
+  - 12
+  tags:
+  - 高层视野
+  - 独立阳台
+  - 可做饭
+  - 养宠友好
+  - 短租可
+  facilities:
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  - 宽带
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3055.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望空间宽敞、预算 3500 元以内的配套完善租客。
+  description: '房间 321，位于越秀淘金居，广州越秀区，地址在越秀区淘金路。
+
+    月租 3300 元，支持HALF_YEARLY，租期可选 3、12 个月。
+
+    户型 2室1厅1卫，面积 65 平方米，标签包括高层视野、独立阳台、可做饭、养宠友好、短租可。
+
+    公寓配套包括独立卫浴、衣柜、书桌、宽带、电视、抽油烟机、燃气灶。
+
+    适合希望空间宽敞、预算 3500 元以内的配套完善租客。'
+- room_id: 3056
+  room_number: '323'
+  apartment_id: 2016
+  apartment_name: 南山蛇口寓
+  city_name: 深圳
+  district_name: 南山区
+  address: 南山区蛇口工业区
+  rent: 4500
+  area: 70
+  layout: 2室2厅1卫
+  payment_types:
+  - YEARLY
+  - MONTHLY
+  lease_terms:
+  - 12
+  tags:
+  - 养宠友好
+  - 短租可
+  - 长租优惠
+  - 商圈附近
+  - 通勤方便
+  - 配套齐全
+  facilities:
+  - 书桌
+  - 宽带
+  - 电视
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3056.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 4700 元以内、希望性价比高和独立空间的租客。
+  description: '房间 323，位于南山蛇口寓，深圳南山区，地址在南山区蛇口工业区。
+
+    月租 4500 元，支持YEARLY、MONTHLY，租期可选 12 个月。
+
+    户型 2室2厅1卫，面积 70 平方米，标签包括养宠友好、短租可、长租优惠、商圈附近、通勤方便、配套齐全。
+
+    公寓配套包括书桌、宽带、电视。
+
+    适合预算 4700 元以内、希望性价比高和独立空间的租客。'
+- room_id: 3057
+  room_number: '325'
+  apartment_id: 2017
+  apartment_name: 龙岗坂田公寓
+  city_name: 深圳
+  district_name: 龙岗区
+  address: 龙岗区坂田街道
+  rent: 1900
+  area: 75
+  layout: 2室2厅1卫
+  payment_types:
+  - MONTHLY
+  - QUARTERLY
+  - HALF_YEARLY
+  lease_terms:
+  - 3
+  tags:
+  - 商圈附近
+  - 通勤方便
+  - 配套齐全
+  facilities:
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3057.jpg
+  is_release: true
+  is_appointable: false
+  audience_summary: 适合预算 2100 元以内的交通便利租客。
+  description: '房间 325，位于龙岗坂田公寓，深圳龙岗区，地址在龙岗区坂田街道。
+
+    月租 1900 元，支持MONTHLY、QUARTERLY、HALF_YEARLY，租期可选 3 个月。
+
+    户型 2室2厅1卫，面积 75 平方米，标签包括商圈附近、通勤方便、配套齐全。
+
+    公寓配套包括电视、抽油烟机、燃气灶、沙发。
+
+    适合预算 2100 元以内的交通便利租客。'
+- room_id: 3058
+  room_number: '327'
+  apartment_id: 2018
+  apartment_name: 宝安固戍寓
+  city_name: 深圳
+  district_name: 宝安区
+  address: 宝安区固戍二路
+  rent: 1900
+  area: 80
+  layout: 3室1厅1卫
+  payment_types:
+  - QUARTERLY
+  lease_terms:
+  - 6
+  tags:
+  - 花园小区
+  - 智能门锁
+  - 楼下便利店
+  - 有车位
+  facilities:
+  - 燃气灶
+  - 沙发
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3058.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合追求配套完善和通勤方便的年轻上班族。
+  description: '房间 327，位于宝安固戍寓，深圳宝安区，地址在宝安区固戍二路。
+
+    月租 1900 元，支持QUARTERLY，租期可选 6 个月。
+
+    户型 3室1厅1卫，面积 80 平方米，标签包括花园小区、智能门锁、楼下便利店、有车位。
+
+    公寓配套包括燃气灶、沙发、茶几、床头柜、晾衣架。
+
+    适合追求配套完善和通勤方便的年轻上班族。'
+- room_id: 3059
+  room_number: '329'
+  apartment_id: 2019
+  apartment_name: 龙华清湖居
+  city_name: 深圳
+  district_name: 龙华区
+  address: 龙华区清湖路
+  rent: 2500
+  area: 90
+  layout: 3室2厅1卫
+  payment_types:
+  - HALF_YEARLY
+  - YEARLY
+  lease_terms:
+  - 3
+  - 6
+  tags:
+  - 有车位
+  - 独卫
+  - 朝南
+  - 朝北
+  - 安静
+  facilities:
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  - 空调
+  - 洗衣机
+  - 热水器
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3059.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 2700 元以内、注重独立空间的租客。
+  description: '房间 329，位于龙华清湖居，深圳龙华区，地址在龙华区清湖路。
+
+    月租 2500 元，支持HALF_YEARLY、YEARLY，租期可选 3、6 个月。
+
+    户型 3室2厅1卫，面积 90 平方米，标签包括有车位、独卫、朝南、朝北、安静。
+
+    公寓配套包括茶几、床头柜、晾衣架、空调、洗衣机、热水器。
+
+    适合预算 2700 元以内、注重独立空间的租客。'
+- room_id: 3060
+  room_number: '331'
+  apartment_id: 2020
+  apartment_name: 福田景田寓
+  city_name: 深圳
+  district_name: 福田区
+  address: 福田区景田东路
+  rent: 3800
+  area: 100
+  layout: 3室2厅2卫
+  payment_types:
+  - YEARLY
+  - MONTHLY
+  - QUARTERLY
+  lease_terms:
+  - 6
+  - 12
+  tags:
+  - 朝北
+  - 安静
+  - 近地铁
+  - 适合备考
+  - 新装修
+  - 采光好
+  facilities:
+  - 晾衣架
+  - 空调
+  - 洗衣机
+  - 热水器
+  - 电梯
+  - 冰箱
+  - 微波炉
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3060.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望采光通风好、预算 4000 元以内的生活便利租客。
+  description: '房间 331，位于福田景田寓，深圳福田区，地址在福田区景田东路。
+
+    月租 3800 元，支持YEARLY、MONTHLY、QUARTERLY，租期可选 6、12 个月。
+
+    户型 3室2厅2卫，面积 100 平方米，标签包括朝北、安静、近地铁、适合备考、新装修、采光好。
+
+    公寓配套包括晾衣架、空调、洗衣机、热水器、电梯、冰箱、微波炉。
+
+    适合希望采光通风好、预算 4000 元以内的生活便利租客。'
+- room_id: 3061
+  room_number: '403'
+  apartment_id: 2001
+  apartment_name: 天河公寓
+  city_name: 广州
+  district_name: 天河区
+  address: 天河区科韵路附近
+  rent: 2900
+  area: 20
+  layout: 1室1卫
+  payment_types:
+  - MONTHLY
+  lease_terms:
+  - 3
+  - 6
+  - 12
+  tags:
+  - 适合备考
+  - 新装修
+  - 采光好
+  facilities:
+  - 洗衣机
+  - 热水器
+  - 电梯
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3061.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 3100 元以内、希望通勤方便和居住品质的租客。
+  description: '房间 403，位于天河公寓，广州天河区，地址在天河区科韵路附近。
+
+    月租 2900 元，支持MONTHLY，租期可选 3、6、12 个月。
+
+    户型 1室1卫，面积 20 平方米，标签包括适合备考、新装修、采光好。
+
+    公寓配套包括洗衣机、热水器、电梯。
+
+    适合预算 3100 元以内、希望通勤方便和居住品质的租客。'
+- room_id: 3062
+  room_number: '405'
+  apartment_id: 2002
+  apartment_name: 珠江寓
+  city_name: 广州
+  district_name: 海珠区
+  address: 海珠区新港东路
+  rent: 3400
+  area: 25
+  layout: 1室1卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  lease_terms:
+  - 3
+  - 12
+  tags:
+  - 拎包入住
+  - 可月付
+  - 押一付一
+  - 电梯房
+  facilities:
+  - 电梯
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3062.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 3600 元以内的安静学习环境租客。
+  description: '房间 405，位于珠江寓，广州海珠区，地址在海珠区新港东路。
+
+    月租 3400 元，支持QUARTERLY、HALF_YEARLY，租期可选 3、12 个月。
+
+    户型 1室1卫，面积 25 平方米，标签包括拎包入住、可月付、押一付一、电梯房。
+
+    公寓配套包括电梯、冰箱、微波炉、独立卫浴。
+
+    适合预算 3600 元以内的安静学习环境租客。'
+- room_id: 3063
+  room_number: '407'
+  apartment_id: 2003
+  apartment_name: 越秀家园
+  city_name: 广州
+  district_name: 越秀区
+  address: 越秀区东风中路
+  rent: 2900
+  area: 28
+  layout: 1室1卫
+  payment_types:
+  - HALF_YEARLY
+  - YEARLY
+  - MONTHLY
+  lease_terms:
+  - 12
+  tags:
+  - 电梯房
+  - 高层视野
+  - 独立阳台
+  - 可做饭
+  - 养宠友好
+  facilities:
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  - 宽带
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3063.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合追求生活便利和性价比高的年轻上班族。
+  description: '房间 407，位于越秀家园，广州越秀区，地址在越秀区东风中路。
+
+    月租 2900 元，支持HALF_YEARLY、YEARLY、MONTHLY，租期可选 12 个月。
+
+    户型 1室1卫，面积 28 平方米，标签包括电梯房、高层视野、独立阳台、可做饭、养宠友好。
+
+    公寓配套包括微波炉、独立卫浴、衣柜、书桌、宽带。
+
+    适合追求生活便利和性价比高的年轻上班族。'
+- room_id: 3064
+  room_number: '409'
+  apartment_id: 2004
+  apartment_name: 番禺青年社区
+  city_name: 广州
+  district_name: 番禺区
+  address: 番禺区市桥大北路
+  rent: 1500
+  area: 30
+  layout: 1室1厅1卫
+  payment_types:
+  - YEARLY
+  lease_terms:
+  - 3
+  tags:
+  - 可做饭
+  - 养宠友好
+  - 短租可
+  - 长租优惠
+  - 商圈附近
+  - 通勤方便
+  facilities:
+  - 衣柜
+  - 书桌
+  - 宽带
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3064.jpg
+  is_release: true
+  is_appointable: false
+  audience_summary: 适合预算 1700 元以内、注重居住品质的租客。
+  description: '房间 409，位于番禺青年社区，广州番禺区，地址在番禺区市桥大北路。
+
+    月租 1500 元，支持YEARLY，租期可选 3 个月。
+
+    户型 1室1厅1卫，面积 30 平方米，标签包括可做饭、养宠友好、短租可、长租优惠、商圈附近、通勤方便。
+
+    公寓配套包括衣柜、书桌、宽带、电视、抽油烟机、燃气灶。
+
+    适合预算 1700 元以内、注重居住品质的租客。'
+- room_id: 3065
+  room_number: '411'
+  apartment_id: 2005
+  apartment_name: 白云阳光居
+  city_name: 广州
+  district_name: 白云区
+  address: 白云区嘉禾望岗
+  rent: 1800
+  area: 35
+  layout: 1室1厅1卫
+  payment_types:
+  - MONTHLY
+  - QUARTERLY
+  lease_terms:
+  - 6
+  tags:
+  - 长租优惠
+  - 商圈附近
+  - 通勤方便
+  facilities:
+  - 宽带
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  - 茶几
+  - 床头柜
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3065.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望空间宽敞、预算 2000 元以内的配套完善租客。
+  description: '房间 411，位于白云阳光居，广州白云区，地址在白云区嘉禾望岗。
+
+    月租 1800 元，支持MONTHLY、QUARTERLY，租期可选 6 个月。
+
+    户型 1室1厅1卫，面积 35 平方米，标签包括长租优惠、商圈附近、通勤方便。
+
+    公寓配套包括宽带、电视、抽油烟机、燃气灶、沙发、茶几、床头柜。
+
+    适合希望空间宽敞、预算 2000 元以内的配套完善租客。'
+- room_id: 3066
+  room_number: '413'
+  apartment_id: 2006
+  apartment_name: 南山科技园公寓
+  city_name: 深圳
+  district_name: 南山区
+  address: 南山区科技园科发路
+  rent: 4400
+  area: 40
+  layout: 1室1厅1卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  - YEARLY
+  lease_terms:
+  - 3
+  - 6
+  tags:
+  - 配套齐全
+  - 花园小区
+  - 智能门锁
+  - 楼下便利店
+  facilities:
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3066.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 4600 元以内、希望性价比高和独立空间的租客。
+  description: '房间 413，位于南山科技园公寓，深圳南山区，地址在南山区科技园科发路。
+
+    月租 4400 元，支持QUARTERLY、HALF_YEARLY、YEARLY，租期可选 3、6 个月。
+
+    户型 1室1厅1卫，面积 40 平方米，标签包括配套齐全、花园小区、智能门锁、楼下便利店。
+
+    公寓配套包括抽油烟机、燃气灶、沙发。
+
+    适合预算 4600 元以内、希望性价比高和独立空间的租客。'
+- room_id: 3067
+  room_number: '415'
+  apartment_id: 2007
+  apartment_name: 福田中心寓
+  city_name: 深圳
+  district_name: 福田区
+  address: 福田区华强北路
+  rent: 4000
+  area: 50
+  layout: 2室1厅1卫
+  payment_types:
+  - HALF_YEARLY
+  lease_terms:
+  - 6
+  - 12
+  tags:
+  - 楼下便利店
+  - 有车位
+  - 独卫
+  - 朝南
+  - 朝北
+  facilities:
+  - 沙发
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3067.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 4200 元以内的交通便利租客。
+  description: '房间 415，位于福田中心寓，深圳福田区，地址在福田区华强北路。
+
+    月租 4000 元，支持HALF_YEARLY，租期可选 6、12 个月。
+
+    户型 2室1厅1卫，面积 50 平方米，标签包括楼下便利店、有车位、独卫、朝南、朝北。
+
+    公寓配套包括沙发、茶几、床头柜、晾衣架。
+
+    适合预算 4200 元以内的交通便利租客。'
+- room_id: 3068
+  room_number: '417'
+  apartment_id: 2008
+  apartment_name: 宝安青年汇
+  city_name: 深圳
+  district_name: 宝安区
+  address: 宝安区西乡街道
+  rent: 2600
+  area: 55
+  layout: 2室1厅1卫
+  payment_types:
+  - YEARLY
+  - MONTHLY
+  lease_terms:
+  - 3
+  - 6
+  - 12
+  tags:
+  - 朝南
+  - 朝北
+  - 安静
+  - 近地铁
+  - 适合备考
+  - 新装修
+  facilities:
+  - 床头柜
+  - 晾衣架
+  - 空调
+  - 洗衣机
+  - 热水器
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3068.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合追求配套完善和通勤方便的年轻上班族。
+  description: '房间 417，位于宝安青年汇，深圳宝安区，地址在宝安区西乡街道。
+
+    月租 2600 元，支持YEARLY、MONTHLY，租期可选 3、6、12 个月。
+
+    户型 2室1厅1卫，面积 55 平方米，标签包括朝南、朝北、安静、近地铁、适合备考、新装修。
+
+    公寓配套包括床头柜、晾衣架、空调、洗衣机、热水器。
+
+    适合追求配套完善和通勤方便的年轻上班族。'
+- room_id: 3069
+  room_number: '419'
+  apartment_id: 2009
+  apartment_name: 龙华乐活居
+  city_name: 深圳
+  district_name: 龙华区
+  address: 龙华区民治街道
+  rent: 3000
+  area: 60
+  layout: 2室1厅1卫
+  payment_types:
+  - MONTHLY
+  - QUARTERLY
+  - HALF_YEARLY
+  lease_terms:
+  - 3
+  - 12
+  tags:
+  - 近地铁
+  - 适合备考
+  - 新装修
+  facilities:
+  - 空调
+  - 洗衣机
+  - 热水器
+  - 电梯
+  - 冰箱
+  - 微波炉
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3069.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 3200 元以内、注重独立空间的租客。
+  description: '房间 419，位于龙华乐活居，深圳龙华区，地址在龙华区民治街道。
+
+    月租 3000 元，支持MONTHLY、QUARTERLY、HALF_YEARLY，租期可选 3、12 个月。
+
+    户型 2室1厅1卫，面积 60 平方米，标签包括近地铁、适合备考、新装修。
+
+    公寓配套包括空调、洗衣机、热水器、电梯、冰箱、微波炉。
+
+    适合预算 3200 元以内、注重独立空间的租客。'
+- room_id: 3070
+  room_number: '421'
+  apartment_id: 2010
+  apartment_name: 罗湖东门寓
+  city_name: 深圳
+  district_name: 罗湖区
+  address: 罗湖区东门南路
+  rent: 3300
+  area: 65
+  layout: 2室1厅1卫
+  payment_types:
+  - QUARTERLY
+  lease_terms:
+  - 12
+  tags:
+  - 采光好
+  - 拎包入住
+  - 可月付
+  - 押一付一
+  facilities:
+  - 热水器
+  - 电梯
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3070.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望采光通风好、预算 3500 元以内的生活便利租客。
+  description: '房间 421，位于罗湖东门寓，深圳罗湖区，地址在罗湖区东门南路。
+
+    月租 3300 元，支持QUARTERLY，租期可选 12 个月。
+
+    户型 2室1厅1卫，面积 65 平方米，标签包括采光好、拎包入住、可月付、押一付一。
+
+    公寓配套包括热水器、电梯、冰箱、微波炉、独立卫浴、衣柜、书桌。
+
+    适合希望采光通风好、预算 3500 元以内的生活便利租客。'
+- room_id: 3071
+  room_number: '413'
+  apartment_id: 2011
+  apartment_name: 天河智慧城公寓
+  city_name: 广州
+  district_name: 天河区
+  address: 天河区高唐路
+  rent: 3200
+  area: 70
+  layout: 2室2厅1卫
+  payment_types:
+  - HALF_YEARLY
+  - YEARLY
+  lease_terms:
+  - 3
+  tags:
+  - 押一付一
+  - 电梯房
+  - 高层视野
+  - 独立阳台
+  - 可做饭
+  facilities:
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3071.jpg
+  is_release: true
+  is_appointable: false
+  audience_summary: 适合预算 3400 元以内、希望通勤方便和居住品质的租客。
+  description: '房间 413，位于天河智慧城公寓，广州天河区，地址在天河区高唐路。
+
+    月租 3200 元，支持HALF_YEARLY、YEARLY，租期可选 3 个月。
+
+    户型 2室2厅1卫，面积 70 平方米，标签包括押一付一、电梯房、高层视野、独立阳台、可做饭。
+
+    公寓配套包括冰箱、微波炉、独立卫浴。
+
+    适合预算 3400 元以内、希望通勤方便和居住品质的租客。'
+- room_id: 3072
+  room_number: '415'
+  apartment_id: 2012
+  apartment_name: 海珠江景寓
+  city_name: 广州
+  district_name: 海珠区
+  address: 海珠区滨江东路
+  rent: 3600
+  area: 75
+  layout: 2室2厅1卫
+  payment_types:
+  - YEARLY
+  - MONTHLY
+  - QUARTERLY
+  lease_terms:
+  - 6
+  tags:
+  - 独立阳台
+  - 可做饭
+  - 养宠友好
+  - 短租可
+  - 长租优惠
+  - 商圈附近
+  facilities:
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  - 宽带
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3072.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 3800 元以内的安静学习环境租客。
+  description: '房间 415，位于海珠江景寓，广州海珠区，地址在海珠区滨江东路。
+
+    月租 3600 元，支持YEARLY、MONTHLY、QUARTERLY，租期可选 6 个月。
+
+    户型 2室2厅1卫，面积 75 平方米，标签包括独立阳台、可做饭、养宠友好、短租可、长租优惠、商圈附近。
+
+    公寓配套包括独立卫浴、衣柜、书桌、宽带。
+
+    适合预算 3800 元以内的安静学习环境租客。'
+- room_id: 3073
+  room_number: '417'
+  apartment_id: 2013
+  apartment_name: 番禺万博公寓
+  city_name: 广州
+  district_name: 番禺区
+  address: 番禺区万博翠湖
+  rent: 2100
+  area: 80
+  layout: 3室1厅1卫
+  payment_types:
+  - MONTHLY
+  lease_terms:
+  - 3
+  - 6
+  tags:
+  - 短租可
+  - 长租优惠
+  - 商圈附近
+  facilities:
+  - 书桌
+  - 宽带
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3073.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合追求生活便利和性价比高的年轻上班族。
+  description: '房间 417，位于番禺万博公寓，广州番禺区，地址在番禺区万博翠湖。
+
+    月租 2100 元，支持MONTHLY，租期可选 3、6 个月。
+
+    户型 3室1厅1卫，面积 80 平方米，标签包括短租可、长租优惠、商圈附近。
+
+    公寓配套包括书桌、宽带、电视、抽油烟机、燃气灶。
+
+    适合追求生活便利和性价比高的年轻上班族。'
+- room_id: 3074
+  room_number: '419'
+  apartment_id: 2014
+  apartment_name: 白云嘉禾寓
+  city_name: 广州
+  district_name: 白云区
+  address: 白云区嘉禾望岗大道
+  rent: 1900
+  area: 90
+  layout: 3室2厅1卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  lease_terms:
+  - 6
+  - 12
+  tags:
+  - 通勤方便
+  - 配套齐全
+  - 花园小区
+  - 智能门锁
+  facilities:
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  - 茶几
+  - 床头柜
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3074.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 2100 元以内、注重居住品质的租客。
+  description: '房间 419，位于白云嘉禾寓，广州白云区，地址在白云区嘉禾望岗大道。
+
+    月租 1900 元，支持QUARTERLY、HALF_YEARLY，租期可选 6、12 个月。
+
+    户型 3室2厅1卫，面积 90 平方米，标签包括通勤方便、配套齐全、花园小区、智能门锁。
+
+    公寓配套包括电视、抽油烟机、燃气灶、沙发、茶几、床头柜。
+
+    适合预算 2100 元以内、注重居住品质的租客。'
+- room_id: 3075
+  room_number: '421'
+  apartment_id: 2015
+  apartment_name: 越秀淘金居
+  city_name: 广州
+  district_name: 越秀区
+  address: 越秀区淘金路
+  rent: 3200
+  area: 100
+  layout: 3室2厅2卫
+  payment_types:
+  - HALF_YEARLY
+  - YEARLY
+  - MONTHLY
+  lease_terms:
+  - 3
+  - 6
+  - 12
+  tags:
+  - 智能门锁
+  - 楼下便利店
+  - 有车位
+  - 独卫
+  - 朝南
+  facilities:
+  - 燃气灶
+  - 沙发
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  - 空调
+  - 洗衣机
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3075.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望空间宽敞、预算 3400 元以内的配套完善租客。
+  description: '房间 421，位于越秀淘金居，广州越秀区，地址在越秀区淘金路。
+
+    月租 3200 元，支持HALF_YEARLY、YEARLY、MONTHLY，租期可选 3、6、12 个月。
+
+    户型 3室2厅2卫，面积 100 平方米，标签包括智能门锁、楼下便利店、有车位、独卫、朝南。
+
+    公寓配套包括燃气灶、沙发、茶几、床头柜、晾衣架、空调、洗衣机。
+
+    适合希望空间宽敞、预算 3400 元以内的配套完善租客。'
+- room_id: 3076
+  room_number: '423'
+  apartment_id: 2016
+  apartment_name: 南山蛇口寓
+  city_name: 深圳
+  district_name: 南山区
+  address: 南山区蛇口工业区
+  rent: 4400
+  area: 20
+  layout: 1室1卫
+  payment_types:
+  - YEARLY
+  lease_terms:
+  - 3
+  - 12
+  tags:
+  - 独卫
+  - 朝南
+  - 朝北
+  - 安静
+  - 近地铁
+  - 适合备考
+  facilities:
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3076.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 4600 元以内、希望性价比高和独立空间的租客。
+  description: '房间 423，位于南山蛇口寓，深圳南山区，地址在南山区蛇口工业区。
+
+    月租 4400 元，支持YEARLY，租期可选 3、12 个月。
+
+    户型 1室1卫，面积 20 平方米，标签包括独卫、朝南、朝北、安静、近地铁、适合备考。
+
+    公寓配套包括茶几、床头柜、晾衣架。
+
+    适合预算 4600 元以内、希望性价比高和独立空间的租客。'
+- room_id: 3077
+  room_number: '425'
+  apartment_id: 2017
+  apartment_name: 龙岗坂田公寓
+  city_name: 深圳
+  district_name: 龙岗区
+  address: 龙岗区坂田街道
+  rent: 2500
+  area: 25
+  layout: 1室1卫
+  payment_types:
+  - MONTHLY
+  - QUARTERLY
+  lease_terms:
+  - 12
+  tags:
+  - 安静
+  - 近地铁
+  - 适合备考
+  facilities:
+  - 晾衣架
+  - 空调
+  - 洗衣机
+  - 热水器
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3077.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 2700 元以内的交通便利租客。
+  description: '房间 425，位于龙岗坂田公寓，深圳龙岗区，地址在龙岗区坂田街道。
+
+    月租 2500 元，支持MONTHLY、QUARTERLY，租期可选 12 个月。
+
+    户型 1室1卫，面积 25 平方米，标签包括安静、近地铁、适合备考。
+
+    公寓配套包括晾衣架、空调、洗衣机、热水器。
+
+    适合预算 2700 元以内的交通便利租客。'
+- room_id: 3078
+  room_number: '427'
+  apartment_id: 2018
+  apartment_name: 宝安固戍寓
+  city_name: 深圳
+  district_name: 宝安区
+  address: 宝安区固戍二路
+  rent: 1800
+  area: 28
+  layout: 1室1卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  - YEARLY
+  lease_terms:
+  - 3
+  tags:
+  - 新装修
+  - 采光好
+  - 拎包入住
+  - 可月付
+  facilities:
+  - 洗衣机
+  - 热水器
+  - 电梯
+  - 冰箱
+  - 微波炉
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3078.jpg
+  is_release: true
+  is_appointable: false
+  audience_summary: 适合追求配套完善和通勤方便的年轻上班族。
+  description: '房间 427，位于宝安固戍寓，深圳宝安区，地址在宝安区固戍二路。
+
+    月租 1800 元，支持QUARTERLY、HALF_YEARLY、YEARLY，租期可选 3 个月。
+
+    户型 1室1卫，面积 28 平方米，标签包括新装修、采光好、拎包入住、可月付。
+
+    公寓配套包括洗衣机、热水器、电梯、冰箱、微波炉。
+
+    适合追求配套完善和通勤方便的年轻上班族。'
+- room_id: 3079
+  room_number: '429'
+  apartment_id: 2019
+  apartment_name: 龙华清湖居
+  city_name: 深圳
+  district_name: 龙华区
+  address: 龙华区清湖路
+  rent: 2400
+  area: 30
+  layout: 1室1厅1卫
+  payment_types:
+  - HALF_YEARLY
+  lease_terms:
+  - 6
+  tags:
+  - 可月付
+  - 押一付一
+  - 电梯房
+  - 高层视野
+  - 独立阳台
+  facilities:
+  - 电梯
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3079.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 2600 元以内、注重独立空间的租客。
+  description: '房间 429，位于龙华清湖居，深圳龙华区，地址在龙华区清湖路。
+
+    月租 2400 元，支持HALF_YEARLY，租期可选 6 个月。
+
+    户型 1室1厅1卫，面积 30 平方米，标签包括可月付、押一付一、电梯房、高层视野、独立阳台。
+
+    公寓配套包括电梯、冰箱、微波炉、独立卫浴、衣柜、书桌。
+
+    适合预算 2600 元以内、注重独立空间的租客。'
+- room_id: 3080
+  room_number: '431'
+  apartment_id: 2020
+  apartment_name: 福田景田寓
+  city_name: 深圳
+  district_name: 福田区
+  address: 福田区景田东路
+  rent: 3700
+  area: 35
+  layout: 1室1厅1卫
+  payment_types:
+  - YEARLY
+  - MONTHLY
+  lease_terms:
+  - 3
+  - 6
+  tags:
+  - 高层视野
+  - 独立阳台
+  - 可做饭
+  - 养宠友好
+  - 短租可
+  - 长租优惠
+  facilities:
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  - 宽带
+  - 电视
+  - 抽油烟机
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3080.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望采光通风好、预算 3900 元以内的生活便利租客。
+  description: '房间 431，位于福田景田寓，深圳福田区，地址在福田区景田东路。
+
+    月租 3700 元，支持YEARLY、MONTHLY，租期可选 3、6 个月。
+
+    户型 1室1厅1卫，面积 35 平方米，标签包括高层视野、独立阳台、可做饭、养宠友好、短租可、长租优惠。
+
+    公寓配套包括微波炉、独立卫浴、衣柜、书桌、宽带、电视、抽油烟机。
+
+    适合希望采光通风好、预算 3900 元以内的生活便利租客。'
+- room_id: 3081
+  room_number: '503'
+  apartment_id: 2001
+  apartment_name: 天河公寓
+  city_name: 广州
+  district_name: 天河区
+  address: 天河区科韵路附近
+  rent: 2800
+  area: 40
+  layout: 1室1厅1卫
+  payment_types:
+  - MONTHLY
+  - QUARTERLY
+  - HALF_YEARLY
+  lease_terms:
+  - 6
+  - 12
+  tags:
+  - 养宠友好
+  - 短租可
+  - 长租优惠
+  facilities:
+  - 衣柜
+  - 书桌
+  - 宽带
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3081.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 3000 元以内、希望通勤方便和居住品质的租客。
+  description: '房间 503，位于天河公寓，广州天河区，地址在天河区科韵路附近。
+
+    月租 2800 元，支持MONTHLY、QUARTERLY、HALF_YEARLY，租期可选 6、12 个月。
+
+    户型 1室1厅1卫，面积 40 平方米，标签包括养宠友好、短租可、长租优惠。
+
+    公寓配套包括衣柜、书桌、宽带。
+
+    适合预算 3000 元以内、希望通勤方便和居住品质的租客。'
+- room_id: 3082
+  room_number: '505'
+  apartment_id: 2002
+  apartment_name: 珠江寓
+  city_name: 广州
+  district_name: 海珠区
+  address: 海珠区新港东路
+  rent: 3300
+  area: 50
+  layout: 2室1厅1卫
+  payment_types:
+  - QUARTERLY
+  lease_terms:
+  - 3
+  - 6
+  - 12
+  tags:
+  - 商圈附近
+  - 通勤方便
+  - 配套齐全
+  - 花园小区
+  facilities:
+  - 宽带
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3082.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 3500 元以内的安静学习环境租客。
+  description: '房间 505，位于珠江寓，广州海珠区，地址在海珠区新港东路。
+
+    月租 3300 元，支持QUARTERLY，租期可选 3、6、12 个月。
+
+    户型 2室1厅1卫，面积 50 平方米，标签包括商圈附近、通勤方便、配套齐全、花园小区。
+
+    公寓配套包括宽带、电视、抽油烟机、燃气灶。
+
+    适合预算 3500 元以内的安静学习环境租客。'
+- room_id: 3083
+  room_number: '507'
+  apartment_id: 2003
+  apartment_name: 越秀家园
+  city_name: 广州
+  district_name: 越秀区
+  address: 越秀区东风中路
+  rent: 2800
+  area: 55
+  layout: 2室1厅1卫
+  payment_types:
+  - HALF_YEARLY
+  - YEARLY
+  lease_terms:
+  - 3
+  - 12
+  tags:
+  - 花园小区
+  - 智能门锁
+  - 楼下便利店
+  - 有车位
+  - 独卫
+  facilities:
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  - 茶几
+  - 床头柜
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3083.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合追求生活便利和性价比高的年轻上班族。
+  description: '房间 507，位于越秀家园，广州越秀区，地址在越秀区东风中路。
+
+    月租 2800 元，支持HALF_YEARLY、YEARLY，租期可选 3、12 个月。
+
+    户型 2室1厅1卫，面积 55 平方米，标签包括花园小区、智能门锁、楼下便利店、有车位、独卫。
+
+    公寓配套包括抽油烟机、燃气灶、沙发、茶几、床头柜。
+
+    适合追求生活便利和性价比高的年轻上班族。'
+- room_id: 3084
+  room_number: '509'
+  apartment_id: 2004
+  apartment_name: 番禺青年社区
+  city_name: 广州
+  district_name: 番禺区
+  address: 番禺区市桥大北路
+  rent: 2100
+  area: 60
+  layout: 2室1厅1卫
+  payment_types:
+  - YEARLY
+  - MONTHLY
+  - QUARTERLY
+  lease_terms:
+  - 12
+  tags:
+  - 有车位
+  - 独卫
+  - 朝南
+  - 朝北
+  - 安静
+  - 近地铁
+  facilities:
+  - 沙发
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  - 空调
+  - 洗衣机
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3084.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 2300 元以内、注重居住品质的租客。
+  description: '房间 509，位于番禺青年社区，广州番禺区，地址在番禺区市桥大北路。
+
+    月租 2100 元，支持YEARLY、MONTHLY、QUARTERLY，租期可选 12 个月。
+
+    户型 2室1厅1卫，面积 60 平方米，标签包括有车位、独卫、朝南、朝北、安静、近地铁。
+
+    公寓配套包括沙发、茶几、床头柜、晾衣架、空调、洗衣机。
+
+    适合预算 2300 元以内、注重居住品质的租客。'
+- room_id: 3085
+  room_number: '511'
+  apartment_id: 2005
+  apartment_name: 白云阳光居
+  city_name: 广州
+  district_name: 白云区
+  address: 白云区嘉禾望岗
+  rent: 1700
+  area: 65
+  layout: 2室1厅1卫
+  payment_types:
+  - MONTHLY
+  lease_terms:
+  - 3
+  tags:
+  - 朝北
+  - 安静
+  - 近地铁
+  facilities:
+  - 床头柜
+  - 晾衣架
+  - 空调
+  - 洗衣机
+  - 热水器
+  - 电梯
+  - 冰箱
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3085.jpg
+  is_release: true
+  is_appointable: false
+  audience_summary: 适合希望空间宽敞、预算 1900 元以内的配套完善租客。
+  description: '房间 511，位于白云阳光居，广州白云区，地址在白云区嘉禾望岗。
+
+    月租 1700 元，支持MONTHLY，租期可选 3 个月。
+
+    户型 2室1厅1卫，面积 65 平方米，标签包括朝北、安静、近地铁。
+
+    公寓配套包括床头柜、晾衣架、空调、洗衣机、热水器、电梯、冰箱。
+
+    适合希望空间宽敞、预算 1900 元以内的配套完善租客。'
+- room_id: 3086
+  room_number: '513'
+  apartment_id: 2006
+  apartment_name: 南山科技园公寓
+  city_name: 深圳
+  district_name: 南山区
+  address: 南山区科技园科发路
+  rent: 4300
+  area: 70
+  layout: 2室2厅1卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  lease_terms:
+  - 6
+  tags:
+  - 适合备考
+  - 新装修
+  - 采光好
+  - 拎包入住
+  facilities:
+  - 空调
+  - 洗衣机
+  - 热水器
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3086.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 4500 元以内、希望性价比高和独立空间的租客。
+  description: '房间 513，位于南山科技园公寓，深圳南山区，地址在南山区科技园科发路。
+
+    月租 4300 元，支持QUARTERLY、HALF_YEARLY，租期可选 6 个月。
+
+    户型 2室2厅1卫，面积 70 平方米，标签包括适合备考、新装修、采光好、拎包入住。
+
+    公寓配套包括空调、洗衣机、热水器。
+
+    适合预算 4500 元以内、希望性价比高和独立空间的租客。'
+- room_id: 3087
+  room_number: '515'
+  apartment_id: 2007
+  apartment_name: 福田中心寓
+  city_name: 深圳
+  district_name: 福田区
+  address: 福田区华强北路
+  rent: 3900
+  area: 75
+  layout: 2室2厅1卫
+  payment_types:
+  - HALF_YEARLY
+  - YEARLY
+  - MONTHLY
+  lease_terms:
+  - 3
+  - 6
+  tags:
+  - 拎包入住
+  - 可月付
+  - 押一付一
+  - 电梯房
+  - 高层视野
+  facilities:
+  - 热水器
+  - 电梯
+  - 冰箱
+  - 微波炉
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3087.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 4100 元以内的交通便利租客。
+  description: '房间 515，位于福田中心寓，深圳福田区，地址在福田区华强北路。
+
+    月租 3900 元，支持HALF_YEARLY、YEARLY、MONTHLY，租期可选 3、6 个月。
+
+    户型 2室2厅1卫，面积 75 平方米，标签包括拎包入住、可月付、押一付一、电梯房、高层视野。
+
+    公寓配套包括热水器、电梯、冰箱、微波炉。
+
+    适合预算 4100 元以内的交通便利租客。'
+- room_id: 3088
+  room_number: '517'
+  apartment_id: 2008
+  apartment_name: 宝安青年汇
+  city_name: 深圳
+  district_name: 宝安区
+  address: 宝安区西乡街道
+  rent: 2500
+  area: 80
+  layout: 3室1厅1卫
+  payment_types:
+  - YEARLY
+  lease_terms:
+  - 6
+  - 12
+  tags:
+  - 电梯房
+  - 高层视野
+  - 独立阳台
+  - 可做饭
+  - 养宠友好
+  - 短租可
+  facilities:
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3088.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合追求配套完善和通勤方便的年轻上班族。
+  description: '房间 517，位于宝安青年汇，深圳宝安区，地址在宝安区西乡街道。
+
+    月租 2500 元，支持YEARLY，租期可选 6、12 个月。
+
+    户型 3室1厅1卫，面积 80 平方米，标签包括电梯房、高层视野、独立阳台、可做饭、养宠友好、短租可。
+
+    公寓配套包括冰箱、微波炉、独立卫浴、衣柜、书桌。
+
+    适合追求配套完善和通勤方便的年轻上班族。'
+- room_id: 3089
+  room_number: '519'
+  apartment_id: 2009
+  apartment_name: 龙华乐活居
+  city_name: 深圳
+  district_name: 龙华区
+  address: 龙华区民治街道
+  rent: 2900
+  area: 90
+  layout: 3室2厅1卫
+  payment_types:
+  - MONTHLY
+  - QUARTERLY
+  lease_terms:
+  - 3
+  - 6
+  - 12
+  tags:
+  - 可做饭
+  - 养宠友好
+  - 短租可
+  facilities:
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  - 宽带
+  - 电视
+  - 抽油烟机
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3089.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 3100 元以内、注重独立空间的租客。
+  description: '房间 519，位于龙华乐活居，深圳龙华区，地址在龙华区民治街道。
+
+    月租 2900 元，支持MONTHLY、QUARTERLY，租期可选 3、6、12 个月。
+
+    户型 3室2厅1卫，面积 90 平方米，标签包括可做饭、养宠友好、短租可。
+
+    公寓配套包括独立卫浴、衣柜、书桌、宽带、电视、抽油烟机。
+
+    适合预算 3100 元以内、注重独立空间的租客。'
+- room_id: 3090
+  room_number: '521'
+  apartment_id: 2010
+  apartment_name: 罗湖东门寓
+  city_name: 深圳
+  district_name: 罗湖区
+  address: 罗湖区东门南路
+  rent: 3200
+  area: 100
+  layout: 3室2厅2卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  - YEARLY
+  lease_terms:
+  - 3
+  - 12
+  tags:
+  - 长租优惠
+  - 商圈附近
+  - 通勤方便
+  - 配套齐全
+  facilities:
+  - 书桌
+  - 宽带
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  - 茶几
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3090.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望采光通风好、预算 3400 元以内的生活便利租客。
+  description: '房间 521，位于罗湖东门寓，深圳罗湖区，地址在罗湖区东门南路。
+
+    月租 3200 元，支持QUARTERLY、HALF_YEARLY、YEARLY，租期可选 3、12 个月。
+
+    户型 3室2厅2卫，面积 100 平方米，标签包括长租优惠、商圈附近、通勤方便、配套齐全。
+
+    公寓配套包括书桌、宽带、电视、抽油烟机、燃气灶、沙发、茶几。
+
+    适合希望采光通风好、预算 3400 元以内的生活便利租客。'
+- room_id: 3091
+  room_number: '513'
+  apartment_id: 2011
+  apartment_name: 天河智慧城公寓
+  city_name: 广州
+  district_name: 天河区
+  address: 天河区高唐路
+  rent: 3800
+  area: 20
+  layout: 1室1卫
+  payment_types:
+  - HALF_YEARLY
+  lease_terms:
+  - 12
+  tags:
+  - 配套齐全
+  - 花园小区
+  - 智能门锁
+  - 楼下便利店
+  - 有车位
+  facilities:
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3091.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 4000 元以内、希望通勤方便和居住品质的租客。
+  description: '房间 513，位于天河智慧城公寓，广州天河区，地址在天河区高唐路。
+
+    月租 3800 元，支持HALF_YEARLY，租期可选 12 个月。
+
+    户型 1室1卫，面积 20 平方米，标签包括配套齐全、花园小区、智能门锁、楼下便利店、有车位。
+
+    公寓配套包括电视、抽油烟机、燃气灶。
+
+    适合预算 4000 元以内、希望通勤方便和居住品质的租客。'
+- room_id: 3092
+  room_number: '515'
+  apartment_id: 2012
+  apartment_name: 海珠江景寓
+  city_name: 广州
+  district_name: 海珠区
+  address: 海珠区滨江东路
+  rent: 3500
+  area: 25
+  layout: 1室1卫
+  payment_types:
+  - YEARLY
+  - MONTHLY
+  lease_terms:
+  - 3
+  tags:
+  - 楼下便利店
+  - 有车位
+  - 独卫
+  - 朝南
+  - 朝北
+  - 安静
+  facilities:
+  - 燃气灶
+  - 沙发
+  - 茶几
+  - 床头柜
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3092.jpg
+  is_release: true
+  is_appointable: false
+  audience_summary: 适合预算 3700 元以内的安静学习环境租客。
+  description: '房间 515，位于海珠江景寓，广州海珠区，地址在海珠区滨江东路。
+
+    月租 3500 元，支持YEARLY、MONTHLY，租期可选 3 个月。
+
+    户型 1室1卫，面积 25 平方米，标签包括楼下便利店、有车位、独卫、朝南、朝北、安静。
+
+    公寓配套包括燃气灶、沙发、茶几、床头柜。
+
+    适合预算 3700 元以内的安静学习环境租客。'
+- room_id: 3093
+  room_number: '517'
+  apartment_id: 2013
+  apartment_name: 番禺万博公寓
+  city_name: 广州
+  district_name: 番禺区
+  address: 番禺区万博翠湖
+  rent: 2000
+  area: 28
+  layout: 1室1卫
+  payment_types:
+  - MONTHLY
+  - QUARTERLY
+  - HALF_YEARLY
+  lease_terms:
+  - 6
+  tags:
+  - 朝南
+  - 朝北
+  - 安静
+  facilities:
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  - 空调
+  - 洗衣机
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3093.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合追求生活便利和性价比高的年轻上班族。
+  description: '房间 517，位于番禺万博公寓，广州番禺区，地址在番禺区万博翠湖。
+
+    月租 2000 元，支持MONTHLY、QUARTERLY、HALF_YEARLY，租期可选 6 个月。
+
+    户型 1室1卫，面积 28 平方米，标签包括朝南、朝北、安静。
+
+    公寓配套包括茶几、床头柜、晾衣架、空调、洗衣机。
+
+    适合追求生活便利和性价比高的年轻上班族。'
+- room_id: 3094
+  room_number: '519'
+  apartment_id: 2014
+  apartment_name: 白云嘉禾寓
+  city_name: 广州
+  district_name: 白云区
+  address: 白云区嘉禾望岗大道
+  rent: 1800
+  area: 30
+  layout: 1室1厅1卫
+  payment_types:
+  - QUARTERLY
+  lease_terms:
+  - 3
+  - 6
+  tags:
+  - 近地铁
+  - 适合备考
+  - 新装修
+  - 采光好
+  facilities:
+  - 晾衣架
+  - 空调
+  - 洗衣机
+  - 热水器
+  - 电梯
+  - 冰箱
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3094.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 2000 元以内、注重居住品质的租客。
+  description: '房间 519，位于白云嘉禾寓，广州白云区，地址在白云区嘉禾望岗大道。
+
+    月租 1800 元，支持QUARTERLY，租期可选 3、6 个月。
+
+    户型 1室1厅1卫，面积 30 平方米，标签包括近地铁、适合备考、新装修、采光好。
+
+    公寓配套包括晾衣架、空调、洗衣机、热水器、电梯、冰箱。
+
+    适合预算 2000 元以内、注重居住品质的租客。'
+- room_id: 3095
+  room_number: '521'
+  apartment_id: 2015
+  apartment_name: 越秀淘金居
+  city_name: 广州
+  district_name: 越秀区
+  address: 越秀区淘金路
+  rent: 3100
+  area: 35
+  layout: 1室1厅1卫
+  payment_types:
+  - HALF_YEARLY
+  - YEARLY
+  lease_terms:
+  - 6
+  - 12
+  tags:
+  - 采光好
+  - 拎包入住
+  - 可月付
+  - 押一付一
+  - 电梯房
+  facilities:
+  - 洗衣机
+  - 热水器
+  - 电梯
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3095.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望空间宽敞、预算 3300 元以内的配套完善租客。
+  description: '房间 521，位于越秀淘金居，广州越秀区，地址在越秀区淘金路。
+
+    月租 3100 元，支持HALF_YEARLY、YEARLY，租期可选 6、12 个月。
+
+    户型 1室1厅1卫，面积 35 平方米，标签包括采光好、拎包入住、可月付、押一付一、电梯房。
+
+    公寓配套包括洗衣机、热水器、电梯、冰箱、微波炉、独立卫浴、衣柜。
+
+    适合希望空间宽敞、预算 3300 元以内的配套完善租客。'
+- room_id: 3096
+  room_number: '523'
+  apartment_id: 2016
+  apartment_name: 南山蛇口寓
+  city_name: 深圳
+  district_name: 南山区
+  address: 南山区蛇口工业区
+  rent: 4300
+  area: 40
+  layout: 1室1厅1卫
+  payment_types:
+  - YEARLY
+  - MONTHLY
+  - QUARTERLY
+  lease_terms:
+  - 3
+  - 6
+  - 12
+  tags:
+  - 押一付一
+  - 电梯房
+  - 高层视野
+  - 独立阳台
+  - 可做饭
+  - 养宠友好
+  facilities:
+  - 电梯
+  - 冰箱
+  - 微波炉
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3096.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 4500 元以内、希望性价比高和独立空间的租客。
+  description: '房间 523，位于南山蛇口寓，深圳南山区，地址在南山区蛇口工业区。
+
+    月租 4300 元，支持YEARLY、MONTHLY、QUARTERLY，租期可选 3、6、12 个月。
+
+    户型 1室1厅1卫，面积 40 平方米，标签包括押一付一、电梯房、高层视野、独立阳台、可做饭、养宠友好。
+
+    公寓配套包括电梯、冰箱、微波炉。
+
+    适合预算 4500 元以内、希望性价比高和独立空间的租客。'
+- room_id: 3097
+  room_number: '525'
+  apartment_id: 2017
+  apartment_name: 龙岗坂田公寓
+  city_name: 深圳
+  district_name: 龙岗区
+  address: 龙岗区坂田街道
+  rent: 2400
+  area: 50
+  layout: 2室1厅1卫
+  payment_types:
+  - MONTHLY
+  lease_terms:
+  - 3
+  - 12
+  tags:
+  - 独立阳台
+  - 可做饭
+  - 养宠友好
+  facilities:
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3097.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 2600 元以内的交通便利租客。
+  description: '房间 525，位于龙岗坂田公寓，深圳龙岗区，地址在龙岗区坂田街道。
+
+    月租 2400 元，支持MONTHLY，租期可选 3、12 个月。
+
+    户型 2室1厅1卫，面积 50 平方米，标签包括独立阳台、可做饭、养宠友好。
+
+    公寓配套包括微波炉、独立卫浴、衣柜、书桌。
+
+    适合预算 2600 元以内的交通便利租客。'
+- room_id: 3098
+  room_number: '527'
+  apartment_id: 2018
+  apartment_name: 宝安固戍寓
+  city_name: 深圳
+  district_name: 宝安区
+  address: 宝安区固戍二路
+  rent: 2400
+  area: 55
+  layout: 2室1厅1卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  lease_terms:
+  - 12
+  tags:
+  - 短租可
+  - 长租优惠
+  - 商圈附近
+  - 通勤方便
+  facilities:
+  - 衣柜
+  - 书桌
+  - 宽带
+  - 电视
+  - 抽油烟机
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3098.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合追求配套完善和通勤方便的年轻上班族。
+  description: '房间 527，位于宝安固戍寓，深圳宝安区，地址在宝安区固戍二路。
+
+    月租 2400 元，支持QUARTERLY、HALF_YEARLY，租期可选 12 个月。
+
+    户型 2室1厅1卫，面积 55 平方米，标签包括短租可、长租优惠、商圈附近、通勤方便。
+
+    公寓配套包括衣柜、书桌、宽带、电视、抽油烟机。
+
+    适合追求配套完善和通勤方便的年轻上班族。'
+- room_id: 3099
+  room_number: '529'
+  apartment_id: 2019
+  apartment_name: 龙华清湖居
+  city_name: 深圳
+  district_name: 龙华区
+  address: 龙华区清湖路
+  rent: 2300
+  area: 60
+  layout: 2室1厅1卫
+  payment_types:
+  - HALF_YEARLY
+  - YEARLY
+  - MONTHLY
+  lease_terms:
+  - 3
+  tags:
+  - 通勤方便
+  - 配套齐全
+  - 花园小区
+  - 智能门锁
+  - 楼下便利店
+  facilities:
+  - 宽带
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  - 茶几
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3099.jpg
+  is_release: true
+  is_appointable: false
+  audience_summary: 适合预算 2500 元以内、注重独立空间的租客。
+  description: '房间 529，位于龙华清湖居，深圳龙华区，地址在龙华区清湖路。
+
+    月租 2300 元，支持HALF_YEARLY、YEARLY、MONTHLY，租期可选 3 个月。
+
+    户型 2室1厅1卫，面积 60 平方米，标签包括通勤方便、配套齐全、花园小区、智能门锁、楼下便利店。
+
+    公寓配套包括宽带、电视、抽油烟机、燃气灶、沙发、茶几。
+
+    适合预算 2500 元以内、注重独立空间的租客。'
+- room_id: 3100
+  room_number: '531'
+  apartment_id: 2020
+  apartment_name: 福田景田寓
+  city_name: 深圳
+  district_name: 福田区
+  address: 福田区景田东路
+  rent: 3600
+  area: 65
+  layout: 2室1厅1卫
+  payment_types:
+  - YEARLY
+  lease_terms:
+  - 6
+  tags:
+  - 智能门锁
+  - 楼下便利店
+  - 有车位
+  - 独卫
+  - 朝南
+  - 朝北
+  facilities:
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  - 空调
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3100.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望采光通风好、预算 3800 元以内的生活便利租客。
+  description: '房间 531，位于福田景田寓，深圳福田区，地址在福田区景田东路。
+
+    月租 3600 元，支持YEARLY，租期可选 6 个月。
+
+    户型 2室1厅1卫，面积 65 平方米，标签包括智能门锁、楼下便利店、有车位、独卫、朝南、朝北。
+
+    公寓配套包括抽油烟机、燃气灶、沙发、茶几、床头柜、晾衣架、空调。
+
+    适合希望采光通风好、预算 3800 元以内的生活便利租客。'
+- room_id: 3101
+  room_number: '603'
+  apartment_id: 2001
+  apartment_name: 天河公寓
+  city_name: 广州
+  district_name: 天河区
+  address: 天河区科韵路附近
+  rent: 2700
+  area: 70
+  layout: 2室2厅1卫
+  payment_types:
+  - MONTHLY
+  - QUARTERLY
+  lease_terms:
+  - 3
+  - 6
+  tags:
+  - 独卫
+  - 朝南
+  - 朝北
+  facilities:
+  - 沙发
+  - 茶几
+  - 床头柜
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3101.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 2900 元以内、希望通勤方便和居住品质的租客。
+  description: '房间 603，位于天河公寓，广州天河区，地址在天河区科韵路附近。
+
+    月租 2700 元，支持MONTHLY、QUARTERLY，租期可选 3、6 个月。
+
+    户型 2室2厅1卫，面积 70 平方米，标签包括独卫、朝南、朝北。
+
+    公寓配套包括沙发、茶几、床头柜。
+
+    适合预算 2900 元以内、希望通勤方便和居住品质的租客。'
+- room_id: 3102
+  room_number: '605'
+  apartment_id: 2002
+  apartment_name: 珠江寓
+  city_name: 广州
+  district_name: 海珠区
+  address: 海珠区新港东路
+  rent: 3200
+  area: 75
+  layout: 2室2厅1卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  - YEARLY
+  lease_terms:
+  - 6
+  - 12
+  tags:
+  - 安静
+  - 近地铁
+  - 适合备考
+  - 新装修
+  facilities:
+  - 床头柜
+  - 晾衣架
+  - 空调
+  - 洗衣机
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3102.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 3400 元以内的安静学习环境租客。
+  description: '房间 605，位于珠江寓，广州海珠区，地址在海珠区新港东路。
+
+    月租 3200 元，支持QUARTERLY、HALF_YEARLY、YEARLY，租期可选 6、12 个月。
+
+    户型 2室2厅1卫，面积 75 平方米，标签包括安静、近地铁、适合备考、新装修。
+
+    公寓配套包括床头柜、晾衣架、空调、洗衣机。
+
+    适合预算 3400 元以内的安静学习环境租客。'
+- room_id: 3103
+  room_number: '607'
+  apartment_id: 2003
+  apartment_name: 越秀家园
+  city_name: 广州
+  district_name: 越秀区
+  address: 越秀区东风中路
+  rent: 2700
+  area: 80
+  layout: 3室1厅1卫
+  payment_types:
+  - HALF_YEARLY
+  lease_terms:
+  - 3
+  - 6
+  - 12
+  tags:
+  - 新装修
+  - 采光好
+  - 拎包入住
+  - 可月付
+  - 押一付一
+  facilities:
+  - 空调
+  - 洗衣机
+  - 热水器
+  - 电梯
+  - 冰箱
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3103.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合追求生活便利和性价比高的年轻上班族。
+  description: '房间 607，位于越秀家园，广州越秀区，地址在越秀区东风中路。
+
+    月租 2700 元，支持HALF_YEARLY，租期可选 3、6、12 个月。
+
+    户型 3室1厅1卫，面积 80 平方米，标签包括新装修、采光好、拎包入住、可月付、押一付一。
+
+    公寓配套包括空调、洗衣机、热水器、电梯、冰箱。
+
+    适合追求生活便利和性价比高的年轻上班族。'
+- room_id: 3104
+  room_number: '609'
+  apartment_id: 2004
+  apartment_name: 番禺青年社区
+  city_name: 广州
+  district_name: 番禺区
+  address: 番禺区市桥大北路
+  rent: 2000
+  area: 90
+  layout: 3室2厅1卫
+  payment_types:
+  - YEARLY
+  - MONTHLY
+  lease_terms:
+  - 3
+  - 12
+  tags:
+  - 可月付
+  - 押一付一
+  - 电梯房
+  - 高层视野
+  - 独立阳台
+  - 可做饭
+  facilities:
+  - 热水器
+  - 电梯
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3104.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 2200 元以内、注重居住品质的租客。
+  description: '房间 609，位于番禺青年社区，广州番禺区，地址在番禺区市桥大北路。
+
+    月租 2000 元，支持YEARLY、MONTHLY，租期可选 3、12 个月。
+
+    户型 3室2厅1卫，面积 90 平方米，标签包括可月付、押一付一、电梯房、高层视野、独立阳台、可做饭。
+
+    公寓配套包括热水器、电梯、冰箱、微波炉、独立卫浴、衣柜。
+
+    适合预算 2200 元以内、注重居住品质的租客。'
+- room_id: 3105
+  room_number: '611'
+  apartment_id: 2005
+  apartment_name: 白云阳光居
+  city_name: 广州
+  district_name: 白云区
+  address: 白云区嘉禾望岗
+  rent: 2300
+  area: 100
+  layout: 3室2厅2卫
+  payment_types:
+  - MONTHLY
+  - QUARTERLY
+  - HALF_YEARLY
+  lease_terms:
+  - 12
+  tags:
+  - 高层视野
+  - 独立阳台
+  - 可做饭
+  facilities:
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  - 宽带
+  - 电视
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3105.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望空间宽敞、预算 2500 元以内的配套完善租客。
+  description: '房间 611，位于白云阳光居，广州白云区，地址在白云区嘉禾望岗。
+
+    月租 2300 元，支持MONTHLY、QUARTERLY、HALF_YEARLY，租期可选 12 个月。
+
+    户型 3室2厅2卫，面积 100 平方米，标签包括高层视野、独立阳台、可做饭。
+
+    公寓配套包括冰箱、微波炉、独立卫浴、衣柜、书桌、宽带、电视。
+
+    适合希望空间宽敞、预算 2500 元以内的配套完善租客。'
+- room_id: 3106
+  room_number: '613'
+  apartment_id: 2006
+  apartment_name: 南山科技园公寓
+  city_name: 深圳
+  district_name: 南山区
+  address: 南山区科技园科发路
+  rent: 4200
+  area: 20
+  layout: 1室1卫
+  payment_types:
+  - QUARTERLY
+  lease_terms:
+  - 3
+  tags:
+  - 养宠友好
+  - 短租可
+  - 长租优惠
+  - 商圈附近
+  facilities:
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3106.jpg
+  is_release: true
+  is_appointable: false
+  audience_summary: 适合预算 4400 元以内、希望性价比高和独立空间的租客。
+  description: '房间 613，位于南山科技园公寓，深圳南山区，地址在南山区科技园科发路。
+
+    月租 4200 元，支持QUARTERLY，租期可选 3 个月。
+
+    户型 1室1卫，面积 20 平方米，标签包括养宠友好、短租可、长租优惠、商圈附近。
+
+    公寓配套包括独立卫浴、衣柜、书桌。
+
+    适合预算 4400 元以内、希望性价比高和独立空间的租客。'
+- room_id: 3107
+  room_number: '615'
+  apartment_id: 2007
+  apartment_name: 福田中心寓
+  city_name: 深圳
+  district_name: 福田区
+  address: 福田区华强北路
+  rent: 3800
+  area: 25
+  layout: 1室1卫
+  payment_types:
+  - HALF_YEARLY
+  - YEARLY
+  lease_terms:
+  - 6
+  tags:
+  - 商圈附近
+  - 通勤方便
+  - 配套齐全
+  - 花园小区
+  - 智能门锁
+  facilities:
+  - 书桌
+  - 宽带
+  - 电视
+  - 抽油烟机
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3107.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 4000 元以内的交通便利租客。
+  description: '房间 615，位于福田中心寓，深圳福田区，地址在福田区华强北路。
+
+    月租 3800 元，支持HALF_YEARLY、YEARLY，租期可选 6 个月。
+
+    户型 1室1卫，面积 25 平方米，标签包括商圈附近、通勤方便、配套齐全、花园小区、智能门锁。
+
+    公寓配套包括书桌、宽带、电视、抽油烟机。
+
+    适合预算 4000 元以内的交通便利租客。'
+- room_id: 3108
+  room_number: '617'
+  apartment_id: 2008
+  apartment_name: 宝安青年汇
+  city_name: 深圳
+  district_name: 宝安区
+  address: 宝安区西乡街道
+  rent: 2400
+  area: 28
+  layout: 1室1卫
+  payment_types:
+  - YEARLY
+  - MONTHLY
+  - QUARTERLY
+  lease_terms:
+  - 3
+  - 6
+  tags:
+  - 花园小区
+  - 智能门锁
+  - 楼下便利店
+  - 有车位
+  - 独卫
+  - 朝南
+  facilities:
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  - 茶几
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3108.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合追求配套完善和通勤方便的年轻上班族。
+  description: '房间 617，位于宝安青年汇，深圳宝安区，地址在宝安区西乡街道。
+
+    月租 2400 元，支持YEARLY、MONTHLY、QUARTERLY，租期可选 3、6 个月。
+
+    户型 1室1卫，面积 28 平方米，标签包括花园小区、智能门锁、楼下便利店、有车位、独卫、朝南。
+
+    公寓配套包括电视、抽油烟机、燃气灶、沙发、茶几。
+
+    适合追求配套完善和通勤方便的年轻上班族。'
+- room_id: 3109
+  room_number: '619'
+  apartment_id: 2009
+  apartment_name: 龙华乐活居
+  city_name: 深圳
+  district_name: 龙华区
+  address: 龙华区民治街道
+  rent: 2800
+  area: 30
+  layout: 1室1厅1卫
+  payment_types:
+  - MONTHLY
+  lease_terms:
+  - 6
+  - 12
+  tags:
+  - 有车位
+  - 独卫
+  - 朝南
+  facilities:
+  - 燃气灶
+  - 沙发
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  - 空调
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3109.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 3000 元以内、注重独立空间的租客。
+  description: '房间 619，位于龙华乐活居，深圳龙华区，地址在龙华区民治街道。
+
+    月租 2800 元，支持MONTHLY，租期可选 6、12 个月。
+
+    户型 1室1厅1卫，面积 30 平方米，标签包括有车位、独卫、朝南。
+
+    公寓配套包括燃气灶、沙发、茶几、床头柜、晾衣架、空调。
+
+    适合预算 3000 元以内、注重独立空间的租客。'
+- room_id: 3110
+  room_number: '621'
+  apartment_id: 2010
+  apartment_name: 罗湖东门寓
+  city_name: 深圳
+  district_name: 罗湖区
+  address: 罗湖区东门南路
+  rent: 3100
+  area: 35
+  layout: 1室1厅1卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  lease_terms:
+  - 3
+  - 6
+  - 12
+  tags:
+  - 朝北
+  - 安静
+  - 近地铁
+  - 适合备考
+  facilities:
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  - 空调
+  - 洗衣机
+  - 热水器
+  - 电梯
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3110.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望采光通风好、预算 3300 元以内的生活便利租客。
+  description: '房间 621，位于罗湖东门寓，深圳罗湖区，地址在罗湖区东门南路。
+
+    月租 3100 元，支持QUARTERLY、HALF_YEARLY，租期可选 3、6、12 个月。
+
+    户型 1室1厅1卫，面积 35 平方米，标签包括朝北、安静、近地铁、适合备考。
+
+    公寓配套包括茶几、床头柜、晾衣架、空调、洗衣机、热水器、电梯。
+
+    适合希望采光通风好、预算 3300 元以内的生活便利租客。'
+- room_id: 3111
+  room_number: '613'
+  apartment_id: 2011
+  apartment_name: 天河智慧城公寓
+  city_name: 广州
+  district_name: 天河区
+  address: 天河区高唐路
+  rent: 3700
+  area: 40
+  layout: 1室1厅1卫
+  payment_types:
+  - HALF_YEARLY
+  - YEARLY
+  - MONTHLY
+  lease_terms:
+  - 3
+  - 12
+  tags:
+  - 适合备考
+  - 新装修
+  - 采光好
+  - 拎包入住
+  - 可月付
+  facilities:
+  - 晾衣架
+  - 空调
+  - 洗衣机
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3111.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 3900 元以内、希望通勤方便和居住品质的租客。
+  description: '房间 613，位于天河智慧城公寓，广州天河区，地址在天河区高唐路。
+
+    月租 3700 元，支持HALF_YEARLY、YEARLY、MONTHLY，租期可选 3、12 个月。
+
+    户型 1室1厅1卫，面积 40 平方米，标签包括适合备考、新装修、采光好、拎包入住、可月付。
+
+    公寓配套包括晾衣架、空调、洗衣机。
+
+    适合预算 3900 元以内、希望通勤方便和居住品质的租客。'
+- room_id: 3112
+  room_number: '615'
+  apartment_id: 2012
+  apartment_name: 海珠江景寓
+  city_name: 广州
+  district_name: 海珠区
+  address: 海珠区滨江东路
+  rent: 4100
+  area: 50
+  layout: 2室1厅1卫
+  payment_types:
+  - YEARLY
+  lease_terms:
+  - 12
+  tags:
+  - 拎包入住
+  - 可月付
+  - 押一付一
+  - 电梯房
+  - 高层视野
+  - 独立阳台
+  facilities:
+  - 洗衣机
+  - 热水器
+  - 电梯
+  - 冰箱
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3112.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 4300 元以内的安静学习环境租客。
+  description: '房间 615，位于海珠江景寓，广州海珠区，地址在海珠区滨江东路。
+
+    月租 4100 元，支持YEARLY，租期可选 12 个月。
+
+    户型 2室1厅1卫，面积 50 平方米，标签包括拎包入住、可月付、押一付一、电梯房、高层视野、独立阳台。
+
+    公寓配套包括洗衣机、热水器、电梯、冰箱。
+
+    适合预算 4300 元以内的安静学习环境租客。'
+- room_id: 3113
+  room_number: '617'
+  apartment_id: 2013
+  apartment_name: 番禺万博公寓
+  city_name: 广州
+  district_name: 番禺区
+  address: 番禺区万博翠湖
+  rent: 1900
+  area: 55
+  layout: 2室1厅1卫
+  payment_types:
+  - MONTHLY
+  - QUARTERLY
+  lease_terms:
+  - 3
+  tags:
+  - 电梯房
+  - 高层视野
+  - 独立阳台
+  facilities:
+  - 电梯
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3113.jpg
+  is_release: true
+  is_appointable: false
+  audience_summary: 适合追求生活便利和性价比高的年轻上班族。
+  description: '房间 617，位于番禺万博公寓，广州番禺区，地址在番禺区万博翠湖。
+
+    月租 1900 元，支持MONTHLY、QUARTERLY，租期可选 3 个月。
+
+    户型 2室1厅1卫，面积 55 平方米，标签包括电梯房、高层视野、独立阳台。
+
+    公寓配套包括电梯、冰箱、微波炉、独立卫浴、衣柜。
+
+    适合追求生活便利和性价比高的年轻上班族。'
+- room_id: 3114
+  room_number: '619'
+  apartment_id: 2014
+  apartment_name: 白云嘉禾寓
+  city_name: 广州
+  district_name: 白云区
+  address: 白云区嘉禾望岗大道
+  rent: 1700
+  area: 60
+  layout: 2室1厅1卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  - YEARLY
+  lease_terms:
+  - 6
+  tags:
+  - 可做饭
+  - 养宠友好
+  - 短租可
+  - 长租优惠
+  facilities:
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  - 宽带
+  - 电视
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3114.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 1900 元以内、注重居住品质的租客。
+  description: '房间 619，位于白云嘉禾寓，广州白云区，地址在白云区嘉禾望岗大道。
+
+    月租 1700 元，支持QUARTERLY、HALF_YEARLY、YEARLY，租期可选 6 个月。
+
+    户型 2室1厅1卫，面积 60 平方米，标签包括可做饭、养宠友好、短租可、长租优惠。
+
+    公寓配套包括微波炉、独立卫浴、衣柜、书桌、宽带、电视。
+
+    适合预算 1900 元以内、注重居住品质的租客。'
+- room_id: 3115
+  room_number: '621'
+  apartment_id: 2015
+  apartment_name: 越秀淘金居
+  city_name: 广州
+  district_name: 越秀区
+  address: 越秀区淘金路
+  rent: 3000
+  area: 65
+  layout: 2室1厅1卫
+  payment_types:
+  - HALF_YEARLY
+  lease_terms:
+  - 3
+  - 6
+  tags:
+  - 长租优惠
+  - 商圈附近
+  - 通勤方便
+  - 配套齐全
+  - 花园小区
+  facilities:
+  - 衣柜
+  - 书桌
+  - 宽带
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3115.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望空间宽敞、预算 3200 元以内的配套完善租客。
+  description: '房间 621，位于越秀淘金居，广州越秀区，地址在越秀区淘金路。
+
+    月租 3000 元，支持HALF_YEARLY，租期可选 3、6 个月。
+
+    户型 2室1厅1卫，面积 65 平方米，标签包括长租优惠、商圈附近、通勤方便、配套齐全、花园小区。
+
+    公寓配套包括衣柜、书桌、宽带、电视、抽油烟机、燃气灶、沙发。
+
+    适合希望空间宽敞、预算 3200 元以内的配套完善租客。'
+- room_id: 3116
+  room_number: '623'
+  apartment_id: 2016
+  apartment_name: 南山蛇口寓
+  city_name: 深圳
+  district_name: 南山区
+  address: 南山区蛇口工业区
+  rent: 4200
+  area: 70
+  layout: 2室2厅1卫
+  payment_types:
+  - YEARLY
+  - MONTHLY
+  lease_terms:
+  - 6
+  - 12
+  tags:
+  - 配套齐全
+  - 花园小区
+  - 智能门锁
+  - 楼下便利店
+  - 有车位
+  - 独卫
+  facilities:
+  - 宽带
+  - 电视
+  - 抽油烟机
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3116.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 4400 元以内、希望性价比高和独立空间的租客。
+  description: '房间 623，位于南山蛇口寓，深圳南山区，地址在南山区蛇口工业区。
+
+    月租 4200 元，支持YEARLY、MONTHLY，租期可选 6、12 个月。
+
+    户型 2室2厅1卫，面积 70 平方米，标签包括配套齐全、花园小区、智能门锁、楼下便利店、有车位、独卫。
+
+    公寓配套包括宽带、电视、抽油烟机。
+
+    适合预算 4400 元以内、希望性价比高和独立空间的租客。'
+- room_id: 3117
+  room_number: '625'
+  apartment_id: 2017
+  apartment_name: 龙岗坂田公寓
+  city_name: 深圳
+  district_name: 龙岗区
+  address: 龙岗区坂田街道
+  rent: 2300
+  area: 75
+  layout: 2室2厅1卫
+  payment_types:
+  - MONTHLY
+  - QUARTERLY
+  - HALF_YEARLY
+  lease_terms:
+  - 3
+  - 6
+  - 12
+  tags:
+  - 楼下便利店
+  - 有车位
+  - 独卫
+  facilities:
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  - 茶几
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3117.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 2500 元以内的交通便利租客。
+  description: '房间 625，位于龙岗坂田公寓，深圳龙岗区，地址在龙岗区坂田街道。
+
+    月租 2300 元，支持MONTHLY、QUARTERLY、HALF_YEARLY，租期可选 3、6、12 个月。
+
+    户型 2室2厅1卫，面积 75 平方米，标签包括楼下便利店、有车位、独卫。
+
+    公寓配套包括抽油烟机、燃气灶、沙发、茶几。
+
+    适合预算 2500 元以内的交通便利租客。'
+- room_id: 3118
+  room_number: '627'
+  apartment_id: 2018
+  apartment_name: 宝安固戍寓
+  city_name: 深圳
+  district_name: 宝安区
+  address: 宝安区固戍二路
+  rent: 2300
+  area: 80
+  layout: 3室1厅1卫
+  payment_types:
+  - QUARTERLY
+  lease_terms:
+  - 3
+  - 12
+  tags:
+  - 朝南
+  - 朝北
+  - 安静
+  - 近地铁
+  facilities:
+  - 沙发
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  - 空调
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3118.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合追求配套完善和通勤方便的年轻上班族。
+  description: '房间 627，位于宝安固戍寓，深圳宝安区，地址在宝安区固戍二路。
+
+    月租 2300 元，支持QUARTERLY，租期可选 3、12 个月。
+
+    户型 3室1厅1卫，面积 80 平方米，标签包括朝南、朝北、安静、近地铁。
+
+    公寓配套包括沙发、茶几、床头柜、晾衣架、空调。
+
+    适合追求配套完善和通勤方便的年轻上班族。'
+- room_id: 3119
+  room_number: '629'
+  apartment_id: 2019
+  apartment_name: 龙华清湖居
+  city_name: 深圳
+  district_name: 龙华区
+  address: 龙华区清湖路
+  rent: 2900
+  area: 90
+  layout: 3室2厅1卫
+  payment_types:
+  - HALF_YEARLY
+  - YEARLY
+  lease_terms:
+  - 12
+  tags:
+  - 近地铁
+  - 适合备考
+  - 新装修
+  - 采光好
+  - 拎包入住
+  facilities:
+  - 床头柜
+  - 晾衣架
+  - 空调
+  - 洗衣机
+  - 热水器
+  - 电梯
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3119.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 3100 元以内、注重独立空间的租客。
+  description: '房间 629，位于龙华清湖居，深圳龙华区，地址在龙华区清湖路。
+
+    月租 2900 元，支持HALF_YEARLY、YEARLY，租期可选 12 个月。
+
+    户型 3室2厅1卫，面积 90 平方米，标签包括近地铁、适合备考、新装修、采光好、拎包入住。
+
+    公寓配套包括床头柜、晾衣架、空调、洗衣机、热水器、电梯。
+
+    适合预算 3100 元以内、注重独立空间的租客。'
+- room_id: 3120
+  room_number: '631'
+  apartment_id: 2020
+  apartment_name: 福田景田寓
+  city_name: 深圳
+  district_name: 福田区
+  address: 福田区景田东路
+  rent: 3500
+  area: 100
+  layout: 3室2厅2卫
+  payment_types:
+  - YEARLY
+  - MONTHLY
+  - QUARTERLY
+  lease_terms:
+  - 3
+  tags:
+  - 采光好
+  - 拎包入住
+  - 可月付
+  - 押一付一
+  - 电梯房
+  - 高层视野
+  facilities:
+  - 空调
+  - 洗衣机
+  - 热水器
+  - 电梯
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3120.jpg
+  is_release: true
+  is_appointable: false
+  audience_summary: 适合希望采光通风好、预算 3700 元以内的生活便利租客。
+  description: '房间 631，位于福田景田寓，深圳福田区，地址在福田区景田东路。
+
+    月租 3500 元，支持YEARLY、MONTHLY、QUARTERLY，租期可选 3 个月。
+
+    户型 3室2厅2卫，面积 100 平方米，标签包括采光好、拎包入住、可月付、押一付一、电梯房、高层视野。
+
+    公寓配套包括空调、洗衣机、热水器、电梯、冰箱、微波炉、独立卫浴。
+
+    适合希望采光通风好、预算 3700 元以内的生活便利租客。'
+- room_id: 3121
+  room_number: '703'
+  apartment_id: 2001
+  apartment_name: 天河公寓
+  city_name: 广州
+  district_name: 天河区
+  address: 天河区科韵路附近
+  rent: 2600
+  area: 20
+  layout: 1室1卫
+  payment_types:
+  - MONTHLY
+  lease_terms:
+  - 6
+  tags:
+  - 押一付一
+  - 电梯房
+  - 高层视野
+  facilities:
+  - 热水器
+  - 电梯
+  - 冰箱
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3121.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 2800 元以内、希望通勤方便和居住品质的租客。
+  description: '房间 703，位于天河公寓，广州天河区，地址在天河区科韵路附近。
+
+    月租 2600 元，支持MONTHLY，租期可选 6 个月。
+
+    户型 1室1卫，面积 20 平方米，标签包括押一付一、电梯房、高层视野。
+
+    公寓配套包括热水器、电梯、冰箱。
+
+    适合预算 2800 元以内、希望通勤方便和居住品质的租客。'
+- room_id: 3122
+  room_number: '705'
+  apartment_id: 2002
+  apartment_name: 珠江寓
+  city_name: 广州
+  district_name: 海珠区
+  address: 海珠区新港东路
+  rent: 3100
+  area: 25
+  layout: 1室1卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  lease_terms:
+  - 3
+  - 6
+  tags:
+  - 独立阳台
+  - 可做饭
+  - 养宠友好
+  - 短租可
+  facilities:
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3122.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 3300 元以内的安静学习环境租客。
+  description: '房间 705，位于珠江寓，广州海珠区，地址在海珠区新港东路。
+
+    月租 3100 元，支持QUARTERLY、HALF_YEARLY，租期可选 3、6 个月。
+
+    户型 1室1卫，面积 25 平方米，标签包括独立阳台、可做饭、养宠友好、短租可。
+
+    公寓配套包括冰箱、微波炉、独立卫浴、衣柜。
+
+    适合预算 3300 元以内的安静学习环境租客。'
+- room_id: 3123
+  room_number: '707'
+  apartment_id: 2003
+  apartment_name: 越秀家园
+  city_name: 广州
+  district_name: 越秀区
+  address: 越秀区东风中路
+  rent: 2600
+  area: 28
+  layout: 1室1卫
+  payment_types:
+  - HALF_YEARLY
+  - YEARLY
+  - MONTHLY
+  lease_terms:
+  - 6
+  - 12
+  tags:
+  - 短租可
+  - 长租优惠
+  - 商圈附近
+  - 通勤方便
+  - 配套齐全
+  facilities:
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  - 宽带
+  - 电视
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3123.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合追求生活便利和性价比高的年轻上班族。
+  description: '房间 707，位于越秀家园，广州越秀区，地址在越秀区东风中路。
+
+    月租 2600 元，支持HALF_YEARLY、YEARLY、MONTHLY，租期可选 6、12 个月。
+
+    户型 1室1卫，面积 28 平方米，标签包括短租可、长租优惠、商圈附近、通勤方便、配套齐全。
+
+    公寓配套包括独立卫浴、衣柜、书桌、宽带、电视。
+
+    适合追求生活便利和性价比高的年轻上班族。'
+- room_id: 3124
+  room_number: '709'
+  apartment_id: 2004
+  apartment_name: 番禺青年社区
+  city_name: 广州
+  district_name: 番禺区
+  address: 番禺区市桥大北路
+  rent: 1900
+  area: 30
+  layout: 1室1厅1卫
+  payment_types:
+  - YEARLY
+  lease_terms:
+  - 3
+  - 6
+  - 12
+  tags:
+  - 通勤方便
+  - 配套齐全
+  - 花园小区
+  - 智能门锁
+  - 楼下便利店
+  - 有车位
+  facilities:
+  - 书桌
+  - 宽带
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3124.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 2100 元以内、注重居住品质的租客。
+  description: '房间 709，位于番禺青年社区，广州番禺区，地址在番禺区市桥大北路。
+
+    月租 1900 元，支持YEARLY，租期可选 3、6、12 个月。
+
+    户型 1室1厅1卫，面积 30 平方米，标签包括通勤方便、配套齐全、花园小区、智能门锁、楼下便利店、有车位。
+
+    公寓配套包括书桌、宽带、电视、抽油烟机、燃气灶、沙发。
+
+    适合预算 2100 元以内、注重居住品质的租客。'
+- room_id: 3125
+  room_number: '711'
+  apartment_id: 2005
+  apartment_name: 白云阳光居
+  city_name: 广州
+  district_name: 白云区
+  address: 白云区嘉禾望岗
+  rent: 2200
+  area: 35
+  layout: 1室1厅1卫
+  payment_types:
+  - MONTHLY
+  - QUARTERLY
+  lease_terms:
+  - 3
+  - 12
+  tags:
+  - 智能门锁
+  - 楼下便利店
+  - 有车位
+  facilities:
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3125.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望空间宽敞、预算 2400 元以内的配套完善租客。
+  description: '房间 711，位于白云阳光居，广州白云区，地址在白云区嘉禾望岗。
+
+    月租 2200 元，支持MONTHLY、QUARTERLY，租期可选 3、12 个月。
+
+    户型 1室1厅1卫，面积 35 平方米，标签包括智能门锁、楼下便利店、有车位。
+
+    公寓配套包括电视、抽油烟机、燃气灶、沙发、茶几、床头柜、晾衣架。
+
+    适合希望空间宽敞、预算 2400 元以内的配套完善租客。'
+- room_id: 3126
+  room_number: '713'
+  apartment_id: 2006
+  apartment_name: 南山科技园公寓
+  city_name: 深圳
+  district_name: 南山区
+  address: 南山区科技园科发路
+  rent: 4800
+  area: 40
+  layout: 1室1厅1卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  - YEARLY
+  lease_terms:
+  - 12
+  tags:
+  - 独卫
+  - 朝南
+  - 朝北
+  - 安静
+  facilities:
+  - 燃气灶
+  - 沙发
+  - 茶几
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3126.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 5000 元以内、希望性价比高和独立空间的租客。
+  description: '房间 713，位于南山科技园公寓，深圳南山区，地址在南山区科技园科发路。
+
+    月租 4800 元，支持QUARTERLY、HALF_YEARLY、YEARLY，租期可选 12 个月。
+
+    户型 1室1厅1卫，面积 40 平方米，标签包括独卫、朝南、朝北、安静。
+
+    公寓配套包括燃气灶、沙发、茶几。
+
+    适合预算 5000 元以内、希望性价比高和独立空间的租客。'
+- room_id: 3127
+  room_number: '715'
+  apartment_id: 2007
+  apartment_name: 福田中心寓
+  city_name: 深圳
+  district_name: 福田区
+  address: 福田区华强北路
+  rent: 3700
+  area: 50
+  layout: 2室1厅1卫
+  payment_types:
+  - HALF_YEARLY
+  lease_terms:
+  - 3
+  tags:
+  - 安静
+  - 近地铁
+  - 适合备考
+  - 新装修
+  - 采光好
+  facilities:
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  - 空调
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3127.jpg
+  is_release: true
+  is_appointable: false
+  audience_summary: 适合预算 3900 元以内的交通便利租客。
+  description: '房间 715，位于福田中心寓，深圳福田区，地址在福田区华强北路。
+
+    月租 3700 元，支持HALF_YEARLY，租期可选 3 个月。
+
+    户型 2室1厅1卫，面积 50 平方米，标签包括安静、近地铁、适合备考、新装修、采光好。
+
+    公寓配套包括茶几、床头柜、晾衣架、空调。
+
+    适合预算 3900 元以内的交通便利租客。'
+- room_id: 3128
+  room_number: '717'
+  apartment_id: 2008
+  apartment_name: 宝安青年汇
+  city_name: 深圳
+  district_name: 宝安区
+  address: 宝安区西乡街道
+  rent: 2300
+  area: 55
+  layout: 2室1厅1卫
+  payment_types:
+  - YEARLY
+  - MONTHLY
+  lease_terms:
+  - 6
+  tags:
+  - 新装修
+  - 采光好
+  - 拎包入住
+  - 可月付
+  - 押一付一
+  - 电梯房
+  facilities:
+  - 晾衣架
+  - 空调
+  - 洗衣机
+  - 热水器
+  - 电梯
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3128.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合追求配套完善和通勤方便的年轻上班族。
+  description: '房间 717，位于宝安青年汇，深圳宝安区，地址在宝安区西乡街道。
+
+    月租 2300 元，支持YEARLY、MONTHLY，租期可选 6 个月。
+
+    户型 2室1厅1卫，面积 55 平方米，标签包括新装修、采光好、拎包入住、可月付、押一付一、电梯房。
+
+    公寓配套包括晾衣架、空调、洗衣机、热水器、电梯。
+
+    适合追求配套完善和通勤方便的年轻上班族。'
+- room_id: 3129
+  room_number: '719'
+  apartment_id: 2009
+  apartment_name: 龙华乐活居
+  city_name: 深圳
+  district_name: 龙华区
+  address: 龙华区民治街道
+  rent: 2700
+  area: 60
+  layout: 2室1厅1卫
+  payment_types:
+  - MONTHLY
+  - QUARTERLY
+  - HALF_YEARLY
+  lease_terms:
+  - 3
+  - 6
+  tags:
+  - 可月付
+  - 押一付一
+  - 电梯房
+  facilities:
+  - 洗衣机
+  - 热水器
+  - 电梯
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3129.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 2900 元以内、注重独立空间的租客。
+  description: '房间 719，位于龙华乐活居，深圳龙华区，地址在龙华区民治街道。
+
+    月租 2700 元，支持MONTHLY、QUARTERLY、HALF_YEARLY，租期可选 3、6 个月。
+
+    户型 2室1厅1卫，面积 60 平方米，标签包括可月付、押一付一、电梯房。
+
+    公寓配套包括洗衣机、热水器、电梯、冰箱、微波炉、独立卫浴。
+
+    适合预算 2900 元以内、注重独立空间的租客。'
+- room_id: 3130
+  room_number: '721'
+  apartment_id: 2010
+  apartment_name: 罗湖东门寓
+  city_name: 深圳
+  district_name: 罗湖区
+  address: 罗湖区东门南路
+  rent: 3000
+  area: 65
+  layout: 2室1厅1卫
+  payment_types:
+  - QUARTERLY
+  lease_terms:
+  - 6
+  - 12
+  tags:
+  - 高层视野
+  - 独立阳台
+  - 可做饭
+  - 养宠友好
+  facilities:
+  - 电梯
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  - 宽带
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3130.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望采光通风好、预算 3200 元以内的生活便利租客。
+  description: '房间 721，位于罗湖东门寓，深圳罗湖区，地址在罗湖区东门南路。
+
+    月租 3000 元，支持QUARTERLY，租期可选 6、12 个月。
+
+    户型 2室1厅1卫，面积 65 平方米，标签包括高层视野、独立阳台、可做饭、养宠友好。
+
+    公寓配套包括电梯、冰箱、微波炉、独立卫浴、衣柜、书桌、宽带。
+
+    适合希望采光通风好、预算 3200 元以内的生活便利租客。'
+- room_id: 3131
+  room_number: '713'
+  apartment_id: 2011
+  apartment_name: 天河智慧城公寓
+  city_name: 广州
+  district_name: 天河区
+  address: 天河区高唐路
+  rent: 3600
+  area: 70
+  layout: 2室2厅1卫
+  payment_types:
+  - HALF_YEARLY
+  - YEARLY
+  lease_terms:
+  - 3
+  - 6
+  - 12
+  tags:
+  - 养宠友好
+  - 短租可
+  - 长租优惠
+  - 商圈附近
+  - 通勤方便
+  facilities:
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3131.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 3800 元以内、希望通勤方便和居住品质的租客。
+  description: '房间 713，位于天河智慧城公寓，广州天河区，地址在天河区高唐路。
+
+    月租 3600 元，支持HALF_YEARLY、YEARLY，租期可选 3、6、12 个月。
+
+    户型 2室2厅1卫，面积 70 平方米，标签包括养宠友好、短租可、长租优惠、商圈附近、通勤方便。
+
+    公寓配套包括微波炉、独立卫浴、衣柜。
+
+    适合预算 3800 元以内、希望通勤方便和居住品质的租客。'
+- room_id: 3132
+  room_number: '715'
+  apartment_id: 2012
+  apartment_name: 海珠江景寓
+  city_name: 广州
+  district_name: 海珠区
+  address: 海珠区滨江东路
+  rent: 4000
+  area: 75
+  layout: 2室2厅1卫
+  payment_types:
+  - YEARLY
+  - MONTHLY
+  - QUARTERLY
+  lease_terms:
+  - 3
+  - 12
+  tags:
+  - 商圈附近
+  - 通勤方便
+  - 配套齐全
+  - 花园小区
+  - 智能门锁
+  - 楼下便利店
+  facilities:
+  - 衣柜
+  - 书桌
+  - 宽带
+  - 电视
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3132.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 4200 元以内的安静学习环境租客。
+  description: '房间 715，位于海珠江景寓，广州海珠区，地址在海珠区滨江东路。
+
+    月租 4000 元，支持YEARLY、MONTHLY、QUARTERLY，租期可选 3、12 个月。
+
+    户型 2室2厅1卫，面积 75 平方米，标签包括商圈附近、通勤方便、配套齐全、花园小区、智能门锁、楼下便利店。
+
+    公寓配套包括衣柜、书桌、宽带、电视。
+
+    适合预算 4200 元以内的安静学习环境租客。'
+- room_id: 3133
+  room_number: '717'
+  apartment_id: 2013
+  apartment_name: 番禺万博公寓
+  city_name: 广州
+  district_name: 番禺区
+  address: 番禺区万博翠湖
+  rent: 2500
+  area: 80
+  layout: 3室1厅1卫
+  payment_types:
+  - MONTHLY
+  lease_terms:
+  - 12
+  tags:
+  - 花园小区
+  - 智能门锁
+  - 楼下便利店
+  facilities:
+  - 宽带
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3133.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合追求生活便利和性价比高的年轻上班族。
+  description: '房间 717，位于番禺万博公寓，广州番禺区，地址在番禺区万博翠湖。
+
+    月租 2500 元，支持MONTHLY，租期可选 12 个月。
+
+    户型 3室1厅1卫，面积 80 平方米，标签包括花园小区、智能门锁、楼下便利店。
+
+    公寓配套包括宽带、电视、抽油烟机、燃气灶、沙发。
+
+    适合追求生活便利和性价比高的年轻上班族。'
+- room_id: 3134
+  room_number: '719'
+  apartment_id: 2014
+  apartment_name: 白云嘉禾寓
+  city_name: 广州
+  district_name: 白云区
+  address: 白云区嘉禾望岗大道
+  rent: 1600
+  area: 90
+  layout: 3室2厅1卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  lease_terms:
+  - 3
+  tags:
+  - 有车位
+  - 独卫
+  - 朝南
+  - 朝北
+  facilities:
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3134.jpg
+  is_release: true
+  is_appointable: false
+  audience_summary: 适合预算 1800 元以内、注重居住品质的租客。
+  description: '房间 719，位于白云嘉禾寓，广州白云区，地址在白云区嘉禾望岗大道。
+
+    月租 1600 元，支持QUARTERLY、HALF_YEARLY，租期可选 3 个月。
+
+    户型 3室2厅1卫，面积 90 平方米，标签包括有车位、独卫、朝南、朝北。
+
+    公寓配套包括抽油烟机、燃气灶、沙发、茶几、床头柜、晾衣架。
+
+    适合预算 1800 元以内、注重居住品质的租客。'
+- room_id: 3135
+  room_number: '721'
+  apartment_id: 2015
+  apartment_name: 越秀淘金居
+  city_name: 广州
+  district_name: 越秀区
+  address: 越秀区淘金路
+  rent: 2900
+  area: 100
+  layout: 3室2厅2卫
+  payment_types:
+  - HALF_YEARLY
+  - YEARLY
+  - MONTHLY
+  lease_terms:
+  - 6
+  tags:
+  - 朝北
+  - 安静
+  - 近地铁
+  - 适合备考
+  - 新装修
+  facilities:
+  - 沙发
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  - 空调
+  - 洗衣机
+  - 热水器
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3135.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望空间宽敞、预算 3100 元以内的配套完善租客。
+  description: '房间 721，位于越秀淘金居，广州越秀区，地址在越秀区淘金路。
+
+    月租 2900 元，支持HALF_YEARLY、YEARLY、MONTHLY，租期可选 6 个月。
+
+    户型 3室2厅2卫，面积 100 平方米，标签包括朝北、安静、近地铁、适合备考、新装修。
+
+    公寓配套包括沙发、茶几、床头柜、晾衣架、空调、洗衣机、热水器。
+
+    适合希望空间宽敞、预算 3100 元以内的配套完善租客。'
+- room_id: 3136
+  room_number: '723'
+  apartment_id: 2016
+  apartment_name: 南山蛇口寓
+  city_name: 深圳
+  district_name: 南山区
+  address: 南山区蛇口工业区
+  rent: 4100
+  area: 20
+  layout: 1室1卫
+  payment_types:
+  - YEARLY
+  lease_terms:
+  - 3
+  - 6
+  tags:
+  - 适合备考
+  - 新装修
+  - 采光好
+  - 拎包入住
+  - 可月付
+  - 押一付一
+  facilities:
+  - 床头柜
+  - 晾衣架
+  - 空调
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3136.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 4300 元以内、希望性价比高和独立空间的租客。
+  description: '房间 723，位于南山蛇口寓，深圳南山区，地址在南山区蛇口工业区。
+
+    月租 4100 元，支持YEARLY，租期可选 3、6 个月。
+
+    户型 1室1卫，面积 20 平方米，标签包括适合备考、新装修、采光好、拎包入住、可月付、押一付一。
+
+    公寓配套包括床头柜、晾衣架、空调。
+
+    适合预算 4300 元以内、希望性价比高和独立空间的租客。'
+- room_id: 3137
+  room_number: '725'
+  apartment_id: 2017
+  apartment_name: 龙岗坂田公寓
+  city_name: 深圳
+  district_name: 龙岗区
+  address: 龙岗区坂田街道
+  rent: 2200
+  area: 25
+  layout: 1室1卫
+  payment_types:
+  - MONTHLY
+  - QUARTERLY
+  lease_terms:
+  - 6
+  - 12
+  tags:
+  - 拎包入住
+  - 可月付
+  - 押一付一
+  facilities:
+  - 空调
+  - 洗衣机
+  - 热水器
+  - 电梯
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3137.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 2400 元以内的交通便利租客。
+  description: '房间 725，位于龙岗坂田公寓，深圳龙岗区，地址在龙岗区坂田街道。
+
+    月租 2200 元，支持MONTHLY、QUARTERLY，租期可选 6、12 个月。
+
+    户型 1室1卫，面积 25 平方米，标签包括拎包入住、可月付、押一付一。
+
+    公寓配套包括空调、洗衣机、热水器、电梯。
+
+    适合预算 2400 元以内的交通便利租客。'
+- room_id: 3138
+  room_number: '727'
+  apartment_id: 2018
+  apartment_name: 宝安固戍寓
+  city_name: 深圳
+  district_name: 宝安区
+  address: 宝安区固戍二路
+  rent: 2200
+  area: 28
+  layout: 1室1卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  - YEARLY
+  lease_terms:
+  - 3
+  - 6
+  - 12
+  tags:
+  - 电梯房
+  - 高层视野
+  - 独立阳台
+  - 可做饭
+  facilities:
+  - 热水器
+  - 电梯
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3138.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合追求配套完善和通勤方便的年轻上班族。
+  description: '房间 727，位于宝安固戍寓，深圳宝安区，地址在宝安区固戍二路。
+
+    月租 2200 元，支持QUARTERLY、HALF_YEARLY、YEARLY，租期可选 3、6、12 个月。
+
+    户型 1室1卫，面积 28 平方米，标签包括电梯房、高层视野、独立阳台、可做饭。
+
+    公寓配套包括热水器、电梯、冰箱、微波炉、独立卫浴。
+
+    适合追求配套完善和通勤方便的年轻上班族。'
+- room_id: 3139
+  room_number: '729'
+  apartment_id: 2019
+  apartment_name: 龙华清湖居
+  city_name: 深圳
+  district_name: 龙华区
+  address: 龙华区清湖路
+  rent: 2800
+  area: 30
+  layout: 1室1厅1卫
+  payment_types:
+  - HALF_YEARLY
+  lease_terms:
+  - 3
+  - 12
+  tags:
+  - 可做饭
+  - 养宠友好
+  - 短租可
+  - 长租优惠
+  - 商圈附近
+  facilities:
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  - 宽带
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3139.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 3000 元以内、注重独立空间的租客。
+  description: '房间 729，位于龙华清湖居，深圳龙华区，地址在龙华区清湖路。
+
+    月租 2800 元，支持HALF_YEARLY，租期可选 3、12 个月。
+
+    户型 1室1厅1卫，面积 30 平方米，标签包括可做饭、养宠友好、短租可、长租优惠、商圈附近。
+
+    公寓配套包括冰箱、微波炉、独立卫浴、衣柜、书桌、宽带。
+
+    适合预算 3000 元以内、注重独立空间的租客。'
+- room_id: 3140
+  room_number: '731'
+  apartment_id: 2020
+  apartment_name: 福田景田寓
+  city_name: 深圳
+  district_name: 福田区
+  address: 福田区景田东路
+  rent: 4100
+  area: 35
+  layout: 1室1厅1卫
+  payment_types:
+  - YEARLY
+  - MONTHLY
+  lease_terms:
+  - 12
+  tags:
+  - 长租优惠
+  - 商圈附近
+  - 通勤方便
+  - 配套齐全
+  - 花园小区
+  - 智能门锁
+  facilities:
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  - 宽带
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3140.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望采光通风好、预算 4300 元以内的生活便利租客。
+  description: '房间 731，位于福田景田寓，深圳福田区，地址在福田区景田东路。
+
+    月租 4100 元，支持YEARLY、MONTHLY，租期可选 12 个月。
+
+    户型 1室1厅1卫，面积 35 平方米，标签包括长租优惠、商圈附近、通勤方便、配套齐全、花园小区、智能门锁。
+
+    公寓配套包括独立卫浴、衣柜、书桌、宽带、电视、抽油烟机、燃气灶。
+
+    适合希望采光通风好、预算 4300 元以内的生活便利租客。'
+- room_id: 3141
+  room_number: '803'
+  apartment_id: 2001
+  apartment_name: 天河公寓
+  city_name: 广州
+  district_name: 天河区
+  address: 天河区科韵路附近
+  rent: 2500
+  area: 40
+  layout: 1室1厅1卫
+  payment_types:
+  - MONTHLY
+  - QUARTERLY
+  - HALF_YEARLY
+  lease_terms:
+  - 3
+  tags:
+  - 配套齐全
+  - 花园小区
+  - 智能门锁
+  facilities:
+  - 书桌
+  - 宽带
+  - 电视
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3141.jpg
+  is_release: true
+  is_appointable: false
+  audience_summary: 适合预算 2700 元以内、希望通勤方便和居住品质的租客。
+  description: '房间 803，位于天河公寓，广州天河区，地址在天河区科韵路附近。
+
+    月租 2500 元，支持MONTHLY、QUARTERLY、HALF_YEARLY，租期可选 3 个月。
+
+    户型 1室1厅1卫，面积 40 平方米，标签包括配套齐全、花园小区、智能门锁。
+
+    公寓配套包括书桌、宽带、电视。
+
+    适合预算 2700 元以内、希望通勤方便和居住品质的租客。'
+- room_id: 3142
+  room_number: '805'
+  apartment_id: 2002
+  apartment_name: 珠江寓
+  city_name: 广州
+  district_name: 海珠区
+  address: 海珠区新港东路
+  rent: 3000
+  area: 50
+  layout: 2室1厅1卫
+  payment_types:
+  - QUARTERLY
+  lease_terms:
+  - 6
+  tags:
+  - 楼下便利店
+  - 有车位
+  - 独卫
+  - 朝南
+  facilities:
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3142.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 3200 元以内的安静学习环境租客。
+  description: '房间 805，位于珠江寓，广州海珠区，地址在海珠区新港东路。
+
+    月租 3000 元，支持QUARTERLY，租期可选 6 个月。
+
+    户型 2室1厅1卫，面积 50 平方米，标签包括楼下便利店、有车位、独卫、朝南。
+
+    公寓配套包括电视、抽油烟机、燃气灶、沙发。
+
+    适合预算 3200 元以内的安静学习环境租客。'
+- room_id: 3143
+  room_number: '807'
+  apartment_id: 2003
+  apartment_name: 越秀家园
+  city_name: 广州
+  district_name: 越秀区
+  address: 越秀区东风中路
+  rent: 2500
+  area: 55
+  layout: 2室1厅1卫
+  payment_types:
+  - HALF_YEARLY
+  - YEARLY
+  lease_terms:
+  - 3
+  - 6
+  tags:
+  - 朝南
+  - 朝北
+  - 安静
+  - 近地铁
+  - 适合备考
+  facilities:
+  - 燃气灶
+  - 沙发
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3143.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合追求生活便利和性价比高的年轻上班族。
+  description: '房间 807，位于越秀家园，广州越秀区，地址在越秀区东风中路。
+
+    月租 2500 元，支持HALF_YEARLY、YEARLY，租期可选 3、6 个月。
+
+    户型 2室1厅1卫，面积 55 平方米，标签包括朝南、朝北、安静、近地铁、适合备考。
+
+    公寓配套包括燃气灶、沙发、茶几、床头柜、晾衣架。
+
+    适合追求生活便利和性价比高的年轻上班族。'
+- room_id: 3144
+  room_number: '809'
+  apartment_id: 2004
+  apartment_name: 番禺青年社区
+  city_name: 广州
+  district_name: 番禺区
+  address: 番禺区市桥大北路
+  rent: 1800
+  area: 60
+  layout: 2室1厅1卫
+  payment_types:
+  - YEARLY
+  - MONTHLY
+  - QUARTERLY
+  lease_terms:
+  - 6
+  - 12
+  tags:
+  - 近地铁
+  - 适合备考
+  - 新装修
+  - 采光好
+  - 拎包入住
+  - 可月付
+  facilities:
+  - 茶几
+  - 床头柜
+  - 晾衣架
+  - 空调
+  - 洗衣机
+  - 热水器
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3144.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 2000 元以内、注重居住品质的租客。
+  description: '房间 809，位于番禺青年社区，广州番禺区，地址在番禺区市桥大北路。
+
+    月租 1800 元，支持YEARLY、MONTHLY、QUARTERLY，租期可选 6、12 个月。
+
+    户型 2室1厅1卫，面积 60 平方米，标签包括近地铁、适合备考、新装修、采光好、拎包入住、可月付。
+
+    公寓配套包括茶几、床头柜、晾衣架、空调、洗衣机、热水器。
+
+    适合预算 2000 元以内、注重居住品质的租客。'
+- room_id: 3145
+  room_number: '811'
+  apartment_id: 2005
+  apartment_name: 白云阳光居
+  city_name: 广州
+  district_name: 白云区
+  address: 白云区嘉禾望岗
+  rent: 2100
+  area: 65
+  layout: 2室1厅1卫
+  payment_types:
+  - MONTHLY
+  lease_terms:
+  - 3
+  - 6
+  - 12
+  tags:
+  - 采光好
+  - 拎包入住
+  - 可月付
+  facilities:
+  - 晾衣架
+  - 空调
+  - 洗衣机
+  - 热水器
+  - 电梯
+  - 冰箱
+  - 微波炉
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3145.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望空间宽敞、预算 2300 元以内的配套完善租客。
+  description: '房间 811，位于白云阳光居，广州白云区，地址在白云区嘉禾望岗。
+
+    月租 2100 元，支持MONTHLY，租期可选 3、6、12 个月。
+
+    户型 2室1厅1卫，面积 65 平方米，标签包括采光好、拎包入住、可月付。
+
+    公寓配套包括晾衣架、空调、洗衣机、热水器、电梯、冰箱、微波炉。
+
+    适合希望空间宽敞、预算 2300 元以内的配套完善租客。'
+- room_id: 3146
+  room_number: '813'
+  apartment_id: 2006
+  apartment_name: 南山科技园公寓
+  city_name: 深圳
+  district_name: 南山区
+  address: 南山区科技园科发路
+  rent: 4700
+  area: 70
+  layout: 2室2厅1卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  lease_terms:
+  - 3
+  - 12
+  tags:
+  - 押一付一
+  - 电梯房
+  - 高层视野
+  - 独立阳台
+  facilities:
+  - 洗衣机
+  - 热水器
+  - 电梯
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3146.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 4900 元以内、希望性价比高和独立空间的租客。
+  description: '房间 813，位于南山科技园公寓，深圳南山区，地址在南山区科技园科发路。
+
+    月租 4700 元，支持QUARTERLY、HALF_YEARLY，租期可选 3、12 个月。
+
+    户型 2室2厅1卫，面积 70 平方米，标签包括押一付一、电梯房、高层视野、独立阳台。
+
+    公寓配套包括洗衣机、热水器、电梯。
+
+    适合预算 4900 元以内、希望性价比高和独立空间的租客。'
+- room_id: 3147
+  room_number: '815'
+  apartment_id: 2007
+  apartment_name: 福田中心寓
+  city_name: 深圳
+  district_name: 福田区
+  address: 福田区华强北路
+  rent: 4300
+  area: 75
+  layout: 2室2厅1卫
+  payment_types:
+  - HALF_YEARLY
+  - YEARLY
+  - MONTHLY
+  lease_terms:
+  - 12
+  tags:
+  - 独立阳台
+  - 可做饭
+  - 养宠友好
+  - 短租可
+  - 长租优惠
+  facilities:
+  - 电梯
+  - 冰箱
+  - 微波炉
+  - 独立卫浴
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3147.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 4500 元以内的交通便利租客。
+  description: '房间 815，位于福田中心寓，深圳福田区，地址在福田区华强北路。
+
+    月租 4300 元，支持HALF_YEARLY、YEARLY、MONTHLY，租期可选 12 个月。
+
+    户型 2室2厅1卫，面积 75 平方米，标签包括独立阳台、可做饭、养宠友好、短租可、长租优惠。
+
+    公寓配套包括电梯、冰箱、微波炉、独立卫浴。
+
+    适合预算 4500 元以内的交通便利租客。'
+- room_id: 3148
+  room_number: '817'
+  apartment_id: 2008
+  apartment_name: 宝安青年汇
+  city_name: 深圳
+  district_name: 宝安区
+  address: 宝安区西乡街道
+  rent: 2200
+  area: 80
+  layout: 3室1厅1卫
+  payment_types:
+  - YEARLY
+  lease_terms:
+  - 3
+  tags:
+  - 短租可
+  - 长租优惠
+  - 商圈附近
+  - 通勤方便
+  - 配套齐全
+  - 花园小区
+  facilities:
+  - 微波炉
+  - 独立卫浴
+  - 衣柜
+  - 书桌
+  - 宽带
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3148.jpg
+  is_release: true
+  is_appointable: false
+  audience_summary: 适合追求配套完善和通勤方便的年轻上班族。
+  description: '房间 817，位于宝安青年汇，深圳宝安区，地址在宝安区西乡街道。
+
+    月租 2200 元，支持YEARLY，租期可选 3 个月。
+
+    户型 3室1厅1卫，面积 80 平方米，标签包括短租可、长租优惠、商圈附近、通勤方便、配套齐全、花园小区。
+
+    公寓配套包括微波炉、独立卫浴、衣柜、书桌、宽带。
+
+    适合追求配套完善和通勤方便的年轻上班族。'
+- room_id: 3149
+  room_number: '819'
+  apartment_id: 2009
+  apartment_name: 龙华乐活居
+  city_name: 深圳
+  district_name: 龙华区
+  address: 龙华区民治街道
+  rent: 2600
+  area: 90
+  layout: 3室2厅1卫
+  payment_types:
+  - MONTHLY
+  - QUARTERLY
+  lease_terms:
+  - 6
+  tags:
+  - 通勤方便
+  - 配套齐全
+  - 花园小区
+  facilities:
+  - 衣柜
+  - 书桌
+  - 宽带
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3149.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合预算 2800 元以内、注重独立空间的租客。
+  description: '房间 819，位于龙华乐活居，深圳龙华区，地址在龙华区民治街道。
+
+    月租 2600 元，支持MONTHLY、QUARTERLY，租期可选 6 个月。
+
+    户型 3室2厅1卫，面积 90 平方米，标签包括通勤方便、配套齐全、花园小区。
+
+    公寓配套包括衣柜、书桌、宽带、电视、抽油烟机、燃气灶。
+
+    适合预算 2800 元以内、注重独立空间的租客。'
+- room_id: 3150
+  room_number: '821'
+  apartment_id: 2010
+  apartment_name: 罗湖东门寓
+  city_name: 深圳
+  district_name: 罗湖区
+  address: 罗湖区东门南路
+  rent: 2900
+  area: 100
+  layout: 3室2厅2卫
+  payment_types:
+  - QUARTERLY
+  - HALF_YEARLY
+  - YEARLY
+  lease_terms:
+  - 3
+  - 6
+  tags:
+  - 智能门锁
+  - 楼下便利店
+  - 有车位
+  - 独卫
+  facilities:
+  - 宽带
+  - 电视
+  - 抽油烟机
+  - 燃气灶
+  - 沙发
+  - 茶几
+  - 床头柜
+  thumbnail_url: http://127.0.0.1:9000/lease/demo/room-3150.jpg
+  is_release: true
+  is_appointable: true
+  audience_summary: 适合希望采光通风好、预算 3100 元以内的生活便利租客。
+  description: '房间 821，位于罗湖东门寓，深圳罗湖区，地址在罗湖区东门南路。
+
+    月租 2900 元，支持QUARTERLY、HALF_YEARLY、YEARLY，租期可选 3、6 个月。
+
+    户型 3室2厅2卫，面积 100 平方米，标签包括智能门锁、楼下便利店、有车位、独卫。
+
+    公寓配套包括宽带、电视、抽油烟机、燃气灶、沙发、茶几、床头柜。
+
+    适合希望采光通风好、预算 3100 元以内的生活便利租客。'
