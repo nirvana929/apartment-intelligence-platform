@@ -1,0 +1,149 @@
+- doc_id: KB-LIFE-001
+  doc_type: rule
+  module: life
+  title: 维修报修流程
+  content: |
+    房屋设施出现故障时，用户可通过系统提交报修申请。
+    报修时请描述故障现象和位置，如有照片可一并上传。
+    门店会根据故障类型安排维修人员上门处理，紧急问题优先处理。
+  tags: [维修, 报修, 流程]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-LIFE-002
+  doc_type: rule
+  module: life
+  title: 维修费用承担规则
+  content: |
+    因房屋本身设施老化或自然损坏产生的维修费用由公寓方承担。
+    因租户使用不当造成的损坏，维修费用由租户承担。
+    维修费用的认定以门店维修人员检查结果为准。
+  tags: [维修, 费用, 承担]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-LIFE-003
+  doc_type: rule
+  module: life
+  title: 保洁服务说明
+  content: |
+    公共区域保洁由物业统一安排，定期进行清洁维护。
+    房间内部保洁由租户自行负责，部分门店提供付费保洁服务。
+    付费保洁服务的预约和收费标准以门店公示为准。
+  tags: [保洁, 清洁, 服务]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-LIFE-004
+  doc_type: rule
+  module: life
+  title: 噪音管理规定
+  content: |
+    每日 22:00 至次日 8:00 为安静时段，请避免产生较大噪音。
+    装修和搬运大件物品需提前通知门店并获得许可。
+    多次收到噪音投诉且未改善的，门店有权按合同约定处理。
+  tags: [噪音, 安静, 规定]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-LIFE-005
+  doc_type: rule
+  module: life
+  title: 宠物饲养规定
+  content: |
+    是否允许饲养宠物以门店和合同约定为准，部分房源可能有品种和体型限制。
+    饲养宠物需遵守公寓宠物管理规定，包括卫生、噪音和安全等要求。
+    因宠物造成的设施损坏或卫生问题，费用由租户承担。
+  tags: [宠物, 饲养, 规定]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-LIFE-006
+  doc_type: rule
+  module: life
+  title: 公共设施使用规则
+  content: |
+    公共设施（如健身房、洗衣房、公共厨房等）的使用时间以门店公示为准。
+    使用公共设施时请保持清洁，使用后请恢复原状。
+    公共设施的维护和更新由公寓统一安排。
+  tags: [公共设施, 使用, 规则]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-LIFE-007
+  doc_type: rule
+  module: life
+  title: 快递收发说明
+  content: |
+    公寓通常设有快递柜或代收点，方便租户收发快递。
+    大件快递可能需要到指定区域自取，请留意快递通知。
+    贵重物品建议本人签收，代收点签收的风险由收件人自行承担。
+  tags: [快递, 收发, 代收]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-LIFE-008
+  doc_type: rule
+  module: life
+  title: 消防安全须知
+  content: |
+    请勿在房间内使用明火、大功率电器或私拉电线。
+    消防通道和安全出口请保持畅通，不得堆放杂物。
+    如发现消防隐患，请立即联系门店或物业处理。
+  tags: [消防, 安全, 电器]
+  version: 1
+  risk_level: high
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-LIFE-009
+  doc_type: rule
+  module: life
+  title: 邻里相处建议
+  content: |
+    与邻居相处请互相尊重，保持适当音量，避免干扰他人生活。
+    如遇邻里纠纷，建议先友好沟通，必要时可请门店协调处理。
+    共用空间（如厨房、卫生间）请共同维护清洁。
+  tags: [邻里, 相处, 纠纷]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-LIFE-010
+  doc_type: rule
+  module: life
+  title: 网络使用说明
+  content: |
+    公寓提供的 WiFi 网络覆盖公共区域和房间，账号密码在入住时提供。
+    网络使用请遵守相关法律法规，不得用于非法用途。
+    网络故障可联系门店报修，技术问题由网络服务商处理。
+  tags: [网络, WiFi, 使用]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11

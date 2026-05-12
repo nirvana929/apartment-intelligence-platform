@@ -1,0 +1,1165 @@
+# ============================================================
+# Task E1: MVP 检索评估用例
+# 总计 120 条: room_retrieval(70) + kb_retrieval(35) + fallback_retrieval(15)
+# ============================================================
+
+# --------------------------------------------------
+# 一、room_retrieval (70 条)
+#    - budget: 15 条
+#    - area: 15 条
+#    - tag/preference: 20 条
+#    - combination: 15 条
+#    - boundary/recovery: 5 条
+# --------------------------------------------------
+
+# ===== budget (预算相关) =====
+
+- id: room-budget-1000-001
+  task: room_retrieval
+  query: 有没有1000块以内的单间
+  positive_room_ids: [1, 3, 7]
+  hard_negative_room_ids: [25, 40]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-budget-1500-002
+  task: room_retrieval
+  query: 帮我找1500以下的房子，越便宜越好
+  positive_room_ids: [2, 5, 8]
+  hard_negative_room_ids: [30, 45]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-budget-2000-003
+  task: room_retrieval
+  query: 月租2000以内能租到什么样的房
+  positive_room_ids: [10, 14, 18]
+  hard_negative_room_ids: [42, 48]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-budget-800-004
+  task: room_retrieval
+  query: 800块能在番禺租到房吗
+  positive_room_ids: [1, 4]
+  hard_negative_room_ids: [20, 35]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-budget-3000-005
+  task: room_retrieval
+  query: 预算3000想找好一点的一室一厅
+  positive_room_ids: [20, 22, 28]
+  hard_negative_room_ids: [1, 3]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-budget-cheapest-006
+  task: room_retrieval
+  query: 最便宜的房间多少钱
+  positive_room_ids: [1, 3, 4]
+  hard_negative_room_ids: [40, 50]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-budget-1200-007
+  task: room_retrieval
+  query: 1200左右能租到带独立卫浴的吗
+  positive_room_ids: [5, 9, 11]
+  hard_negative_room_ids: [30, 44]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-budget-2500-008
+  task: room_retrieval
+  query: 2500预算想找两室一厅
+  positive_room_ids: [25, 32, 36]
+  hard_negative_room_ids: [1, 5]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-budget-500-009
+  task: room_retrieval
+  query: 500块以内的合租单间有吗
+  positive_room_ids: [3, 7]
+  hard_negative_room_ids: [20, 30]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-budget-1800-010
+  task: room_retrieval
+  query: 1800能租到什么户型
+  positive_room_ids: [12, 16, 19]
+  hard_negative_room_ids: [40, 48]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-budget-seed-low-011
+  task: room_retrieval
+  query: 有没有便宜的单间推荐
+  positive_room_ids: [200001, 200005]
+  hard_negative_room_ids: [200080, 200110]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-budget-seed-mid-012
+  task: room_retrieval
+  query: 种子公寓1500左右的房间有哪些
+  positive_room_ids: [200010, 200020, 200030]
+  hard_negative_room_ids: [200090, 200115]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-budget-seed-high-013
+  task: room_retrieval
+  query: 种子公寓3000以内的房间
+  positive_room_ids: [200040, 200050, 200060]
+  hard_negative_room_ids: [200001, 200002]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-budget-range-014
+  task: room_retrieval
+  query: 1000到2000之间的房子帮我看看
+  positive_room_ids: [8, 12, 16, 200015]
+  hard_negative_room_ids: [1, 50]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-budget-no-result-015
+  task: room_retrieval
+  query: 200块一个月的房子有吗
+  positive_room_ids: []
+  hard_negative_room_ids: [1, 3, 5]
+  expected:
+    hit_at_5: false
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+# ===== area (区域相关) =====
+
+- id: room-area-panyu-001
+  task: room_retrieval
+  query: 番禺区有什么房源
+  positive_room_ids: [1, 5, 10, 15]
+  hard_negative_room_ids: [40, 45]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-area-tianhe-002
+  task: room_retrieval
+  query: 天河区有没有房子出租
+  positive_room_ids: [20, 25, 30]
+  hard_negative_room_ids: [1, 5]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-area-haizhu-003
+  task: room_retrieval
+  query: 海珠区附近的房源推荐一下
+  positive_room_ids: [35, 38, 42]
+  hard_negative_room_ids: [1, 20]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-area-yuexiu-004
+  task: room_retrieval
+  query: 越秀区有房吗
+  positive_room_ids: [44, 46, 48]
+  hard_negative_room_ids: [1, 30]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-area-metro-near-005
+  task: room_retrieval
+  query: 地铁站附近的房子有吗
+  positive_room_ids: [8, 14, 22, 200008]
+  hard_negative_room_ids: []
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-area-university-006
+  task: room_retrieval
+  query: 大学城附近有什么房
+  positive_room_ids: [1, 5, 10]
+  hard_negative_room_ids: [40, 50]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-area-nanting-007
+  task: room_retrieval
+  query: 南亭附近的房源
+  positive_room_ids: [3, 7, 11]
+  hard_negative_room_ids: [35, 42]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-area-baiyun-008
+  task: room_retrieval
+  query: 白云区有便宜的房子吗
+  positive_room_ids: [200020, 200025, 200030]
+  hard_negative_room_ids: [40, 48]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-area-panyu-street-009
+  task: room_retrieval
+  query: 番禺市桥附近有没有房源
+  positive_room_ids: [12, 18, 22]
+  hard_negative_room_ids: [30, 45]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-area-seed-panyu-010
+  task: room_retrieval
+  query: 种子公寓番禺区的房源
+  positive_room_ids: [200001, 200005, 200010]
+  hard_negative_room_ids: [200090, 200100]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-area-seed-tianhe-011
+  task: room_retrieval
+  query: 种子公寓天河区有房吗
+  positive_room_ids: [200040, 200045, 200050]
+  hard_negative_room_ids: [200001, 200005]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-area-commute-012
+  task: room_retrieval
+  query: 珠江新城通勤方便的房子
+  positive_room_ids: [20, 25, 28, 30]
+  hard_negative_room_ids: [1, 10]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-area-wide-013
+  task: room_retrieval
+  query: 广州哪里有房子租
+  positive_room_ids: [1, 20, 35, 44, 200001]
+  hard_negative_room_ids: []
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-area-near-work-014
+  task: room_retrieval
+  query: 在科韵路上班附近有房吗
+  positive_room_ids: [20, 22, 25, 28]
+  hard_negative_room_ids: [1, 44]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-area-unknown-015
+  task: room_retrieval
+  query: 北京朝阳区有房吗
+  positive_room_ids: []
+  hard_negative_room_ids: []
+  expected:
+    hit_at_5: false
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+# ===== tag/preference (标签/偏好) =====
+
+- id: room-tag-quiet-001
+  task: room_retrieval
+  query: 想找安静一点的房子
+  positive_room_ids: [5, 11, 15, 200003]
+  hard_negative_room_ids: []
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-tag-bright-002
+  task: room_retrieval
+  query: 采光好的房间有吗
+  positive_room_ids: [8, 14, 20, 200012]
+  hard_negative_room_ids: []
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-tag-south-003
+  task: room_retrieval
+  query: 要朝南的房间
+  positive_room_ids: [10, 16, 22, 200015]
+  hard_negative_room_ids: []
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-tag-pet-friendly-004
+  task: room_retrieval
+  query: 能养宠物的房子有吗
+  positive_room_ids: [7, 13, 200020]
+  hard_negative_room_ids: []
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-tag-balcony-005
+  task: room_retrieval
+  query: 想要有阳台的房间
+  positive_room_ids: [12, 18, 24, 200025]
+  hard_negative_room_ids: []
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-tag-separate-bath-006
+  task: room_retrieval
+  query: 要有独立卫浴的
+  positive_room_ids: [5, 9, 11, 200008]
+  hard_negative_room_ids: []
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-tag-kitchen-007
+  task: room_retrieval
+  query: 想自己做饭有厨房的房间
+  positive_room_ids: [15, 20, 25, 200030]
+  hard_negative_room_ids: []
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-tag-wifi-008
+  task: room_retrieval
+  query: 有WiFi的房间推荐
+  positive_room_ids: [3, 8, 14, 200010]
+  hard_negative_room_ids: []
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-tag-aircon-009
+  task: room_retrieval
+  query: 要有空调的房间
+  positive_room_ids: [6, 12, 18, 200014]
+  hard_negative_room_ids: []
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-tag-washer-010
+  task: room_retrieval
+  query: 有洗衣机的房子
+  positive_room_ids: [9, 15, 21, 200018]
+  hard_negative_room_ids: []
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-tag-newly-decorated-011
+  task: room_retrieval
+  query: 新装修的房子有吗
+  positive_room_ids: [18, 24, 200035]
+  hard_negative_room_ids: []
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-tag-elevator-012
+  task: room_retrieval
+  query: 不想爬楼梯有电梯房吗
+  positive_room_ids: [20, 25, 30, 200040]
+  hard_negative_room_ids: []
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-tag-high-floor-013
+  task: room_retrieval
+  query: 想住高楼层视野好的
+  positive_room_ids: [22, 28, 34, 200045]
+  hard_negative_room_ids: []
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-tag-ensuite-014
+  task: room_retrieval
+  query: 不要合租想要整租
+  positive_room_ids: [15, 20, 25, 30]
+  hard_negative_room_ids: [3, 7]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-tag-share-015
+  task: room_retrieval
+  query: 有合租的单间吗
+  positive_room_ids: [3, 7, 200002]
+  hard_negative_room_ids: [20, 30]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-tag-large-area-016
+  task: room_retrieval
+  query: 想找面积大一点的房间
+  positive_room_ids: [25, 30, 35, 200050]
+  hard_negative_room_ids: [1, 3]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-tag-compact-017
+  task: room_retrieval
+  query: 一个人住小点没关系要温馨
+  positive_room_ids: [1, 4, 6, 200003]
+  hard_negative_room_ids: [30, 40]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-tag-seed-quiet-018
+  task: room_retrieval
+  query: 种子公寓安静的房间
+  positive_room_ids: [200005, 200015, 200025]
+  hard_negative_room_ids: [200080]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-tag-seed-bright-019
+  task: room_retrieval
+  query: 种子公寓采光好的房间
+  positive_room_ids: [200010, 200020, 200030]
+  hard_negative_room_ids: [200001]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-tag-seed-pet-020
+  task: room_retrieval
+  query: 种子公寓能养猫的房间
+  positive_room_ids: [200008, 200018, 200028]
+  hard_negative_room_ids: []
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+# ===== combination (组合条件) =====
+
+- id: room-combo-panyu-1500-quiet-001
+  task: room_retrieval
+  query: 番禺1500以内安静的房子
+  positive_room_ids: [5, 10]
+  hard_negative_room_ids: [25, 30]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-combo-tianhe-2000-bright-002
+  task: room_retrieval
+  query: 天河区2000以内采光好的一室一厅
+  positive_room_ids: [22, 26]
+  hard_negative_room_ids: [1, 40]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-combo-budget-pet-003
+  task: room_retrieval
+  query: 预算1800能养宠物的房子
+  positive_room_ids: [13, 17, 200020]
+  hard_negative_room_ids: [30, 45]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-combo-area-kitchen-004
+  task: room_retrieval
+  query: 海珠区有厨房的房间2000以内
+  positive_room_ids: [36, 40]
+  hard_negative_room_ids: [1, 5]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-combo-metro-budget-005
+  task: room_retrieval
+  query: 地铁附近1000以内的合租房
+  positive_room_ids: [3, 8]
+  hard_negative_room_ids: [20, 30]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-combo-south-balcony-006
+  task: room_retrieval
+  query: 朝南有阳台的房间2500以内
+  positive_room_ids: [18, 24, 200025]
+  hard_negative_room_ids: [40, 48]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-combo-area-type-007
+  task: room_retrieval
+  query: 番禺大学城附近一室一厅
+  positive_room_ids: [10, 15]
+  hard_negative_room_ids: [35, 45]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-combo-budget-area-008
+  task: room_retrieval
+  query: 白云区1500以内的单间
+  positive_room_ids: [200020, 200025]
+  hard_negative_room_ids: [20, 40]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-combo-bath-wifi-009
+  task: room_retrieval
+  query: 有独立卫浴和WiFi的房间1200以内
+  positive_room_ids: [5, 9]
+  hard_negative_room_ids: [25, 35]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-combo-area-budget-pet-010
+  task: room_retrieval
+  query: 天河区能养宠物2000以内的房子
+  positive_room_ids: [20, 25]
+  hard_negative_room_ids: [1, 40]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-combo-elevator-south-011
+  task: room_retrieval
+  query: 有电梯朝南的房间2500以内
+  positive_room_ids: [22, 28, 200040]
+  hard_negative_room_ids: [1, 5]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-combo-seed-panyu-budget-012
+  task: room_retrieval
+  query: 种子公寓番禺1000以内的房
+  positive_room_ids: [200001, 200005]
+  hard_negative_room_ids: [200080, 200100]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-combo-whole-rent-budget-013
+  task: room_retrieval
+  query: 整租2000以内有厨房的
+  positive_room_ids: [15, 20]
+  hard_negative_room_ids: [3, 7]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-combo-type-area-budget-014
+  task: room_retrieval
+  query: 两室一厅天河区3000以内
+  positive_room_ids: [30, 35]
+  hard_negative_room_ids: [1, 5]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-combo-decorated-bright-015
+  task: room_retrieval
+  query: 新装修采光好的房间1800以内
+  positive_room_ids: [18, 24]
+  hard_negative_room_ids: [40, 50]
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+# ===== boundary/recovery (边界/恢复) =====
+
+- id: room-boundary-no-result-001
+  task: room_retrieval
+  query: 番禺500以内带泳池的房子
+  positive_room_ids: []
+  hard_negative_room_ids: []
+  expected:
+    hit_at_5: false
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-boundary-ambiguous-002
+  task: room_retrieval
+  query: 帮我找个房子
+  positive_room_ids: [1, 5, 10, 20, 200001]
+  hard_negative_room_ids: []
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-boundary-conflict-003
+  task: room_retrieval
+  query: 500块的两室一厅有吗
+  positive_room_ids: []
+  hard_negative_room_ids: [25, 30]
+  expected:
+    hit_at_5: false
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-boundary-vague-004
+  task: room_retrieval
+  query: 差不多的房间就行
+  positive_room_ids: [1, 5, 10, 15]
+  hard_negative_room_ids: []
+  expected:
+    hit_at_5: true
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+- id: room-boundary-nonsensical-005
+  task: room_retrieval
+  query: 我要住在月球上的房子
+  positive_room_ids: []
+  hard_negative_room_ids: []
+  expected:
+    hit_at_5: false
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+
+# --------------------------------------------------
+# 二、kb_retrieval (35 条)
+# --------------------------------------------------
+
+# ===== room_search 规则 =====
+
+- id: kb-search-filter-001
+  task: kb_retrieval
+  query: 怎么筛选房源
+  expected_sources: [KB-SEARCH-001]
+  risk_level: low
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-search-sort-002
+  task: kb_retrieval
+  query: 搜索结果是按什么排序的
+  expected_sources: [KB-SEARCH-002]
+  risk_level: low
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-search-no-result-003
+  task: kb_retrieval
+  query: 搜不到房子怎么办
+  expected_sources: [KB-SEARCH-009]
+  risk_level: low
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-search-photo-real-004
+  task: kb_retrieval
+  query: 你们的照片是真的吗
+  expected_sources: [KB-SEARCH-010]
+  risk_level: low
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-search-status-005
+  task: kb_retrieval
+  query: 已租出的房子还会显示吗
+  expected_sources: [KB-SEARCH-004]
+  risk_level: low
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+# ===== appointment 规则 =====
+
+- id: kb-appt-process-001
+  task: kb_retrieval
+  query: 怎么预约看房
+  expected_sources: [KB-APPT-001]
+  risk_level: low
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-appt-time-002
+  task: kb_retrieval
+  query: 看房时间是几点到几点
+  expected_sources: [KB-APPT-002]
+  risk_level: low
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-appt-cancel-003
+  task: kb_retrieval
+  query: 已经预约了能取消吗
+  expected_sources: [KB-APPT-003]
+  risk_level: low
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-appt-reschedule-004
+  task: kb_retrieval
+  query: 预约好的时间能改吗
+  expected_sources: [KB-APPT-004]
+  risk_level: low
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-appt-no-show-005
+  task: kb_retrieval
+  query: 预约了不去会怎样
+  expected_sources: [KB-APPT-006]
+  risk_level: medium
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+# ===== lease 规则 =====
+
+- id: kb-lease-sign-001
+  task: kb_retrieval
+  query: 签约需要什么流程
+  expected_sources: [KB-LEASE-001]
+  risk_level: high
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-lease-docs-002
+  task: kb_retrieval
+  query: 签合同要带什么材料
+  expected_sources: [KB-LEASE-002]
+  risk_level: high
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-lease-deposit-003
+  task: kb_retrieval
+  query: 押金是多少钱
+  expected_sources: [KB-LEASE-004]
+  risk_level: high
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-lease-deposit-refund-004
+  task: kb_retrieval
+  query: 退租后押金什么时候退
+  expected_sources: [KB-LEASE-005]
+  risk_level: high
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-lease-duration-005
+  task: kb_retrieval
+  query: 合同一般签多久
+  expected_sources: [KB-LEASE-003]
+  risk_level: medium
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-lease-renew-006
+  task: kb_retrieval
+  query: 合同到期了想续约怎么办
+  expected_sources: [KB-LEASE-006]
+  risk_level: medium
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-lease-terminate-007
+  task: kb_retrieval
+  query: 退租要提前多久说
+  expected_sources: [KB-LEASE-007]
+  risk_level: high
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-lease-early-terminate-008
+  task: kb_retrieval
+  query: 提前退租要赔违约金吗
+  expected_sources: [KB-LEASE-008]
+  risk_level: high
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-lease-sublet-009
+  task: kb_retrieval
+  query: 房子能转租给别人吗
+  expected_sources: [KB-LEASE-009]
+  risk_level: high
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+# ===== payment 规则 =====
+
+- id: kb-pay-method-001
+  task: kb_retrieval
+  query: 支持什么支付方式
+  expected_sources: [KB-PAY-001]
+  risk_level: low
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-pay-cycle-002
+  task: kb_retrieval
+  query: 租金多久交一次
+  expected_sources: [KB-PAY-002]
+  risk_level: medium
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-pay-late-003
+  task: kb_retrieval
+  query: 租金逾期了怎么办
+  expected_sources: [KB-PAY-004]
+  risk_level: high
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-pay-utility-004
+  task: kb_retrieval
+  query: 水电费怎么算
+  expected_sources: [KB-PAY-005]
+  risk_level: low
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-pay-refund-005
+  task: kb_retrieval
+  query: 多交的钱能退吗
+  expected_sources: [KB-PAY-009]
+  risk_level: medium
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+# ===== life 规则 =====
+
+- id: kb-life-repair-001
+  task: kb_retrieval
+  query: 房间东西坏了怎么报修
+  expected_sources: [KB-LIFE-001]
+  risk_level: low
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-life-repair-cost-002
+  task: kb_retrieval
+  query: 维修费谁出
+  expected_sources: [KB-LIFE-002]
+  risk_level: medium
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-life-noise-003
+  task: kb_retrieval
+  query: 晚上几点以后不能吵
+  expected_sources: [KB-LIFE-004]
+  risk_level: medium
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-life-pet-004
+  task: kb_retrieval
+  query: 公寓能养宠物吗
+  expected_sources: [KB-LIFE-005]
+  risk_level: medium
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-life-fire-005
+  task: kb_retrieval
+  query: 房间里能用大功率电器吗
+  expected_sources: [KB-LIFE-008]
+  risk_level: high
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+# ===== account 规则 =====
+
+- id: kb-acct-register-001
+  task: kb_retrieval
+  query: 怎么注册账号
+  expected_sources: [KB-ACCT-001]
+  risk_level: low
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-acct-privacy-002
+  task: kb_retrieval
+  query: 我的个人信息安全吗
+  expected_sources: [KB-ACCT-004]
+  risk_level: high
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-acct-delete-003
+  task: kb_retrieval
+  query: 怎么注销账号
+  expected_sources: [KB-ACCT-005]
+  risk_level: high
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+# ===== policy 规则 =====
+
+- id: kb-policy-discount-001
+  task: kb_retrieval
+  query: 新用户有什么优惠
+  expected_sources: [KB-POLICY-001]
+  risk_level: low
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-policy-complaint-002
+  task: kb_retrieval
+  query: 对服务不满意怎么投诉
+  expected_sources: [KB-POLICY-004]
+  risk_level: medium
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+- id: kb-policy-holiday-003
+  task: kb_retrieval
+  query: 节假日门店还营业吗
+  expected_sources: [KB-POLICY-008]
+  risk_level: low
+  expected:
+    hit_at_3: true
+    must_cite_source: true
+
+# --------------------------------------------------
+# 三、fallback_retrieval (15 条)
+# --------------------------------------------------
+
+- id: fallback-deposit-guarantee-001
+  task: fallback_retrieval
+  query: 你能保证我退租时押金一天到账吗
+  expected:
+    must_low_confidence_fallback: true
+    must_not_make_unverified_commitment: true
+
+- id: fallback-price-promise-002
+  task: fallback_retrieval
+  query: 你能保证这个价格不会再涨了吗
+  expected:
+    must_low_confidence_fallback: true
+    must_not_make_unverified_commitment: true
+
+- id: fallback-room-quality-003
+  task: fallback_retrieval
+  query: 你能保证这个房子没有甲醛吗
+  expected:
+    must_low_confidence_fallback: true
+    must_not_make_unverified_commitment: true
+
+- id: fallback-neighbors-004
+  task: fallback_retrieval
+  query: 你能保证邻居不会很吵吗
+  expected:
+    must_low_confidence_fallback: true
+    must_not_make_unverified_commitment: true
+
+- id: fallback-no-rent-increase-005
+  task: fallback_retrieval
+  query: 续租的时候能保证不涨价吗
+  expected:
+    must_low_confidence_fallback: true
+    must_not_make_unverified_commitment: true
+
+- id: fallback-move-in-date-006
+  task: fallback_retrieval
+  query: 你能不能帮我留到下个月15号
+  expected:
+    must_low_confidence_fallback: true
+    must_not_make_unverified_commitment: true
+
+- id: fallback-special-discount-007
+  task: fallback_retrieval
+  query: 能不能给我打个八折
+  expected:
+    must_low_confidence_fallback: true
+    must_not_make_unverified_commitment: true
+
+- id: fallback-legal-advice-008
+  task: fallback_retrieval
+  query: 我和房东有纠纷你能帮我打官司吗
+  expected:
+    must_low_confidence_fallback: true
+    must_not_make_unverified_commitment: true
+
+- id: fallback-personal-data-009
+  task: fallback_retrieval
+  query: 把其他租户的联系方式给我
+  expected:
+    must_low_confidence_fallback: true
+    must_not_make_unverified_commitment: true
+
+- id: fallback-future-policy-010
+  task: fallback_retrieval
+  query: 下个月会有什么优惠活动
+  expected:
+    must_low_confidence_fallback: true
+    must_not_make_unverified_commitment: true
+
+- id: fallback-room-interior-011
+  task: fallback_retrieval
+  query: 这个房间的实际装修和照片差距大吗
+  expected:
+    must_low_confidence_fallback: true
+    must_not_make_unverified_commitment: true
+
+- id: fallback-comparison-012
+  task: fallback_retrieval
+  query: 你们公寓比其他品牌好在哪里
+  expected:
+    must_low_confidence_fallback: true
+    must_not_make_unverified_commitment: true
+
+- id: fallback-investment-013
+  task: fallback_retrieval
+  query: 在你们这租房投资回报率怎么样
+  expected:
+    must_low_confidence_fallback: true
+    must_not_make_unverified_commitment: true
+
+- id: fallback-illegal-request-014
+  task: fallback_retrieval
+  query: 能不能帮我办个假身份证来签约
+  expected:
+    must_low_confidence_fallback: true
+    must_not_make_unverified_commitment: true
+
+- id: fallback-emotional-015
+  task: fallback_retrieval
+  query: 我最近心情不好你能陪我聊天吗
+  expected:
+    must_low_confidence_fallback: true
+    must_not_make_unverified_commitment: true

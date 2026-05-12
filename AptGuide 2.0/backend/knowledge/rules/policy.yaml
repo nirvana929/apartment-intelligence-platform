@@ -1,0 +1,149 @@
+- doc_id: KB-POLICY-001
+  doc_type: rule
+  module: policy
+  title: 新用户优惠说明
+  content: |
+    新注册用户可能享有首次签约优惠，具体优惠内容以活动页面公示为准。
+    优惠活动有时间限制和适用范围，请在有效期内使用。
+    每位用户限享一次新用户优惠，不可与其他优惠叠加。
+  tags: [新用户, 优惠, 活动]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-POLICY-002
+  doc_type: rule
+  module: policy
+  title: 长租优惠说明
+  content: |
+    选择较长租期（如 12 个月及以上）可能享受租金优惠。
+    长租优惠幅度和条件以门店政策和合同约定为准。
+    享受长租优惠后提前退租，优惠部分可能需要补缴。
+  tags: [长租, 优惠, 租期]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-POLICY-003
+  doc_type: rule
+  module: policy
+  title: 老带新推荐奖励
+  content: |
+    老用户推荐新用户成功签约后，双方可能获得相应奖励。
+    推荐关系需在新用户注册时通过推荐码或链接建立。
+    奖励发放时间和方式以活动规则为准，需满足最低租期要求。
+  tags: [推荐, 奖励, 老带新]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-POLICY-004
+  doc_type: rule
+  module: policy
+  title: 投诉渠道说明
+  content: |
+    用户可通过以下渠道进行投诉：在线客服、客服电话、门店前台和官方邮箱。
+    投诉时请提供租约编号和具体问题描述，以便快速处理。
+    门店会在收到投诉后的约定工作日内给予回复和处理方案。
+  tags: [投诉, 渠道, 客服]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-POLICY-005
+  doc_type: rule
+  module: policy
+  title: 投诉处理流程
+  content: |
+    投诉受理后，门店将在约定工作日内调查并给出处理意见。
+    如对处理结果不满意，可向上级管理部门申诉。
+    涉及法律法规的争议，建议通过法律途径解决。
+  tags: [投诉, 处理, 申诉]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-POLICY-006
+  doc_type: rule
+  module: policy
+  title: 季节性活动说明
+  content: |
+    公寓会不定期举办季节性优惠活动，如暑期特惠、年末促销等。
+    活动详情以官方渠道发布为准，包含活动时间、参与条件和优惠内容。
+    活动期间的房源和优惠数量有限，先到先得。
+  tags: [活动, 优惠, 季节]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-POLICY-007
+  doc_type: rule
+  module: policy
+  title: 服务协议变更通知
+  content: |
+    服务协议如有重大变更，将通过系统公告和消息提前通知用户。
+    变更后的协议在通知期满后生效，继续使用服务视为同意变更内容。
+    如不同意变更内容，用户有权在生效前终止服务。
+  tags: [协议, 变更, 通知]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-POLICY-008
+  doc_type: rule
+  module: policy
+  title: 节假日服务安排
+  content: |
+    节假日期间门店营业时间可能调整，具体安排以提前公告为准。
+    节假日期间的报修和紧急问题有值班人员处理，非紧急问题顺延至工作日。
+    节假日期间的签约和退租手续建议提前或延后办理。
+  tags: [节假日, 服务, 营业]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-POLICY-009
+  doc_type: rule
+  module: policy
+  title: 免责声明说明
+  content: |
+    因不可抗力（自然灾害、政策变化等）导致的服务中断，公寓不承担违约责任。
+    用户因自身原因造成的损失，公寓不承担赔偿责任。
+    具体免责条款以服务协议和合同约定为准。
+  tags: [免责, 不可抗力, 条款]
+  version: 1
+  risk_level: high
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-POLICY-010
+  doc_type: rule
+  module: policy
+  title: 疫情等特殊情况处理政策
+  content: |
+    遇疫情等特殊情况，公寓可能出台特殊退租、减免或延期政策。
+    特殊政策以官方公告为准，适用范围和有效期会在公告中明确。
+    有特殊困难的租户可联系门店申请个案处理。
+  tags: [疫情, 特殊, 政策]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11

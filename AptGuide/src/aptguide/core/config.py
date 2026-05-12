@@ -8,6 +8,9 @@
 4. 字段名 llm_api_key 会自动映射到环境变量 LLM_API_KEY（大写 + 下划线）
 """
 
+import os
+from functools import lru_cache
+
 from pydantic import SecretStr
 from pydantic_settings import BaseSettings
 
@@ -48,9 +51,40 @@ class Settings(BaseSettings):
     app_debug: bool = True
     log_level: str = "INFO"
 
+    # LangSmith 可观测性 —— 记录 LLM / Agent / eval trace
+    # 同时维护 LANGSMITH_*（新 SDK）和 LANGCHAIN_*（旧版兼容）两套变量
+    langsmith_tracing: bool = False
+    langsmith_api_key: str = ""
+    langsmith_project: str = "aptguide"
+    langchain_tracing_v2: bool = False
+    langchain_api_key: str = ""
+    langchain_project: str = "aptguide"
+
     # model_config 是 pydantic v2 的配置方式（v2 用 model_config 替代了 class Config）
     model_config = {
         "env_file": ".env",  # 从项目根目录的 .env 文件读取
         "env_file_encoding": "utf-8",
         "extra": "ignore",  # 忽略 .env 中未定义的多余变量，不报错
     }
+
+
+def _sync_langsmith_environment(loaded_settings: Settings) -> None:
+    """把 pydantic-settings 解析的 LangSmith 值写回 os.environ，供 LangSmith/LangGraph SDK 自动读取。"""
+    values = {
+        "LANGSMITH_TRACING": str(loaded_settings.langsmith_tracing).lower(),
+        "LANGSMITH_API_KEY": loaded_settings.langsmith_api_key,
+        "LANGSMITH_PROJECT": loaded_settings.langsmith_project,
+        "LANGCHAIN_TRACING_V2": str(loaded_settings.langchain_tracing_v2).lower(),
+        "LANGCHAIN_API_KEY": loaded_settings.langchain_api_key,
+        "LANGCHAIN_PROJECT": loaded_settings.langchain_project,
+    }
+    for key, value in values.items():
+        if value:
+            os.environ[key] = value
+
+
+@lru_cache
+def get_settings() -> Settings:
+    loaded_settings = Settings()
+    _sync_langsmith_environment(loaded_settings)
+    return loaded_settings

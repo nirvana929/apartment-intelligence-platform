@@ -73,6 +73,7 @@ class Settings(BaseSettings):
     # 其他模型平台 API Key（可选）
     xai_api_key: str = ""               # xAI Grok
     alibaba_bailian_api_key: str = ""   # 阿里云百炼
+    deepseek_api_key: str = ""          # DeepSeek
 
     # ========== MySQL 配置 ==========
     # 连接信息：哪台机器、哪个库、用什么账号

@@ -1,0 +1,128 @@
+# Sample KB rules for lease module
+# These must be reviewed before syncing to Milvus
+
+- doc_id: KB-LEASE-001
+  doc_type: rule
+  module: lease
+  title: 租赁合同期限
+  content: |
+    标准租赁合同期限为 6 个月或 12 个月。短于 6 个月的租期需特殊审批。
+    合同到期前 30 天，系统会提醒租客是否续租。
+  tags: [合同, 租期]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-LEASE-002
+  doc_type: rule
+  module: lease
+  title: 签约所需材料
+  content: |
+    签约需要提供身份证原件、实名认证通过的手机号。
+    如有共同承租人，需提供其身份证信息。部分门店可能要求提供收入证明。
+  tags: [签约, 材料]
+  version: 1
+  risk_level: high
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-LEASE-003
+  doc_type: rule
+  module: lease
+  title: 合同期限选择
+  content: |
+    合同期限可选择6个月或12个月。短于6个月的租期需特殊审批，可能有额外费用。
+    合同到期前30天可申请续租。
+  tags: [合同, 期限]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-LEASE-004
+  doc_type: rule
+  module: lease
+  title: 押金标准
+  content: |
+    押金通常为一个月租金，具体以门店和合同约定为准。
+    押金在退租验房、费用结清后退还。
+  tags: [押金]
+  version: 1
+  risk_level: high
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-LEASE-005
+  doc_type: rule
+  module: lease
+  title: 押金退还规则
+  content: |
+    押金退还以退租验房、费用结清和合同约定为前提。若存在未结清费用、设施损坏或违约事项，可能按合同和门店规则扣除相应费用。
+    具体到账时间以门店处理和支付渠道为准。
+  tags: [押金, 退租, 扣费]
+  version: 1
+  risk_level: high
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-LEASE-006
+  doc_type: rule
+  module: lease
+  title: 提前退租与违约金
+  content: |
+    提前退租需提前 30 天通知。违约金通常为一个月租金，具体以合同约定为准。
+    提前退租时，押金退还将扣除违约金和未结清费用。
+  tags: [退租, 违约金]
+  version: 1
+  risk_level: high
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-LEASE-007
+  doc_type: rule
+  module: lease
+  title: 续租流程
+  content: |
+    合同到期前 30 天可发起续租申请。续租可选择相同或不同租期。
+    续租租金以当时门店公示价格为准。
+  tags: [续租, 续约]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-LEASE-008
+  doc_type: rule
+  module: lease
+  title: 转租规定
+  content: |
+    未经允许不得擅自转租。如需转租，需提前30天向门店申请并获得书面同意。
+    转租需新租客通过实名认证并签订新合同。擅自转租将视为违约。
+  tags: [转租, 违约]
+  version: 1
+  risk_level: high
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-LEASE-009
+  doc_type: rule
+  module: lease
+  title: 租约查看
+  content: |
+    用户可以在APP中查看自己的租约信息，包括合同起止日期、租金金额、
+    支付状态等。如需纸质合同，可联系门店获取。
+  tags: [租约, 查看]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12

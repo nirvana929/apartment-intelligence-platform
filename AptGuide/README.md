@@ -8,7 +8,7 @@
 
 ## 项目定位
 
-AptGuide 是 `apartment-intelligence-platform` 仓库中面向 **租客（C 端）** 的智能助手服务，与面向运营人员（B 端）的 [`AptInsight`](../AptInsight) 互为补充。项目分两步建设：第一阶段先做可独立运行、带浏览器聊天界面的 AptGuide 应用；第二阶段再接入 `rentHouseH5`、`lease` 和 `AptInsight`，形成 C 端找房助手与 B 端运营分析助手的数据闭环。
+AptGuide 是 `apartment-intelligence-platform` 仓库中面向 **租客（C 端）** 的智能助手服务，与面向运营人员（B 端）的 [`AptInsight`](../AptInsight) 互为补充。项目采用两阶段建设：第一阶段提供可独立运行、带浏览器聊天界面的 AptGuide 应用；第二阶段接入 `rentHouseH5`、`lease` 和 `AptInsight`，形成 C 端找房助手与 B 端运营分析助手的数据闭环。
 
 | 项目 | 服务对象 | 数据访问方式 | 核心能力 |
 |------|---------|------------|--------|
@@ -16,6 +16,15 @@ AptGuide 是 `apartment-intelligence-platform` 仓库中面向 **租客（C 端�
 | **`AptGuide`** | 租客用户 | Tool-calling，调用 Java 接口 + Milvus | 找房、预约、咨询 |
 
 AptGuide **不直接访问 MySQL**。所有业务数据通过 `lease`（Spring Boot）后端封装的工具接口获取，确保权限与脱敏在 Java 侧统一管控。模糊语义需求（如"安静、适合考研、通勤方便"）由 Milvus 向量检索召回候选房源，再由 Java 后端做精确字段过滤。
+
+## 当前实现状态
+
+- 已提供 FastAPI 服务、浏览器聊天 UI、`/api/chat` 聊天接口和 `/health` 健康检查。
+- 已实现 `/health/deps` 依赖检查，覆盖 Milvus、lease 后端和 Redis。
+- `/api/chat` 从 `X-User-Id` 请求头读取当前用户身份，不接受 body 中伪造的 `user_id`。
+- Agent 已覆盖租房规则问答、自然语言找房、预约创建确认、预约查询、租约查询和兜底拒答。
+- 工具结果卡片已兼容 lease 后端返回的驼峰字段，如 `appointmentId`、`appointmentTime`、`leaseId`、`roomNumber`。
+- 已完成真实系统集成测试代表样本 B1-B10，详见 [`docs/test-report-2026-05-05.md`](docs/test-report-2026-05-05.md)。
 
 ## 核心功能（MVP）
 
@@ -95,6 +104,8 @@ AptGuide/
 
 ## 快速开始
 
+在 `AptGuide/` 目录执行：
+
 ```bash
 # 1. 安装依赖
 uv sync
@@ -113,6 +124,47 @@ make dev
 
 服务默认监听 `http://0.0.0.0:8100`，由 `lease` 后端通过内部 token 调用。
 
+### 本地接口检查
+
+```bash
+# 基础健康检查
+curl http://localhost:8100/health
+
+# 依赖健康检查：Milvus、lease、Redis
+curl http://localhost:8100/health/deps
+
+# 聊天接口。用户身份必须由 X-User-Id 注入
+curl -X POST http://localhost:8100/api/chat \
+  -H "Content-Type: application/json" \
+  -H "X-User-Id: 1" \
+  -d '{"session_id":"demo-session","message":"我预算3000，想住天河区，最好支持月付"}'
+```
+
+### 真实系统联调
+
+如需同时启动 AptGuide、lease、Milvus、Redis、MySQL 等依赖，可在仓库根目录使用真实系统测试 compose：
+
+```bash
+cd /home/chove/桌面/apartment-intelligence-platform
+source AptGuide/.env
+docker-compose -f docker-compose.test.yml up -d
+```
+
+首次启动或数据为空时，需要初始化知识库和房源向量：
+
+```bash
+docker exec aip-aptguide uv run python scripts/seed_kb.py
+docker exec aip-aptguide uv run python scripts/sync_room_vectors.py
+```
+
+容器内默认依赖地址：
+
+| 依赖 | 地址 |
+|------|------|
+| Milvus | `http://milvus:19530` |
+| lease | `http://lease-web-app:8081` |
+| Redis | `redis:6379` |
+
 ## 文档
 
 - `AptGuide文档/01-助手总体设计.md` — 定位、用户场景、范围边界
@@ -123,6 +175,10 @@ make dev
 - `AptGuide文档/06-Milvus知识库设计.md` — Collection schema、向量化、同步
 - `AptGuide文档/07-测试验收方案.md` — 单元、契约、Agent 评测
 - `AptGuide文档/08-跨项目集成与两阶段实施.md` — 独立应用、系统集成、与 H5 / lease / AptInsight 的交互
+- `AptGuide文档/09-RAG数据生成与入库指南.md` — 规则知识库和房源向量入库说明
+- `docs/test-coverage-summary.md` — 已有测试覆盖、历史结果、缺口和简历口径的权威入口
+- `docs/test-report-2026-05-05.md` — 真实系统集成测试报告
+- `docs/anthropic-agent-eval-methodology.md` — 基于 Anthropic Agent eval 方法的 AptGuide 专属评估与测试报告方案
 
 ## 大模型应用亮点
 
@@ -135,11 +191,30 @@ make dev
 - Prompt 版本管理：提示词可评测、可灰度、可回滚。
 - JSON 日志和 trace_id：从用户问题到检索、工具调用、回答全链路排查。
 
+## 测试与质量检查
+
+```bash
+# 单元、契约和 e2e 测试
+make test
+
+# 代码风格检查
+make lint
+
+# 类型检查
+make typecheck
+
+# Agent 评测
+make eval
+```
+
+真实环境相关 e2e 用例依赖 LLM、Milvus、lease、Redis 和 MySQL 等服务，需要先启动完整测试环境。测试覆盖现状优先阅读 [`docs/test-coverage-summary.md`](docs/test-coverage-summary.md)。2026-05-05 的真实系统代表样本 B1-B10 已全部通过，覆盖知识库问答、找房、多轮上下文、预约确认、预约 / 租约查询、越权 user_id 忽略和安全拒答。
+
 ## 安全
 
-阅读 [`SECURITY.md`](SECURITY.md) 与 `docs/security/`：
+阅读 [`SECURITY.md`](SECURITY.md) 与 [`docs/test-report-2026-05-05.md`](docs/test-report-2026-05-05.md) 中的安全验收清单：
 
 - 用户数据（租约、预约、浏览历史）一律按 `userId` 在 Java 侧过滤；
+- AptGuide 从 `X-User-Id` header 读取用户身份，`ChatRequest` 不包含 `user_id` 字段；
 - Milvus 不存敏感数据；
 - 写操作（预约、取消）必须经过用户二次确认；
 - AptGuide ↔ lease 之间使用共享密钥的内部接口，不对公网暴露。

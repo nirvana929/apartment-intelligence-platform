@@ -1,0 +1,193 @@
+{
+  "dialog": [
+    {
+      "id": "dialog-001",
+      "task": "single_turn_room_search",
+      "passed": false,
+      "errors": [
+        "缺失 slot: district (期望: 天河区)",
+        "缺失 slot: budget_max (期望: 3000)",
+        "缺失 slot: tags (期望: ['安静'])",
+        "reply 缺失要点: ['推荐符合预算和区域的房源', '提及安静标签', '展示房源卡片']"
+      ]
+    },
+    {
+      "id": "dialog-002",
+      "task": "single_turn_room_search",
+      "passed": false,
+      "errors": [
+        "缺失 slot: district (期望: 番禺区)",
+        "缺失 slot: budget_max (期望: 2000)",
+        "缺失 slot: tags (期望: ['独卫'])",
+        "reply 缺失要点: ['推荐番禺区带独卫的房源', '控制在预算范围内', '展示房源卡片']"
+      ]
+    },
+    {
+      "id": "dialog-003",
+      "task": "single_turn_room_search",
+      "passed": false,
+      "errors": [
+        "缺失 slot: district (期望: 海珠区)",
+        "缺失 slot: tags (期望: ['近地铁', '合租'])",
+        "reply 缺失要点: ['推荐海珠区近地铁的合租房', '说明地铁线路信息', '展示房源卡片']"
+      ]
+    },
+    {
+      "id": "dialog-004",
+      "task": "single_turn_room_search",
+      "passed": false,
+      "errors": [
+        "缺失 slot: district (期望: 白云区)",
+        "缺失 slot: budget_max (期望: 2500)",
+        "缺失 slot: room_type (期望: 整租一居)",
+        "reply 缺失要点: ['推荐白云区整租一居室', '控制在2500以内', '展示房源卡片']"
+      ]
+    },
+    {
+      "id": "dialog-005",
+      "task": "single_turn_room_search",
+      "passed": false,
+      "errors": [
+        "缺失 slot: district (期望: 天河区)",
+        "缺失 slot: tags (期望: ['阳台', '采光好'])",
+        "reply 缺失要点: ['推荐天河区带阳台采光好的房源', '展示房源卡片']"
+      ]
+    },
+    {
+      "id": "dialog-006",
+      "task": "single_turn_room_search",
+      "passed": false,
+      "errors": [
+        "缺失 slot: district (期望: 天河区)",
+        "缺失 slot: budget_max (期望: 6000)",
+        "缺失 slot: room_type (期望: 两居)",
+        "缺失 slot: tags (期望: ['珠江新城'])",
+        "reply 缺失要点: ['推荐珠江新城附近两居室', '高预算匹配品质房源', '展示房源卡片']"
+      ]
+    },
+    {
+      "id": "dialog-007",
+      "task": "single_turn_room_search",
+      "passed": false,
+      "errors": [
+        "缺失 slot: district (期望: 黄埔区)",
+        "缺失 slot: budget_max (期望: 1500)",
+        "reply 缺失要点: ['推荐黄埔区低价房源', '适合毕业生的性价比房源', '展示房源卡片']"
+      ]
+    },
+    {
+      "id": "dialog-008",
+      "task": "single_turn_room_search",
+      "passed": false,
+      "errors": [
+        "缺失 slot: district (期望: 越秀区)",
+        "缺失 slot: tags (期望: ['可养宠'])",
+        "reply 缺失要点: ['推荐越秀区允许养宠的房源', '展示房源卡片']"
+      ]
+    },
+    {
+      "id": "dialog-009",
+      "task": "single_turn_room_search",
+      "passed": false,
+      "errors": [
+        "缺失 slot: district (期望: 天河区)",
+        "缺失 slot: budget_max (期望: 3500)",
+        "缺失 slot: tags (期望: ['空调', '洗衣机'])",
+        "reply 缺失要点: ['推荐天河区带空调洗衣机的房源', '控制预算', '展示房源卡片']"
+      ]
+    },
+    {
+      "id": "dialog-010",
+      "task": "single_turn_room_search",
+      "passed": false,
+      "errors": [
+        "缺失 slot: district (期望: 番禺区)",
+        "缺失 slot: budget_max (期望: 2800)",
+        "缺失 slot: tags (期望: ['拎包入住'])",
+        "reply 缺失要点: ['推荐番禺区拎包入住房源', '展示房源卡片']"
+      ]
+    }
+  ],
+  "retrieval": [
+    {
+      "id": "rag-room-001",
+      "task": "room_retrieval",
+      "passed": false,
+      "errors": [
+        "期望有房源卡片返回，但实际为空"
+      ]
+    },
+    {
+      "id": "rag-room-002",
+      "task": "room_retrieval",
+      "passed": false,
+      "errors": [
+        "期望有房源卡片返回，但实际为空"
+      ]
+    },
+    {
+      "id": "rag-room-003",
+      "task": "room_retrieval",
+      "passed": false,
+      "errors": [
+        "期望有房源卡片返回，但实际为空"
+      ]
+    },
+    {
+      "id": "rag-room-004",
+      "task": "room_retrieval",
+      "passed": false,
+      "errors": [
+        "期望有房源卡片返回，但实际为空"
+      ]
+    },
+    {
+      "id": "rag-room-005",
+      "task": "room_retrieval",
+      "passed": false,
+      "errors": [
+        "期望有房源卡片返回，但实际为空"
+      ]
+    },
+    {
+      "id": "rag-room-006",
+      "task": "room_retrieval",
+      "passed": false,
+      "errors": [
+        "期望有房源卡片返回，但实际为空"
+      ]
+    },
+    {
+      "id": "rag-room-007",
+      "task": "room_retrieval",
+      "passed": false,
+      "errors": [
+        "期望有房源卡片返回，但实际为空"
+      ]
+    },
+    {
+      "id": "rag-room-008",
+      "task": "room_retrieval",
+      "passed": false,
+      "errors": [
+        "期望有房源卡片返回，但实际为空"
+      ]
+    },
+    {
+      "id": "rag-room-009",
+      "task": "room_retrieval",
+      "passed": false,
+      "errors": [
+        "期望有房源卡片返回，但实际为空"
+      ]
+    },
+    {
+      "id": "rag-room-010",
+      "task": "room_retrieval",
+      "passed": false,
+      "errors": [
+        "期望有房源卡片返回，但实际为空"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+# KB Rules - Life Module
+
+- doc_id: KB-LIFE-001
+  doc_type: rule
+  module: life
+  title: 报修流程
+  content: |
+    房间设施出现故障，可通过APP提交报修申请。填写故障描述并上传照片，
+    工作人员会在24小时内联系安排维修。紧急情况可拨打门店电话。
+  tags: [报修, 维修]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-LIFE-002
+  doc_type: rule
+  module: life
+  title: 维修费用承担
+  content: |
+    正常使用导致的设施故障，维修费用由公寓承担。
+    人为损坏或使用不当导致的故障，维修费用由租客承担。
+    维修前会告知预计费用，经确认后才会施工。
+  tags: [维修费, 责任]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-LIFE-003
+  doc_type: rule
+  module: life
+  title: 报修响应时间
+  content: |
+    普通报修24小时内响应，48小时内完成维修。
+    紧急报修（如水管爆裂、电路故障）2小时内响应。
+    夜间报修会在次日早上优先处理。
+  tags: [报修, 响应]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-LIFE-004
+  doc_type: rule
+  module: life
+  title: 噪音管理规定
+  content: |
+    晚上22:00至次日8:00为安静时段，禁止产生较大噪音。
+    装修施工时间为工作日9:00-18:00。违反噪音规定会收到提醒，
+    多次违反可能影响租约。
+  tags: [噪音, 规定]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-LIFE-005
+  doc_type: rule
+  module: life
+  title: 宠物饲养规定
+  content: |
+    部分公寓允许饲养宠物，需在签约时确认。允许的宠物类型和数量以门店规定为准。
+    饲养宠物需缴纳额外押金，并遵守宠物管理规定。
+  tags: [宠物, 规定]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-LIFE-006
+  doc_type: rule
+  module: life
+  title: 公共区域使用
+  content: |
+    公共区域包括客厅、厨房、卫生间等，所有租客共同使用。
+    使用后请保持清洁，个人物品请放在自己房间内。
+  tags: [公共区域]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-LIFE-007
+  doc_type: rule
+  module: life
+  title: 卫生清洁服务
+  content: |
+    公共区域每周清洁1-2次，由保洁人员负责。
+    房间内部由租客自行打扫。如需额外清洁服务，可联系门店安排（可能收费）。
+  tags: [卫生, 清洁]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-LIFE-008
+  doc_type: rule
+  module: life
+  title: 电器使用安全
+  content: |
+    禁止使用大功率电器（如电炉、电热毯等），以防电路过载。
+    房间已配备空调、热水器等必要电器。如需使用其他电器，请先咨询门店。
+    违规使用大功率电器导致的事故，租客需承担责任。
+  tags: [电器, 安全]
+  version: 1
+  risk_level: high
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-LIFE-009
+  doc_type: rule
+  module: life
+  title: 快递收发
+  content: |
+    公寓设有快递柜或前台代收点。快递到达后会通知取件。
+    大件物品可暂存前台，需在3天内取走。
+  tags: [快递]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-LIFE-010
+  doc_type: rule
+  module: life
+  title: 停车设施
+  content: |
+    部分公寓提供停车位，需单独申请和缴费。
+    非机动车可停放在指定区域，禁止停放在消防通道。
+  tags: [停车]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12

@@ -1,0 +1,178 @@
+- doc_id: KB-LEASE-001
+  doc_type: rule
+  module: lease
+  title: 签约基本流程
+  content: |
+    签约流程包括：确认房源、提交个人信息、审核资质、签订合同和支付首期费用。
+    签约需本人携带有效身份证件到场办理。
+    合同签订后即具有法律效力，请仔细阅读合同条款后再签署。
+  tags: [签约, 流程, 合同]
+  version: 1
+  risk_level: high
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-LEASE-002
+  doc_type: rule
+  module: lease
+  title: 签约所需材料
+  content: |
+    签约时需提供有效身份证件原件，部分情况可能需要收入证明或担保人信息。
+    具体所需材料因房源和租约类型而异，以门店通知为准。
+    材料不全可能影响签约进度，建议提前准备。
+  tags: [材料, 身份证, 签约]
+  version: 1
+  risk_level: high
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-LEASE-003
+  doc_type: rule
+  module: lease
+  title: 合同期限说明
+  content: |
+    标准合同期限通常为 6 个月或 12 个月，具体以双方约定为准。
+    合同起始日期以实际签约日期或约定入住日期为准。
+    短租和长租的具体条款可能有所不同，建议签约前充分了解。
+  tags: [期限, 合同, 时长]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-LEASE-004
+  doc_type: rule
+  module: lease
+  title: 押金收取规则
+  content: |
+    押金金额根据房源和门店政策确定，通常为一个月租金或合同约定金额。
+    押金在签约时支付，用于保障房屋及设施完好。
+    押金退还以退租验房结果和费用结清为前提。
+  tags: [押金, 收取, 金额]
+  version: 1
+  risk_level: high
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-LEASE-005
+  doc_type: rule
+  module: lease
+  title: 押金退还规则
+  content: |
+    押金退还以退租验房、费用结清和合同约定为前提。若存在未结清费用、设施损坏或违约事项，可能按合同和门店规则扣除相应费用。
+    具体到账时间以门店处理和支付渠道为准。
+  tags: [押金, 退租, 扣费]
+  version: 1
+  risk_level: high
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-LEASE-006
+  doc_type: rule
+  module: lease
+  title: 续约流程说明
+  content: |
+    合同到期前，系统会提前通知用户是否续约。
+    续约需在合同到期前提出申请，续约条款和租金可能调整。
+    续约成功后原合同条款自动延续或按新合同执行。
+  tags: [续约, 到期, 延期]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-LEASE-007
+  doc_type: rule
+  module: lease
+  title: 退租流程说明
+  content: |
+    退租需提前按合同约定期限通知门店，通常为提前 30 天。
+    退租时需配合门店进行房屋验收，结清所有费用。
+    提前退租可能涉及违约责任，请仔细阅读合同相关条款。
+  tags: [退租, 流程, 提前通知]
+  version: 1
+  risk_level: high
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-LEASE-008
+  doc_type: rule
+  module: lease
+  title: 提前退租违约说明
+  content: |
+    合同期内提前退租属于违约行为，可能需要支付违约金。
+    违约金金额和计算方式以合同约定为准。
+    建议在签约前充分考虑租期，避免不必要的违约成本。
+  tags: [提前退租, 违约, 违约金]
+  version: 1
+  risk_level: high
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-LEASE-009
+  doc_type: rule
+  module: lease
+  title: 转租规则说明
+  content: |
+    未经门店书面同意，租户不得擅自将房屋转租给第三方。
+    如需转租，请提前联系门店了解转租流程和条件。
+    擅自转租可能被视为违约，门店有权按合同约定处理。
+  tags: [转租, 违约, 规则]
+  version: 1
+  risk_level: high
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-LEASE-010
+  doc_type: rule
+  module: lease
+  title: 合同变更规则
+  content: |
+    合同签订后如需变更条款，需双方协商一致并签署书面补充协议。
+    常见变更包括：租期调整、入住人变更、付款方式变更等。
+    未经双方同意的单方面变更不具有法律效力。
+  tags: [变更, 合同, 补充协议]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-LEASE-011
+  doc_type: rule
+  module: lease
+  title: 退租验房标准
+  content: |
+    退租验房由门店工作人员按照统一标准进行。
+    验房内容包括：房屋清洁状况、设施设备完好程度、钥匙归还等。
+    验房结果将作为押金退还的依据，建议退租前自行检查并恢复原状。
+  tags: [验房, 退租, 标准]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-LEASE-012
+  doc_type: rule
+  module: lease
+  title: 入住办理说明
+  content: |
+    签约完成后，门店会安排入住交接，包括钥匙交接和房屋状态确认。
+    入住时建议检查房屋设施状况并记录，如有问题及时反馈。
+    入住后如发现非人为损坏的设施问题，可联系门店安排维修。
+  tags: [入住, 交接, 钥匙]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11

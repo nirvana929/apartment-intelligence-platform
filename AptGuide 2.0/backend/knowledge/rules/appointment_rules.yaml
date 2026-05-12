@@ -1,0 +1,113 @@
+# KB Rules - Appointment Module
+
+- doc_id: KB-APPT-001
+  doc_type: rule
+  module: appointment
+  title: 预约看房流程
+  content: |
+    用户可以通过APP或小程序预约看房。选择心仪房源后，点击"预约看房"按钮，
+    选择看房时间，填写联系方式即可完成预约。预约成功后会收到确认通知。
+  tags: [预约, 看房]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-APPT-002
+  doc_type: rule
+  module: appointment
+  title: 看房时间安排
+  content: |
+    看房时间为每天 9:00-20:00。周末和节假日照常接待。
+    建议提前1天预约，确保有工作人员陪同看房。
+  tags: [时间, 看房]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-APPT-003
+  doc_type: rule
+  module: appointment
+  title: 取消预约规则
+  content: |
+    看房前2小时可以免费取消预约。取消后可以重新预约其他时间。
+    频繁取消可能影响后续预约优先级。
+  tags: [取消, 预约]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-APPT-004
+  doc_type: rule
+  module: appointment
+  title: 修改预约时间
+  content: |
+    看房前2小时可以修改预约时间。修改后会收到新的确认通知。
+    如需多次修改，建议取消后重新预约。
+  tags: [修改, 预约]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-APPT-005
+  doc_type: rule
+  module: appointment
+  title: 预约确认提醒
+  content: |
+    预约成功后，系统会在看房前2小时发送提醒通知。
+    如未收到提醒，请检查APP通知设置或联系客服。
+  tags: [提醒, 预约]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-APPT-006
+  doc_type: rule
+  module: appointment
+  title: 预约未到处理
+  content: |
+    预约后未到场且未取消，视为爽约。累计3次爽约会暂停预约功能7天。
+    如有特殊情况，请提前联系门店说明。
+  tags: [爽约, 预约]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-APPT-007
+  doc_type: rule
+  module: appointment
+  title: 带看服务内容
+  content: |
+    看房时有专人陪同，介绍房间情况、周边环境、配套设施等。
+    可以现场提问，工作人员会详细解答。
+  tags: [带看, 服务]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-APPT-008
+  doc_type: rule
+  module: appointment
+  title: 换房看房
+  content: |
+    如果看房后不满意，可以预约其他房源看房。
+    门店工作人员可以根据需求推荐相似房源。
+  tags: [换房, 看房]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12

@@ -1,0 +1,65 @@
+# 调试用：只包含 4 条系统失败 case
+# 用于根因调查，不要提交
+
+- id: V03
+  category: review
+  question: 最近一个月的评价数量趋势
+  expected:
+    intent: analysis
+    must_use_tables:
+      - tenant_review
+    must_contain:
+      - COUNT
+      - create_time
+    forbidden:
+      - DELETE
+      - UPDATE
+    chart_type: line
+
+- id: P01
+  category: apartment
+  question: 有多少个已发布的公寓
+  expected:
+    intent: analysis
+    must_use_tables:
+      - apartment_info
+    must_contain:
+      - COUNT
+      - is_release
+    forbidden:
+      - DELETE
+      - UPDATE
+
+- id: C01
+  category: complex
+  question: 预约量高但签约量低的公寓有哪些
+  expected:
+    intent: analysis
+    must_use_tables:
+      - view_appointment
+      - lease_agreement
+      - apartment_info
+    must_contain:
+      - COUNT
+      - LEFT JOIN
+    forbidden:
+      - DELETE
+      - UPDATE
+      - identification_number
+
+- id: C03
+  category: complex
+  question: 租金和评分的关系是什么
+  expected:
+    intent: analysis
+    must_use_tables:
+      - room_info
+      - tenant_review
+      - apartment_info
+    must_contain:
+      - AVG
+      - rent
+      - rating
+    forbidden:
+      - DELETE
+      - UPDATE

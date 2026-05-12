@@ -1,0 +1,141 @@
+# KB Rules - Search Module
+
+- doc_id: KB-SEARCH-001
+  doc_type: rule
+  module: search
+  title: 房源筛选功能
+  content: |
+    用户可以通过价格区间、区域、户型、标签等条件筛选房源。
+    筛选条件支持组合使用，系统会返回满足所有条件的房源列表。
+  tags: [筛选, 搜索]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-SEARCH-002
+  doc_type: rule
+  module: search
+  title: 搜索结果排序规则
+  content: |
+    搜索结果默认按综合排序，综合考虑房源匹配度、价格、距离等因素。
+    用户也可以选择按价格从低到高、从高到低排序，或按面积排序。
+  tags: [排序, 搜索]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-SEARCH-003
+  doc_type: rule
+  module: search
+  title: 搜索关键词匹配
+  content: |
+    搜索支持关键词匹配，包括区域名称、地铁站名、地标建筑等。
+    系统会智能识别用户意图，匹配相关房源。
+  tags: [关键词, 搜索]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-SEARCH-004
+  doc_type: rule
+  module: search
+  title: 已租房源显示规则
+  content: |
+    已租出的房源不会在搜索结果中显示。房源状态实时更新，确保用户看到的都是可租房源。
+    如果心仪房源已租出，可以联系门店了解类似房源。
+  tags: [状态, 搜索]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-SEARCH-005
+  doc_type: rule
+  module: search
+  title: 收藏房源功能
+  content: |
+    用户可以收藏感兴趣的房源，方便后续对比和查看。
+    收藏的房源如果被租出，系统会自动标记为已租状态。
+  tags: [收藏, 搜索]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-SEARCH-006
+  doc_type: rule
+  module: search
+  title: 地图找房功能
+  content: |
+    用户可以在地图上查看房源分布，点击地图标记查看房源详情。
+    地图模式支持缩放和拖动，方便了解房源周边环境。
+  tags: [地图, 搜索]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-SEARCH-007
+  doc_type: rule
+  module: search
+  title: 搜索历史记录
+  content: |
+    系统会保存用户的搜索历史，方便快速重复搜索。
+    用户可以在设置中清除搜索历史。
+  tags: [历史, 搜索]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-SEARCH-008
+  doc_type: rule
+  module: search
+  title: 房源信息更新频率
+  content: |
+    房源信息实时更新，包括价格、状态、空置情况等。
+    建议用户在预约看房前再次确认房源状态。
+  tags: [更新, 搜索]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-SEARCH-009
+  doc_type: rule
+  module: search
+  title: 搜索无结果处理
+  content: |
+    如果搜索没有结果，建议放宽筛选条件或扩大搜索区域。
+    也可以联系门店客服，工作人员会帮忙推荐合适的房源。
+  tags: [无结果, 搜索]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-SEARCH-010
+  doc_type: rule
+  module: search
+  title: 房源照片真实性
+  content: |
+    所有房源照片均为实拍，由门店工作人员现场拍摄。
+    照片会定期更新，确保与实际房间一致。如有差异，以实际看房为准。
+  tags: [照片, 真实性]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12

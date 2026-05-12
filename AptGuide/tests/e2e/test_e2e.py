@@ -141,7 +141,6 @@ async def test_separate_sessions_isolated(monkeypatch):
 
 
 @pytest.mark.asyncio
-@pytest.mark.skip(reason="Requires running LLM and Milvus services")
 async def test_room_search_conversation():
     """测试找房对话流程"""
     from aptguide.main import app
@@ -178,7 +177,6 @@ async def test_room_search_conversation():
 
 
 @pytest.mark.asyncio
-@pytest.mark.skip(reason="Requires running LLM and Milvus services")
 async def test_appointment_conversation():
     """测试预约对话流程"""
     from aptguide.main import app

@@ -1,0 +1,116 @@
+# KB Rules - Policy Module
+
+- doc_id: KB-POLICY-001
+  doc_type: rule
+  module: policy
+  title: 新用户优惠政策
+  content: |
+    新注册用户首次签约可享受首月租金减免或折扣优惠。
+    具体优惠力度以活动页面为准，不同时间段可能有不同活动。
+  tags: [优惠, 新用户]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-POLICY-002
+  doc_type: rule
+  module: policy
+  title: 长租优惠政策
+  content: |
+    选择年付的租客可享受额外折扣。租期越长，优惠越大。
+    具体折扣比例以门店公示为准。
+  tags: [优惠, 长租]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-POLICY-003
+  doc_type: rule
+  module: policy
+  title: 转租政策
+  content: |
+    未经允许不得擅自转租。如需转租，需提前30天向门店申请。
+    转租需经门店审核同意，且新租客需通过实名认证。
+    擅自转租可能被要求退租并承担违约责任。
+  tags: [转租, 政策]
+  version: 1
+  risk_level: high
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-POLICY-004
+  doc_type: rule
+  module: policy
+  title: 投诉处理流程
+  content: |
+    对服务不满意可通过APP、电话或门店进行投诉。
+    投诉会在24小时内受理，3个工作日内给出处理结果。
+    如对处理结果不满意，可向更高层级反馈。
+  tags: [投诉, 处理]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-POLICY-005
+  doc_type: rule
+  module: policy
+  title: 换锁规定
+  content: |
+    未经允许不得自行更换门锁。如需换锁，需向门店申请。
+    换锁费用根据情况由公寓或租客承担。退租时需交回所有钥匙和门卡。
+  tags: [换锁, 规定]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-POLICY-006
+  doc_type: rule
+  module: policy
+  title: 安全注意事项
+  content: |
+    外出请关好门窗，贵重物品请妥善保管。
+    禁止在房间内存放易燃易爆物品。发现安全隐患请及时报告。
+    公寓配备消防设施，请熟悉逃生通道位置。
+  tags: [安全, 注意]
+  version: 1
+  risk_level: high
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-POLICY-007
+  doc_type: rule
+  module: policy
+  title: 同住人登记
+  content: |
+    合租房间的同住人需在签约时登记。未登记的同住人不得入住。
+    同住人变更需提前通知门店并办理变更手续。
+  tags: [同住人, 登记]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-POLICY-008
+  doc_type: rule
+  module: policy
+  title: 节假日服务安排
+  content: |
+    节假日期间门店正常营业，但工作时间可能调整。
+    具体营业时间以门店公告为准。紧急情况可拨打24小时客服电话。
+  tags: [节假日, 服务]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12

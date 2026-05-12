@@ -1,0 +1,128 @@
+# KB Rules - Payment Module
+
+- doc_id: KB-PAY-001
+  doc_type: rule
+  module: payment
+  title: 支付方式
+  content: |
+    支持微信支付、支付宝、银行卡转账等多种支付方式。
+    首次支付需要绑定支付渠道，后续可直接使用已绑定的方式。
+  tags: [支付方式]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-PAY-002
+  doc_type: rule
+  module: payment
+  title: 租金缴纳周期
+  content: |
+    租金缴纳周期支持月付、季付、半年付、年付。不同周期可能有不同优惠。
+    月付为默认方式，季付及以上可享受一定折扣，具体以门店公示为准。
+  tags: [租金, 周期]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-PAY-003
+  doc_type: rule
+  module: payment
+  title: 租金支付时间
+  content: |
+    每月租金需在当月5日前缴纳。逾期未缴会收到催缴通知。
+    连续逾期可能影响信用记录。
+  tags: [租金, 时间]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-PAY-004
+  doc_type: rule
+  module: payment
+  title: 租金逾期处理
+  content: |
+    租金逾期3天内为宽限期，不收取额外费用。
+    逾期3-7天收取滞纳金（租金的0.5%），逾期7天以上可能影响租约。
+    如遇特殊情况，请提前联系门店协商。
+  tags: [逾期, 滞纳金]
+  version: 1
+  risk_level: high
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-PAY-005
+  doc_type: rule
+  module: payment
+  title: 水电费计算
+  content: |
+    水电费按实际使用量计算，每月抄表。电费按当地居民电价标准，水费按当地标准。
+    费用明细可在APP中查看，每月随租金一起缴纳。
+  tags: [水电费]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-PAY-006
+  doc_type: rule
+  module: payment
+  title: 退款处理时间
+  content: |
+    退款申请审核通过后，一般3-7个工作日到账。具体到账时间取决于支付渠道。
+    微信支付和支付宝通常较快，银行卡转账可能需要更长时间。
+  tags: [退款, 到账]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-PAY-007
+  doc_type: rule
+  module: payment
+  title: 发票开具
+  content: |
+    租金发票可在线申请，支持电子发票和纸质发票。
+    电子发票实时发送，纸质发票邮寄需要3-5个工作日。
+  tags: [发票]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-PAY-008
+  doc_type: rule
+  module: payment
+  title: 优惠政策
+  content: |
+    新用户首月可享受一定优惠，具体以活动页面为准。
+    长租（年付）可享受额外折扣。老用户推荐新用户双方均可获得优惠。
+  tags: [优惠, 折扣]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-PAY-009
+  doc_type: rule
+  module: payment
+  title: 多缴费用退还
+  content: |
+    如果因系统错误或重复支付导致多缴，可申请退还多缴部分。
+    申请后3个工作日内审核，审核通过后按原路退回。
+  tags: [退款, 多缴]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12

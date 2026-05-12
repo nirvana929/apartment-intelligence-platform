@@ -285,6 +285,8 @@ make run
 
 ## 文档索引
 
+- [Agent Evaluation Resume Strategy](docs/agent-evaluation-resume-strategy.md)
+- [Agent Evaluation Portfolio Report](docs/agent-evaluation-portfolio-report-2026-05-07.md)
 - [AptGuide README](AptGuide/README.md)
 - [AptInsight README](AptInsight/README.md)
 - [AptGuide 架构文档](AptGuide/AptGuide文档/03-技术架构与模块设计.md)

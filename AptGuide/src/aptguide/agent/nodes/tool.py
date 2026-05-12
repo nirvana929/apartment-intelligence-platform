@@ -60,10 +60,10 @@ async def tool_node(
         cards = [
             {
                 "type": "appointment",
-                "appointment_id": a.get("appointment_id"),
-                "apartment_name": a.get("apartment_name", ""),
-                "room_number": a.get("room_number", ""),
-                "appointment_time": a.get("appointment_time", ""),
+                "appointment_id": a.get("appointmentId") or a.get("appointment_id"),
+                "apartment_name": a.get("apartmentName") or a.get("apartment_name", ""),
+                "room_number": a.get("roomNumber") or a.get("room_number", ""),
+                "appointment_time": a.get("appointmentTime") or a.get("appointment_time", ""),
                 "status": a.get("status", ""),
             }
             for a in appointments
@@ -87,11 +87,11 @@ async def tool_node(
         cards = [
             {
                 "type": "lease",
-                "lease_id": lease.get("lease_id"),
-                "apartment_name": lease.get("apartment_name", ""),
-                "room_number": lease.get("room_number", ""),
-                "start_date": lease.get("start_date", ""),
-                "end_date": lease.get("end_date", ""),
+                "lease_id": lease.get("leaseId") or lease.get("lease_id"),
+                "apartment_name": lease.get("apartmentName") or lease.get("apartment_name", ""),
+                "room_number": lease.get("roomNumber") or lease.get("room_number", ""),
+                "start_date": lease.get("startDate") or lease.get("start_date", ""),
+                "end_date": lease.get("endDate") or lease.get("end_date", ""),
                 "rent": lease.get("rent", 0),
                 "status": lease.get("status", ""),
             }

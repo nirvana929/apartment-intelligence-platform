@@ -87,6 +87,12 @@ SQL：`COUNT(id) WHERE is_deleted = 0`
 
 ## 经营诊断指标
 
+### 预约转化率
+定义：签约数 / 预约数。
+注意：预约转化率的"预约"指 view_appointment 表的预约记录数，"签约"指 lease_agreement 中 status = 2 的已签约记录数。不要理解为"看房完成率"（那是已看房 / 总预约）。
+公式：`COUNT(lease_agreement.status = 2) / COUNT(view_appointment.id WHERE is_deleted = 0)`
+仅作参考，非精确转化链路（预约和租约无关联 ID）。
+
 ### 预约量高但签约量低的公寓
 按公寓统计近 30 天预约量和签约量，计算参考转化率。
 公式：签约数 / 预约数（仅作参考，非精确转化链路）。

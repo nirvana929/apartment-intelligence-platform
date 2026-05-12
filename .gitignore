@@ -37,3 +37,4 @@ coverage/
 # Java / Maven
 target/
 *.class
+docker-compose.test.yml

@@ -1,0 +1,119 @@
+- doc_id: KB-ACCT-001
+  doc_type: rule
+  module: account
+  title: 用户注册流程
+  content: |
+    新用户可通过手机号或第三方账号（微信等）注册。
+    注册时需同意用户服务协议和隐私政策。
+    注册完成后即可使用搜索、预约和咨询等基础功能。
+  tags: [注册, 账号, 流程]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-ACCT-002
+  doc_type: rule
+  module: account
+  title: 登录方式说明
+  content: |
+    支持的登录方式包括：手机号验证码登录、密码登录和第三方授权登录。
+    若忘记密码，可通过手机号验证码重置。
+    为保障账户安全，建议定期更新密码并开启安全验证。
+  tags: [登录, 密码, 验证码]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-ACCT-003
+  doc_type: rule
+  module: account
+  title: 个人信息修改规则
+  content: |
+    用户可在个人中心修改昵称、头像和联系方式等基本信息。
+    实名认证信息修改需提交申请并经审核确认。
+    部分关键信息（如已签约租户的姓名）修改可能需要门店协助。
+  tags: [个人信息, 修改, 资料]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-ACCT-004
+  doc_type: rule
+  module: account
+  title: 隐私信息保护说明
+  content: |
+    系统严格保护用户个人信息，不会向第三方泄露用户隐私数据。
+    用户数据的收集、使用和存储均遵守相关法律法规和隐私政策。
+    用户可申请查看、修改或删除个人数据。
+  tags: [隐私, 保护, 数据]
+  version: 1
+  risk_level: high
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-ACCT-005
+  doc_type: rule
+  module: account
+  title: 账号注销说明
+  content: |
+    用户可申请注销账号，注销前需确认无进行中的租约和未结清费用。
+    账号注销后，相关数据将按法律法规要求处理。
+    注销操作不可撤销，请谨慎操作。
+  tags: [注销, 账号, 删除]
+  version: 1
+  risk_level: high
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-ACCT-006
+  doc_type: rule
+  module: account
+  title: 消息通知设置
+  content: |
+    用户可在设置中管理消息通知偏好，包括系统通知、营销消息和订单提醒。
+    关闭通知可能导致错过重要信息（如账单提醒、预约确认等）。
+    建议保持订单和安全相关通知的开启状态。
+  tags: [通知, 消息, 设置]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-ACCT-007
+  doc_type: rule
+  module: account
+  title: 账号安全建议
+  content: |
+    请勿将账号密码告知他人，包括平台工作人员。
+    如发现账号异常登录，请立即修改密码并联系客服。
+    建议使用复杂密码并定期更换，避免在公共设备上保存登录状态。
+  tags: [安全, 密码, 账号]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-ACCT-008
+  doc_type: rule
+  module: account
+  title: 实名认证说明
+  content: |
+    部分功能（如签约）需要完成实名认证。
+    实名认证需提供有效身份证件信息，信息仅用于身份核验。
+    认证信息由系统加密存储，不会用于其他用途。
+  tags: [实名, 认证, 身份]
+  version: 1
+  risk_level: high
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11

@@ -1,0 +1,149 @@
+- doc_id: KB-SEARCH-001
+  doc_type: rule
+  module: room_search
+  title: 房源搜索筛选条件说明
+  content: |
+    用户可通过区域、价格区间、房型、面积等条件筛选房源。
+    筛选条件越精确，匹配结果越少但更符合需求。
+    若筛选后无结果，建议适当放宽部分条件重新搜索。
+  tags: [搜索, 筛选, 条件]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-SEARCH-002
+  doc_type: rule
+  module: room_search
+  title: 房源排序规则
+  content: |
+    搜索结果默认按推荐算法综合排序，考虑因素包括匹配度、房源状态和时效性。
+    用户也可选择按价格、面积或上架时间排序。
+    排序结果仅反映当前可租房源，已租出房源不会出现在列表中。
+  tags: [排序, 推荐, 列表]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-SEARCH-003
+  doc_type: rule
+  module: room_search
+  title: 房源信息展示规范
+  content: |
+    房源卡片展示的信息包括：户型、面积、租金、楼层、朝向、配套和实景图片。
+    所有展示信息均来自门店维护的真实数据，系统定期更新。
+    若发现信息与实际不符，可通过反馈渠道报告。
+  tags: [展示, 信息, 卡片]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-SEARCH-004
+  doc_type: rule
+  module: room_search
+  title: 房源状态说明
+  content: |
+    房源状态分为：可租、已预订、已租出和维护中。
+    可租房源可以预约看房和签约，已预订房源需等待前一预约结果。
+    已租出和维护中房源不展示在搜索结果中。
+  tags: [状态, 可租, 已租]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-SEARCH-005
+  doc_type: rule
+  module: room_search
+  title: 价格区间筛选说明
+  content: |
+    价格筛选基于房源月租金，不含水电费和物业费等额外费用。
+    实际租赁总成本包括租金、押金、水电费、网络费和物业费等。
+    建议在预算中预留额外费用空间。
+  tags: [价格, 租金, 预算]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-SEARCH-006
+  doc_type: rule
+  module: room_search
+  title: 区域搜索范围说明
+  content: |
+    区域搜索支持按行政区、商圈或地铁站附近进行筛选。
+    距离计算基于直线距离，实际通勤时间可能因交通状况有所不同。
+    建议结合地图功能查看房源具体位置。
+  tags: [区域, 位置, 通勤]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-SEARCH-007
+  doc_type: rule
+  module: room_search
+  title: 房型筛选说明
+  content: |
+    可选房型包括：单间、一室一厅、两室一厅、三室及以上和合租单间。
+    不同房型对应不同面积范围和价格带，具体以实际房源为准。
+    合租房源会标注合租人数和公共区域使用规则。
+  tags: [房型, 户型, 合租]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-SEARCH-008
+  doc_type: rule
+  module: room_search
+  title: 配套设施筛选说明
+  content: |
+    可筛选的配套设施包括：独立卫浴、空调、洗衣机、冰箱、厨房、WiFi等。
+    配套设施以房源实际配置为准，部分设施可能需要额外付费使用。
+    看房时建议现场确认配套设施的实际状况。
+  tags: [配套, 设施, 家电]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-SEARCH-009
+  doc_type: rule
+  module: room_search
+  title: 搜索无结果时的建议
+  content: |
+    当搜索无匹配结果时，系统会提示用户放宽筛选条件或推荐相似区域的房源。
+    也可以通过预约顾问服务，由专业人员协助匹配合适房源。
+    部分热门区域房源更新较快，建议定期查看或设置到货提醒。
+  tags: [无结果, 建议, 提醒]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-SEARCH-010
+  doc_type: rule
+  module: room_search
+  title: 房源图片真实性说明
+  content: |
+    房源展示图片由门店工作人员实地拍摄并上传，定期更新。
+    由于拍摄角度、光线和装修更新等原因，实际环境可能与图片存在细微差异。
+    建议以实地看房结果为准。
+  tags: [图片, 真实, 实景]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11

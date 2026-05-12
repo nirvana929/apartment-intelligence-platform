@@ -160,13 +160,16 @@ python -m evals.runners.text_to_sql --cases evals/datasets/text_to_sql_cases.yam
 - `evals/reports/eval_report.json` - JSON 格式详细报告
 - `evals/reports/eval_report.md` - Markdown 格式可读报告
 - `evals/reports/harness_compliance_report.md` - Harness 达标报告
+- `docs/anthropic-agent-eval-methodology.md` - 基于 Anthropic Agent eval 方法的 AptInsight 专属评估与测试报告方案
+- `docs/aptinsight-system-failure-investigation-guide.md` - 系统失败原因定位指南
+- `docs/aptinsight-system-failure-root-cause-report.md` - 系统失败根因分析报告
 
 ## 技术栈
 
 - Python 3.12
 - FastAPI
 - LangGraph
-- OpenAI 兼容 LLM（小米 MiMo）
+- OpenAI 兼容 LLM（阿里云百炼 Qwen）
 - SQLAlchemy 2.x async + asyncmy
 - sqlglot
 - Pydantic v2

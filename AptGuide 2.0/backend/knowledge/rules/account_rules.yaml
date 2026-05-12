@@ -1,0 +1,86 @@
+# KB Rules - Account Module
+
+- doc_id: KB-ACCT-001
+  doc_type: rule
+  module: account
+  title: 注册流程
+  content: |
+    用户可以通过手机号注册账号。输入手机号，获取验证码，设置密码即可完成注册。
+    也可以使用微信、支付宝等第三方账号快速登录。
+  tags: [注册]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-ACCT-002
+  doc_type: rule
+  module: account
+  title: 密码找回
+  content: |
+    忘记密码可以通过手机号验证码重置。在登录页面点击"忘记密码"，
+    输入手机号获取验证码，设置新密码即可。
+  tags: [密码, 找回]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-ACCT-003
+  doc_type: rule
+  module: account
+  title: 实名认证
+  content: |
+    签约前需要完成实名认证。上传身份证正反面照片，系统自动识别信息。
+    认证通过后即可签约。认证信息仅用于签约，不会泄露给第三方。
+  tags: [实名, 认证]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-ACCT-004
+  doc_type: rule
+  module: account
+  title: 隐私数据保护
+  content: |
+    用户的个人信息严格保密，仅用于租房服务相关用途。
+    不会向第三方泄露用户手机号、身份证号、住址等敏感信息。
+    用户可以在设置中查看和管理自己的隐私权限。
+  tags: [隐私, 保护]
+  version: 1
+  risk_level: high
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-ACCT-005
+  doc_type: rule
+  module: account
+  title: 账号注销
+  content: |
+    用户可以申请注销账号。注销前需结清所有费用并完成退租流程。
+    注销后账号数据将被删除，无法恢复。注销申请3个工作日内处理。
+  tags: [注销, 账号]
+  version: 1
+  risk_level: high
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12
+
+- doc_id: KB-ACCT-006
+  doc_type: rule
+  module: account
+  title: 账号安全
+  content: |
+    建议定期更换密码，不要使用过于简单的密码。
+    不要在公共设备上保存登录状态。发现账号异常请立即联系客服。
+  tags: [安全, 账号]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-12

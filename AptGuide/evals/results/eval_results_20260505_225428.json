@@ -1,0 +1,634 @@
+{
+  "dialog": [
+    {
+      "id": "dialog-001",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-002",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-003",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-004",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-005",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-006",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-007",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-008",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-009",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-010",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-011",
+      "task": "single_turn_room_search",
+      "passed": false,
+      "errors": [
+        "reply 缺失要点: ['推荐海珠区带厨房的两居室']"
+      ]
+    },
+    {
+      "id": "dialog-012",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-013",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-014",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-015",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-016",
+      "task": "single_turn_room_search",
+      "passed": false,
+      "errors": [
+        "reply 缺失要点: ['推荐天河区带车位的整租房', '控制预算']"
+      ]
+    },
+    {
+      "id": "dialog-017",
+      "task": "single_turn_room_search",
+      "passed": false,
+      "errors": [
+        "reply 缺失要点: ['推荐白云区带独立厨房的房源']"
+      ]
+    },
+    {
+      "id": "dialog-018",
+      "task": "single_turn_room_search",
+      "passed": false,
+      "errors": [
+        "reply 缺失要点: ['推荐琶洲附近三居室']"
+      ]
+    },
+    {
+      "id": "dialog-019",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-020",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-021",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-022",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-023",
+      "task": "single_turn_room_search",
+      "passed": false,
+      "errors": [
+        "reply 缺失要点: ['推荐海珠区电梯房']"
+      ]
+    },
+    {
+      "id": "dialog-024",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-025",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-026",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-027",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-028",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-029",
+      "task": "single_turn_room_search",
+      "passed": false,
+      "errors": [
+        "reply 缺失要点: ['推荐天河区带书房的两居室']"
+      ]
+    },
+    {
+      "id": "dialog-030",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-031",
+      "task": "single_turn_room_search",
+      "passed": false,
+      "errors": [
+        "reply 缺失要点: ['推荐昌岗附近单间']"
+      ]
+    },
+    {
+      "id": "dialog-032",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-033",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-034",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-035",
+      "task": "single_turn_room_search",
+      "passed": false,
+      "errors": [
+        "reply 缺失要点: ['推荐东风路附近整租两居室']"
+      ]
+    },
+    {
+      "id": "dialog-036",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-037",
+      "task": "single_turn_room_search",
+      "passed": false,
+      "errors": [
+        "reply 缺失要点: ['推荐车陂附近带宽带房源']"
+      ]
+    },
+    {
+      "id": "dialog-038",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-039",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-040",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-041",
+      "task": "single_turn_room_search",
+      "passed": false,
+      "errors": [
+        "reply 缺失要点: ['推荐永泰附近低价房源']"
+      ]
+    },
+    {
+      "id": "dialog-042",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-043",
+      "task": "single_turn_room_search",
+      "passed": false,
+      "errors": [
+        "reply 缺失要点: ['推荐市桥附近整租一居室']"
+      ]
+    },
+    {
+      "id": "dialog-044",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-045",
+      "task": "single_turn_room_search",
+      "passed": false,
+      "errors": [
+        "reply 缺失要点: ['推荐北京路附近精装修房源']"
+      ]
+    },
+    {
+      "id": "dialog-046",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-047",
+      "task": "single_turn_room_search",
+      "passed": false,
+      "errors": [
+        "reply 缺失要点: ['推荐棠下附近合租单间']"
+      ]
+    },
+    {
+      "id": "dialog-048",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-049",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-050",
+      "task": "single_turn_room_search",
+      "passed": false,
+      "errors": [
+        "reply 缺失要点: ['推荐岗顶附近带独立阳台房源']"
+      ]
+    }
+  ],
+  "retrieval": [
+    {
+      "id": "rag-room-001",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-002",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-003",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-004",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-005",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-006",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-007",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-008",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-009",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-010",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-011",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-012",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-013",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-014",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-015",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-016",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-017",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-018",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-019",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-020",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-021",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-022",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-023",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-024",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-025",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-026",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-027",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-028",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-029",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-030",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-031",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-032",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-033",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-034",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-035",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-036",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-037",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-038",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-039",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-040",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-041",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-042",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-043",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-044",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-045",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-046",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-047",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-048",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-049",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-050",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    }
+  ]
+}

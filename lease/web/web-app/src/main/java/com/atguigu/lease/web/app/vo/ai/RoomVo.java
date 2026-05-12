@@ -17,4 +17,12 @@ public class RoomVo {
     private List<String> tags;
     private String thumbnailUrl;
     private Boolean isAppointable;
+    private Long cityId;
+    private String cityName;
+    private Long districtId;
+    private String districtName;
+    private String areaLabel;
+    private List<String> facilities;
+    private String audienceSummary;
+    private String dataSource;
 }

@@ -29,6 +29,8 @@ MVP 是一个独立的 Python FastAPI Agent 服务。它接收中文自然语言
 - `AptInsight文档/06-接口契约与集成方案.md` — API 契约、Spring Boot 集成
 - `AptInsight文档/07-测试验收方案.md` — 测试策略
 - `AptInsight文档/08-企业工程规范与Harness.md` — Harness 定义
+- `docs/aptinsight-system-failure-investigation-guide.md` — 系统失败定位指南
+- `docs/aptinsight-system-failure-root-cause-report.md` — 系统失败根因报告
 
 如果代码与文档冲突，暂停并将实现与文档化的 MVP 范围对齐，除非用户明确要求更新文档。
 

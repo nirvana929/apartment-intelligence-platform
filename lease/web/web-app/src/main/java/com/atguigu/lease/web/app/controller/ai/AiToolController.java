@@ -18,6 +18,8 @@ import com.atguigu.lease.web.app.vo.ai.AppointmentVo;
 import com.atguigu.lease.web.app.vo.ai.LeaseVo;
 import com.atguigu.lease.web.app.vo.ai.RoomSearchRequest;
 import com.atguigu.lease.web.app.vo.ai.RoomSearchResponse;
+import com.atguigu.lease.web.app.vo.ai.RoomSyncResponse;
+import com.atguigu.lease.web.app.vo.ai.RoomSyncVo;
 import com.atguigu.lease.web.app.vo.ai.RoomVo;
 import com.atguigu.lease.web.app.vo.appointment.AppointmentItemVo;
 import com.atguigu.lease.web.app.vo.room.RoomDetailVo;
@@ -110,6 +112,48 @@ public class AiToolController {
         RoomSearchResponse response = new RoomSearchResponse();
         response.setRooms(roomVos);
         response.setTotal(roomVos.size());
+        return Result.ok(response);
+    }
+
+    @Operation(summary = "同步房间数据")
+    @GetMapping("/sync/rooms")
+    public Result<RoomSyncResponse> syncRooms(@RequestParam(required = false) Integer limit) {
+        // Validate and normalize limit
+        if (limit == null || limit <= 0) {
+            limit = 200;
+        }
+        if (limit > 1000) {
+            limit = 1000;
+        }
+
+        // Query all active released rooms
+        RoomQueryVo queryVo = new RoomQueryVo();
+        Page<RoomItemVo> page = new Page<>(1, limit);
+        IPage<RoomItemVo> pageResult = service.pageItem(page, queryVo);
+        List<RoomItemVo> roomItems = pageResult.getRecords();
+
+        // Convert to sync VOs
+        List<RoomSyncVo> syncVos = new ArrayList<>();
+        for (RoomItemVo item : roomItems) {
+            RoomDetailVo detail = service.getDetailById(item.getId());
+            if (detail == null) {
+                continue;
+            }
+            // Filter out unreleased rooms and apartments
+            if (!ReleaseStatus.RELEASED.equals(detail.getIsRelease())) {
+                continue;
+            }
+            if (detail.getApartmentItemVo() == null
+                    || !ReleaseStatus.RELEASED.equals(detail.getApartmentItemVo().getIsRelease())) {
+                continue;
+            }
+            syncVos.add(convertToRoomSyncVo(detail));
+        }
+
+        RoomSyncResponse response = new RoomSyncResponse();
+        response.setRooms(syncVos);
+        response.setTotal(syncVos.size());
+        response.setSyncVersion(String.valueOf(System.currentTimeMillis()));
         return Result.ok(response);
     }
 
@@ -237,6 +281,73 @@ public class AiToolController {
 
         // Appointable: only released rooms can be appointed
         vo.setIsAppointable(ReleaseStatus.RELEASED.equals(detail.getIsRelease()));
+
+        return vo;
+    }
+
+    private RoomSyncVo convertToRoomSyncVo(RoomDetailVo detail) {
+        RoomSyncVo vo = new RoomSyncVo();
+        vo.setRoomId(detail.getId());
+        vo.setRoomNumber(detail.getRoomNumber());
+        vo.setApartmentId(detail.getApartmentId());
+        vo.setApartmentName(detail.getApartmentItemVo() != null
+                ? detail.getApartmentItemVo().getName() : null);
+
+        // City and district info from apartment
+        if (detail.getApartmentItemVo() != null) {
+            vo.setCityId(detail.getApartmentItemVo().getCityId());
+            vo.setCityName(detail.getApartmentItemVo().getCityName());
+            vo.setDistrictId(detail.getApartmentItemVo().getDistrictId());
+            vo.setDistrictName(detail.getApartmentItemVo().getDistrictName());
+        }
+
+        vo.setRent(detail.getRent() != null ? detail.getRent().intValue() : null);
+
+        // Payment types
+        List<PaymentType> paymentTypeList = detail.getPaymentTypeList();
+        vo.setPaymentTypes(paymentTypeList != null
+                ? paymentTypeList.stream()
+                        .map(PaymentType::getName)
+                        .filter(Objects::nonNull)
+                        .collect(Collectors.toList())
+                : Collections.emptyList());
+
+        // Lease terms
+        List<LeaseTerm> leaseTermList = detail.getLeaseTermList();
+        vo.setLeaseTerms(leaseTermList != null
+                ? leaseTermList.stream()
+                        .map(LeaseTerm::getMonthCount)
+                        .filter(Objects::nonNull)
+                        .collect(Collectors.toList())
+                : Collections.emptyList());
+
+        // Tags from labels
+        vo.setTags(detail.getLabelInfoList() != null
+                ? detail.getLabelInfoList().stream()
+                        .map(LabelInfo::getName)
+                        .filter(Objects::nonNull)
+                        .collect(Collectors.toList())
+                : Collections.emptyList());
+
+        // Thumbnail: first graph URL
+        vo.setThumbnailUrl(detail.getGraphVoList() != null && !detail.getGraphVoList().isEmpty()
+                ? detail.getGraphVoList().get(0).getUrl() : null);
+
+        // Area and layout are stored in EAV, skip for now
+        vo.setArea(null);
+        vo.setLayout(null);
+
+        // Release status
+        vo.setIsRelease(ReleaseStatus.RELEASED.equals(detail.getIsRelease()));
+
+        // Appointable: only released rooms can be appointed
+        vo.setIsAppointable(ReleaseStatus.RELEASED.equals(detail.getIsRelease()));
+
+        // Data source
+        vo.setDataSource("seed");
+
+        // Updated timestamp
+        vo.setUpdatedAt(System.currentTimeMillis());
 
         return vo;
     }

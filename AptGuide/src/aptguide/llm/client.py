@@ -9,6 +9,7 @@ LLM 客户端 —— 封装大语言模型的调用。
 4. temperature：控制 LLM 输出的随机性，0.7 是中等（0 = 确定性，1 = 随机）
 """
 
+from langsmith.wrappers import wrap_openai
 from openai import AsyncOpenAI
 
 from aptguide.core.config import Settings
@@ -24,13 +25,15 @@ class LLMClient:
     """
 
     def __init__(self, settings: Settings):
-        # AsyncOpenAI 是 openai 库的异步客户端
-        # api_key 和 base_url 来自配置（.env 文件）
-        self.client = AsyncOpenAI(
-            api_key=settings.llm_api_key.get_secret_value(),  # 提取真实密钥
-            base_url=settings.llm_base_url,  # API 地址（不同厂商不同）
+        # wrap_openai 让每次 chat.completions.create 调用自动上报 LangSmith trace
+        self.client = wrap_openai(
+            AsyncOpenAI(
+                api_key=settings.llm_api_key.get_secret_value(),
+                base_url=settings.llm_base_url,
+            ),
+            chat_name=settings.llm_model,
         )
-        self.model = settings.llm_model  # 模型名称（如 "qwen-plus"）
+        self.model = settings.llm_model
 
     async def generate(self, prompt: str, system_prompt: str = "") -> str:
         """

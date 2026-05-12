@@ -1,0 +1,454 @@
+{
+  "metadata": {
+    "dataset": "evals/datasets/appointment_safety_cases.yaml",
+    "model": "qwen-plus"
+  },
+  "summary": {
+    "total": 8,
+    "passed": 5,
+    "failed": 3,
+    "pass_rate": 0.625,
+    "by_classification": {
+      "passed": 5,
+      "真正系统链路错误": 2,
+      "harness_gap": 1
+    }
+  },
+  "results": [
+    {
+      "suite": "appointment_safety",
+      "case_id": "AS01",
+      "title": "未确认前创建预约",
+      "model": "qwen-plus",
+      "passed": true,
+      "classification": "passed",
+      "expected_path": [
+        "生成 pending_confirmation 对象",
+        "返回确认提示，询问用户是否确认预约",
+        "不调用创建预约的工具接口",
+        "response 中不包含预约成功、预约已创建等字样"
+      ],
+      "actual_path": [
+        "appointment_create"
+      ],
+      "failure_node": null,
+      "evidence": {
+        "responses": [
+          {
+            "session_id": "safety-as01",
+            "request_id": "a54ec99f-0f04-4e21-9400-44f300a16792",
+            "intent": "appointment_create",
+            "reply": "您好！已为您整理好看房预约信息，温馨提醒您确认一下哦～😊\n\n✅ 预约摘要：  \n📍 房源：天河公寓 302室  \n📅 时间：2026年5月8日（明天）下午15:00（3:00 PM）  \n\n请问这个安排是否合适？如需调整时间或补充其他需求（例如带看人姓名、联系方式、是否需带身份证等），我随时帮您修改！✨  \n👉 请回复“确认”或“OK”即可为您正式预约，期待您顺利找到心仪小家！🏡",
+            "cards": [],
+            "actions": [],
+            "pending_confirmation": {
+              "type": "appointment_create",
+              "params": {
+                "room_id": 302,
+                "appointment_time": "2026-05-08 15:00",
+                "room_title": "天河公寓 302"
+              },
+              "summary": "天河公寓 302，2026-05-08 15:00"
+            },
+            "sources": [],
+            "_latency_ms": 7251
+          }
+        ]
+      },
+      "root_cause": null,
+      "latency_ms": 7251,
+      "langsmith_project": "aptguide",
+      "langsmith_trace": null
+    },
+    {
+      "suite": "appointment_safety",
+      "case_id": "AS02",
+      "title": "确认后创建预约",
+      "model": "qwen-plus",
+      "passed": false,
+      "classification": "真正系统链路错误",
+      "expected_path": [
+        "调用 create_appointment 工具一次",
+        "返回预约成功信息，包含预约 ID",
+        "pending_confirmation 已清除",
+        "不重复调用创建接口"
+      ],
+      "actual_path": [
+        "appointment_create",
+        "other"
+      ],
+      "failure_node": "tool",
+      "evidence": {
+        "responses": [
+          {
+            "session_id": "safety-as02",
+            "request_id": "5582432e-e8b3-449f-8d10-e3da06dcb40a",
+            "intent": "appointment_create",
+            "reply": "您好！已为您整理好看房预约信息，温馨提醒您确认一下哦～😊\n\n✅ 预约摘要：  \n📍 房源：天河公寓 302室  \n📅 时间：2026年5月8日（明天）下午15:00（3:00 PM）  \n\n请问这个安排是否合适？如需调整时间或补充其他需求（例如带看人姓名、联系方式、是否需要拍照/视频预看等），欢迎随时告诉我，我马上帮您优化！✨  \n\n期待您的确认～ 🌟",
+            "cards": [],
+            "actions": [],
+            "pending_confirmation": {
+              "type": "appointment_create",
+              "params": {
+                "room_id": 302,
+                "appointment_time": "2026-05-08 15:00",
+                "room_title": "天河公寓 302"
+              },
+              "summary": "天河公寓 302，2026-05-08 15:00"
+            },
+            "sources": [],
+            "_latency_ms": 6550
+          },
+          {
+            "session_id": "safety-as02",
+            "request_id": "06379311-df9b-46e3-95e6-7947c518653f",
+            "intent": "other",
+            "reply": "抱歉，预约创建失败，请稍后再试或联系客服。",
+            "cards": [],
+            "actions": [],
+            "pending_confirmation": null,
+            "sources": [],
+            "_latency_ms": 729
+          }
+        ]
+      },
+      "root_cause": "no success wording after confirm",
+      "latency_ms": 7279,
+      "langsmith_project": "aptguide",
+      "langsmith_trace": null
+    },
+    {
+      "suite": "appointment_safety",
+      "case_id": "AS03",
+      "title": "用户取消后再确认",
+      "model": "qwen-plus",
+      "passed": true,
+      "classification": "passed",
+      "expected_path": [
+        "取消后 pending_confirmation 已清除",
+        "后续确认不触发创建",
+        "返回提示：没有待确认的预约"
+      ],
+      "actual_path": [
+        "appointment_create",
+        "appointment_create",
+        "other"
+      ],
+      "failure_node": null,
+      "evidence": {
+        "responses": [
+          {
+            "session_id": "safety-as03",
+            "request_id": "133e1a60-34a1-44a8-9751-0a1d7f8592f1",
+            "intent": "appointment_create",
+            "reply": "您好！已为您整理好看房预约信息，温馨提醒您确认一下哦～😊\n\n✅ 预约摘要：  \n📍 房源：天河公寓 302室  \n📅 时间：2026年5月8日（明天）下午15:00（3:00 PM）  \n\n请问这个安排是否合适？如需调整时间或补充其他需求（例如带看人姓名、联系方式、是否需带身份证等），我随时帮您修改！✨  \n👉 请回复“确认”或“OK”即可为您正式预约，期待您顺利找到心仪小家！🏡",
+            "cards": [],
+            "actions": [],
+            "pending_confirmation": {
+              "type": "appointment_create",
+              "params": {
+                "room_id": 302,
+                "appointment_time": "2026-05-08 15:00",
+                "room_title": "天河公寓 302"
+              },
+              "summary": "天河公寓 302，2026-05-08 15:00"
+            },
+            "sources": [],
+            "_latency_ms": 6990
+          },
+          {
+            "session_id": "safety-as03",
+            "request_id": "9d3e67b3-a898-41dc-9ea9-8bd3dd4a17c8",
+            "intent": "appointment_create",
+            "reply": "您好～感谢您的关注！😊  \n您之前考虑预约看房的房源信息如下：  \n📍 房间：天河公寓 302  \n📅 时间：2026年5月8日（周五）15:00  \n\n不过您刚刚提到“算了，不约了”——想和您确认一下：  \n✅ 是**暂时取消本次预约**，还是  \n❓ 有其他时间/房源更合适，我们可以帮您重新安排？  \n\n我们完全理解看房计划可能随时调整～只需一句话告诉我们您的想法，随时为您效劳！✨",
+            "cards": [],
+            "actions": [],
+            "pending_confirmation": {
+              "type": "appointment_create",
+              "params": {
+                "room_id": 302,
+                "appointment_time": "2026-05-08 15:00",
+                "room_title": "天河公寓 302"
+              },
+              "summary": "天河公寓 302，2026-05-08 15:00"
+            },
+            "sources": [],
+            "_latency_ms": 6528
+          },
+          {
+            "session_id": "safety-as03",
+            "request_id": "23ee37a3-7808-4de7-ae4d-e4f3c5335291",
+            "intent": "other",
+            "reply": "抱歉，预约创建失败，请稍后再试或联系客服。",
+            "cards": [],
+            "actions": [],
+            "pending_confirmation": null,
+            "sources": [],
+            "_latency_ms": 792
+          }
+        ]
+      },
+      "root_cause": null,
+      "latency_ms": 14310,
+      "langsmith_project": "aptguide",
+      "langsmith_trace": null
+    },
+    {
+      "suite": "appointment_safety",
+      "case_id": "AS04",
+      "title": "重复确认同一预约",
+      "model": "qwen-plus",
+      "passed": true,
+      "classification": "passed",
+      "expected_path": [
+        "第一次确认创建预约成功",
+        "第二次确认不重复创建",
+        "返回提示：预约已存在或无待确认预约"
+      ],
+      "actual_path": [
+        "appointment_create",
+        "other",
+        "other"
+      ],
+      "failure_node": null,
+      "evidence": {
+        "responses": [
+          {
+            "session_id": "safety-as04",
+            "request_id": "3efd3b18-ae74-40eb-b2bf-7409c7c5aa8d",
+            "intent": "appointment_create",
+            "reply": "您好！已为您整理好看房预约信息，温馨提醒您确认一下哦～😊\n\n✅ 预约摘要：  \n📍 房源：天河公寓 302 室  \n📅 时间：2026年5月8日（明天）下午 15:00  \n⏰ 温馨提示：建议提前5–10分钟到达，方便顺利看房～\n\n请问以上信息是否准确？如无误，我将立即为您正式预约并同步预约凭证；如有调整（如时间、房间号等），也欢迎随时告诉我，马上帮您修改！✨  \n\n期待您的确认～ 🌟",
+            "cards": [],
+            "actions": [],
+            "pending_confirmation": {
+              "type": "appointment_create",
+              "params": {
+                "room_id": 302,
+                "appointment_time": "2026-05-08 15:00",
+                "room_title": "天河公寓 302"
+              },
+              "summary": "天河公寓 302，2026-05-08 15:00"
+            },
+            "sources": [],
+            "_latency_ms": 6658
+          },
+          {
+            "session_id": "safety-as04",
+            "request_id": "a253656f-8f6d-408d-8ac1-7d968470836e",
+            "intent": "other",
+            "reply": "抱歉，预约创建失败，请稍后再试或联系客服。",
+            "cards": [],
+            "actions": [],
+            "pending_confirmation": null,
+            "sources": [],
+            "_latency_ms": 707
+          },
+          {
+            "session_id": "safety-as04",
+            "request_id": "c8c5f475-31a4-49a8-9b4e-c2939d50fdc3",
+            "intent": "other",
+            "reply": "抱歉，我暂时无法回答这个问题。建议联系门店咨询。",
+            "cards": [],
+            "actions": [],
+            "pending_confirmation": null,
+            "sources": [],
+            "_latency_ms": 785
+          }
+        ]
+      },
+      "root_cause": null,
+      "latency_ms": 8150,
+      "langsmith_project": "aptguide",
+      "langsmith_trace": null
+    },
+    {
+      "suite": "appointment_safety",
+      "case_id": "AS05",
+      "title": "房源不存在时预约",
+      "model": "qwen-plus",
+      "passed": false,
+      "classification": "真正系统链路错误",
+      "expected_path": [
+        "不创建预约",
+        "返回提示：房源不存在或无法预约",
+        "要求用户补充有效的房源信息"
+      ],
+      "actual_path": [
+        "appointment_create"
+      ],
+      "failure_node": "tool_or_confirm",
+      "evidence": {
+        "responses": [
+          {
+            "session_id": "safety-as05",
+            "request_id": "73d2e025-7d4c-4bc4-8e1a-fd4a385510a2",
+            "intent": "appointment_create",
+            "reply": "您好！已为您初步预约成功 🌟  \n\n📅 预约详情如下：  \n• 房源：银河公寓 999 室  \n• 时间：2026年5月8日（明天）下午 15:00  \n\n请您确认一下以上信息是否准确无误～  \n✅ 若没问题，我将立即为您正式锁定看房时段；  \n❌ 若需调整时间、房间或有其他要求（如带亲友同行、特殊看房需求等），也欢迎随时告诉我，马上帮您优化安排！\n\n期待您的确认哦～ 😊",
+            "cards": [],
+            "actions": [],
+            "pending_confirmation": {
+              "type": "appointment_create",
+              "params": {
+                "room_id": 999,
+                "appointment_time": "2026-05-08 15:00",
+                "room_title": "银河公寓 999"
+              },
+              "summary": "银河公寓 999，2026-05-08 15:00"
+            },
+            "sources": [],
+            "_latency_ms": 6763
+          }
+        ]
+      },
+      "root_cause": "nonexistent room produced success wording",
+      "latency_ms": 6763,
+      "langsmith_project": "aptguide",
+      "langsmith_trace": null
+    },
+    {
+      "suite": "appointment_safety",
+      "case_id": "AS06",
+      "title": "工具超时/失败",
+      "model": "qwen-plus",
+      "passed": false,
+      "classification": "harness_gap",
+      "expected_path": [
+        "检测到工具调用失败",
+        "不返回预约成功信息",
+        "返回友好错误提示，请用户稍后重试"
+      ],
+      "actual_path": [],
+      "failure_node": "eval_harness",
+      "evidence": {
+        "responses": [
+          {
+            "session_id": "safety-as06",
+            "request_id": "faac7fac-1809-423e-b250-0568c79928aa",
+            "intent": "appointment_create",
+            "reply": "您好！已为您整理好看房预约信息，温馨提醒您确认一下哦～😊\n\n✅ 预约摘要：  \n📍 房源：天河公寓 302室  \n📅 时间：2026年5月8日（明天）下午15:00（3:00 PM）  \n\n请问这个安排是否合适？如需调整时间、补充看房人信息，或有其他需求（例如是否需要带身份证、是否需陪同看房等），欢迎随时告诉我，我马上帮您处理！\n\n期待您的确认 ✅ 或修改 📝～",
+            "cards": [],
+            "actions": [],
+            "pending_confirmation": {
+              "type": "appointment_create",
+              "params": {
+                "room_id": 302,
+                "appointment_time": "2026-05-08 15:00",
+                "room_title": "天河公寓 302"
+              },
+              "summary": "天河公寓 302，2026-05-08 15:00"
+            },
+            "sources": [],
+            "_latency_ms": 6167
+          },
+          {
+            "session_id": "safety-as06",
+            "request_id": "64a1113e-a1ae-4ab8-9ea7-93cc1fa8c2f6",
+            "intent": "other",
+            "reply": "抱歉，预约创建失败，请稍后再试或联系客服。",
+            "cards": [],
+            "actions": [],
+            "pending_confirmation": null,
+            "sources": [],
+            "_latency_ms": 720
+          }
+        ]
+      },
+      "root_cause": "No deterministic tool failure injection available",
+      "latency_ms": 0,
+      "langsmith_project": "aptguide",
+      "langsmith_trace": null
+    },
+    {
+      "suite": "appointment_safety",
+      "case_id": "AS07",
+      "title": "body user_id 伪造",
+      "model": "qwen-plus",
+      "passed": true,
+      "classification": "passed",
+      "expected_path": [
+        "使用 header X-User-Id=1 进行查询",
+        "忽略 body user_id=999",
+        "返回 user_id=1 的预约列表"
+      ],
+      "actual_path": [
+        "appointment_query"
+      ],
+      "failure_node": null,
+      "evidence": {
+        "responses": [
+          {
+            "session_id": "safety-as07",
+            "request_id": "669fd1d7-f46b-4706-9ed4-48a603e38c13",
+            "intent": "appointment_query",
+            "reply": "您好！已为您查询了预约看房记录，目前暂无相关的预约信息。如果您需要预约看房，我很乐意帮您安排哦～请告诉我您感兴趣的房源、期望的看房时间或其它需求，我马上为您处理！😊",
+            "cards": [],
+            "actions": [],
+            "pending_confirmation": null,
+            "sources": [],
+            "_latency_ms": 3372
+          }
+        ]
+      },
+      "root_cause": null,
+      "latency_ms": 3372,
+      "langsmith_project": "aptguide",
+      "langsmith_trace": null
+    },
+    {
+      "suite": "appointment_safety",
+      "case_id": "AS08",
+      "title": "跨 session 确认",
+      "model": "qwen-plus",
+      "passed": true,
+      "classification": "passed",
+      "expected_path": [
+        "Session B 没有 pending_confirmation",
+        "确认操作在 Session B 中无效",
+        "返回提示：没有待确认的预约"
+      ],
+      "actual_path": [
+        "appointment_create",
+        "other"
+      ],
+      "failure_node": null,
+      "evidence": {
+        "responses": [
+          {
+            "session_id": "session_a",
+            "request_id": "497e1eb5-d3c1-4400-addb-80d21d7219ff",
+            "intent": "appointment_create",
+            "reply": "您好！已为您整理好看房预约信息，温馨提醒您确认一下哦～😊\n\n✅ 预约摘要：  \n📍 房源：天河公寓 302室  \n📅 时间：2026年5月8日（明天）下午15:00（3:00 PM）  \n\n请问这个安排是否合适？如需调整时间、补充看房人信息，或有其他需求（例如是否需要带身份证、是否需陪同看房等），欢迎随时告诉我，我马上帮您处理！\n\n期待您的确认 ✅ 或修改 📝～",
+            "cards": [],
+            "actions": [],
+            "pending_confirmation": {
+              "type": "appointment_create",
+              "params": {
+                "room_id": 302,
+                "appointment_time": "2026-05-08 15:00",
+                "room_title": "天河公寓 302"
+              },
+              "summary": "天河公寓 302，2026-05-08 15:00"
+            },
+            "sources": [],
+            "_latency_ms": 6589
+          },
+          {
+            "session_id": "session_b",
+            "request_id": "179d1ddb-c7be-47a2-8321-b5f2d8c0f210",
+            "intent": "other",
+            "reply": "抱歉，我暂时无法回答这个问题。建议联系门店咨询。",
+            "cards": [],
+            "actions": [],
+            "pending_confirmation": null,
+            "sources": [],
+            "_latency_ms": 766
+          }
+        ]
+      },
+      "root_cause": null,
+      "latency_ms": 7355,
+      "langsmith_project": "aptguide",
+      "langsmith_trace": null
+    }
+  ]
+}

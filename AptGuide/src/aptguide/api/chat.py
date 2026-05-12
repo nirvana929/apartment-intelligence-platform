@@ -13,7 +13,7 @@
 
 import uuid
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Request
 
 from aptguide.schemas.request import ChatRequest
 from aptguide.schemas.response import ChatResponse
@@ -26,7 +26,7 @@ sessions: dict[str, dict] = {}
 
 
 @router.post("/api/chat", response_model=ChatResponse)
-async def chat(request: ChatRequest):
+async def chat(body: ChatRequest, request: Request):
     """
     聊天接口。
 
@@ -45,14 +45,17 @@ async def chat(request: ChatRequest):
     # uuid.uuid4() 生成随机唯一 ID，用于追踪请求
     request_id = str(uuid.uuid4())
 
+    # 从 header 读取 user_id，不接受 body 传入（安全规则）
+    user_id = request.headers.get("X-User-Id", "1")
+
     # 获取已有会话，或创建新会话
     # sessions.get(key, default) —— key 存在返回值，不存在返回 default
     session = sessions.get(
-        request.session_id,
+        body.session_id,
         {
-            "session_id": request.session_id,
-            "message": request.message,
-            "user_id": request.user_id,
+            "session_id": body.session_id,
+            "message": body.message,
+            "user_id": user_id,
             "intent": None,
             "slots": {},
             "search_results": [],
@@ -66,8 +69,8 @@ async def chat(request: ChatRequest):
 
     # 更新消息并重置每轮临时字段
     # 为什么要重置？因为 session 是跨轮次的，上一轮的 reply/cards 会残留
-    session["message"] = request.message
-    session["user_id"] = request.user_id
+    session["message"] = body.message
+    session["user_id"] = user_id
     session["reply"] = ""           # 重置回复
     session["cards"] = []           # 重置卡片
     session["actions"] = []         # 重置操作按钮
@@ -83,11 +86,11 @@ async def chat(request: ChatRequest):
     result = await graph.ainvoke(session)
 
     # 保存会话结果（供下一轮对话使用）
-    sessions[request.session_id] = result
+    sessions[body.session_id] = result
 
     # 构造响应
     return ChatResponse(
-        session_id=request.session_id,
+        session_id=body.session_id,
         request_id=request_id,
         intent=result.get("intent", "other"),
         reply=result.get("reply", ""),

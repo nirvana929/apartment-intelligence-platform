@@ -1,0 +1,126 @@
+{
+  "dialog": [
+    {
+      "id": "dialog-001",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-002",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-003",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-004",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-005",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-006",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-007",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-008",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-009",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "dialog-010",
+      "task": "single_turn_room_search",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "retrieval": [
+    {
+      "id": "rag-room-001",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-002",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-003",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-004",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-005",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-006",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-007",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-008",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-009",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "rag-room-010",
+      "task": "room_retrieval",
+      "passed": true,
+      "errors": []
+    }
+  ]
+}

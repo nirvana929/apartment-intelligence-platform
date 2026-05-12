@@ -1,0 +1,149 @@
+- doc_id: KB-APPT-001
+  doc_type: rule
+  module: appointment
+  title: 预约看房流程说明
+  content: |
+    用户选择心仪房源后，可选择可用时间段提交看房预约。
+    预约提交后，门店工作人员会在工作时间内确认并安排专人接待。
+    预约确认结果将通过系统消息和短信通知用户。
+  tags: [预约, 看房, 流程]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-APPT-002
+  doc_type: rule
+  module: appointment
+  title: 预约时间规则
+  content: |
+    看房预约时间段通常为每日 9:00 至 18:00，具体以门店实际营业时间为准。
+    建议提前至少 1 天预约，以便门店安排接待人员。
+    高峰期（周末和节假日）预约名额有限，建议尽早预约。
+  tags: [时间, 预约, 营业]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-APPT-003
+  doc_type: rule
+  module: appointment
+  title: 取消预约规则
+  content: |
+    用户可在预约确认前自由取消，确认后建议提前 2 小时以上取消。
+    频繁取消预约可能影响后续预约的优先级。
+    取消操作通过个人中心的预约记录页面完成。
+  tags: [取消, 预约, 规则]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-APPT-004
+  doc_type: rule
+  module: appointment
+  title: 改期规则
+  content: |
+    已确认的预约如需改期，需提前联系门店或通过系统提交改期申请。
+    改期需在原预约时间前至少 4 小时提出，以便门店调整安排。
+    改期后原预约自动取消，新时间以门店确认为准。
+  tags: [改期, 预约, 调整]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-APPT-005
+  doc_type: rule
+  module: appointment
+  title: 预约确认通知方式
+  content: |
+    预约确认后，系统会通过应用内消息和短信发送确认通知。
+    通知内容包括：预约时间、门店地址、接待人员联系方式和注意事项。
+    若未收到确认通知，请检查消息设置或联系客服。
+  tags: [通知, 确认, 短信]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-APPT-006
+  doc_type: rule
+  module: appointment
+  title: 爽约规则
+  content: |
+    预约确认后未按时到达且未提前取消，视为爽约。
+    累计爽约次数达到系统限制后，预约功能可能受到临时限制。
+    若因特殊情况无法到场，建议尽早取消或联系门店说明情况。
+  tags: [爽约, 限制, 预约]
+  version: 1
+  risk_level: medium
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-APPT-007
+  doc_type: rule
+  module: appointment
+  title: 同时预约多套房源
+  content: |
+    用户可以同时预约同一门店的多套房源，建议合理安排看房时间。
+    同一时间段建议只预约一套房源，以便充分了解房源情况。
+    系统会根据预约数量合理安排看房路线。
+  tags: [多套, 预约, 看房]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-APPT-008
+  doc_type: rule
+  module: appointment
+  title: 看房时需携带的材料
+  content: |
+    首次看房无需携带特殊材料，仅需按时到达门店即可。
+    若有意向签约，建议携带有效身份证件，以便现场办理相关手续。
+    具体所需材料以门店通知为准。
+  tags: [材料, 身份证, 看房]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-APPT-009
+  doc_type: rule
+  module: appointment
+  title: 委托他人看房
+  content: |
+    如本人无法到场，可委托他人代为看房。
+    代理人需知晓预约人姓名和预约编号，以便门店核实。
+    签约手续仍需本人到场办理。
+  tags: [委托, 代理, 看房]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
+
+- doc_id: KB-APPT-010
+  doc_type: rule
+  module: appointment
+  title: 预约记录查询
+  content: |
+    用户可在个人中心查看所有预约记录，包括历史预约和当前预约。
+    预约记录包含：预约时间、房源信息、预约状态和门店联系方式。
+    已完成的看房记录会保留，方便后续对比和签约参考。
+  tags: [记录, 查询, 历史]
+  version: 1
+  risk_level: low
+  status: reviewed
+  reviewed_by: ops
+  updated_at: 2026-05-11
