@@ -1,0 +1,10 @@
+{
+  "status": "empty",
+  "role": "execution_agent",
+  "task": null,
+  "source_docs": [
+    "docs/plans/current-plan.md",
+    "docs/plans/handoff.md"
+  ],
+  "updated_at": "2026-05-14T21:06:28+08:00"
+}
