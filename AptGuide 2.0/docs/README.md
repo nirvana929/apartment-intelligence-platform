@@ -6,7 +6,9 @@ AptGuide 2.0 是面向租客找房场景的新一代 Agent 应用。它不是旧
 
 ## 当前状态
 
-当前代码已实现 **Harness Foundation + Tool Governance + RAG v2 + Harness Correction + System Integration + System Feature Completion/Mainline Integration** 阶段。`aptguide2.harness` 是唯一产品运行时，`/chat` 默认进入 `AptGuideHarness`；旧 RAG MVP 已从 API、harness procedure 和 system e2e acceptance 中断开，仅保留为 legacy reference；RAG v2 作为 harness 内部检索模块挂载。预约创建和取消均采用两轮 pending-action 确认流程，工具连续失败自动触发转人工。`/chat` API 支持 `user_id`、`action`、`cards`、`pending_action`、`actions`、`metadata`，其中 `cards` 是通用卡片字段，`rooms` 是 room card 的兼容投影。323 tests all passed（308 unit + 15 e2e），ruff clean。Live dependency readiness 全绿（Milvus + embedding + lease，含 pipeline 版本检查）。RAG v2 live eval 已真实运行，当前 blocker 是检索质量：KB hit@3=48.6%，Room hit@5=40%。想理解实际代码现状，先读 [27-current-implementation-guide.md](./27-current-implementation-guide.md)、[system/enterprise-harness-architecture.md](./system/enterprise-harness-architecture.md) 和 [progress/current-plan.md](../progress/current-plan.md)。
+当前代码已实现 **Harness Foundation + Tool Governance + RAG v2 + System Feature Completion + Standalone Productization** 阶段。`aptguide2.harness` 是唯一产品运行时，`/chat` 默认进入 `AptGuideHarness`；旧 RAG MVP 已断开。预约创建和取消均采用两轮 pending-action 确认流程，工具连续失败自动触发转人工。Auth 支持 dev 模式和 lease_token 模式。Redis + MySQL 持久化上下文、记忆、pending action。Operator API 支持工单管理。Vue 3 前端包含聊天 UI 和运营控制台。**365 backend + 2 frontend tests all passed。**
+
+下一阶段：staging 部署、RAG 检索质量优化（KB hit@3=48.6%→90%，Room hit@5=40%→85%）、平台集成。想理解实际代码现状，先读 [27-current-implementation-guide.md](./27-current-implementation-guide.md)、[plans/current-plan.md](./plans/current-plan.md) 和 [plans/next-steps.md](./plans/next-steps.md)。
 
 ## 推荐阅读顺序
 
@@ -25,10 +27,11 @@ AptGuide 2.0 是面向租客找房场景的新一代 Agent 应用。它不是旧
 13. [plans/2026-05-14-enterprise-harness-memory-appointment-handoff-correction-agent-plan.md](./plans/2026-05-14-enterprise-harness-memory-appointment-handoff-correction-agent-plan.md)
 14. [plans/2026-05-14-aptguide2-system-integration-production-hardening-agent-plan.md](./plans/2026-05-14-aptguide2-system-integration-production-hardening-agent-plan.md)
 15. [plans/2026-05-14-aptguide2-system-feature-completion-mainline-integration-plan.md](./plans/2026-05-14-aptguide2-system-feature-completion-mainline-integration-plan.md)
-16. [20-rag-retrieval-vector-mcp-evaluation-upgrade.md](./20-rag-retrieval-vector-mcp-evaluation-upgrade.md)
-17. [28-rag-mvp-achievement-report.md](./28-rag-mvp-achievement-report.md)
-18. [outcomes/rag-learning-review.md](./outcomes/rag-learning-review.md)
-19. [outcomes/system-integration-live-eval-review.md](./outcomes/system-integration-live-eval-review.md)
+16. [plans/2026-05-14-aptguide2-standalone-productization-agent-plan.md](./plans/2026-05-14-aptguide2-standalone-productization-agent-plan.md)
+17. [20-rag-retrieval-vector-mcp-evaluation-upgrade.md](./20-rag-retrieval-vector-mcp-evaluation-upgrade.md)
+18. [28-rag-mvp-achievement-report.md](./28-rag-mvp-achievement-report.md)
+19. [outcomes/rag-learning-review.md](./outcomes/rag-learning-review.md)
+20. [outcomes/system-integration-live-eval-review.md](./outcomes/system-integration-live-eval-review.md)
 
 ## 文档分类
 

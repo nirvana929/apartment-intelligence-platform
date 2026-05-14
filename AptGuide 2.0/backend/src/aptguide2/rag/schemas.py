@@ -7,6 +7,77 @@ from typing import Any, Literal
 from pydantic import BaseModel, Field
 
 # ---------------------------------------------------------------------------
+# Risk Detection Types
+# ---------------------------------------------------------------------------
+
+RiskLevel = Literal["low", "medium", "high"]
+RiskTopic = Literal[
+    "room_search",
+    "deposit_refund",
+    "contract_termination",
+    "complaint_escalation",
+    "privacy_access",
+    "normal_policy",
+    "language_question",
+    "unknown",
+]
+RiskAction = Literal[
+    "ask_policy",
+    "query_status",
+    "request_action",
+    "dispute",
+    "escalation",
+    "unauthorized_query",
+    "ask_definition",
+    "unknown",
+]
+ResponseMode = Literal[
+    "normal_answer",
+    "kb_grounded_answer",
+    "authenticated_tool_query",
+    "template_answer",
+    "handoff_to_human",
+    "refuse",
+    "ask_clarification",
+]
+
+
+class RiskSignalScan(BaseModel):
+    """Deterministic risk signals from rule scanning."""
+
+    rule_signals: list[str] = Field(default_factory=list)
+    hard_constraints: list[str] = Field(default_factory=list)
+    non_downgrade_level: RiskLevel | None = None
+    force_semantic_classifier: bool = False
+
+
+class RiskClassifierResult(BaseModel):
+    """Structured semantic classification of risk intent."""
+
+    topic: RiskTopic = "unknown"
+    action: RiskAction = "unknown"
+    object: str = ""
+    attitude: str = "neutral"
+    confidence: float = Field(default=0.0, ge=0.0, le=1.0)
+    reason: str = ""
+
+
+class RiskProfile(BaseModel):
+    """Final risk decision used for routing, confidence gates, and response control."""
+
+    topic: RiskTopic = "unknown"
+    action: RiskAction = "unknown"
+    object: str = ""
+    attitude: str = "neutral"
+    confidence: float = Field(default=0.0, ge=0.0, le=1.0)
+    risk_level: RiskLevel = "low"
+    response_mode: ResponseMode = "normal_answer"
+    rule_signals: list[str] = Field(default_factory=list)
+    hard_constraints: list[str] = Field(default_factory=list)
+    reason: str = ""
+
+
+# ---------------------------------------------------------------------------
 # Query Understanding
 # ---------------------------------------------------------------------------
 
@@ -15,11 +86,14 @@ class QueryUnderstandingResult(BaseModel):
 
     raw_message: str
     task: Literal["room_search", "kb_qa", "fallback"]
+    domain: str = "unknown"
     reference_resolution: dict[str, Any] | None = None
     hard_filters: dict[str, Any] = Field(default_factory=dict)
     soft_preferences: list[str] = Field(default_factory=list)
     retrieval_queries: list[str] = Field(default_factory=list)
-    risk_level: Literal["low", "medium", "high"] = "low"
+    risk_level: RiskLevel = "low"
+    response_mode: ResponseMode = "normal_answer"
+    risk_profile: RiskProfile = Field(default_factory=RiskProfile)
 
 
 # ---------------------------------------------------------------------------

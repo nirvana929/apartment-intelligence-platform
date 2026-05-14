@@ -75,8 +75,24 @@ def test_handoff_summary_contains_tool_observations():
 
 def test_handoff_routing_detected():
     from aptguide2.harness.routing import HybridRouter
+    from aptguide2.interaction.contracts import InteractionIntent
 
-    router = HybridRouter()
+    class StubClassifier:
+        def __init__(self, intent):
+            self.intent = intent
+
+        def classify(self, message):
+            return self.intent.model_copy(update={"raw_message": message})
+
+    router = HybridRouter(intent_classifier=StubClassifier(InteractionIntent(
+        raw_message="",
+        route="handoff",
+        domain="handoff",
+        action="request_handoff",
+        risk_level="high",
+        response_mode="handoff_to_human",
+        confidence=0.9,
+    )))
     frame = ConversationFrame(request_id="r-1", message="转人工客服")
     decision = router.route(frame)
 

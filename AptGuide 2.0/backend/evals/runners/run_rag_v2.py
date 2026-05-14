@@ -33,6 +33,7 @@ class RagV2EvalDependencies:
     vector_adapter: object
     embed_fn: Callable[[str], list[float]]
     lease_validator: object | None
+    interaction_classifier: object | None = None
 
 
 # ---------------------------------------------------------------------------
@@ -67,9 +68,35 @@ def embed_single(text: str, settings: Settings) -> list[float]:
     return response.data[0].embedding
 
 
+def classify_interaction_intent(query: str, deps: RagV2EvalDependencies) -> object | None:
+    """Classify interaction intent if classifier is available."""
+    if deps.interaction_classifier is None:
+        return None
+    return deps.interaction_classifier.classify(query)
+
+
+def extract_result_metadata(result: object, interaction_intent: object | None) -> dict[str, Any]:
+    """Extract diagnostic metadata from pipeline result and intent."""
+    qr = getattr(result, "query_understanding", None)
+    return {
+        "route": getattr(interaction_intent, "route", ""),
+        "rag_task": getattr(interaction_intent, "rag_task", ""),
+        "domain": getattr(interaction_intent, "domain", ""),
+        "action": getattr(interaction_intent, "action", ""),
+        "intent_confidence": getattr(interaction_intent, "confidence", None),
+        "parsed_task": getattr(qr, "task", getattr(result, "task", "")),
+        "risk_level": getattr(qr, "risk_level", ""),
+        "response_mode": getattr(qr, "response_mode", ""),
+        "hard_filters": dict(getattr(qr, "hard_filters", {}) or {}),
+        "soft_preferences": list(getattr(qr, "soft_preferences", []) or []),
+        "retrieval_queries": list(getattr(qr, "retrieval_queries", []) or []),
+        "fallback_reason": getattr(result, "fallback_reason", ""),
+    }
+
+
 def build_live_dependencies(settings: Settings) -> RagV2EvalDependencies:
     """Build live dependencies for RAG v2 eval from settings."""
-    from aptguide2.api.deps import get_tool_runtime
+    from aptguide2.api.deps import get_interaction_classifier, get_tool_runtime
     from aptguide2.rag.tool_validation import ToolRuntimeRoomValidator
     from aptguide2.tools.vector_adapter import VectorAdapter
 
@@ -86,6 +113,7 @@ def build_live_dependencies(settings: Settings) -> RagV2EvalDependencies:
         vector_adapter=adapter,
         embed_fn=embed_fn,
         lease_validator=ToolRuntimeRoomValidator(get_tool_runtime()),
+        interaction_classifier=get_interaction_classifier(),
     )
 
 
@@ -98,21 +126,28 @@ def eval_kb_retrieval(case: dict, deps: RagV2EvalDependencies) -> dict:
     query = case["query"]
     expected_doc_ids: set[str | int] = set(case.get("expected_sources", case.get("expected_doc_ids", [])))
 
+    interaction_intent = classify_interaction_intent(query, deps)
+    diag: dict[str, Any] = {}
     result = run_pipeline_v2(
         message=query,
         vector_adapter=deps.vector_adapter,
         embed_fn=deps.embed_fn,
         lease_validator=deps.lease_validator,
+        interaction_intent=interaction_intent,
+        diagnostics=diag,
     )
 
     # Collect doc_ids from kb_sources
     actual_doc_ids: list[str | int] = [s.doc_id for s in result.kb_sources]
+    metadata = extract_result_metadata(result, interaction_intent)
 
     if not actual_doc_ids:
         return {
             "status": "fail",
             "reason": "no KB sources returned",
             "expected": sorted(expected_doc_ids),
+            **metadata,
+            **diag,
         }
 
     h3 = hit_at_k(actual_doc_ids, expected_doc_ids, 3)
@@ -131,6 +166,8 @@ def eval_kb_retrieval(case: dict, deps: RagV2EvalDependencies) -> dict:
         "got": actual_doc_ids[:5],
         "mrr": mrr,
         "ndcg@5": ndcg5,
+        **metadata,
+        **diag,
     }
 
 
@@ -139,20 +176,31 @@ def eval_room_retrieval(case: dict, deps: RagV2EvalDependencies) -> dict:
     query = case["query"]
     expected_room_ids: set[str | int] = set(case.get("positive_room_ids", case.get("expected_room_ids", [])))
 
+    interaction_intent = classify_interaction_intent(query, deps)
+    diag: dict[str, Any] = {}
     result = run_pipeline_v2(
         message=query,
         vector_adapter=deps.vector_adapter,
         embed_fn=deps.embed_fn,
         lease_validator=deps.lease_validator,
+        interaction_intent=interaction_intent,
+        diagnostics=diag,
     )
 
     # Collect room_id from ranked rooms
     actual_room_ids: list[str | int] = [r.room_id for r in result.rooms]
+    metadata = extract_result_metadata(result, interaction_intent)
 
     if not actual_room_ids:
         if not expected_room_ids:
             return {"status": "pass", "reason": "correctly returned no rooms"}
-        return {"status": "fail", "reason": "no rooms returned", "expected": sorted(expected_room_ids)}
+        return {
+            "status": "fail",
+            "reason": "no rooms returned",
+            "expected": sorted(expected_room_ids),
+            **metadata,
+            **diag,
+        }
 
     h5 = hit_at_k(actual_room_ids, expected_room_ids, 5)
     mrr = mean_reciprocal_rank(actual_room_ids, expected_room_ids)
@@ -167,6 +215,8 @@ def eval_room_retrieval(case: dict, deps: RagV2EvalDependencies) -> dict:
         "got": actual_room_ids[:5],
         "mrr": mrr,
         "ndcg@5": ndcg5,
+        **metadata,
+        **diag,
     }
 
 
@@ -176,12 +226,18 @@ def eval_fallback_retrieval(case: dict, deps: RagV2EvalDependencies) -> dict:
     expected = case.get("expected", {})
     must_low_confidence = expected.get("must_low_confidence_fallback", True)
 
+    interaction_intent = classify_interaction_intent(query, deps)
+    diag: dict[str, Any] = {}
     result = run_pipeline_v2(
         message=query,
         vector_adapter=deps.vector_adapter,
         embed_fn=deps.embed_fn,
         lease_validator=deps.lease_validator,
+        interaction_intent=interaction_intent,
+        diagnostics=diag,
     )
+
+    metadata = extract_result_metadata(result, interaction_intent)
 
     if result.task == "fallback":
         return {"status": "pass", "reason": "correctly identified as fallback"}
@@ -190,7 +246,12 @@ def eval_fallback_retrieval(case: dict, deps: RagV2EvalDependencies) -> dict:
         return {"status": "pass", "reason": "confidence gate blocked risky answer"}
 
     if must_low_confidence and result.is_confident:
-        return {"status": "fail", "reason": f"task={result.task}, is_confident=True, expected fallback/low-conf"}
+        return {
+            "status": "fail",
+            "reason": f"task={result.task}, is_confident=True, expected fallback/low-conf",
+            **metadata,
+            **diag,
+        }
 
     return {"status": "pass", "reason": f"task={result.task}, is_confident={result.is_confident}"}
 
@@ -396,6 +457,19 @@ def write_report(
                 if "expected" in fail:
                     f.write(f" (expected: {fail['expected']}, got: {fail.get('got', [])})")
                 f.write("\n")
+                details = []
+                for key in ("route", "rag_task", "domain", "action", "parsed_task", "risk_level", "response_mode", "fallback_reason"):
+                    value = fail.get(key)
+                    if value not in (None, "", []):
+                        details.append(f"{key}={value}")
+                if details:
+                    f.write(f"  - diagnostics: {', '.join(details)}\n")
+                if fail.get("hard_filters"):
+                    f.write(f"  - hard_filters: `{fail['hard_filters']}`\n")
+                if fail.get("soft_preferences"):
+                    f.write(f"  - soft_preferences: `{fail['soft_preferences']}`\n")
+                if fail.get("retrieval_queries"):
+                    f.write(f"  - retrieval_queries: `{fail['retrieval_queries']}`\n")
 
     print(f"Report written to: {report_path}")
 

@@ -1,8 +1,8 @@
 """Retrieval planning for RAG v2.
 
 This module separates deterministic control-plane parsing from semantic
-retrieval planning. Character matching may seed hard filters and policy, but
-semantic relevance must be handled downstream by hybrid retrieval and rerank.
+retrieval planning. The LLM provides domain and retrieval queries; this
+module assembles them into a RetrievalPlan.
 """
 
 from __future__ import annotations
@@ -55,7 +55,7 @@ def build_retrieval_plan(qr: QueryUnderstandingResult) -> RetrievalPlan:
             source_policy="none",
         )
 
-    module_intent = _infer_kb_module_intent(qr.raw_message)
+    module_intent = qr.domain if qr.domain in {"payment", "lease", "life", "appointment", "account", "policy"} else None
     semantic_queries = _dedupe([qr.raw_message, *_build_kb_rewrite_queries(qr, module_intent)])
     recall_channels = ["dense", "sparse"]
     if qr.risk_level in ("medium", "high"):
@@ -85,28 +85,10 @@ def _build_sparse_queries(qr: QueryUnderstandingResult) -> list[str]:
 
 
 def _build_kb_rewrite_queries(qr: QueryUnderstandingResult, module_intent: str | None) -> list[str]:
-    queries: list[str] = []
-    if module_intent:
-        queries.append(f"{module_intent} {qr.raw_message}")
+    queries: list[str] = list(qr.retrieval_queries)
     if qr.risk_level in ("medium", "high"):
         queries.append(_step_back_query(qr.raw_message, module_intent))
     return [q for q in queries if q]
-
-
-def _infer_kb_module_intent(message: str) -> str | None:
-    # Enterprise boundary: this is a coarse policy hint, not final relevance ranking.
-    module_terms = {
-        "lease": ("合同", "租约", "签约", "退租", "押金", "续租", "违约", "转租"),
-        "payment": ("支付", "租金", "水电", "退款", "发票", "逾期", "花呗"),
-        "appointment": ("预约", "看房", "取消", "改期", "迟到"),
-        "life": ("报修", "维修", "噪音", "宠物", "电器", "卫生", "快递"),
-        "account": ("注册", "密码", "实名", "隐私", "注销", "账号"),
-        "policy": ("优惠", "投诉", "换锁", "安全", "同住", "节假日"),
-    }
-    for module, terms in module_terms.items():
-        if any(term in message for term in terms):
-            return module
-    return None
 
 
 def _step_back_query(message: str, module_intent: str | None) -> str:

@@ -25,11 +25,20 @@ class RagV2Procedure:
 
     def run(self, frame: ConversationFrame, decision: RouteDecision, tool_runtime: Any | None = None) -> ProcedureResult:
         lease_validator = ToolRuntimeRoomValidator(tool_runtime) if tool_runtime is not None else None
+
+        # Extract InteractionIntent from decision metadata if available
+        intent_payload = decision.metadata.get("intent") if decision.metadata else None
+        interaction_intent = None
+        if intent_payload:
+            from aptguide2.interaction.contracts import InteractionIntent
+            interaction_intent = InteractionIntent.model_validate(intent_payload)
+
         result = self.run_pipeline_v2_fn(
             message=frame.message,
             vector_adapter=self.vector_adapter,
             embed_fn=self.embed_fn,
             lease_validator=lease_validator,
+            interaction_intent=interaction_intent,
         )
         if result.task == "room_search":
             return self._room_result(result)
@@ -82,6 +91,16 @@ class RagV2Procedure:
             phase="answering_knowledge" if result.is_confident else "knowledge_low_confidence",
             reply=result.message or "我找到了相关知识来源，但需要进一步生成答案。",
             sources=sources,
-            metadata={"source": "rag_v2", "is_confident": result.is_confident, "source_count": len(sources)},
+            metadata={
+                "source": "rag_v2",
+                "is_confident": result.is_confident,
+                "source_count": len(sources),
+                "risk_level": result.query_understanding.risk_level if result.query_understanding else "low",
+                "response_mode": result.query_understanding.response_mode if result.query_understanding else "normal_answer",
+                "risk_profile": (
+                    result.query_understanding.risk_profile.model_dump()
+                    if result.query_understanding else {}
+                ),
+            },
             fallback_reason="" if result.is_confident else "kb_low_confidence",
         )

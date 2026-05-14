@@ -4,19 +4,38 @@ from __future__ import annotations
 
 from uuid import uuid4
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Header, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 
-from aptguide2.api.deps import get_aptguide_harness, get_vector_adapter
+from aptguide2.api.auth import AuthResolver
+from aptguide2.api.deps import get_aptguide_harness, get_settings, get_vector_adapter
+from aptguide2.api.operator import router as operator_router
 from aptguide2.api.schemas import (
     ChatRequest,
     ChatResponse,
     HealthResponse,
     KBSourceResponse,
+    ReadinessResponse,
     RoomResponse,
 )
 from aptguide2.harness.contracts import AptGuideRequest, AptGuideResponse
+from aptguide2.observability.events import emit_event
+from aptguide2.system.readiness import build_readiness_report
 
 app = FastAPI(title="AptGuide 2.0", version="0.1.0")
+
+# Include routers
+app.include_router(operator_router)
+
+# CORS
+settings = get_settings()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.parsed_cors_origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/health", response_model=HealthResponse)
@@ -32,24 +51,57 @@ def health() -> HealthResponse:
     return HealthResponse(status="ok", milvus=milvus_ok)
 
 
+@app.get("/ready", response_model=ReadinessResponse)
+def ready() -> ReadinessResponse:
+    """Readiness check — validates all dependency configuration."""
+    settings = get_settings()
+    report = build_readiness_report(settings)
+    return ReadinessResponse(
+        ready=report.all_required_ok,
+        checks=[check.model_dump() for check in report.checks],
+    )
+
+
 @app.post("/chat", response_model=ChatResponse)
-def chat(req: ChatRequest) -> ChatResponse:
+async def chat(req: ChatRequest, authorization: str | None = Header(default=None)) -> ChatResponse:
     """Main chat endpoint - runs the AptGuide system harness."""
+    settings = get_settings()
+    try:
+        auth = await AuthResolver(settings).resolve(authorization, requested_user_id=req.user_id)
+    except PermissionError as exc:
+        raise HTTPException(status_code=401, detail=str(exc)) from exc
+
     harness = get_aptguide_harness()
-    result = harness.run(
+    request_id = f"r-{uuid4().hex}"
+    emit_event("chat.received", request_id=request_id, session_id=req.session_id, auth_mode=auth.auth_mode, message_len=len(req.message))
+    result = await harness.run_async(
         AptGuideRequest(
-            request_id=f"r-{uuid4().hex}",
+            request_id=request_id,
             session_id=req.session_id,
-            user_id=req.user_id,
+            user_id=auth.user_id,
             message=req.message,
             action=req.action,
-            client_context=req.client_context,
+            client_context={**req.client_context, "auth_mode": auth.auth_mode, "display_name": auth.display_name},
         )
     )
-    return _build_response_from_harness(result)
+    resp = _build_response_from_harness(result, session_id=req.session_id, request_id=request_id)
+    emit_event(
+        "chat.completed",
+        request_id=request_id,
+        trace_id=resp.trace_id,
+        session_id=req.session_id,
+        task=resp.task,
+        phase=resp.phase,
+        has_pending_action=resp.pending_action is not None,
+    )
+    return resp
 
 
-def _build_response_from_harness(result: AptGuideResponse) -> ChatResponse:
+def _build_response_from_harness(
+    result: AptGuideResponse,
+    session_id: str | None = None,
+    request_id: str = "",
+) -> ChatResponse:
     rooms = []
     for card in result.cards:
         if card.get("type") != "room":
@@ -76,6 +128,9 @@ def _build_response_from_harness(result: AptGuideResponse) -> ChatResponse:
         for s in result.sources
     ]
     return ChatResponse(
+        session_id=session_id,
+        request_id=request_id,
+        trace_id=result.trace_id,
         task=result.metadata.get("task", "fallback"),
         message=result.reply,
         phase=result.phase,

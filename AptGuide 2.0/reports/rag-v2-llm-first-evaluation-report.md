@@ -1,0 +1,348 @@
+# RAG v2 Eval Report
+
+**Generated:** 2026-05-15 00:52:50
+**Total cases:** 120
+
+## Summary
+
+| Metric | Value | Gate | Pass |
+| --- | ---: | ---: | --- |
+| KB source hit@3 | 71.4% | >= 90% | FAIL |
+| KB source hit@5 | 74.3% | - | PASS |
+| KB MRR | 0.626 | - | PASS |
+| KB NDCG@5 | 0.656 | - | PASS |
+| Room hit@5 | 8.6% | >= 85% | FAIL |
+| Room MRR | 0.003 | - | PASS |
+| Room NDCG@5 | 0.003 | - | PASS |
+| High-risk fallback | 40.0% | >= 100% | FAIL |
+| Unvalidated rooms | 0 | = 0 | PASS |
+
+**All gates passed:** NO
+
+## KB Retrieval
+
+- Total cases: 35
+- Pass: 26
+- Fail: 9
+
+## Room Retrieval
+
+- Total cases: 70
+- Pass: 6
+- Fail: 64
+
+## Fallback Retrieval
+
+- Total cases: 15
+- Pass: 6
+- Fail: 9
+
+## Failed Cases (82)
+
+- **kb-search-filter-001** [kb_retrieval]: no KB sources returned (expected: ['KB-SEARCH-001'], got: [])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - retrieval_queries: `['如何筛选房源', '房源筛选条件', '找房筛选方法']`
+- **kb-search-no-result-003** [kb_retrieval]: no KB sources returned (expected: ['KB-SEARCH-009'], got: [])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - retrieval_queries: `['如何解决找不到房源的问题', '搜不到房子怎么办', '房源搜索失败解决方案']`
+- **kb-appt-process-001** [kb_retrieval]: no KB sources returned (expected: ['KB-APPT-001'], got: [])
+  - diagnostics: route=appointment, rag_task=none, domain=appointment, action=create, parsed_task=fallback, risk_level=low, response_mode=ask_clarification, fallback_reason=out_of_scope
+- **kb-appt-cancel-003** [kb_retrieval]: no KB sources returned (expected: ['KB-APPT-003'], got: [])
+  - diagnostics: route=appointment, rag_task=none, domain=appointment, action=cancel, parsed_task=fallback, risk_level=low, response_mode=ask_clarification, fallback_reason=out_of_scope
+- **kb-appt-reschedule-004** [kb_retrieval]: no KB sources returned (expected: ['KB-APPT-004'], got: [])
+  - diagnostics: route=appointment, rag_task=none, domain=appointment, action=update_preference, parsed_task=fallback, risk_level=low, response_mode=ask_clarification, fallback_reason=out_of_scope
+- **kb-lease-renew-006** [kb_retrieval]: no KB sources returned (expected: ['KB-LEASE-006'], got: [])
+  - diagnostics: route=lease, rag_task=none, domain=lease, action=update_preference, parsed_task=fallback, risk_level=low, response_mode=ask_clarification, fallback_reason=out_of_scope
+- **kb-acct-register-001** [kb_retrieval]: no KB sources returned (expected: ['KB-ACCT-001'], got: [])
+  - diagnostics: route=capability, rag_task=none, domain=account, action=ask_capability, parsed_task=fallback, risk_level=low, response_mode=ask_clarification, fallback_reason=out_of_scope
+- **kb-acct-delete-003** [kb_retrieval]: no KB sources returned (expected: ['KB-ACCT-005'], got: [])
+  - diagnostics: route=capability, rag_task=none, domain=account, action=ask_capability, parsed_task=fallback, risk_level=low, response_mode=ask_clarification, fallback_reason=out_of_scope
+- **kb-policy-complaint-002** [kb_retrieval]: no KB sources returned (expected: ['KB-POLICY-004'], got: [])
+  - diagnostics: route=handoff, rag_task=none, domain=handoff, action=request_handoff, parsed_task=fallback, risk_level=low, response_mode=ask_clarification, fallback_reason=out_of_scope
+- **room-budget-1000-001** [room_retrieval]: expected room not in top-5 (expected: [1, 3, 7], got: [200079, 200091, 200080])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'max_rent': 1000, 'room_type': 'STUDIO'}`
+  - retrieval_queries: `['1000元以内的单间出租', '低价单间房源推荐', '租金低于1000的单人间']`
+- **room-budget-1500-002** [room_retrieval]: no rooms returned (expected: [2, 5, 8], got: [])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer, fallback_reason=lease_validation_empty
+  - hard_filters: `{'max_rent': 1500}`
+  - soft_preferences: `['越便宜越好']`
+  - retrieval_queries: `['1500元以下的租房', '低价出租房推荐', '租金低于1500的房子']`
+- **room-budget-2000-003** [room_retrieval]: expected room not in top-5 (expected: [10, 14, 18], got: [200091, 200092, 49, 200093, 200081])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'max_rent': 2000}`
+  - retrieval_queries: `['月租2000元以内房源推荐', '2000元以下租房信息', '低价租房选择', '经济型住房推荐']`
+- **room-budget-800-004** [room_retrieval]: no rooms returned (expected: [1, 4], got: [])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer, fallback_reason=lease_validation_empty
+  - hard_filters: `{'max_rent': 800, 'district_id': 4, 'area_text': '番禺'}`
+  - retrieval_queries: `['番禺区 800元以内租房', '广州番禺 月租800元 房源', '番禺区低价出租房 800元']`
+- **room-budget-3000-005** [room_retrieval]: expected room not in top-5 (expected: [20, 22, 28], got: [200080, 200079, 51, 200032, 200031])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'max_rent': 3000}`
+  - soft_preferences: `['好一点', '一室一厅']`
+  - retrieval_queries: `['预算3000元以内的一室一厅租房', '租金不超过3000的一室一厅房源', '优质一室一厅出租房推荐', '适合预算3000的舒适一室一厅']`
+- **room-budget-cheapest-006** [room_retrieval]: no rooms returned (expected: [1, 3, 4], got: [])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer, fallback_reason=lease_validation_empty
+  - hard_filters: `{'min_rent': 0}`
+  - retrieval_queries: `['最便宜的房间租金是多少', '价格最低的可用房间', '经济型租房价格范围']`
+- **room-budget-1200-007** [room_retrieval]: expected room not in top-5 (expected: [5, 9, 11], got: [200079, 200091, 200080, 200081, 200082])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'max_rent': 1200}`
+  - soft_preferences: `['带独立卫浴']`
+  - retrieval_queries: `['1200元以内带独立卫浴的房源', '租金1200左右独立卫生间出租房', '合租或单间带独立卫浴的低价租房']`
+- **room-budget-2500-008** [room_retrieval]: no rooms returned (expected: [25, 32, 36], got: [])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer, fallback_reason=lease_validation_empty
+  - hard_filters: `{'max_rent': 2500, 'room_type': 'TWO_BEDROOM'}`
+  - retrieval_queries: `['两室一厅 房租不超过2500元', '预算2500元找两室一厅房源', '两居室出租 月租2500以下']`
+- **room-budget-500-009** [room_retrieval]: no rooms returned (expected: [3, 7], got: [])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer, fallback_reason=lease_validation_empty
+  - hard_filters: `{'max_rent': 500, 'room_type': 'SHARED'}`
+  - retrieval_queries: `['500元以内合租单间', '租金不超过500的合租房源', '低价合租单间推荐']`
+- **room-budget-1800-010** [room_retrieval]: expected room not in top-5 (expected: [12, 16, 19], got: [44, 200082, 200081, 200092, 200091])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'max_rent': 1800}`
+  - retrieval_queries: `['1800元租金能租到什么户型', '预算1800元的租房户型推荐', '1800元以内租房户型信息']`
+- **room-budget-seed-low-011** [room_retrieval]: no rooms returned (expected: [200001, 200005], got: [])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer, fallback_reason=lease_validation_empty
+  - hard_filters: `{'room_type': 'ONE_BEDROOM'}`
+  - soft_preferences: `['便宜']`
+  - retrieval_queries: `['便宜的单间推荐', '租金低的单人间房源', '经济型单间出租信息']`
+- **room-budget-seed-mid-012** [room_retrieval]: expected room not in top-5 (expected: [200010, 200020, 200030], got: [200091, 200080, 200079, 200092, 200082])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'max_rent': 1500}`
+  - retrieval_queries: `['种子公寓 1500元以内房间', '种子公寓 月租1500以下房源', '种子公寓 经济型房间推荐']`
+- **room-budget-seed-high-013** [room_retrieval]: no rooms returned (expected: [200040, 200050, 200060], got: [])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer, fallback_reason=lease_validation_empty
+  - hard_filters: `{'max_rent': 3000}`
+  - soft_preferences: `['种子公寓']`
+  - retrieval_queries: `['种子公寓 3000元以内 房间', '种子公寓 最大租金3000的房源', '种子公寓 房租不超过3000的房间']`
+- **room-budget-range-014** [room_retrieval]: expected room not in top-5 (expected: [8, 12, 16, 200015], got: [200091])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'min_rent': 1000, 'max_rent': 1000}`
+  - retrieval_queries: `['1000到2000元之间的房源', '租金在1000至2000之间的房间', '低价租房推荐 1000-2000元']`
+- **room-area-panyu-001** [room_retrieval]: no rooms returned (expected: [1, 5, 10, 15], got: [])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer, fallback_reason=lease_validation_empty
+  - hard_filters: `{'district_name': '番禺区', 'district_id': 4, 'area_text': '番禺'}`
+  - retrieval_queries: `['番禺区 房源', '番禺区 租房', '番禺区 住宅出租']`
+- **room-area-tianhe-002** [room_retrieval]: expected room not in top-5 (expected: [20, 25, 30], got: [200011, 200009, 200010, 200012, 200007])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'district_name': '天河区', 'district_id': 1, 'area_text': '天河'}`
+  - retrieval_queries: `['天河区出租房源', '天河区租房信息', '天河区可租房屋']`
+- **room-area-haizhu-003** [room_retrieval]: no rooms returned (expected: [35, 38, 42], got: [])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer, fallback_reason=lease_validation_empty
+  - hard_filters: `{'district_name': '海珠区', 'district_id': 3, 'area_text': '海珠'}`
+  - soft_preferences: `['海珠附近']`
+  - retrieval_queries: `['海珠区附近可租房源', '海珠区周边推荐租房信息', '海珠区出租房推荐']`
+- **room-area-yuexiu-004** [room_retrieval]: expected room not in top-5 (expected: [44, 46, 48], got: [200060, 200077, 200063, 200067, 200068])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'district_name': '越秀区'}`
+  - retrieval_queries: `['越秀区 房源', '越秀区 租房', '越秀区 有无出租房']`
+- **room-area-metro-near-005** [room_retrieval]: no rooms returned (expected: [8, 14, 22, 200008], got: [])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer, fallback_reason=lease_validation_empty
+  - hard_filters: `{'area_text': '地铁站附近'}`
+  - soft_preferences: `['地铁站附近']`
+  - retrieval_queries: `['地铁站附近可租房源', '靠近地铁的住宅小区', '地铁沿线租房推荐']`
+- **room-area-university-006** [room_retrieval]: expected room not in top-5 (expected: [1, 5, 10], got: [44, 200090, 200086, 200087, 200089])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'district_name': '大学城', 'district_id': 4, 'area_text': '大学城'}`
+  - soft_preferences: `['大学城附近']`
+  - retrieval_queries: `['大学城附近可租房屋', '大学城周边租房信息', '大学城附近公寓房源']`
+- **room-area-nanting-007** [room_retrieval]: no rooms returned (expected: [3, 7, 11], got: [])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer, fallback_reason=lease_validation_empty
+  - hard_filters: `{'area_text': '南亭', 'district_id': 4}`
+  - soft_preferences: `['南亭附近']`
+  - retrieval_queries: `['南亭附近房源', '南亭周边租房信息', '南亭区域可租公寓']`
+- **room-area-baiyun-008** [room_retrieval]: expected room not in top-5 (expected: [200020, 200025, 200030], got: [200106, 200109, 200108, 200110, 200105])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'district_name': '白云区', 'district_id': 5, 'area_text': '白云'}`
+  - soft_preferences: `['便宜']`
+  - retrieval_queries: `['白云区 房租 便宜', '白云区 经济型 房源', '白云区 租房 最低价格']`
+- **room-area-panyu-street-009** [room_retrieval]: no rooms returned (expected: [12, 18, 22], got: [])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer, fallback_reason=lease_validation_empty
+  - hard_filters: `{'district_name': '番禺市桥', 'district_id': 4, 'area_text': '番禺'}`
+  - soft_preferences: `['番禺附近']`
+  - retrieval_queries: `['番禺市桥附近房源', '番禺市桥周边租房信息', '番禺市桥附近可租公寓']`
+- **room-area-seed-panyu-010** [room_retrieval]: expected room not in top-5 (expected: [200001, 200005, 200010], got: [200094, 200082, 200088, 200092, 200096])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'district_name': '番禺区', 'district_id': 4, 'area_text': '番禺'}`
+  - retrieval_queries: `['种子公寓 番禺区 房源信息', '种子公寓 番禺区 可租房源', '番禺区 种子公寓 房屋出租']`
+- **room-area-seed-tianhe-011** [room_retrieval]: no rooms returned (expected: [200040, 200045, 200050], got: [])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer, fallback_reason=lease_validation_empty
+  - hard_filters: `{'district_name': '天河区', 'district_id': 1, 'area_text': '天河'}`
+  - retrieval_queries: `['种子公寓 天河区 房源', '种子公寓 天河区 可租房源', '种子公寓 天河区 有无空房']`
+- **room-area-commute-012** [room_retrieval]: expected room not in top-5 (expected: [20, 25, 28, 30], got: [200020, 200104, 200034, 200005, 200051])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'district_name': '珠江新城'}`
+  - soft_preferences: `['通勤方便']`
+  - retrieval_queries: `['珠江新城 通勤便利 房屋推荐', '珠江新城 地铁沿线 房源', '珠江新城 交通便利 租房信息']`
+- **room-area-wide-013** [room_retrieval]: no rooms returned (expected: [1, 20, 35, 44, 200001], got: [])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer, fallback_reason=lease_validation_empty
+  - soft_preferences: `['广州']`
+  - retrieval_queries: `['广州租房信息', '广州可租房屋', '广州房源推荐']`
+- **room-area-near-work-014** [room_retrieval]: expected room not in top-5 (expected: [20, 22, 25, 28], got: [200008, 200075, 200050, 200060, 200010])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'district_name': '科韵路'}`
+  - soft_preferences: `['在科韵路上班附近']`
+  - retrieval_queries: `['科韵路附近租房', '科韵路上班地点周边房源', '科韵路地铁站附近可租房间']`
+- **room-tag-quiet-001** [room_retrieval]: expected room not in top-5 (expected: [5, 11, 15, 200003], got: [200117, 200113, 200048, 200115, 200077])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - soft_preferences: `['安静']`
+  - retrieval_queries: `['安静的房屋', '安静的房子推荐', '安静的租房环境']`
+- **room-tag-bright-002** [room_retrieval]: no rooms returned (expected: [8, 14, 20, 200012], got: [])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer, fallback_reason=lease_validation_empty
+  - hard_filters: `{'area_text': '采光好'}`
+  - soft_preferences: `['采光好']`
+  - retrieval_queries: `['采光好的房间', '光线充足的房源', '自然采光好的公寓']`
+- **room-tag-south-003** [room_retrieval]: expected room not in top-5 (expected: [10, 16, 22, 200015], got: [200052, 200036, 200094, 200027, 51])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'area_text': '朝南'}`
+  - retrieval_queries: `['朝南的房间', '南向房间', '采光好的房间']`
+- **room-tag-pet-friendly-004** [room_retrieval]: no rooms returned (expected: [7, 13, 200020], got: [])
+  - diagnostics: route=fallback, rag_task=none, domain=unknown, action=clarify, parsed_task=fallback, risk_level=low, response_mode=ask_clarification, fallback_reason=out_of_scope
+- **room-tag-balcony-005** [room_retrieval]: no rooms returned (expected: [12, 18, 24, 200025], got: [])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer, fallback_reason=lease_validation_empty
+  - hard_filters: `{'area_text': '阳台'}`
+  - soft_preferences: `['有阳台']`
+  - retrieval_queries: `['有阳台的房间', '带阳台的房源', '阳台房间推荐']`
+- **room-tag-separate-bath-006** [room_retrieval]: expected room not in top-5 (expected: [5, 9, 11, 200008], got: [200093, 200048, 200113, 200102, 200104])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'room_type': 'STUDIO', 'district_id': None, 'district_name': None, 'area_text': None, 'max_rent': None, 'min_rent': None}`
+  - soft_preferences: `['独立卫浴']`
+  - retrieval_queries: `['独立卫浴的房间', '带独立卫生间的出租房', '有独立洗手间的房源']`
+- **room-tag-kitchen-007** [room_retrieval]: no rooms returned (expected: [15, 20, 25, 200030], got: [])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer, fallback_reason=lease_validation_empty
+  - hard_filters: `{'area_text': '厨房'}`
+  - soft_preferences: `['想自己做饭']`
+  - retrieval_queries: `['有厨房的房间', '可做饭的出租房', '带厨房的公寓']`
+- **room-tag-wifi-008** [room_retrieval]: expected room not in top-5 (expected: [3, 8, 14, 200010], got: [200024, 200067, 200063, 200025, 200085])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'area_text': 'WiFi'}`
+  - soft_preferences: `['有WiFi']`
+  - retrieval_queries: `['有WiFi的房间推荐', '提供无线网络的房源', '带Wi-Fi的出租房']`
+- **room-tag-aircon-009** [room_retrieval]: no rooms returned (expected: [6, 12, 18, 200014], got: [])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer, fallback_reason=lease_validation_empty
+  - hard_filters: `{'area_text': '空调'}`
+  - retrieval_queries: `['有空调的房间', '带空调的出租房', '空调房间出租']`
+- **room-tag-washer-010** [room_retrieval]: no rooms returned (expected: [9, 15, 21, 200018], got: [])
+  - diagnostics: route=fallback, rag_task=none, domain=unknown, action=clarify, parsed_task=fallback, risk_level=low, response_mode=ask_clarification, fallback_reason=out_of_scope
+- **room-tag-newly-decorated-011** [room_retrieval]: no rooms returned (expected: [18, 24, 200035], got: [])
+  - diagnostics: route=fallback, rag_task=none, domain=unknown, action=clarify, parsed_task=fallback, risk_level=low, response_mode=ask_clarification, fallback_reason=out_of_scope
+- **room-tag-elevator-012** [room_retrieval]: no rooms returned (expected: [20, 25, 30, 200040], got: [])
+  - diagnostics: route=fallback, rag_task=none, domain=unknown, action=clarify, parsed_task=fallback, risk_level=low, response_mode=ask_clarification, fallback_reason=out_of_scope
+- **room-tag-high-floor-013** [room_retrieval]: expected room not in top-5 (expected: [22, 28, 34, 200045], got: [200094, 200065, 200113, 200041, 200117])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'area_text': '高楼层'}`
+  - soft_preferences: `['视野好']`
+  - retrieval_queries: `['高楼层 房间 视野好', '高层住宅 景观好', '高楼层 室内视野开阔']`
+- **room-tag-ensuite-014** [room_retrieval]: no rooms returned (expected: [15, 20, 25, 30], got: [])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer, fallback_reason=lease_validation_empty
+  - hard_filters: `{'room_type': 'WHOLE_RENT'}`
+  - soft_preferences: `['不要合租', '想要整租']`
+  - retrieval_queries: `['整租房源', '不接受合租的房间']`
+- **room-tag-share-015** [room_retrieval]: expected room not in top-5 (expected: [3, 7, 200002], got: [200060, 200091, 200032, 200062, 200022])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'room_type': 'SHARED'}`
+  - retrieval_queries: `['合租单间', 'shared room available', '合租房间出租']`
+- **room-tag-large-area-016** [room_retrieval]: no rooms returned (expected: [25, 30, 35, 200050], got: [])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer, fallback_reason=lease_validation_empty
+  - soft_preferences: `['面积大一点']`
+  - retrieval_queries: `['面积大的房间', '大户型房源', '宽敞的出租房']`
+- **room-tag-compact-017** [room_retrieval]: expected room not in top-5 (expected: [1, 4, 6, 200003], got: [200070, 200084, 200112, 200113, 200098])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - soft_preferences: `['一个人住小点没关系', '要温馨']`
+  - retrieval_queries: `['一人居住 小户型 温馨']`
+- **room-tag-seed-quiet-018** [room_retrieval]: expected room not in top-5 (expected: [200005, 200015, 200025], got: [200014, 200105, 200084, 200029, 200072])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'area_text': '安静'}`
+  - soft_preferences: `['安静的房间']`
+  - retrieval_queries: `['种子公寓 安静 房间', '种子公寓 静音 房源', '种子公寓 舒适安静 房型']`
+- **room-tag-seed-bright-019** [room_retrieval]: expected room not in top-5 (expected: [200010, 200020, 200030], got: [200095, 200029, 200063, 200013, 200071])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'area_text': '采光好'}`
+  - retrieval_queries: `['种子公寓 采光好的房间', '种子公寓 光线充足的房源', '种子公寓 采光佳的出租房']`
+- **room-tag-seed-pet-020** [room_retrieval]: no rooms returned (expected: [200008, 200018, 200028], got: [])
+  - diagnostics: route=fallback, rag_task=none, domain=unknown, action=clarify, parsed_task=fallback, risk_level=low, response_mode=ask_clarification, fallback_reason=out_of_scope
+- **room-combo-panyu-1500-quiet-001** [room_retrieval]: expected room not in top-5 (expected: [5, 10], got: [200080, 200079, 200091, 200082, 200081])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'max_rent': 1500, 'district_name': '番禺', 'district_id': 4, 'area_text': '番禺'}`
+  - soft_preferences: `['安静']`
+  - retrieval_queries: `['番禺区租金1500元以内的安静房源', '番禺区安静的出租房推荐', '广州番禺低价安静公寓']`
+- **room-combo-tianhe-2000-bright-002** [room_retrieval]: expected room not in top-5 (expected: [22, 26], got: [200025, 200026, 200013, 200027, 200014])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'max_rent': 2000, 'district_name': '天河区', 'room_type': 'ONE_BEDROOM', 'district_id': 1, 'area_text': '天河'}`
+  - soft_preferences: `['采光好']`
+  - retrieval_queries: `['天河区 一室一厅 租金不超过2000元', '天河区 采光好的一室一厅出租', '天河区 一居室 租金低于2000元 带自然采光']`
+- **room-combo-budget-pet-003** [room_retrieval]: no rooms returned (expected: [13, 17, 200020], got: [])
+  - diagnostics: route=fallback, rag_task=none, domain=unknown, action=clarify, parsed_task=fallback, risk_level=low, response_mode=ask_clarification, fallback_reason=out_of_scope
+- **room-combo-area-kitchen-004** [room_retrieval]: expected room not in top-5 (expected: [36, 40], got: [200059, 200060, 200061, 200076])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'max_rent': 2000, 'district_name': '海珠区', 'area_text': '海珠', 'district_id': 3}`
+  - retrieval_queries: `['海珠区 厨房 2000元以内 房间', '海珠区 有厨房的出租房 月租不超过2000', '广州海珠区 厨房 2000元以下 租房信息']`
+- **room-combo-metro-budget-005** [room_retrieval]: expected room not in top-5 (expected: [3, 8], got: [200079, 200080, 200091])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'max_rent': 1000, 'room_type': 'SHARED'}`
+  - soft_preferences: `['地铁附近']`
+  - retrieval_queries: `['地铁附近合租房源', '租金不超过1000元的合租公寓', '交通便利的合租房间']`
+- **room-combo-area-type-007** [room_retrieval]: expected room not in top-5 (expected: [10, 15], got: [44, 200087, 200088, 200092, 200094])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'district_name': '番禺大学城', 'room_type': 'ONE_BEDROOM', 'district_id': 4, 'area_text': '大学城'}`
+  - soft_preferences: `['大学城附近']`
+  - retrieval_queries: `['番禺大学城 一室一厅 房源', '番禺大学城 租房 一居室', '番禺大学城 附近 一室一厅 出租']`
+- **room-combo-budget-area-008** [room_retrieval]: expected room not in top-5 (expected: [200020, 200025], got: [200105])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'max_rent': 1500, 'district_name': '白云区', 'room_type': 'STUDIO', 'district_id': 5, 'area_text': '白云'}`
+  - retrieval_queries: `['白云区 单间 租金不超过1500', '广州白云区 公寓单间 月租1500以内', '白云区 一室一厅 低价出租']`
+- **room-combo-bath-wifi-009** [room_retrieval]: no rooms returned (expected: [5, 9], got: [])
+  - diagnostics: route=fallback, rag_task=none, domain=unknown, action=clarify, parsed_task=fallback, risk_level=low, response_mode=ask_clarification, fallback_reason=out_of_scope
+- **room-combo-area-budget-pet-010** [room_retrieval]: no rooms returned (expected: [20, 25], got: [])
+  - diagnostics: route=fallback, rag_task=none, domain=unknown, action=clarify, parsed_task=fallback, risk_level=low, response_mode=ask_clarification, fallback_reason=out_of_scope
+- **room-combo-elevator-south-011** [room_retrieval]: no rooms returned (expected: [22, 28, 200040], got: [])
+  - diagnostics: route=fallback, rag_task=none, domain=unknown, action=clarify, parsed_task=fallback, risk_level=low, response_mode=ask_clarification, fallback_reason=out_of_scope
+- **room-combo-seed-panyu-budget-012** [room_retrieval]: expected room not in top-5 (expected: [200001, 200005], got: [200079, 200091, 200080])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'max_rent': 1000, 'district_name': '番禺', 'district_id': 4, 'area_text': '番禺'}`
+  - retrieval_queries: `['番禺区租金不超过1000元的房源', '种子公寓番禺区低价租房信息', '1000元以下的番禺租房推荐']`
+- **room-combo-whole-rent-budget-013** [room_retrieval]: no rooms returned (expected: [15, 20], got: [])
+  - diagnostics: route=fallback, rag_task=none, domain=unknown, action=clarify, parsed_task=fallback, risk_level=low, response_mode=ask_clarification, fallback_reason=out_of_scope
+- **room-combo-type-area-budget-014** [room_retrieval]: expected room not in top-5 (expected: [30, 35], got: [200025, 200026, 200027, 200013, 200014])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'max_rent': 3000, 'district_name': '天河区', 'room_type': 'TWO_BEDROOM', 'district_id': 1, 'area_text': '天河'}`
+  - retrieval_queries: `['天河区两室一厅租房', '天河区租金3000元以内两室一厅', '广州天河区两居室出租信息']`
+- **room-combo-decorated-bright-015** [room_retrieval]: expected room not in top-5 (expected: [18, 24], got: [44, 200082, 200091, 200079, 200080])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - hard_filters: `{'max_rent': 1800, 'area_text': '采光好'}`
+  - retrieval_queries: `['新装修 采光好 房间', '租金1800以内 新房', '采光好的出租房间', '1800元以内装修好的房间']`
+- **room-boundary-ambiguous-002** [room_retrieval]: expected room not in top-5 (expected: [1, 5, 10, 20, 200001], got: [49, 200015, 200064, 200017, 200118])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - retrieval_queries: `['找房子', '租房', '寻找可租房屋']`
+- **room-boundary-vague-004** [room_retrieval]: expected room not in top-5 (expected: [1, 5, 10, 15], got: [200036, 200112, 200117, 200078, 200057])
+  - diagnostics: route=rag, rag_task=room_search, domain=room, action=search, parsed_task=room_search, risk_level=low, response_mode=normal_answer
+  - soft_preferences: `['差不多的房间']`
+  - retrieval_queries: `['相近的房间', '类似户型的房源', '条件接近的出租房']`
+- **fallback-deposit-guarantee-001** [fallback_retrieval]: task=kb_qa, is_confident=True, expected fallback/low-conf
+  - diagnostics: route=rag, rag_task=kb_qa, domain=lease, action=ask_policy, parsed_task=kb_qa, risk_level=medium, response_mode=kb_grounded_answer
+  - retrieval_queries: `['押金退还时间规定', '退租押金到账时效', '租赁合同押金退还流程']`
+- **fallback-price-promise-002** [fallback_retrieval]: task=kb_qa, is_confident=True, expected fallback/low-conf
+  - diagnostics: route=rag, rag_task=kb_qa, domain=policy, action=ask_policy, parsed_task=kb_qa, risk_level=low, response_mode=normal_answer
+  - retrieval_queries: `['租金涨幅政策', '房租涨价规定', '价格稳定机制']`
+- **fallback-room-quality-003** [fallback_retrieval]: task=kb_qa, is_confident=True, expected fallback/low-conf
+  - diagnostics: route=rag, rag_task=kb_qa, domain=room, action=ask_policy, parsed_task=kb_qa, risk_level=low, response_mode=normal_answer
+  - retrieval_queries: `['新房甲醛检测标准', '房屋装修环保要求', '甲醛超标处理措施']`
+- **fallback-neighbors-004** [fallback_retrieval]: task=kb_qa, is_confident=True, expected fallback/low-conf
+  - diagnostics: route=rag, rag_task=kb_qa, domain=life, action=ask_policy, parsed_task=kb_qa, risk_level=low, response_mode=normal_answer
+  - retrieval_queries: `['邻居噪音管理政策', '公寓安静环境保障措施', '住户噪音投诉处理流程']`
+- **fallback-no-rent-increase-005** [fallback_retrieval]: task=kb_qa, is_confident=True, expected fallback/low-conf
+  - diagnostics: route=rag, rag_task=kb_qa, domain=lease, action=ask_policy, parsed_task=kb_qa, risk_level=low, response_mode=normal_answer
+  - retrieval_queries: `['续租涨价政策', '租赁合同续租价格调整规则', '续租是否保证不涨价']`
+- **fallback-future-policy-010** [fallback_retrieval]: task=kb_qa, is_confident=True, expected fallback/low-conf
+  - diagnostics: route=rag, rag_task=kb_qa, domain=policy, action=ask_policy, parsed_task=kb_qa, risk_level=low, response_mode=normal_answer
+  - retrieval_queries: `['下个月优惠活动', '未来一个月促销信息', '租金优惠计划', '租赁活动公告']`
+- **fallback-room-interior-011** [fallback_retrieval]: task=kb_qa, is_confident=True, expected fallback/low-conf
+  - diagnostics: route=rag, rag_task=kb_qa, domain=room, action=ask_policy, parsed_task=kb_qa, risk_level=low, response_mode=normal_answer
+  - retrieval_queries: `['房间照片与实际装修差异说明', '房源描述与实景不符政策', '房屋图片真实性保障措施']`
+- **fallback-comparison-012** [fallback_retrieval]: task=kb_qa, is_confident=True, expected fallback/low-conf
+  - diagnostics: route=rag, rag_task=kb_qa, domain=life, action=ask_policy, parsed_task=kb_qa, risk_level=low, response_mode=normal_answer
+  - retrieval_queries: `['公寓优势介绍', '品牌公寓对比', '为什么选择我们公寓']`
+- **fallback-investment-013** [fallback_retrieval]: task=kb_qa, is_confident=True, expected fallback/low-conf
+  - diagnostics: route=rag, rag_task=kb_qa, domain=life, action=ask_policy, parsed_task=kb_qa, risk_level=low, response_mode=normal_answer
+  - retrieval_queries: `['租房投资回报率计算方法', '房屋出租收益分析', '公寓租赁投资回报率政策']`

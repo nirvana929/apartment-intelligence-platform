@@ -147,3 +147,20 @@
 - Readiness check includes configured pipeline version.
 - Regression: 323 tests all passed (308 unit + 15 e2e)
 - Ruff: clean
+
+## Phase 7: Semantic Interaction Routing (2026-05-14)
+
+- Added `aptguide2.interaction` package with `InteractionIntent`, `EntityMention`, entity resolution, heuristic fallback, and LLM classifier adapter.
+- Replaced keyword-primary `HybridRouter` routing with semantic intent routing while preserving `SafetyBoundary` and pending-action priority.
+- `RouteDecision` now carries intent metadata.
+- `RagV2Procedure` extracts `InteractionIntent` and passes it into `run_pipeline_v2()`.
+- `understand_query()` accepts `interaction_intent` and avoids independent keyword task re-detection when intent exists.
+- Appointment workflow can read semantic room entities before regex fallback; two-turn confirmation remains required.
+- Added interaction intent eval dataset and runner.
+- Verification:
+  - `uv run pytest tests/unit/interaction -q` — 9 passed
+  - `uv run pytest tests/unit/harness/test_routing.py tests/unit/rag/test_query_understanding.py tests/unit/harness/modules/test_rag_v2.py -q` — 40 passed
+  - `uv run pytest tests/unit/harness/modules/test_appointment.py -q` — 22 passed
+  - `uv run pytest tests/unit/evals/test_run_interaction_intent_eval.py -q` — 3 passed
+  - interaction intent eval — total=8, exact=8, exact_rate=1.0
+  - `uv run pytest tests/ -q` — 402 passed, 3 warnings

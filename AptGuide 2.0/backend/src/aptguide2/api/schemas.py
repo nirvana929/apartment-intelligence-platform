@@ -40,6 +40,9 @@ class KBSourceResponse(BaseModel):
 class ChatResponse(BaseModel):
     """Outgoing chat response."""
 
+    session_id: str | None = None
+    request_id: str = ""
+    trace_id: str = ""
     task: str
     message: str = ""
     phase: str = ""
@@ -57,3 +60,10 @@ class HealthResponse(BaseModel):
 
     status: str = "ok"
     milvus: bool = False
+
+
+class ReadinessResponse(BaseModel):
+    """Readiness check response."""
+
+    ready: bool = False
+    checks: list[dict] = Field(default_factory=list)

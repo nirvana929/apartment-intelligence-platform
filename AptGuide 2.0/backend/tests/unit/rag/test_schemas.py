@@ -158,3 +158,40 @@ def test_retrieval_eval_case():
     )
     assert case.case_type == "room_retrieval"
     assert 3001 in case.expected_room_ids
+
+
+def test_risk_profile_defaults():
+    result = QueryUnderstandingResult(raw_message="找房", task="room_search")
+
+    assert result.risk_level == "low"
+    assert result.response_mode == "normal_answer"
+    assert result.risk_profile.risk_level == "low"
+    assert result.risk_profile.response_mode == "normal_answer"
+    assert result.risk_profile.rule_signals == []
+    assert result.risk_profile.hard_constraints == []
+
+
+def test_risk_profile_structured_fields():
+    result = QueryUnderstandingResult(
+        raw_message="我要打 12315",
+        task="kb_qa",
+        risk_level="high",
+        response_mode="handoff_to_human",
+        risk_profile={
+            "topic": "complaint_escalation",
+            "action": "escalation",
+            "object": "complaint",
+            "attitude": "angry",
+            "confidence": 0.95,
+            "risk_level": "high",
+            "response_mode": "handoff_to_human",
+            "rule_signals": ["external_complaint_channel"],
+            "hard_constraints": ["do_not_downgrade_below_high"],
+            "reason": "用户表达外部投诉升级意图",
+        },
+    )
+
+    assert result.risk_profile.topic == "complaint_escalation"
+    assert result.risk_profile.action == "escalation"
+    assert result.risk_profile.risk_level == "high"
+    assert result.risk_profile.response_mode == "handoff_to_human"

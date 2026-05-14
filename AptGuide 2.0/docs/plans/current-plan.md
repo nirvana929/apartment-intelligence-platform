@@ -1,45 +1,40 @@
 # Current Plan
 
-## Goal
+## Status: COMPLETED — LLM-First Interaction Understanding (2026-05-15)
 
-System feature completion and mainline integration: harness is the only `/chat` runtime, legacy RAG disconnected, RAG v2 mounted as internal harness module.
+## Last Completed Plan
 
-## Context
+LLM-First Interaction Understanding — `docs/plans/2026-05-15-aptguide2-llm-first-interaction-understanding-plan.md`
 
-Plan `2026-05-14-aptguide2-system-feature-completion-mainline-integration-plan.md` executed and completed. All 11 tasks done. 323 tests passing (308 unit + 15 e2e). ruff clean.
+## Completion Evidence
 
-## Completed (this session)
+- Checkpoint: `docs/plans/checkpoints/2026-05-15-003107-llm-first-interaction-understanding.md`
+- Backend full verification: `uv run pytest tests/ -q` → 394 passed, 3 warnings
+- Anti-regression scan: no keyword helpers in classifier.py or query_understanding.py
+- Live RAG v2 eval: completed — all gates FAIL but significant improvement (100/120 → 15/120 clarification)
 
-1. PipelineResult migrated from `rag/pipeline.py` to `rag/schemas.py`
-2. Wiring guard tests created (prove legacy RAG disconnected)
-3. `rag/pipeline_v2.py` imports from `rag/schemas.py` (not legacy pipeline)
-4. `api/app.py` rewritten — all legacy branches removed, harness-only
-5. `api/deps.py` registers `RagV2Procedure` instead of `RagBaselineProcedure`
-6. `core/config.py` default `pipeline_version = "harness_v1"`
-7. `harness/modules/rag/v2.py` created — RagV2Procedure adapter
-8. `appointment.cancel` two-turn confirmation flow implemented
-9. `LeaseWorkflowProcedure` created and registered
-10. `ChatResponse.cards` first-class field added
-11. `ResponseComposer` standard metadata added
-12. `build_readiness_report()` pipeline version check added
+## Completed Outcome
 
-## Current State
+The keyword-driven intent classification and query understanding has been completely replaced by an LLM-first structured understanding layer:
 
-- `/chat` enters `AptGuideHarness` by default — no legacy RAG branch
-- `api/app.py` has no imports from `aptguide2.rag.pipeline`
-- `api/deps.py` registers `RagV2Procedure` and `LeaseWorkflowProcedure`
-- `rag/schemas.py` owns `PipelineResult` — shared contract
-- `appointment.cancel` uses two-turn confirmation with `confirmation_id`
-- 323 tests all passing (308 unit + 15 e2e)
-- ruff clean
+- `ClarifyingInteractionClassifier` replaces `HeuristicInteractionClassifier` — no keyword fallback
+- `LLMInteractionClassifier` returns clarification on failure, not keyword guessing
+- `understand_query()` is intent-only — no interaction_intent = clarification fallback
+- `build_retrieval_plan()` uses LLM-provided domain, not keyword inference
+- All keyword helpers removed from runtime
+- Anti-regression scan tests guard against reintroduction
 
-## Verification
+## Next Steps
 
-```
-cd "AptGuide 2.0/backend" && uv run pytest tests/ -q
-# 323 passed
-```
+1. Investigate room retrieval quality (seed IDs vs Milvus content) — biggest gap: hit@5 = 8.6%
+2. Fix KB routing for appointment/lease/account queries (currently going to fallback)
+3. Improve high-risk fallback detection (40% → 100%)
+4. Provide Langfuse secret key
+5. Staging deployment execution
 
-## Next Step
+## Guardrails
 
-RAG retrieval quality improvement (KB hit@3=48.6%, Room hit@5=40%).
+- Old RAG path cleanup is already complete; keep the source scan as a regression guard.
+- Do not change eval cases merely to improve metrics.
+- Keep deterministic safety, auth, write confirmation, and lease validation.
+- Clarification-on-failure is the new pattern — never fall back to keyword guessing.

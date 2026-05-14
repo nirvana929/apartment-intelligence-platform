@@ -9,6 +9,8 @@ from unittest.mock import patch
 
 from fastapi.testclient import TestClient
 
+from aptguide2.interaction.contracts import InteractionIntent
+
 # ---------------------------------------------------------------------------
 # Mock data
 # ---------------------------------------------------------------------------
@@ -56,9 +58,9 @@ def _fake_embed(text: str) -> list[float]:
     return [0.1] * 1024
 
 
-def _fake_settings():
+def _fake_settings(**overrides):
     from aptguide2.core.config import Settings
-    return Settings(
+    defaults = dict(
         milvus_uri="http://localhost:19530",
         embedding_api_key="sk-test",
         embedding_base_url="https://example.com/v1",
@@ -67,7 +69,18 @@ def _fake_settings():
         llm_api_key="sk-test",
         llm_base_url="https://example.com/v1",
         llm_model="test",
+        intent_classifier_mode="clarify_only",
     )
+    defaults.update(overrides)
+    return Settings(**defaults)
+
+
+class _StubClassifier:
+    def __init__(self, intent):
+        self.intent = intent
+
+    def classify(self, message):
+        return self.intent.model_copy(update={"raw_message": message})
 
 
 # ---------------------------------------------------------------------------
@@ -94,9 +107,14 @@ class TestChatMainline:
         settings = _fake_settings()
         settings.pipeline_version = "harness_v1"
         settings.harness_include_trace = False
+        classifier = _StubClassifier(InteractionIntent(
+            raw_message="", route="capability", domain="capability",
+            action="ask_capability", confidence=0.95,
+        ))
         with patch("aptguide2.api.deps.get_settings", return_value=settings), \
              patch("aptguide2.api.deps.get_vector_adapter", return_value=MockVectorAdapter()), \
-             patch("aptguide2.api.deps.get_embed_fn", return_value=_fake_embed):
+             patch("aptguide2.api.deps.get_embed_fn", return_value=_fake_embed), \
+             patch("aptguide2.api.deps.get_interaction_classifier", return_value=classifier):
             client = TestClient(app)
             resp = client.post("/chat", json={"message": "你能做什么", "session_id": "s-cap"})
             assert resp.status_code == 200
@@ -111,9 +129,16 @@ class TestChatMainline:
         settings = _fake_settings()
         settings.pipeline_version = "harness_v1"
         settings.harness_include_trace = False
+        classifier = _StubClassifier(InteractionIntent(
+            raw_message="", route="rag", rag_task="room_search",
+            domain="room", action="search", needs_room_search=True,
+            hard_filters={"district_id": 4, "max_rent": 1500},
+            confidence=0.9,
+        ))
         with patch("aptguide2.api.deps.get_settings", return_value=settings), \
              patch("aptguide2.api.deps.get_vector_adapter", return_value=MockVectorAdapter()), \
-             patch("aptguide2.api.deps.get_embed_fn", return_value=_fake_embed):
+             patch("aptguide2.api.deps.get_embed_fn", return_value=_fake_embed), \
+             patch("aptguide2.api.deps.get_interaction_classifier", return_value=classifier):
             client = TestClient(app)
             resp = client.post("/chat", json={"message": "番禺区1500以内的房子", "session_id": "s-room"})
             assert resp.status_code == 200
@@ -139,9 +164,15 @@ class TestChatMainline:
         settings = _fake_settings()
         settings.pipeline_version = "harness_v1"
         settings.harness_include_trace = False
+        classifier = _StubClassifier(InteractionIntent(
+            raw_message="", route="handoff", domain="handoff",
+            action="request_handoff", risk_level="high",
+            response_mode="handoff_to_human", confidence=0.9,
+        ))
         with patch("aptguide2.api.deps.get_settings", return_value=settings), \
              patch("aptguide2.api.deps.get_vector_adapter", return_value=MockVectorAdapter()), \
-             patch("aptguide2.api.deps.get_embed_fn", return_value=_fake_embed):
+             patch("aptguide2.api.deps.get_embed_fn", return_value=_fake_embed), \
+             patch("aptguide2.api.deps.get_interaction_classifier", return_value=classifier):
             client = TestClient(app)
             resp = client.post("/chat", json={"message": "转人工", "session_id": "s-handoff"})
             assert resp.status_code == 200
@@ -156,10 +187,16 @@ class TestHarnessAppointmentAPI:
         settings = _fake_settings()
         settings.pipeline_version = "harness_v1"
         settings.harness_include_trace = False
+        classifier = _StubClassifier(InteractionIntent(
+            raw_message="", route="appointment", domain="appointment",
+            action="create", needs_tool=True, needs_confirmation=True,
+            confidence=0.82,
+        ))
 
         with patch("aptguide2.api.deps.get_settings", return_value=settings), \
              patch("aptguide2.api.deps.get_vector_adapter", return_value=MockVectorAdapter()), \
-             patch("aptguide2.api.deps.get_embed_fn", return_value=_fake_embed):
+             patch("aptguide2.api.deps.get_embed_fn", return_value=_fake_embed), \
+             patch("aptguide2.api.deps.get_interaction_classifier", return_value=classifier):
             client = TestClient(app)
             resp = client.post(
                 "/chat",
@@ -182,10 +219,16 @@ class TestHarnessAppointmentAPI:
         settings = _fake_settings()
         settings.pipeline_version = "harness_v1"
         settings.harness_include_trace = False
+        classifier = _StubClassifier(InteractionIntent(
+            raw_message="", route="appointment", domain="appointment",
+            action="create", needs_tool=True, needs_confirmation=True,
+            confidence=0.82,
+        ))
 
         with patch("aptguide2.api.deps.get_settings", return_value=settings), \
              patch("aptguide2.api.deps.get_vector_adapter", return_value=MockVectorAdapter()), \
-             patch("aptguide2.api.deps.get_embed_fn", return_value=_fake_embed):
+             patch("aptguide2.api.deps.get_embed_fn", return_value=_fake_embed), \
+             patch("aptguide2.api.deps.get_interaction_classifier", return_value=classifier):
             client = TestClient(app)
             first = client.post(
                 "/chat",

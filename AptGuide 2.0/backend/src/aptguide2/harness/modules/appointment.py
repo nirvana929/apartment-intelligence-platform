@@ -14,6 +14,21 @@ from aptguide2.harness.tools.contracts import ToolCallRequest
 class AppointmentWorkflowProcedure:
     """Handles appointment creation and listing through governed tool runtime."""
 
+    def _get_intent(self, decision: RouteDecision):
+        payload = decision.metadata.get("intent") if decision.metadata else None
+        if not payload:
+            return None
+        from aptguide2.interaction.contracts import InteractionIntent
+        return InteractionIntent.model_validate(payload)
+
+    def _extract_room_id_from_intent(self, intent) -> int | None:
+        if intent is None:
+            return None
+        for entity in intent.entities:
+            if entity.kind == "room_id" and entity.normalized_value is not None:
+                return int(entity.normalized_value)
+        return None
+
     def run(self, frame: ConversationFrame, decision: RouteDecision, tool_runtime: Any | None = None) -> ProcedureResult:
         message = frame.message or ""
 
@@ -31,7 +46,7 @@ class AppointmentWorkflowProcedure:
         if self._is_cancel_request(message):
             return self._create_cancel_confirmation(frame, message)
 
-        return self._create_appointment(frame, message, tool_runtime)
+        return self._create_appointment(frame, message, tool_runtime, decision)
 
     def _is_list_request(self, message: str) -> bool:
         list_terms = ("我的预约", "查看预约", "预约列表", "预约记录", "看预约")
@@ -184,8 +199,12 @@ class AppointmentWorkflowProcedure:
                 return match.group(0)
         return ""
 
-    def _create_appointment(self, frame: ConversationFrame, message: str, tool_runtime: Any | None) -> ProcedureResult:
-        room_id = self._extract_room_id(message)
+    def _create_appointment(self, frame: ConversationFrame, message: str, tool_runtime: Any | None, decision: RouteDecision | None = None) -> ProcedureResult:
+        # Try intent entities first, then fall back to regex
+        intent = self._get_intent(decision) if decision else None
+        room_id = self._extract_room_id_from_intent(intent) if intent else None
+        if room_id is None:
+            room_id = self._extract_room_id(message)
         preferred_time = self._extract_time(message)
 
         if room_id is None:

@@ -365,3 +365,32 @@ def test_cancel_appointment_failure():
 
     assert result.phase == "appointment_cancel_failed"
     assert frame.pending_action is None
+
+
+def test_semantic_appointment_create_still_requires_confirmation():
+    from aptguide2.interaction.contracts import EntityMention, InteractionIntent
+
+    intent = InteractionIntent(
+        raw_message="帮我预约200101明天下午看房",
+        route="appointment",
+        domain="appointment",
+        action="create",
+        needs_confirmation=True,
+        entities=[
+            EntityMention(kind="room_id", raw_text="200101", normalized_value=200101, confidence=0.95),
+            EntityMention(kind="time", raw_text="明天下午", normalized_value="明天下午", confidence=0.9),
+        ],
+    )
+    decision = RouteDecision(
+        task="appointment",
+        procedure="appointment.workflow",
+        confidence=0.9,
+        metadata={"intent": intent.model_dump(mode="json")},
+    )
+    frame = ConversationFrame(session_id="s1", request_id="r1", user_id="u1", message="帮我预约200101明天下午看房")
+
+    proc = AppointmentWorkflowProcedure()
+    result = proc.run(frame, decision, tool_runtime=FakeToolRuntime())
+
+    assert result.phase == "appointment_needs_confirmation"
+    assert result.pending_action["type"] == "appointment.create"

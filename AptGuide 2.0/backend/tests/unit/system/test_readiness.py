@@ -69,3 +69,20 @@ def test_build_readiness_report_pipeline_not_harness():
     pipeline_checks = [c for c in report.checks if c.name == "pipeline"]
     assert len(pipeline_checks) == 1
     assert pipeline_checks[0].ok is False
+
+
+def test_readiness_report_contains_standalone_dependencies():
+    """Readiness report must include all 7 standalone dependency checks."""
+    from aptguide2.core.config import Settings
+
+    settings = Settings()
+    report = build_readiness_report(settings)
+
+    check_names = [c.name for c in report.checks]
+    expected = ["pipeline", "auth_mode", "mysql_config", "redis_config",
+                "lease_config", "milvus_config", "embedding_config"]
+    assert check_names == expected
+
+    # Every check must carry the category field
+    for check in report.checks:
+        assert check.category != "", f"{check.name} missing category"

@@ -11,6 +11,8 @@
 | [28-rag-mvp-achievement-report](../28-rag-mvp-achievement-report.md) | RAG MVP 实现成果、数据链路和效果总结 | active |
 | [rag-learning-review](./rag-learning-review.md) | RAG 学习复盘：当前实现、局限、confidence gate、Milvus Adapter 和升级方向 | active |
 | [system-integration-live-eval-review](./system-integration-live-eval-review.md) | 系统集成与 live eval 成果：依赖 readiness、eval case 修正、真实检索质量数据、面试讲述点 | active |
+| [achievements](./achievements.md) | 项目成果：standalone productization、最近三天 AptGuide 2.0 数据治理/RAG v2/guardrail/主线集成成果、面试讲述点 | active |
+| [lessons-learned](./lessons-learned.md) | 经验教训：共享数据库凭据、async-first 迁移、auth resolver、外部真实数据治理、live eval、trace-first RAG 调优 | active |
 | [evaluation-report](../../reports/evaluation-report.md) | 全阶段评测成果：323 tests、harness mainline、legacy RAG 断开、system feature completion 验证；当前 blocker 为 RAG 检索质量 | generated |
 | [live-dependency-readiness-report](../../reports/live-dependency-readiness-report.md) | Live 依赖 readiness：Milvus、embedding、lease 全绿 | generated |
 | [rag-v2-live-evaluation-report](../../reports/rag-v2-live-evaluation-report.md) | RAG v2 live eval：55 cases、KB hit@3=48.6%、Room hit@5=40%、Fallback 100% | generated |

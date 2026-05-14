@@ -1,5 +1,5 @@
 from aptguide2.harness.context import InMemoryContextStore
-from aptguide2.harness.contracts import AptGuideRequest, ProcedureResult
+from aptguide2.harness.contracts import AptGuideRequest, ConversationFrame, ProcedureResult
 from aptguide2.harness.modules.appointment import AppointmentWorkflowProcedure
 from aptguide2.harness.modules.capability import CapabilityProcedure
 from aptguide2.harness.modules.fallback import FallbackProcedure
@@ -7,7 +7,27 @@ from aptguide2.harness.modules.handoff import HandoffProcedure
 from aptguide2.harness.orchestrator import AptGuideHarness
 from aptguide2.harness.procedures import ProcedureRuntime
 from aptguide2.harness.routing import HybridRouter
+from aptguide2.interaction.contracts import InteractionIntent
 from aptguide2.harness.tools.contracts import ToolCallResult
+
+
+class StubClassifier:
+    def __init__(self, intent: InteractionIntent) -> None:
+        self.intent = intent
+
+    def classify(self, message: str) -> InteractionIntent:
+        return self.intent.model_copy(update={"raw_message": message})
+
+
+def _clarify_router():
+    return HybridRouter(intent_classifier=StubClassifier(InteractionIntent(
+        raw_message="",
+        route="fallback",
+        action="clarify",
+        response_mode="ask_clarification",
+        clarification_needed=True,
+        confidence=0.0,
+    )))
 
 
 def build_harness():
@@ -17,14 +37,25 @@ def build_harness():
     runtime.register("fallback.unknown", FallbackProcedure())
     return AptGuideHarness(
         context_store=InMemoryContextStore(),
-        router=HybridRouter(),
+        router=_clarify_router(),
         procedure_runtime=runtime,
         include_trace=True,
     )
 
 
 def test_harness_runs_capability_request():
-    harness = build_harness()
+    harness = AptGuideHarness(
+        context_store=InMemoryContextStore(),
+        router=HybridRouter(intent_classifier=StubClassifier(InteractionIntent(
+            raw_message="",
+            route="capability",
+            domain="capability",
+            action="ask_capability",
+            confidence=0.95,
+        ))),
+        procedure_runtime=build_harness().procedure_runtime,
+        include_trace=True,
+    )
     response = harness.run(AptGuideRequest(request_id="r-1", session_id="s-1", message="你能做什么"))
     assert response.reply
     assert response.metadata["procedure"] == "capability.profile"
@@ -32,7 +63,16 @@ def test_harness_runs_capability_request():
 
 
 def test_harness_runs_safety_fallback():
-    harness = build_harness()
+    harness = AptGuideHarness(
+        context_store=InMemoryContextStore(),
+        router=HybridRouter(intent_classifier=StubClassifier(InteractionIntent(
+            raw_message="",
+            route="fallback",
+            confidence=0.4,
+        ))),
+        procedure_runtime=build_harness().procedure_runtime,
+        include_trace=True,
+    )
     response = harness.run(AptGuideRequest(request_id="r-1", session_id="s-1", message="保证不吵吗"))
     assert response.metadata["procedure"] == "fallback.safety"
     assert response.phase == "boundary_declined"
@@ -54,7 +94,13 @@ def test_harness_forwards_tool_runtime_to_procedure_runtime():
     tool_runtime = object()
     harness = AptGuideHarness(
         context_store=InMemoryContextStore(),
-        router=HybridRouter(),
+        router=HybridRouter(intent_classifier=StubClassifier(InteractionIntent(
+            raw_message="",
+            route="capability",
+            domain="capability",
+            action="ask_capability",
+            confidence=0.95,
+        ))),
         procedure_runtime=runtime,
         tool_runtime=tool_runtime,
     )
@@ -85,7 +131,15 @@ def test_harness_persists_pending_appointment_across_turns():
     tool_runtime = FakeAppointmentToolRuntime()
     harness = AptGuideHarness(
         context_store=InMemoryContextStore(),
-        router=HybridRouter(),
+        router=HybridRouter(intent_classifier=StubClassifier(InteractionIntent(
+            raw_message="",
+            route="appointment",
+            domain="appointment",
+            action="create",
+            needs_tool=True,
+            needs_confirmation=True,
+            confidence=0.82,
+        ))),
         procedure_runtime=runtime,
         tool_runtime=tool_runtime,
     )
@@ -135,7 +189,14 @@ def test_harness_suggests_handoff_after_consecutive_tool_failures():
     runtime.register("fallback.unknown", FallbackProcedure())
     harness = AptGuideHarness(
         context_store=InMemoryContextStore(),
-        router=HybridRouter(),
+        router=HybridRouter(intent_classifier=StubClassifier(InteractionIntent(
+            raw_message="",
+            route="appointment",
+            domain="appointment",
+            action="list",
+            needs_tool=True,
+            confidence=0.88,
+        ))),
         procedure_runtime=runtime,
     )
 

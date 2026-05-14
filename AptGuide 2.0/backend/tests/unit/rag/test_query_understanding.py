@@ -1,180 +1,116 @@
-"""Tests for query understanding."""
+"""Tests for query understanding — now intent-only."""
 
+from aptguide2.interaction.contracts import InteractionIntent
 from aptguide2.rag.query_understanding import understand_query
 
-# ---------------------------------------------------------------------------
-# Task detection
-# ---------------------------------------------------------------------------
-
-def test_detect_room_search():
-    r = understand_query("找大学城南亭附近1500以内安静点的房子")
-    assert r.task == "room_search"
-
-
-def test_detect_kb_qa_deposit():
-    r = understand_query("押金退还多久到账")
-    assert r.task == "kb_qa"
-
-
-def test_detect_kb_qa_early_termination():
-    r = understand_query("提前退租会扣多少钱")
-    assert r.task == "kb_qa"
-
-
-def test_detect_kb_qa_privacy():
-    r = understand_query("能查一下别人租约吗")
-    assert r.task == "kb_qa"
-
-
-def test_detect_fallback():
-    r = understand_query("今天天气怎么样")
-    assert r.task == "fallback"
-
 
 # ---------------------------------------------------------------------------
-# Budget extraction
+# Intent-only behavior
 # ---------------------------------------------------------------------------
 
-def test_budget_numeric():
-    r = understand_query("找1500以内的房子")
-    assert r.hard_filters.get("max_rent") == 1500
+def test_understand_query_requires_interaction_intent():
+    result = understand_query("有阳台的房间吗", interaction_intent=None)
+
+    assert result.task == "fallback"
+    assert result.response_mode == "ask_clarification"
 
 
-def test_budget_larger():
-    r = understand_query("天河区3000以内可月付")
-    assert r.hard_filters.get("max_rent") == 3000
+def test_understand_query_uses_llm_intent_filters_preferences_and_queries():
+    intent = InteractionIntent(
+        raw_message="珠江新城3000以内有阳台的房间",
+        route="rag",
+        rag_task="room_search",
+        domain="room",
+        action="search",
+        confidence=0.92,
+        hard_filters={"district_id": 1, "area_text": "珠江新城", "max_rent": 3000},
+        soft_preferences=["有阳台"],
+        retrieval_queries=["珠江新城 3000以内 有阳台 房源"],
+    )
+
+    result = understand_query("珠江新城3000以内有阳台的房间", interaction_intent=intent)
+
+    assert result.task == "room_search"
+    assert result.domain == "room"
+    assert result.hard_filters == {"district_id": 1, "area_text": "珠江新城", "max_rent": 3000}
+    assert result.soft_preferences == ["有阳台"]
+    assert result.retrieval_queries == ["珠江新城 3000以内 有阳台 房源"]
 
 
-def test_budget_around():
-    r = understand_query("2000左右的")
-    assert r.hard_filters.get("max_rent") == 2000
+def test_understand_query_clarifies_non_rag_intent():
+    intent = InteractionIntent(
+        raw_message="查看我的合同",
+        route="lease",
+        rag_task="none",
+        domain="lease",
+        action="list",
+        confidence=0.9,
+    )
 
+    result = understand_query("查看我的合同", interaction_intent=intent)
 
-def test_budget_clearing():
-    r = understand_query("预算我都接受", previous_state={"max_rent": 1500})
-    assert r.hard_filters.get("max_rent") is None
-
-
-def test_budget_no_budget():
-    r = understand_query("找安静点的房子")
-    assert "max_rent" not in r.hard_filters
+    assert result.task == "fallback"
+    assert result.response_mode == "ask_clarification"
 
 
 # ---------------------------------------------------------------------------
-# District / area extraction
+# Interaction intent passthrough
 # ---------------------------------------------------------------------------
 
-def test_district_tianhe():
-    r = understand_query("天河区3000以内")
-    assert r.hard_filters.get("district_id") == 1
+def test_understand_query_uses_provided_interaction_intent_task():
+    intent = InteractionIntent(
+        raw_message="月付和季付有什么区别",
+        route="rag",
+        rag_task="kb_qa",
+        domain="payment",
+        action="ask_policy",
+        hard_filters={"payment_type": "MONTHLY"},
+        confidence=0.9,
+    )
+
+    result = understand_query("月付和季付有什么区别", interaction_intent=intent)
+
+    assert result.task == "kb_qa"
+    assert result.domain == "payment"
+    assert result.hard_filters["payment_type"] == "MONTHLY"
 
 
-def test_area_university_town():
-    r = understand_query("找大学城南亭附近1500以内安静点的")
-    assert r.hard_filters.get("area_text") == "大学城南亭"
-    assert r.hard_filters.get("district_id") == 4
+def test_understand_query_room_search_with_full_intent():
+    intent = InteractionIntent(
+        raw_message="找大学城南亭附近1500以内安静点的房子",
+        route="rag",
+        rag_task="room_search",
+        domain="room",
+        action="search",
+        confidence=0.92,
+        hard_filters={"district_id": 4, "area_text": "大学城南亭", "max_rent": 1500},
+        soft_preferences=["安静", "低噪音"],
+        retrieval_queries=["大学城南亭附近 1500以内 安静 低噪音 房源"],
+    )
+
+    result = understand_query("找大学城南亭附近1500以内安静点的房子", interaction_intent=intent)
+
+    assert result.task == "room_search"
+    assert result.domain == "room"
+    assert result.hard_filters.get("max_rent") == 1500
+    assert result.hard_filters.get("area_text") == "大学城南亭"
+    assert "安静" in result.soft_preferences
 
 
-def test_district_panyu():
-    r = understand_query("番禺区的房源")
-    assert r.hard_filters.get("district_id") == 4
+def test_understand_query_kb_with_risk():
+    intent = InteractionIntent(
+        raw_message="押金退还多久到账",
+        route="rag",
+        rag_task="kb_qa",
+        domain="payment",
+        action="ask_policy",
+        confidence=0.88,
+        risk_level="medium",
+        response_mode="kb_grounded_answer",
+    )
 
+    result = understand_query("押金退还多久到账", interaction_intent=intent)
 
-# ---------------------------------------------------------------------------
-# Payment extraction
-# ---------------------------------------------------------------------------
-
-def test_payment_monthly():
-    r = understand_query("天河区3000以内可月付")
-    assert r.hard_filters.get("payment_type") == "MONTHLY"
-
-
-def test_payment_quarterly():
-    r = understand_query("季付的房子")
-    assert r.hard_filters.get("payment_type") == "QUARTERLY"
-
-
-# ---------------------------------------------------------------------------
-# Soft preferences
-# ---------------------------------------------------------------------------
-
-def test_preference_quiet():
-    r = understand_query("找安静点的房子")
-    assert "安静" in r.soft_preferences
-    assert "低噪音" in r.soft_preferences
-
-
-def test_preference_subway():
-    r = understand_query("近地铁通勤方便")
-    assert "近地铁" in r.soft_preferences
-    assert "通勤方便" in r.soft_preferences
-
-
-def test_preference_grad_school():
-    r = understand_query("考研安静学习")
-    assert "适合考研" in r.soft_preferences
-    assert "安静" in r.soft_preferences
-
-
-# ---------------------------------------------------------------------------
-# Reference resolution
-# ---------------------------------------------------------------------------
-
-def test_reference_first():
-    r = understand_query("第一个")
-    assert r.reference_resolution == {"index": 0}
-
-
-def test_reference_last():
-    r = understand_query("刚才那个")
-    assert r.reference_resolution == {"relative": "last"}
-
-
-# ---------------------------------------------------------------------------
-# Risk level
-# ---------------------------------------------------------------------------
-
-def test_risk_high_deposit():
-    r = understand_query("押金退还多久到账")
-    assert r.risk_level == "high"
-
-
-def test_risk_low_search():
-    r = understand_query("找安静点的房子")
-    assert r.risk_level == "low"
-
-
-# ---------------------------------------------------------------------------
-# Retrieval queries
-# ---------------------------------------------------------------------------
-
-def test_retrieval_queries_generated():
-    r = understand_query("找大学城南亭附近1500以内安静点的")
-    assert len(r.retrieval_queries) > 0
-    assert len(r.retrieval_queries) <= 3
-
-
-def test_retrieval_queries_empty_for_kb():
-    r = understand_query("押金退还多久到账")
-    assert r.retrieval_queries == []
-
-
-# ---------------------------------------------------------------------------
-# Complex cases
-# ---------------------------------------------------------------------------
-
-def test_complex_room_search():
-    r = understand_query("找大学城南亭附近1500以内安静点的房子")
-    assert r.task == "room_search"
-    assert r.hard_filters.get("max_rent") == 1500
-    assert r.hard_filters.get("area_text") == "大学城南亭"
-    assert "安静" in r.soft_preferences
-
-
-def test_complex_with_payment():
-    r = understand_query("天河区3000以内可月付，通勤方便")
-    assert r.task == "room_search"
-    assert r.hard_filters.get("district_id") == 1
-    assert r.hard_filters.get("max_rent") == 3000
-    assert r.hard_filters.get("payment_type") == "MONTHLY"
-    assert "通勤方便" in r.soft_preferences
+    assert result.task == "kb_qa"
+    assert result.risk_level == "medium"
+    assert result.response_mode == "kb_grounded_answer"
