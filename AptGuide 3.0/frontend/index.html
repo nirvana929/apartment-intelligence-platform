@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AptGuide 3.0</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <header class="header">
+      <h1>AptGuide</h1>
+      <span class="subtitle">智能租房助手</span>
+    </header>
+
+    <div class="chat-container" ref="chatContainer">
+      <div v-if="messages.length === 0" class="empty-state">
+        <p>你好！我是 AptGuide 智能租房助手。</p>
+        <p>告诉我你的租房需求，我来帮你找合适的房子。</p>
+      </div>
+
+      <div v-for="(msg, idx) in messages" :key="idx" :class="['message', msg.role]">
+        <div class="bubble">
+          <p class="text" v-html="formatText(msg.text)"></p>
+
+          <div v-if="msg.cards && msg.cards.length" class="cards">
+            <div v-for="(card, ci) in msg.cards" :key="ci" class="card">
+              <div class="card-header">
+                <span class="card-type">{{ card.type || '结果' }}</span>
+                <span v-if="card.title" class="card-title">{{ card.title }}</span>
+              </div>
+              <div v-if="card.room" class="card-body">
+                <div v-if="card.room.name" class="card-row"><strong>房间：</strong>{{ card.room.name }}</div>
+                <div v-if="card.room.building" class="card-row"><strong>楼栋：</strong>{{ card.room.building }}</div>
+                <div v-if="card.room.floor" class="card-row"><strong>楼层：</strong>{{ card.room.floor }}</div>
+                <div v-if="card.room.area" class="card-row"><strong>面积：</strong>{{ card.room.area }}m²</div>
+                <div v-if="card.room.price" class="card-row"><strong>租金：</strong>{{ card.room.price }}元/月</div>
+                <div v-if="card.room.layout" class="card-row"><strong>户型：</strong>{{ card.room.layout }}</div>
+                <div v-if="card.room.orientation" class="card-row"><strong>朝向：</strong>{{ card.room.orientation }}</div>
+                <div v-if="card.room.features" class="card-row"><strong>特点：</strong>{{ card.room.features }}</div>
+              </div>
+              <div v-else-if="card.source" class="card-body">
+                <div class="card-row"><strong>来源：</strong>{{ card.source }}</div>
+                <div v-if="card.snippet" class="card-snippet">{{ card.snippet }}</div>
+              </div>
+              <div v-else-if="card.text" class="card-body">
+                <p>{{ card.text }}</p>
+              </div>
+              <div v-else class="card-body">
+                <pre class="card-raw">{{ JSON.stringify(card, null, 2) }}</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div v-if="loading" class="message assistant">
+        <div class="bubble typing">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+
+    <form class="input-bar" @submit.prevent="sendMessage">
+      <input
+        v-model="input"
+        type="text"
+        placeholder="输入你的租房需求..."
+        :disabled="loading"
+        ref="inputEl"
+      />
+      <button type="submit" :disabled="loading || !input.trim()">发送</button>
+    </form>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

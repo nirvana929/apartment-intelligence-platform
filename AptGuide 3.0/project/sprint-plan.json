@@ -1,0 +1,17 @@
+{
+  "project": "AptGuide 3.0",
+  "sprints": [
+    {
+      "id": "sprint-001",
+      "name": "Clean LLM-first backend foundation",
+      "status": "completed",
+      "plan": "docs/plans/2026-05-15-aptguide3-clean-llm-first-backend-plan.md"
+    },
+    {
+      "id": "sprint-002",
+      "name": "Independent backend backbone",
+      "status": "planned",
+      "plan": "docs/plans/2026-05-15-aptguide3-independent-backend-backbone-plan.md"
+    }
+  ]
+}

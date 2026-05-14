@@ -1,0 +1,33 @@
+{
+  "project": "AptGuide 3.0",
+  "features": [
+    {
+      "id": "llm_first_understanding",
+      "name": "LLM-first structured understanding",
+      "status": "completed",
+      "passes": true,
+      "test_status": "36 passed, 2 skipped"
+    },
+    {
+      "id": "clarification_on_uncertainty",
+      "name": "Clarification instead of keyword fallback",
+      "status": "completed",
+      "passes": true,
+      "test_status": "36 passed, 2 skipped"
+    },
+    {
+      "id": "typed_procedure_runtime",
+      "name": "Typed procedure runtime",
+      "status": "completed",
+      "passes": true,
+      "test_status": "36 passed, 2 skipped"
+    },
+    {
+      "id": "independent_backend_backbone",
+      "name": "Independent backend backbone",
+      "status": "planned",
+      "passes": false,
+      "test_status": "not_run"
+    }
+  ]
+}
