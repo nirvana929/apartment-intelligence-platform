@@ -6,7 +6,6 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, Field
 
-
 # ---------------------------------------------------------------------------
 # Query Understanding
 # ---------------------------------------------------------------------------
@@ -136,6 +135,23 @@ class KBSource(BaseModel):
     risk_level: Literal["low", "medium", "high"] = "low"
     matched_query: str = ""
     recall_source: str = "original"
+
+
+# ---------------------------------------------------------------------------
+# Pipeline Result
+# ---------------------------------------------------------------------------
+
+
+class PipelineResult(BaseModel):
+    """Structured result from the RAG pipeline."""
+
+    task: Literal["room_search", "kb_qa", "fallback"]
+    message: str = ""
+    rooms: list[RankedRoom] = Field(default_factory=list)
+    kb_sources: list[KBSource] = Field(default_factory=list)
+    is_confident: bool = False
+    fallback_reason: str = ""
+    query_understanding: QueryUnderstandingResult | None = None
 
 
 # ---------------------------------------------------------------------------

@@ -4,6 +4,8 @@
 
 `AptGuide 2.0` 不是在旧版 AptGuide 上继续增加节点或修补 fallback，而是重新设计一个可以独立运行、带前端交互、直接调用现有租赁系统真实接口的租房领域 Agent 应用框架。
 
+当前长期架构主线是建设 **AptGuide 2.0 Enterprise Harness**：先搭好系统级 Agent harness，再把 RAG 作为其中一个核心模块持续优化。不要把当前 FastAPI + RAG MVP 误解为最终系统边界。
+
 ## 当前实现状态
 
 当前代码已经落地到 **FastAPI + RAG 检索 MVP**：
@@ -57,6 +59,18 @@ POST /chat
 - 有任务规划、工具调用、检索恢复和失败解释能力的 Agentic Workflow；
 - 有结构化前端协议的交互产品，而不是只返回文本；
 - 可作为独立前后端应用运行，但业务数据直接来自现有 `lease`、Milvus 和业务工具接口。
+
+后续工程边界应是：
+
+```text
+aptguide2.harness
+  -> conversation / context
+  -> safety / routing / procedures
+  -> tool registry
+  -> modules.rag
+  -> modules.appointment / memory / user_data / handoff / capability
+  -> trace / replay / response composer
+```
 
 ## 为什么重构
 
@@ -166,9 +180,11 @@ AptGuide 2.0 Frontend
 3. docs/27-current-implementation-guide.md
 4. docs/01-product-requirements.md
 5. docs/02-agent-framework-architecture.md
-6. docs/04-tool-and-integration-contract.md
-7. docs/12-implementation-task-plan.md
-8. 按任务读取下方表格中的专项文档
+6. docs/system/enterprise-harness-architecture.md
+7. docs/04-tool-and-integration-contract.md
+8. docs/12-implementation-task-plan.md
+9. docs/plans/2026-05-12-enterprise-aptguide-harness-plan.md
+10. 按任务读取下方表格中的专项文档
 ```
 
 如果这次重点是 RAG、向量库、RAGAS、MCP 或知识库持续更新，直接读取：
@@ -187,6 +203,7 @@ docs/15-tool-registry-and-error-codes.md
 | 你要处理的问题 | 优先阅读 |
 | --- | --- |
 | 理解当前已经实现的系统 | [27-current-implementation-guide.md](docs/27-current-implementation-guide.md)、[api/app.py](backend/src/aptguide2/api/app.py)、[rag/pipeline.py](backend/src/aptguide2/rag/pipeline.py) |
+| 搭建企业级 AptGuide harness | [enterprise-harness-architecture.md](docs/system/enterprise-harness-architecture.md)、[02-agent-framework-architecture.md](docs/02-agent-framework-architecture.md)、[08-procedure-driven-agent-runtime.md](docs/08-procedure-driven-agent-runtime.md)、[2026-05-12-enterprise-aptguide-harness-plan.md](docs/plans/2026-05-12-enterprise-aptguide-harness-plan.md) |
 | 快速理解项目目标和边界 | [00-start-here.md](docs/00-start-here.md)、[01-product-requirements.md](docs/01-product-requirements.md)、[13-product-technical-review.md](docs/13-product-technical-review.md) |
 | 判断产品范围、拒答策略、人工接管 | [01-product-requirements.md](docs/01-product-requirements.md)、[03-domain-boundary-and-interaction-policy.md](docs/03-domain-boundary-and-interaction-policy.md)、[09-human-handoff-and-operations.md](docs/09-human-handoff-and-operations.md) |
 | 设计后端 Agent 架构 | [02-agent-framework-architecture.md](docs/02-agent-framework-architecture.md)、[08-procedure-driven-agent-runtime.md](docs/08-procedure-driven-agent-runtime.md)、[07-memory-and-context-architecture.md](docs/07-memory-and-context-architecture.md) |
@@ -200,6 +217,7 @@ docs/15-tool-registry-and-error-codes.md
 ### 入口和产品边界
 
 - [00-start-here.md](docs/00-start-here.md)：阅读顺序和项目边界。
+- [enterprise-harness-architecture.md](docs/system/enterprise-harness-architecture.md)：企业级 AptGuide 2.0 harness 总体架构，明确 RAG 是系统模块。
 - [27-current-implementation-guide.md](docs/27-current-implementation-guide.md)：当前已经实现的 API、RAG 主流程、入库脚本、测试和阅读路线。
 - [01-product-requirements.md](docs/01-product-requirements.md)：产品定位、用户场景、能力边界。
 - [03-domain-boundary-and-interaction-policy.md](docs/03-domain-boundary-and-interaction-policy.md)：领域边界、防白嫖和交互话术策略。

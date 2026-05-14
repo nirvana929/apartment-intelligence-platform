@@ -8,7 +8,6 @@ from __future__ import annotations
 
 from aptguide2.rag.schemas import QueryUnderstandingResult, RankedRoom
 
-
 # 最终分数由多个维度加权组成。
 # MVP 阶段权重是人工设定的，后续可以用评估集或线上反馈做调参。
 W_SEMANTIC = 0.35

@@ -6,6 +6,8 @@
 
 `AptGuide 2.0` 的架构目标不是把旧版节点补全，而是重新定义一个租房领域 Agent 框架。
 
+更准确地说，`AptGuide 2.0` 应先建设企业级 Agent harness，再把 RAG、预约、记忆、人工接管等能力作为模块接入。RAG 是核心模块，但不是系统边界本身。
+
 核心原则：
 
 - 外层有可观测、可测试的 orchestration；
@@ -20,6 +22,7 @@
 ```text
 Frontend
   -> Chat API / Stream API
+  -> AptGuide Enterprise Harness
   -> Event Filter
   -> Human Handoff Gate
   -> Conversation Manager
@@ -40,6 +43,21 @@ Frontend
   -> Response Composer
   -> Structured Response + Trace
 ```
+
+从工程分层看，推荐主边界是：
+
+```text
+aptguide2.harness
+  -> contracts / context / routing / procedures / tools / composer / trace / replay
+  -> modules.rag
+  -> modules.appointment
+  -> modules.memory
+  -> modules.user_data
+  -> modules.handoff
+  -> modules.capability
+```
+
+当前已实现的 `aptguide2.rag` 可以先作为 `modules.rag` 的 baseline strategy 接入，不建议继续让 RAG pipeline 直接承担整个 `/chat` 系统运行时。
 
 ## 3. 核心模块
 

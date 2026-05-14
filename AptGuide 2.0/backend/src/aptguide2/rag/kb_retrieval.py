@@ -6,8 +6,6 @@
 
 from __future__ import annotations
 
-from typing import Any
-
 from aptguide2.rag.confidence import check_confidence
 from aptguide2.rag.schemas import KBSource, QueryUnderstandingResult
 from aptguide2.tools.vector_adapter import VectorAdapter

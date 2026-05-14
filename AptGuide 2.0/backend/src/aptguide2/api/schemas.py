@@ -10,6 +10,9 @@ class ChatRequest(BaseModel):
 
     message: str
     session_id: str | None = None
+    user_id: str | None = None
+    action: dict | None = None
+    client_context: dict = Field(default_factory=dict)
 
 
 class RoomResponse(BaseModel):
@@ -39,9 +42,14 @@ class ChatResponse(BaseModel):
 
     task: str
     message: str = ""
+    phase: str = ""
+    cards: list[dict] = Field(default_factory=list)
     rooms: list[RoomResponse] = Field(default_factory=list)
     kb_sources: list[KBSourceResponse] = Field(default_factory=list)
     is_confident: bool = False
+    actions: list[dict] = Field(default_factory=list)
+    pending_action: dict | None = None
+    metadata: dict = Field(default_factory=dict)
 
 
 class HealthResponse(BaseModel):

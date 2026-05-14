@@ -6,29 +6,15 @@ Handles all 3 task paths: room_search, kb_qa, fallback.
 
 from __future__ import annotations
 
-from typing import Any, Literal
-
-from pydantic import BaseModel, Field
+from typing import Any
 
 from aptguide2.rag.confidence import get_fallback_message
 from aptguide2.rag.kb_retrieval import retrieve_kb
 from aptguide2.rag.query_understanding import understand_query
 from aptguide2.rag.ranking import rank_rooms
 from aptguide2.rag.room_retrieval import enrich_candidates_from_vector, retrieve_rooms
-from aptguide2.rag.schemas import QueryUnderstandingResult, RankedRoom, KBSource
+from aptguide2.rag.schemas import PipelineResult, QueryUnderstandingResult
 from aptguide2.tools.vector_adapter import VectorAdapter
-
-
-class PipelineResult(BaseModel):
-    """Structured result from the RAG pipeline."""
-
-    task: Literal["room_search", "kb_qa", "fallback"]
-    message: str = ""
-    rooms: list[RankedRoom] = Field(default_factory=list)
-    kb_sources: list[KBSource] = Field(default_factory=list)
-    is_confident: bool = False
-    fallback_reason: str = ""
-    query_understanding: QueryUnderstandingResult | None = None
 
 
 def run_pipeline(

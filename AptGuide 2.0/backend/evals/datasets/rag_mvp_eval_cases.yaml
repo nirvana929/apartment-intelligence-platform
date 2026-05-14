@@ -29,7 +29,7 @@ cases:
   - case_id: kb-004
     case_type: kb_retrieval
     query: 预约看房怎么取消
-    expected_doc_ids: ["KB-APPOINT-003"]
+    expected_doc_ids: ["KB-APPT-003"]
     expected_task: kb_qa
     tags: [appointment]
 
@@ -43,56 +43,56 @@ cases:
   - case_id: kb-006
     case_type: kb_retrieval
     query: 月付和季付有什么区别
-    expected_doc_ids: ["KB-PAY-001"]
+    expected_doc_ids: ["KB-PAY-001", "KB-PAY-003"]
     expected_task: kb_qa
     tags: [payment]
 
   - case_id: kb-007
     case_type: kb_retrieval
     query: 入住需要带什么
-    expected_doc_ids: ["KB-LIFE-001"]
+    expected_doc_ids: ["KB-LEASE-012", "KB-LIFE-001"]
     expected_task: kb_qa
     tags: [life]
 
   - case_id: kb-008
     case_type: kb_retrieval
     query: 房间空调坏了找谁修
-    expected_doc_ids: ["KB-LIFE-003"]
+    expected_doc_ids: ["KB-LIFE-001", "KB-LIFE-002"]
     expected_task: kb_qa
     tags: [life]
 
   - case_id: kb-009
     case_type: kb_retrieval
     query: 可以养宠物吗
-    expected_doc_ids: ["KB-POLICY-001"]
+    expected_doc_ids: ["KB-LIFE-005"]
     expected_task: kb_qa
     tags: [policy]
 
   - case_id: kb-010
     case_type: kb_retrieval
     query: 合租可以带朋友住吗
-    expected_doc_ids: ["KB-POLICY-003"]
+    expected_doc_ids: ["KB-LIFE-009", "KB-POLICY-009"]
     expected_task: kb_qa
     tags: [policy]
 
   - case_id: kb-011
     case_type: kb_retrieval
     query: 忘记密码怎么办
-    expected_doc_ids: ["KB-ACCOUNT-002"]
+    expected_doc_ids: ["KB-ACCT-002"]
     expected_task: kb_qa
     tags: [account]
 
   - case_id: kb-012
     case_type: kb_retrieval
     query: 怎么注销账号
-    expected_doc_ids: ["KB-ACCOUNT-005"]
+    expected_doc_ids: ["KB-ACCT-005"]
     expected_task: kb_qa
     tags: [account]
 
   - case_id: kb-013
     case_type: kb_retrieval
     query: 预约看房要提前多久
-    expected_doc_ids: ["KB-APPOINT-001"]
+    expected_doc_ids: ["KB-APPT-001"]
     expected_task: kb_qa
     tags: [appointment]
 
@@ -134,7 +134,7 @@ cases:
   - case_id: kb-019
     case_type: kb_retrieval
     query: 房间可以自己换锁吗
-    expected_doc_ids: ["KB-POLICY-005"]
+    expected_doc_ids: ["KB-POLICY-005", "KB-LEASE-010"]
     expected_task: kb_qa
     tags: [policy]
 
@@ -148,98 +148,98 @@ cases:
   - case_id: kb-021
     case_type: kb_retrieval
     query: 怎么看自己的租约
-    expected_doc_ids: ["KB-LEASE-009"]
+    expected_doc_ids: ["KB-LEASE-003", "KB-LEASE-010"]
     expected_task: kb_qa
     tags: [lease]
 
   - case_id: kb-022
     case_type: kb_retrieval
     query: 可以转租吗
-    expected_doc_ids: ["KB-LEASE-008"]
+    expected_doc_ids: ["KB-LEASE-009", "KB-LEASE-008"]
     expected_task: kb_qa
     tags: [lease, high_risk]
 
   - case_id: kb-023
     case_type: kb_retrieval
     query: 公共区域卫生谁打扫
-    expected_doc_ids: ["KB-LIFE-005"]
+    expected_doc_ids: ["KB-LIFE-003", "KB-LIFE-006"]
     expected_task: kb_qa
     tags: [life]
 
   - case_id: kb-024
     case_type: kb_retrieval
     query: 投诉怎么处理
-    expected_doc_ids: ["KB-POLICY-007"]
+    expected_doc_ids: ["KB-POLICY-004", "KB-POLICY-005"]
     expected_task: kb_qa
     tags: [policy]
 
   - case_id: kb-025
     case_type: kb_retrieval
     query: 实名认证怎么做
-    expected_doc_ids: ["KB-ACCOUNT-003"]
+    expected_doc_ids: ["KB-ACCT-008"]
     expected_task: kb_qa
     tags: [account]
 
   - case_id: kb-026
     case_type: kb_retrieval
     query: 租期到了不续约会怎样
-    expected_doc_ids: ["KB-LEASE-007"]
+    expected_doc_ids: ["KB-LEASE-006", "KB-LEASE-007"]
     expected_task: kb_qa
     tags: [lease]
 
   - case_id: kb-027
     case_type: kb_retrieval
     query: 预约后迟到怎么办
-    expected_doc_ids: ["KB-APPOINT-005"]
+    expected_doc_ids: ["KB-APPT-006"]
     expected_task: kb_qa
     tags: [appointment]
 
   - case_id: kb-028
     case_type: kb_retrieval
     query: 可以开租房发票吗
-    expected_doc_ids: ["KB-PAY-008"]
+    expected_doc_ids: ["KB-PAY-007"]
     expected_task: kb_qa
     tags: [payment]
 
   - case_id: kb-029
     case_type: kb_retrieval
     query: 隐私数据怎么保护
-    expected_doc_ids: ["KB-ACCOUNT-006"]
+    expected_doc_ids: ["KB-ACCT-004"]
     expected_task: kb_qa
     tags: [account]
 
   - case_id: kb-030
     case_type: kb_retrieval
     query: 同住人需要登记吗
-    expected_doc_ids: ["KB-POLICY-004"]
+    expected_doc_ids: ["KB-POLICY-001", "KB-POLICY-009"]
     expected_task: kb_qa
     tags: [policy]
 
   - case_id: kb-031
     case_type: kb_retrieval
     query: 噪音投诉找谁
-    expected_doc_ids: ["KB-LIFE-007"]
+    expected_doc_ids: ["KB-LIFE-004", "KB-POLICY-004"]
     expected_task: kb_qa
     tags: [life]
 
   - case_id: kb-032
     case_type: kb_retrieval
     query: 退款多久到账
-    expected_doc_ids: ["KB-PAY-006"]
+    expected_doc_ids: ["KB-PAY-009"]
     expected_task: kb_qa
     tags: [payment]
 
   - case_id: kb-033
     case_type: kb_retrieval
     query: 安全注意事项有哪些
-    expected_doc_ids: ["KB-POLICY-006"]
+    expected_doc_ids: ["KB-LIFE-008", "KB-POLICY-008"]
     expected_task: kb_qa
     tags: [policy]
 
   - case_id: kb-034
     case_type: kb_retrieval
     query: 换房间可以吗
-    expected_doc_ids: ["KB-APPOINT-008"]
+    expected_doc_ids: ["KB-LEASE-010", "KB-APPT-004"]
     expected_task: kb_qa
     tags: [appointment]
 
@@ -334,38 +334,38 @@ cases:
   - case_id: room-001
     case_type: room_retrieval
     query: 找大学城南亭附近1500以内安静点的房子
-    expected_room_ids: [3001, 3002]
+    expected_room_ids: [200079, 200080, 200091]
     expected_task: room_search
-    hard_filters: {area_text: "大学城南亭", max_rent: 1500}
+    hard_filters: {district_id: 4, max_rent: 1500}
     soft_preferences: ["安静"]
 
   - case_id: room-002
     case_type: room_retrieval
     query: 天河区3000以内可月付
-    expected_room_ids: [3101, 3102]
+    expected_room_ids: [200025, 200013, 200026, 200014]
     expected_task: room_search
-    hard_filters: {district_id: 1001, max_rent: 3000, payment_type: "MONTHLY"}
+    hard_filters: {district_id: 1, max_rent: 3000, payment_type: "MONTHLY"}
 
   - case_id: room-003
     case_type: room_retrieval
     query: 海珠区近地铁通勤方便
-    expected_room_ids: [3201, 3202]
+    expected_room_ids: [200061, 200076, 200059]
     expected_task: room_search
-    hard_filters: {district_id: 1003}
+    hard_filters: {district_id: 3}
     soft_preferences: ["近地铁", "通勤方便"]
 
   - case_id: room-004
     case_type: room_retrieval
     query: 番禺区2000以内适合考研
-    expected_room_ids: [3003, 3004]
+    expected_room_ids: [200098, 200105, 200106]
     expected_task: room_search
-    hard_filters: {district_id: 1005, max_rent: 2000}
+    hard_filters: {district_id: 5, max_rent: 2000}
     soft_preferences: ["适合考研", "安静"]
 
   - case_id: room-005
     case_type: room_retrieval
     query: 白云区大面积低预算
-    expected_room_ids: [3401, 3402]
+    expected_room_ids: [200031, 200032, 200043]
     expected_task: room_search
-    hard_filters: {district_id: 1006}
+    hard_filters: {district_id: 2}
     soft_preferences: ["低预算"]

@@ -1,0 +1,162 @@
+{
+  "sprints": [
+    {
+      "sprint_id": "sprint_00_handoff_state",
+      "goal": "Make the harness foundation plan executable by future agents.",
+      "features": [],
+      "contract": {
+        "must_pass": [
+          "rg -n \"enterprise-aptguide-harness-agent-handoff-plan|enterprise-aptguide-harness-agent-execution-plan\" docs project progress"
+        ],
+        "e2e_required": false,
+        "coverage_required": false,
+        "blocking_bugs_allowed": false
+      },
+      "status": "completed"
+    },
+    {
+      "sprint_id": "sprint_01_core_harness_shell",
+      "goal": "Create typed contracts, registry, trace recorder, and in-memory context store.",
+      "features": [
+        "feature_harness_contracts",
+        "feature_harness_registry",
+        "feature_harness_trace",
+        "feature_harness_context"
+      ],
+      "contract": {
+        "must_pass": [
+          "uv run pytest tests/unit/harness/test_contracts.py -q",
+          "uv run pytest tests/unit/harness/test_registry.py -q",
+          "uv run pytest tests/unit/harness/test_trace.py -q",
+          "uv run pytest tests/unit/harness/test_context.py -q"
+        ],
+        "e2e_required": false,
+        "coverage_required": false,
+        "blocking_bugs_allowed": false
+      },
+      "status": "completed"
+    },
+    {
+      "sprint_id": "sprint_02_routing_and_runtime",
+      "goal": "Add safety boundary, hybrid router, procedure runtime, response composer, and built-in procedures.",
+      "features": [
+        "feature_harness_safety",
+        "feature_harness_routing",
+        "feature_harness_procedure_runtime",
+        "feature_harness_composer",
+        "feature_harness_builtin_procedures"
+      ],
+      "contract": {
+        "must_pass": [
+          "uv run pytest tests/unit/harness/test_safety.py -q",
+          "uv run pytest tests/unit/harness/test_routing.py -q",
+          "uv run pytest tests/unit/harness/test_procedures.py -q",
+          "uv run pytest tests/unit/harness/test_composer.py -q",
+          "uv run pytest tests/unit/harness/test_builtin_procedures.py -q"
+        ],
+        "e2e_required": false,
+        "coverage_required": false,
+        "blocking_bugs_allowed": false
+      },
+      "status": "completed"
+    },
+    {
+      "sprint_id": "sprint_03_rag_baseline_and_orchestrator",
+      "goal": "Mount existing RAG MVP inside the harness and run internal harness requests end-to-end.",
+      "features": [
+        "feature_harness_rag_baseline",
+        "feature_harness_orchestrator"
+      ],
+      "contract": {
+        "must_pass": [
+          "uv run pytest tests/unit/harness/modules/rag/test_baseline.py -q",
+          "uv run pytest tests/unit/harness/test_orchestrator.py -q"
+        ],
+        "e2e_required": false,
+        "coverage_required": false,
+        "blocking_bugs_allowed": false
+      },
+      "status": "completed"
+    },
+    {
+      "sprint_id": "sprint_04_api_replay_docs_regression",
+      "goal": "Expose harness behind config, add replay writer, update docs, and run regression verification.",
+      "features": [
+        "feature_harness_api_switch",
+        "feature_harness_api_e2e",
+        "feature_harness_replay",
+        "feature_harness_docs_sync",
+        "feature_harness_regression_verification"
+      ],
+      "contract": {
+        "must_pass": [
+          "uv run pytest tests/unit/harness/test_replay.py -q",
+          "uv run pytest tests/e2e/test_api.py -q",
+          "uv run pytest tests/unit/harness -q",
+          "uv run pytest tests/unit/rag tests/e2e -q",
+          "rg -n \"harness-method-selection|enterprise-aptguide-harness-agent-execution-plan|enterprise-aptguide-harness-agent-handoff-plan\" docs README.md project progress"
+        ],
+        "e2e_required": true,
+        "coverage_required": false,
+        "blocking_bugs_allowed": false
+      },
+      "status": "completed"
+    },
+    {
+      "sprint_id": "sprint_05_tool_registry_and_governance",
+      "goal": "Add governed Tool Registry layer with typed contracts, runtime governance, executor wrappers, and trace-safe summaries.",
+      "features": [
+        "feature_tool_contracts",
+        "feature_tool_registry",
+        "feature_tool_runtime",
+        "feature_tool_trace_summary",
+        "feature_tool_lease_executors",
+        "feature_tool_vector_executors",
+        "feature_tool_runtime_dependency",
+        "feature_tool_docs_sync"
+      ],
+      "contract": {
+        "must_pass": [
+          "uv run pytest tests/unit/harness/tools -q",
+          "uv run pytest tests/unit/harness -q",
+          "uv run pytest tests/unit/rag tests/e2e -q"
+        ],
+        "e2e_required": false,
+        "coverage_required": false,
+        "blocking_bugs_allowed": false
+      },
+      "status": "completed"
+    },
+    {
+      "sprint_id": "sprint_06_rag_v2_hybrid_retrieval",
+      "goal": "Upgrade RAG from character-match-heavy MVP to enterprise-grade hybrid retrieval with governed rerank, lease validation, and eval gates.",
+      "features": [
+        "feature_rag_v2_planning",
+        "feature_rag_v2_hybrid",
+        "feature_rag_v2_rerank",
+        "feature_rag_v2_validation",
+        "feature_rag_v2_pipeline",
+        "feature_rag_v2_tool_validation",
+        "feature_rag_v2_eval_metrics",
+        "feature_rag_v2_char_match_audit",
+        "feature_rag_v2_eval_gates"
+      ],
+      "contract": {
+        "must_pass": [
+          "uv run pytest tests/unit/rag/test_planning.py -q",
+          "uv run pytest tests/unit/rag/test_hybrid.py -q",
+          "uv run pytest tests/unit/rag/test_rerank.py -q",
+          "uv run pytest tests/unit/rag/test_validation.py -q",
+          "uv run pytest tests/unit/rag/test_eval_metrics.py -q",
+          "uv run pytest tests/unit/rag/test_pipeline_v2_trace.py -q",
+          "uv run pytest tests/e2e/test_api.py -q",
+          "uv run pytest tests/unit/rag tests/unit/harness tests/unit/tools tests/e2e -q"
+        ],
+        "e2e_required": true,
+        "coverage_required": false,
+        "blocking_bugs_allowed": false
+      },
+      "status": "completed"
+    }
+  ]
+}

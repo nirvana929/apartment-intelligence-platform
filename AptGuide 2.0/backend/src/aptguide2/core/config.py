@@ -1,5 +1,5 @@
-from pydantic_settings import BaseSettings
 from pydantic import SecretStr
+from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
@@ -27,6 +27,10 @@ class Settings(BaseSettings):
 
     # KB
     kb_rules_dir: str = "knowledge/rules"
+
+    # Harness
+    pipeline_version: str = "harness_v1"
+    harness_include_trace: bool = False
 
     # LangSmith observability
     langsmith_tracing: bool = False

@@ -8,17 +8,23 @@
 
 ## 当前实现一句话
 
-当前 `AptGuide 2.0` 已经实现为一个 **FastAPI + RAG 检索 MVP**：
+当前 `AptGuide 2.0` 已经实现为一个 **企业级租房 Agent harness + RAG v2 检索系统**：
 
 - 对外提供 `/health` 和 `/chat` 两个 API；
-- `/chat` 调用 `run_pipeline()`；
-- `run_pipeline()` 把用户消息分成找房、知识库问答、fallback 三条路径；
+- `/chat` 默认进入 `AptGuideHarness`，harness 是唯一产品运行时；
+- 旧 RAG MVP pipeline 已从 API、harness procedure 和 system e2e acceptance 中断开，仅保留为 legacy reference；
+- RAG v2 作为 harness 内部检索模块，用于 room search 和 KB QA；
+- `run_pipeline_v2()` 提供 RetrievalPlanning、Lease Validation Gate、Trace 支持；
 - 房源和知识库数据通过离线脚本写入 Milvus；
 - 知识库问答在检索后用 LLM 基于来源内容生成中文回答；
 - 房源推荐返回结构化房源列表和推荐理由；
 - 单元测试和端到端测试覆盖主要链路。
 
-**当前数据规模**：126 间房源（广州 5 区 + 北京昌平）、70 条 KB 规则（7 个模块）、149 个测试全部通过。
+**当前数据规模**：126 间房源（广州 5 区 + 北京昌平）、70 条 KB 规则（7 个模块）、323 个测试全部通过（308 unit + 15 e2e），ruff clean。
+
+**Live 验证状态**：Milvus、embedding、lease 全部就绪，readiness 含 pipeline 版本检查。RAG v2 live eval 已真实运行（55 cases），KB hit@3=48.6%，Room hit@5=40%，Fallback 100%。当前 active objective 是 RAG 检索质量提升。
+
+**已完成主线**：系统功能完善与主线统一已完成。执行记录见 [plans/2026-05-14-aptguide2-system-feature-completion-mainline-integration-plan.md](./plans/2026-05-14-aptguide2-system-feature-completion-mainline-integration-plan.md)。
 
 ## 当前主程序
 
@@ -74,13 +80,50 @@ APTGUIDE_KB_RULES_DIR
 ```text
 backend/src/aptguide2/
 ├── api/
-│   ├── app.py          # FastAPI 入口，定义 /health 和 /chat
-│   ├── deps.py         # API 依赖：Settings、VectorAdapter、embedding、LLM client
+│   ├── app.py          # FastAPI 入口，定义 /health 和 /chat（/chat 进入 harness mainline）
+│   ├── deps.py         # API 依赖：Settings、VectorAdapter、embedding、LLM client、harness、tool_runtime
 │   └── schemas.py      # API 请求和响应模型
 ├── core/
-│   └── config.py       # 环境变量配置
+│   └── config.py       # 环境变量配置（含 pipeline_version 和 harness_include_trace）
+├── harness/            # 企业级 harness 系统底座
+│   ├── contracts.py    # AptGuideRequest, ConversationFrame, RouteDecision, ProcedureResult, StageTrace, AptGuideTrace, AptGuideResponse
+│   ├── errors.py       # StrategyNotFoundError, ProcedureNotFoundError, ReplayPIIError
+│   ├── registry.py     # StrategyRegistry
+│   ├── context.py      # InMemoryContextStore
+│   ├── safety.py       # SafetyBoundary (keyword matching)
+│   ├── routing.py      # HybridRouter (priority: safety > capability > handoff > appointment > kb > room > fallback)
+│   ├── procedures.py   # Procedure Protocol + ProcedureRuntime
+│   ├── composer.py     # ResponseComposer
+│   ├── trace.py        # TraceRecorder
+│   ├── replay.py       # ReplayWriter (PII-guarded JSONL)
+│   ├── memory.py       # MemoryManager (recent messages, pending action, tool observations)
+│   ├── orchestrator.py # AptGuideHarness.run()
+│   ├── modules/
+│   │   ├── appointment.py
+│   │   ├── capability.py
+│   │   ├── fallback.py
+│   │   ├── handoff.py
+│   │   ├── lease.py
+│   │   └── rag/v2.py       # RAG v2 harness procedure
+│   └── tools/          # 工具治理层
+│       ├── contracts.py    # ToolDefinition, ToolCallRequest, ToolCallResult, ToolError, 8 MVP schemas
+│       ├── errors.py       # ToolAlreadyRegisteredError, ToolNotFoundError, ToolTimeoutError, ToolExecutionError
+│       ├── registry.py     # ToolRegistry
+│       ├── builtins.py     # build_default_tool_registry() with 8 MVP tools
+│       ├── runtime.py      # ToolRuntime (permission checks, confirmation gates, executor dispatch)
+│       ├── trace.py        # summarize_tool_request, summarize_tool_result, redact_pii
+│       ├── lease_tools.py  # 6 lease executors
+│       └── vector_tools.py # KBSearchExecutor
 ├── rag/
-│   ├── pipeline.py     # 当前 RAG 主工作流
+│   ├── pipeline.py         # 旧 RAG MVP 主工作流，仅 legacy reference
+│   ├── pipeline_v2.py      # RAG v2 主工作流，作为 harness 内部模块
+│   ├── planning.py         # RetrievalPlan, build_retrieval_plan()
+│   ├── sparse.py           # sparse_score() 本地稀疏词法评分
+│   ├── hybrid.py           # HybridCandidate, merge_hybrid_candidates()
+│   ├── rerank.py           # RerankWeights, rerank_kb_sources()
+│   ├── validation.py       # LeaseRoomValidator, validate_room_candidates()
+│   ├── tool_validation.py  # ToolRuntimeRoomValidator
+│   ├── eval_metrics.py     # hit_at_k, mean_reciprocal_rank, ndcg_at_k
 │   ├── query_understanding.py
 │   ├── room_retrieval.py
 │   ├── kb_retrieval.py
@@ -91,6 +134,9 @@ backend/src/aptguide2/
 ├── tools/
 │   ├── vector_adapter.py
 │   └── lease_adapter.py
+├── system/
+│   ├── __init__.py
+│   └── readiness.py      # DependencyCheck, ReadinessReport, render_markdown_report
 ├── trace/
 │   └── retrieval_events.py
 └── data_import/
@@ -108,17 +154,27 @@ backend/knowledge/rules/  # 租房规则知识库 YAML
 
 ## 一次 /chat 请求如何流转
 
-`POST /chat` 的入口在 `api/app.py`：
+`POST /chat` 的入口在 `api/app.py`。当前 `/chat` 只进入 harness mainline：
 
 ```text
 ChatRequest
   ↓
-get_vector_adapter()
-get_embed_fn()
+get_aptguide_harness()
   ↓
-run_pipeline(message, vector_adapter, embed_fn)
+AptGuideHarness.run()
   ↓
-_build_response()
+HybridRouter
+  ├── capability.profile
+  ├── rag.room_search -> RagV2Procedure -> run_pipeline_v2()
+  ├── rag.kb_qa -> RagV2Procedure -> run_pipeline_v2()
+  ├── appointment.workflow
+  ├── lease.workflow
+  ├── handoff.user_initiated / handoff.tool_failure
+  └── fallback.safety / fallback.unknown
+  ↓
+ResponseComposer
+  ↓
+_build_response_from_harness()
   ↓
 ChatResponse
 ```
@@ -128,7 +184,10 @@ ChatResponse
 ```json
 {
   "message": "番禺区1500以内的房子",
-  "session_id": "optional-session-id"
+  "session_id": "optional-session-id",
+  "user_id": "optional-user-id",
+  "action": {"type": "confirm", "confirmation_id": "..."},
+  "client_context": {}
 }
 ```
 
@@ -138,13 +197,18 @@ ChatResponse
 {
   "task": "room_search",
   "message": "...",
+  "phase": "room_results",
+  "cards": [],
   "rooms": [],
   "kb_sources": [],
-  "is_confident": false
+  "is_confident": false,
+  "actions": [],
+  "pending_action": null,
+  "metadata": {}
 }
 ```
 
-`session_id` 当前在 schema 中存在，但主流程尚未使用它做会话记忆。
+`user_id` 用于 harness 预约和用户身份校验。`action` 用于 harness 确认流程（如预约确认）。`cards` 是正式支持的通用卡片字段，`rooms` 是 room card 的兼容投影。`pending_action` 和 `actions` 在 harness 预约流程中返回。
 
 ## RAG 主工作流
 
@@ -582,6 +646,17 @@ vector_adapter (6 tests)
 lease_adapter (12 tests)
 trace (12 tests)
 data_import (28 tests)
+harness (57 tests)
+harness/tools (59 tests)
+harness/appointment (11 tests)
+harness/memory (19 tests)
+harness/handoff (5 tests)
+rag/planning (3 tests)
+rag/hybrid (3 tests)
+rag/rerank (2 tests)
+rag/validation (3 tests)
+rag/eval_metrics (3 tests)
+rag/pipeline_v2_trace (1 test)
 ```
 
 运行：
@@ -596,11 +671,17 @@ uv run pytest tests/unit
 覆盖：
 
 ```text
-run_pipeline 三条路径
 /health
-/chat room_search
-/chat kb_qa
-/chat fallback
+/chat harness mainline capability
+/chat harness mainline fallback
+/chat harness mainline room_search through RAG v2
+/chat harness mainline kb_qa through RAG v2
+/chat appointment pending_action
+/chat appointment confirmation
+/chat appointment cancel confirmation
+/chat lease list
+/chat handoff
+legacy RAG isolated tests (not system acceptance)
 ```
 
 运行：
@@ -619,6 +700,7 @@ uv run pytest tests/e2e
 ```text
 backend/evals/runners/run_rag_mvp.py
 backend/evals/runners/run_rag_eval.py
+backend/evals/runners/run_rag_v2.py
 ```
 
 评测数据：
@@ -640,10 +722,22 @@ backend/evals/reports/
 
 ```text
 FastAPI /health
-FastAPI /chat
+FastAPI /chat (harness mainline only)
 API request/response schema
-RAG pipeline
+RAG pipeline v1 (legacy reference only, disconnected from public interfaces)
+RAG pipeline v2 (harness internal module with hybrid retrieval + governed rerank + lease validation)
+Harness orchestrator (contracts, routing, procedures, trace, replay, memory)
+Tool governance (registry, runtime, executors, trace summaries)
+Appointment workflow (create/cancel with two-turn pending-action confirmation, list with auth check)
+Lease workflow (lease.list_mine through governed tools)
+Handoff procedure (user-initiated, tool-failure-triggered, orchestrator auto-trigger after 2 consecutive failures)
+Memory manager (recent messages, pending action lifecycle, tool observations)
+Pending-action-aware routing (confirmation/cancel messages route to appointment workflow)
 确定性 query understanding
+Retrieval planning (hard filters / semantic queries 分离)
+Hybrid retrieval (dense + sparse merge, dedup, channel attribution)
+Governed rerank (显式特征权重, lexical capped at 5%)
+Lease validation gate (无 lease 验证不展示房源)
 房源向量召回
 房源多维重排
 KB 多路召回
@@ -656,28 +750,33 @@ KB YAML 入库脚本 (含 doc_id 去重)
 房源同步入库脚本
 Mock 房源 seed 脚本
 Trace event builder
-RAG eval runner
+RAG eval runner (v1 + v2)
+Eval metrics (hit@k, MRR, nDCG)
+Character-match audit (keep/weaken/replace)
+Eval gates 文档
 LangSmith 可观测性配置
 District ID 映射修正 (1-11, 110114)
-unit tests (133 个)
-e2e tests (16 个)
+Live dependency readiness check (aptguide2.system.readiness)
+RAG v2 live eval runner (RagV2EvalDependencies, 正确 wiring)
+System smoke checklist
+API contract 扩展 (user_id, action, cards, pending_action, actions, metadata)
+unit tests (308 个)
+e2e tests (15 个)
 ```
 
 ### 尚未完整实现
 
 ```text
 前端聊天应用
-多轮会话记忆接入 /chat
 长期用户偏好画像
 Agent planner / specialist agents
-预约、签约、取消等写操作 workflow
-结构化确认卡片和 action 执行
-真实在线 lease availability validation
-人工接管
+真实在线 lease availability validation 需要继续观察 live 环境一致性
+人工接管（HandoffProcedure 已实现，待接入外部客服系统）
 Trace 持久化和可观测平台接入
 权限认证和用户身份体系
 MCP 封装
 RAGAS 自动化评测闭环
+RAG v2 live eval 检索质量优化 (当前 KB hit@3=48.6%, Room hit@5=40%)
 ```
 
 ## 推荐阅读顺序
@@ -688,14 +787,18 @@ RAGAS 自动化评测闭环
 2. `docs/00-start-here.md`：了解文档地图。
 3. 本文档：理解当前已经实现的系统。
 4. `backend/src/aptguide2/api/app.py`：看 API 入口。
-5. `backend/src/aptguide2/rag/pipeline.py`：看主工作流。
-6. `backend/src/aptguide2/rag/query_understanding.py`：看用户输入如何被结构化。
-7. `backend/src/aptguide2/rag/room_retrieval.py` 和 `ranking.py`：看找房链路。
-8. `backend/src/aptguide2/rag/kb_retrieval.py` 和 `confidence.py`：看知识库问答链路。
-9. `backend/src/aptguide2/rag/chunking.py`：看入库文本如何构造。
-10. `backend/src/aptguide2/tools/vector_adapter.py`：看 Milvus 如何封装。
-11. `backend/scripts/sync_kb_vectors.py` 和 `sync_room_vectors.py`：看数据如何进入向量库。
-12. `backend/tests/e2e/test_api.py` 和 `test_pipeline.py`：看系统期望行为。
+5. `docs/plans/2026-05-14-aptguide2-system-feature-completion-mainline-integration-plan.md`：看已完成的主线集成计划。
+6. `backend/src/aptguide2/harness/orchestrator.py`：看系统主线编排。
+7. `backend/src/aptguide2/harness/modules/appointment.py`：看预约流程。
+8. `backend/src/aptguide2/harness/modules/rag/v2.py`：看 harness 如何挂载 RAG v2。
+9. `backend/src/aptguide2/rag/query_understanding.py`：看用户输入如何被结构化。
+10. `backend/src/aptguide2/rag/room_retrieval.py` 和 `ranking.py`：看找房链路。
+11. `backend/src/aptguide2/rag/kb_retrieval.py` 和 `confidence.py`：看知识库问答链路。
+12. `backend/src/aptguide2/rag/pipeline_v2.py`：看 RAG v2 检索主流程。
+13. `backend/src/aptguide2/rag/chunking.py`：看入库文本如何构造。
+14. `backend/src/aptguide2/tools/vector_adapter.py`：看 Milvus 如何封装。
+15. `backend/scripts/sync_kb_vectors.py` 和 `sync_room_vectors.py`：看数据如何进入向量库。
+16. `backend/tests/e2e/test_system_mainline.py` 和 `test_api.py`：看系统期望行为。
 
 如果你想理解未来完整产品，再读：
 

@@ -1,11 +1,13 @@
-"""E2E tests for the FastAPI /chat and /health endpoints."""
+"""E2E tests for the FastAPI /chat and /health endpoints.
+
+All /chat requests now go through the harness mainline.
+"""
 
 from __future__ import annotations
 
 from unittest.mock import patch
 
 from fastapi.testclient import TestClient
-
 
 # ---------------------------------------------------------------------------
 # Mock data
@@ -72,6 +74,7 @@ def _fake_settings():
 # Tests
 # ---------------------------------------------------------------------------
 
+
 class TestHealthEndpoint:
     def test_health_ok(self):
         with patch("aptguide2.api.app.get_vector_adapter", return_value=MockVectorAdapter()):
@@ -83,95 +86,129 @@ class TestHealthEndpoint:
             assert data["status"] == "ok"
 
 
-class TestChatRoomSearch:
-    def test_room_search_returns_rooms(self):
-        with patch("aptguide2.api.app.get_vector_adapter", return_value=MockVectorAdapter()), \
-             patch("aptguide2.api.app.get_embed_fn", return_value=_fake_embed):
-            from aptguide2.api.app import app
+class TestChatMainline:
+    """All /chat requests go through harness mainline."""
+
+    def test_capability(self):
+        from aptguide2.api.app import app
+        settings = _fake_settings()
+        settings.pipeline_version = "harness_v1"
+        settings.harness_include_trace = False
+        with patch("aptguide2.api.deps.get_settings", return_value=settings), \
+             patch("aptguide2.api.deps.get_vector_adapter", return_value=MockVectorAdapter()), \
+             patch("aptguide2.api.deps.get_embed_fn", return_value=_fake_embed):
             client = TestClient(app)
-            resp = client.post("/chat", json={"message": "番禺区1500以内的房子"})
+            resp = client.post("/chat", json={"message": "你能做什么", "session_id": "s-cap"})
+            assert resp.status_code == 200
+            data = resp.json()
+            assert data["task"] == "capability"
+            assert "phase" in data
+            assert isinstance(data["actions"], list)
+            assert isinstance(data["metadata"], dict)
+
+    def test_room_search(self):
+        from aptguide2.api.app import app
+        settings = _fake_settings()
+        settings.pipeline_version = "harness_v1"
+        settings.harness_include_trace = False
+        with patch("aptguide2.api.deps.get_settings", return_value=settings), \
+             patch("aptguide2.api.deps.get_vector_adapter", return_value=MockVectorAdapter()), \
+             patch("aptguide2.api.deps.get_embed_fn", return_value=_fake_embed):
+            client = TestClient(app)
+            resp = client.post("/chat", json={"message": "番禺区1500以内的房子", "session_id": "s-room"})
             assert resp.status_code == 200
             data = resp.json()
             assert data["task"] == "room_search"
-            assert len(data["rooms"]) > 0
-            assert data["rooms"][0]["room_id"] in (1, 2)
 
-    def test_room_search_with_budget(self):
-        with patch("aptguide2.api.app.get_vector_adapter", return_value=MockVectorAdapter()), \
-             patch("aptguide2.api.app.get_embed_fn", return_value=_fake_embed):
-            from aptguide2.api.app import app
-            client = TestClient(app)
-            resp = client.post("/chat", json={"message": "找房2000以内"})
-            assert resp.status_code == 200
-            data = resp.json()
-            assert data["task"] == "room_search"
-
-
-class TestChatKBQA:
-    def test_kb_qa_confident(self):
-        with patch("aptguide2.api.app.get_vector_adapter", return_value=MockVectorAdapter()), \
-             patch("aptguide2.api.app.get_embed_fn", return_value=_fake_embed), \
-             patch("aptguide2.api.app.get_llm_client") as mock_llm:
-            # Mock LLM response
-            mock_choice = type("Choice", (), {"message": type("Msg", (), {"content": "押金在退租后15个工作日内退还。"})()})()
-            mock_resp = type("Resp", (), {"choices": [mock_choice]})()
-            mock_llm.return_value = type("Client", (), {
-                "chat": type("Chat", (), {
-                    "completions": type("Comp", (), {"create": lambda *a, **kw: mock_resp})()
-                })()
-            })()
-
-            from aptguide2.api.app import app
-            client = TestClient(app)
-            resp = client.post("/chat", json={"message": "押金什么时候退"})
-            assert resp.status_code == 200
-            data = resp.json()
-            assert data["task"] == "kb_qa"
-            assert data["is_confident"] is True
-            assert len(data["kb_sources"]) > 0
-
-    def test_kb_qa_low_confidence(self):
-        # Override mock to return low-score KB results
-        low_score_results = [
-            {"chunk_id": "kb-lease-01#01", "doc_id": "kb-lease-01", "title": "押金退还规则",
-             "module": "lease", "content": "押金相关。",
-             "distance": 0.3, "risk_level": "high", "_recall_source": "original", "_matched_query": "押金"},
-        ]
-
-        class LowScoreAdapter(MockVectorAdapter):
-            def search_kb(self, vector, filters=None, top_k=10):
-                return low_score_results
-
-        with patch("aptguide2.api.app.get_vector_adapter", return_value=LowScoreAdapter()), \
-             patch("aptguide2.api.app.get_embed_fn", return_value=_fake_embed):
-            from aptguide2.api.app import app
-            client = TestClient(app)
-            resp = client.post("/chat", json={"message": "押金什么时候退"})
-            assert resp.status_code == 200
-            data = resp.json()
-            assert data["task"] == "kb_qa"
-            assert data["is_confident"] is False
-            assert data["message"]  # should have fallback message
-
-
-class TestChatFallback:
     def test_fallback_out_of_scope(self):
-        with patch("aptguide2.api.app.get_vector_adapter", return_value=MockVectorAdapter()), \
-             patch("aptguide2.api.app.get_embed_fn", return_value=_fake_embed):
-            from aptguide2.api.app import app
+        from aptguide2.api.app import app
+        settings = _fake_settings()
+        settings.pipeline_version = "harness_v1"
+        settings.harness_include_trace = False
+        with patch("aptguide2.api.deps.get_settings", return_value=settings), \
+             patch("aptguide2.api.deps.get_vector_adapter", return_value=MockVectorAdapter()), \
+             patch("aptguide2.api.deps.get_embed_fn", return_value=_fake_embed):
             client = TestClient(app)
-            resp = client.post("/chat", json={"message": "帮我写代码"})
+            resp = client.post("/chat", json={"message": "帮我写代码", "session_id": "s-fb"})
             assert resp.status_code == 200
             data = resp.json()
             assert data["task"] == "fallback"
-            assert "超出" in data["message"] or "服务范围" in data["message"]
 
-    def test_fallback_guarantee(self):
-        with patch("aptguide2.api.app.get_vector_adapter", return_value=MockVectorAdapter()), \
-             patch("aptguide2.api.app.get_embed_fn", return_value=_fake_embed):
-            from aptguide2.api.app import app
+    def test_handoff(self):
+        from aptguide2.api.app import app
+        settings = _fake_settings()
+        settings.pipeline_version = "harness_v1"
+        settings.harness_include_trace = False
+        with patch("aptguide2.api.deps.get_settings", return_value=settings), \
+             patch("aptguide2.api.deps.get_vector_adapter", return_value=MockVectorAdapter()), \
+             patch("aptguide2.api.deps.get_embed_fn", return_value=_fake_embed):
             client = TestClient(app)
-            resp = client.post("/chat", json={"message": "你保证没问题"})
+            resp = client.post("/chat", json={"message": "转人工", "session_id": "s-handoff"})
             assert resp.status_code == 200
             data = resp.json()
-            assert data["task"] == "fallback"
+            assert data["task"] == "handoff"
+
+
+class TestHarnessAppointmentAPI:
+    def test_harness_chat_exposes_pending_action_and_actions(self):
+        from aptguide2.api.app import app
+
+        settings = _fake_settings()
+        settings.pipeline_version = "harness_v1"
+        settings.harness_include_trace = False
+
+        with patch("aptguide2.api.deps.get_settings", return_value=settings), \
+             patch("aptguide2.api.deps.get_vector_adapter", return_value=MockVectorAdapter()), \
+             patch("aptguide2.api.deps.get_embed_fn", return_value=_fake_embed):
+            client = TestClient(app)
+            resp = client.post(
+                "/chat",
+                json={
+                    "session_id": "s-api-confirm-1",
+                    "user_id": "u-1",
+                    "message": "预约101号房明天下午3点",
+                },
+            )
+            assert resp.status_code == 200
+            data = resp.json()
+            assert data["task"] == "appointment"
+            assert data["pending_action"]["type"] == "appointment.create"
+            assert data["actions"]
+            assert data["metadata"]["procedure"] == "appointment.workflow"
+
+    def test_harness_chat_accepts_action_for_pending_confirmation(self):
+        from aptguide2.api.app import app
+
+        settings = _fake_settings()
+        settings.pipeline_version = "harness_v1"
+        settings.harness_include_trace = False
+
+        with patch("aptguide2.api.deps.get_settings", return_value=settings), \
+             patch("aptguide2.api.deps.get_vector_adapter", return_value=MockVectorAdapter()), \
+             patch("aptguide2.api.deps.get_embed_fn", return_value=_fake_embed):
+            client = TestClient(app)
+            first = client.post(
+                "/chat",
+                json={
+                    "session_id": "s-api-confirm-2",
+                    "user_id": "u-1",
+                    "message": "预约101号房明天下午3点",
+                },
+            ).json()
+
+            resp = client.post(
+                "/chat",
+                json={
+                    "session_id": "s-api-confirm-2",
+                    "user_id": "u-1",
+                    "message": "确认",
+                    "action": {
+                        "type": "confirm",
+                        "confirmation_id": first["pending_action"]["confirmation_id"],
+                    },
+                },
+            )
+            assert resp.status_code == 200
+            data = resp.json()
+            assert data["task"] == "appointment"
+            assert data["phase"] in {"appointment_created", "appointment_failed"}

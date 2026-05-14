@@ -1,6 +1,6 @@
 """Tests for KB retrieval and confidence gate."""
 
-from aptguide2.rag.confidence import check_confidence, get_fallback_message, THRESHOLDS
+from aptguide2.rag.confidence import check_confidence, get_fallback_message
 from aptguide2.rag.kb_retrieval import (
     _build_recall_queries,
     _build_step_back_query,
@@ -8,7 +8,6 @@ from aptguide2.rag.kb_retrieval import (
     _source_rerank,
 )
 from aptguide2.rag.schemas import KBSource, QueryUnderstandingResult
-
 
 # ---------------------------------------------------------------------------
 # Confidence gate

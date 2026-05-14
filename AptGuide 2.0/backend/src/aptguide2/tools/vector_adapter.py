@@ -10,7 +10,7 @@ import json
 import time
 from typing import Any
 
-from pymilvus import Collection, CollectionSchema, DataType, FieldSchema, MilvusClient, utility
+from pymilvus import CollectionSchema, DataType, FieldSchema, MilvusClient
 from pymilvus.milvus_client.index import IndexParams
 
 from aptguide2.rag.schemas import KBChunk, RoomVectorRecord
@@ -281,9 +281,9 @@ class VectorAdapter:
         # KB 默认允许 active/indexed：indexed 表示已经入向量库，可用于检索。
         filter_parts = ['status in ["active", "indexed"]']
         if filters:
-            if "module" in filters and filters["module"]:
+            if filters.get("module"):
                 filter_parts.append(f'module == "{filters["module"]}"')
-            if "risk_level" in filters and filters["risk_level"]:
+            if filters.get("risk_level"):
                 filter_parts.append(f'risk_level == "{filters["risk_level"]}"')
 
         filter_expr = " and ".join(filter_parts)

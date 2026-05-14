@@ -1,8 +1,8 @@
 """Tests for lease adapter."""
 
+import httpx
 import pytest
 import respx
-import httpx
 
 from aptguide2.tools.lease_adapter import (
     LeaseAdapter,
@@ -12,7 +12,6 @@ from aptguide2.tools.lease_adapter import (
     convert_keys_to_camel,
     convert_keys_to_snake,
 )
-
 
 # ---------------------------------------------------------------------------
 # Key conversion tests

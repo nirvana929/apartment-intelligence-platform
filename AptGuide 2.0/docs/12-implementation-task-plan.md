@@ -6,6 +6,8 @@
 
 本文档把 `AptGuide 2.0` 的方案转成可开发任务。它不是最终代码，但规定了推荐目录、模块边界、任务顺序和验收方式。
 
+当前更新后的主线是：先建设 `AptGuide 2.0` 企业级 harness，再把 RAG 作为其中一个模块逐步优化到高质量。不要把 RAG harness 当成整个系统的工程边界。
+
 开发原则：
 
 - 先定 schema，再写流程；
@@ -43,6 +45,23 @@ AptGuide 2.0/
 │   │   │   ├── event_filter.py
 │   │   │   ├── graph.py
 │   │   │   └── response_composer.py
+│   │   ├── harness/
+│   │   │   ├── contracts.py
+│   │   │   ├── orchestrator.py
+│   │   │   ├── context.py
+│   │   │   ├── routing.py
+│   │   │   ├── procedures.py
+│   │   │   ├── tools.py
+│   │   │   ├── composer.py
+│   │   │   ├── trace.py
+│   │   │   ├── replay.py
+│   │   │   └── modules/
+│   │   │       ├── rag/
+│   │   │       ├── appointment/
+│   │   │       ├── memory/
+│   │   │       ├── user_data/
+│   │   │       ├── handoff/
+│   │   │       └── capability/
 │   │   ├── routing/
 │   │   │   ├── boundary.py
 │   │   │   ├── phase.py
@@ -100,6 +119,23 @@ AptGuide 2.0/
 ```
 
 如果后续决定直接复用旧版 `AptGuide/src/aptguide`，也应按上述边界逐步拆分，不建议在旧 `graph.py` 里继续堆节点。
+
+如果从当前 MVP 继续演进，推荐保留已实现的 `aptguide2.rag`，新增 `aptguide2.harness`。历史计划曾建议旧 RAG 先作为 harness 的 RAG baseline module 接入；2026-05-14 后的主线决策已调整为：旧 RAG MVP 仅保留为 legacy reference，不再接任何用户可见接口；harness 成为唯一产品运行时；RAG v2 作为 harness 内部检索模块使用。最新执行计划见 [plans/2026-05-14-aptguide2-system-feature-completion-mainline-integration-plan.md](plans/2026-05-14-aptguide2-system-feature-completion-mainline-integration-plan.md)。
+
+## 2.1 当前优先实施主线
+
+当前优先级调整为：
+
+```text
+1. AptGuide harness contracts
+2. Context / routing / procedure runtime
+3. Tool registry / trace / replay
+4. Mount current RAG MVP as module
+5. Upgrade RAG module
+6. Appointment / memory / handoff workflows
+```
+
+详细实施计划见 [plans/2026-05-12-enterprise-aptguide-harness-plan.md](plans/2026-05-12-enterprise-aptguide-harness-plan.md)。
 
 ## 3. Phase 0: Schema 和工程骨架
 

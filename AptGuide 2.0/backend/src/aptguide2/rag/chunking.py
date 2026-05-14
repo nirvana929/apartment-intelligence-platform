@@ -7,7 +7,6 @@ RAG 的质量很大程度取决于“入库文本怎么写”。这个文件负�
 from __future__ import annotations
 
 import hashlib
-import json
 from typing import Any
 
 from aptguide2.rag.schemas import KBChunk, RoomVectorRecord

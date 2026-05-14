@@ -1,6 +1,10 @@
 """Tests for room retrieval — verifies logic without hitting Milvus."""
 
-from aptguide2.rag.room_retrieval import _build_filters, _parse_json_field, enrich_candidates_from_vector
+from aptguide2.rag.room_retrieval import (
+    _build_filters,
+    _parse_json_field,
+    enrich_candidates_from_vector,
+)
 from aptguide2.rag.schemas import QueryUnderstandingResult, RoomCandidate
 
 

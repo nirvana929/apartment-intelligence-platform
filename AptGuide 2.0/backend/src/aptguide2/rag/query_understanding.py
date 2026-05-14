@@ -419,7 +419,7 @@ def _generate_retrieval_queries(
     if district:
         parts2 = [district]
         if budget:
-            parts2.append(f"低预算")
+            parts2.append("低预算")
         if soft_preferences:
             parts2.append(soft_preferences[0])
         parts2.append("单间")

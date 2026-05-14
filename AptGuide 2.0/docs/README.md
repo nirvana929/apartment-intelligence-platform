@@ -6,7 +6,7 @@ AptGuide 2.0 是面向租客找房场景的新一代 Agent 应用。它不是旧
 
 ## 当前状态
 
-当前代码已经实现到 **FastAPI + RAG 检索 MVP** 阶段。想理解实际代码现状，先读 [27-current-implementation-guide.md](./27-current-implementation-guide.md)，再读产品和架构文档。
+当前代码已实现 **Harness Foundation + Tool Governance + RAG v2 + Harness Correction + System Integration + System Feature Completion/Mainline Integration** 阶段。`aptguide2.harness` 是唯一产品运行时，`/chat` 默认进入 `AptGuideHarness`；旧 RAG MVP 已从 API、harness procedure 和 system e2e acceptance 中断开，仅保留为 legacy reference；RAG v2 作为 harness 内部检索模块挂载。预约创建和取消均采用两轮 pending-action 确认流程，工具连续失败自动触发转人工。`/chat` API 支持 `user_id`、`action`、`cards`、`pending_action`、`actions`、`metadata`，其中 `cards` 是通用卡片字段，`rooms` 是 room card 的兼容投影。323 tests all passed（308 unit + 15 e2e），ruff clean。Live dependency readiness 全绿（Milvus + embedding + lease，含 pipeline 版本检查）。RAG v2 live eval 已真实运行，当前 blocker 是检索质量：KB hit@3=48.6%，Room hit@5=40%。想理解实际代码现状，先读 [27-current-implementation-guide.md](./27-current-implementation-guide.md)、[system/enterprise-harness-architecture.md](./system/enterprise-harness-architecture.md) 和 [progress/current-plan.md](../progress/current-plan.md)。
 
 ## 推荐阅读顺序
 
@@ -14,12 +14,21 @@ AptGuide 2.0 是面向租客找房场景的新一代 Agent 应用。它不是旧
 2. [27-current-implementation-guide.md](./27-current-implementation-guide.md)
 3. [01-product-requirements.md](./01-product-requirements.md)
 4. [02-agent-framework-architecture.md](./02-agent-framework-architecture.md)
-5. [04-tool-and-integration-contract.md](./04-tool-and-integration-contract.md)
-6. [12-implementation-task-plan.md](./12-implementation-task-plan.md)
-7. [20-rag-retrieval-vector-mcp-evaluation-upgrade.md](./20-rag-retrieval-vector-mcp-evaluation-upgrade.md)
-8. [28-rag-mvp-achievement-report.md](./28-rag-mvp-achievement-report.md)
-9. [outcomes/rag-learning-review.md](./outcomes/rag-learning-review.md)
-10. [plans/2026-05-12-enterprise-rag-harness-plan.md](./plans/2026-05-12-enterprise-rag-harness-plan.md)
+5. [system/enterprise-harness-architecture.md](./system/enterprise-harness-architecture.md)
+6. [system/harness-method-selection.md](./system/harness-method-selection.md)
+7. [04-tool-and-integration-contract.md](./04-tool-and-integration-contract.md)
+8. [12-implementation-task-plan.md](./12-implementation-task-plan.md)
+9. [plans/2026-05-12-enterprise-aptguide-harness-plan.md](./plans/2026-05-12-enterprise-aptguide-harness-plan.md)
+10. [plans/2026-05-12-enterprise-aptguide-harness-agent-execution-plan.md](./plans/2026-05-12-enterprise-aptguide-harness-agent-execution-plan.md)
+11. [plans/2026-05-13-enterprise-aptguide-harness-agent-handoff-plan.md](./plans/2026-05-13-enterprise-aptguide-harness-agent-handoff-plan.md)
+12. [plans/2026-05-13-enterprise-aptguide-tool-registry-adapter-governance-agent-plan.md](./plans/2026-05-13-enterprise-aptguide-tool-registry-adapter-governance-agent-plan.md)
+13. [plans/2026-05-14-enterprise-harness-memory-appointment-handoff-correction-agent-plan.md](./plans/2026-05-14-enterprise-harness-memory-appointment-handoff-correction-agent-plan.md)
+14. [plans/2026-05-14-aptguide2-system-integration-production-hardening-agent-plan.md](./plans/2026-05-14-aptguide2-system-integration-production-hardening-agent-plan.md)
+15. [plans/2026-05-14-aptguide2-system-feature-completion-mainline-integration-plan.md](./plans/2026-05-14-aptguide2-system-feature-completion-mainline-integration-plan.md)
+16. [20-rag-retrieval-vector-mcp-evaluation-upgrade.md](./20-rag-retrieval-vector-mcp-evaluation-upgrade.md)
+17. [28-rag-mvp-achievement-report.md](./28-rag-mvp-achievement-report.md)
+18. [outcomes/rag-learning-review.md](./outcomes/rag-learning-review.md)
+19. [outcomes/system-integration-live-eval-review.md](./outcomes/system-integration-live-eval-review.md)
 
 ## 文档分类
 

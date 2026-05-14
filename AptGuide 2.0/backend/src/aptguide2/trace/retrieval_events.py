@@ -6,7 +6,7 @@ import time
 import uuid
 from typing import Any
 
-from aptguide2.rag.schemas import RetrievalLatency, RetrievalTracePayload
+from aptguide2.rag.schemas import RetrievalTracePayload
 
 # PII keys that must never appear in trace payloads
 PII_KEYS = frozenset({

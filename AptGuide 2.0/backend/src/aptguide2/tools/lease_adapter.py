@@ -53,7 +53,7 @@ class LeaseAdapterError(Exception):
 class LeaseAdapter:
     """Adapter for calling lease internal tools endpoints."""
 
-    def __init__(self, settings: Settings | None = None, base_url: str | None = None, timeout: float | None = None):
+    def __init__(self, settings: Settings | None = None, base_url: str | None = None, timeout: float | None = None, internal_token: str = ""):
         if settings:
             self.base_url = settings.lease_base_url.rstrip("/")
             self.timeout = settings.lease_timeout_seconds
@@ -61,7 +61,7 @@ class LeaseAdapter:
         else:
             self.base_url = (base_url or "http://localhost:8081").rstrip("/")
             self.timeout = timeout or 5.0
-            self.internal_token = ""
+            self.internal_token = internal_token
         self._client: httpx.AsyncClient | None = None
 
     async def _get_client(self) -> httpx.AsyncClient:
@@ -141,5 +141,49 @@ class LeaseAdapter:
         client = await self._get_client()
         resp = await client.get(f"/internal/ai/tools/room/{room_id}")
         data = self._handle_response(resp, "room.detail")
+        result = data.get("data", {})
+        return convert_keys_to_snake(result) if isinstance(result, dict) else {}
+
+    async def create_appointment(self, payload: dict) -> dict:
+        """Create a viewing appointment through lease.
+
+        Input payload uses snake_case keys; automatically converted to camelCase
+        for the Java backend. Response is converted back to snake_case.
+        """
+        client = await self._get_client()
+        camel_payload = convert_keys_to_camel(payload)
+        resp = await client.post("/internal/ai/tools/appointment/create", json=camel_payload)
+        data = self._handle_response(resp, "appointment.create")
+        result = data.get("data", {})
+        return convert_keys_to_snake(result) if isinstance(result, dict) else {}
+
+    async def list_appointments(self, payload: dict) -> dict:
+        """List user's appointments through lease.
+
+        Input payload uses snake_case keys; automatically converted to camelCase
+        for the Java backend. Response is converted back to snake_case.
+        """
+        client = await self._get_client()
+        camel_payload = convert_keys_to_camel(payload)
+        resp = await client.post("/internal/ai/tools/appointment/list", json=camel_payload)
+        data = self._handle_response(resp, "appointment.list")
+        result = data.get("data", {})
+        return convert_keys_to_snake(result) if isinstance(result, dict) else {}
+
+    async def cancel_appointment(self, payload: dict) -> dict:
+        """Cancel a viewing appointment through lease."""
+        client = await self._get_client()
+        camel_payload = convert_keys_to_camel(payload)
+        resp = await client.post("/internal/ai/tools/appointment/cancel", json=camel_payload)
+        data = self._handle_response(resp, "appointment.cancel")
+        result = data.get("data", {})
+        return convert_keys_to_snake(result) if isinstance(result, dict) else {}
+
+    async def list_leases(self, payload: dict) -> dict:
+        """List user's leases through lease."""
+        client = await self._get_client()
+        camel_payload = convert_keys_to_camel(payload)
+        resp = await client.post("/internal/ai/tools/lease/list", json=camel_payload)
+        data = self._handle_response(resp, "lease.list")
         result = data.get("data", {})
         return convert_keys_to_snake(result) if isinstance(result, dict) else {}

@@ -1,0 +1,23 @@
+{
+  "status": "completed",
+  "task": "system-feature-completion-mainline-integration",
+  "checkpoint_doc": "docs/plans/checkpoints/2026-05-14-155402-system-feature-completion-mainline-integration.md",
+  "test_status": "323 passed (308 unit + 15 e2e)",
+  "lint_status": "ruff clean",
+  "created_at": "2026-05-14T15:54:02+08:00",
+  "updated_at": "2026-05-14T15:55:00+08:00",
+  "errors_recorded": [
+    "test_capability TypeError — _harness_patches() helper",
+    "test_builtins count mismatch — appointment.cancel added",
+    "55 ruff I001 errors — auto-fixed",
+    "e2e mock path failures — patch targets updated"
+  ],
+  "verification": [
+    {"command": "uv run pytest tests/ -q", "result": "323 passed"},
+    {"command": "uv run ruff check src/", "result": "clean"}
+  ],
+  "next_steps": [
+    "RAG retrieval quality improvement (KB hit@3=48.6%, Room hit@5=40%)"
+  ],
+  "checkpoint_state": ".agent-state/checkpoints/2026-05-14-155402-system-feature-completion-mainline-integration.json"
+}

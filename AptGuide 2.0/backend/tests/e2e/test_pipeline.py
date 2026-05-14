@@ -2,10 +2,7 @@
 
 from __future__ import annotations
 
-from unittest.mock import MagicMock
-
-from aptguide2.rag.pipeline import PipelineResult, run_pipeline
-
+from aptguide2.rag.pipeline import run_pipeline
 
 # ---------------------------------------------------------------------------
 # Mock helpers
