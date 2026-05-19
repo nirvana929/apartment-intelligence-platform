@@ -1,0 +1,903 @@
+# RAG Evaluation Dataset — T1: RAG Quality (90 cases)
+# 30 room_search + 60 kb_qa
+# Generated: 2026-05-16
+#
+# For room_search: structural assertions only (district, price, amenities, lease validation).
+# For kb_qa: expected_doc_ids populated after first live discovery run.
+# Smoke mode uses structural assertions only (task, risk_level, domain).
+
+# ============================================================
+# ROOM SEARCH CASES (30)
+# ============================================================
+
+# --- District Coverage (11 districts × 1-2 cases each) ---
+
+- id: room-panyu-quiet-001
+  task: room_search
+  query: 找番禺1500以内安静一点的房子
+  expected_district: 番禺区
+  expected_price_max: 1500
+  expected_amenities: [安静]
+  expected:
+    must_validate_with_lease: true
+    must_not_return_unvalidated_vector_room: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-tianhe-nearby-001
+  task: room_search
+  query: 天河区近地铁2000以内的房子
+  expected_district: 天河区
+  expected_price_max: 2000
+  expected_amenities: [近地铁]
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-huangpu-1000-001
+  task: room_search
+  query: 黄埔区1000以内的房子
+  expected_district: 黄埔区
+  expected_price_max: 1000
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-nansha-ac-001
+  task: room_search
+  query: 南沙区2000以内带空调的房子
+  expected_district: 南沙区
+  expected_price_max: 2000
+  expected_amenities: [空调]
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-haizhu-metro-001
+  task: room_search
+  query: 海珠区近地铁2000以内的房子
+  expected_district: 海珠区
+  expected_price_max: 2000
+  expected_amenities: [近地铁]
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-haizhu-1500-001
+  task: room_search
+  query: 海珠区1500以内的单间
+  expected_district: 海珠区
+  expected_price_max: 1500
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-yuexiu-cheap-001
+  task: room_search
+  query: 越秀区1500以内的房子
+  expected_district: 越秀区
+  expected_price_max: 1500
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-yuexiu-metro-001
+  task: room_search
+  query: 越秀区近地铁的房子，预算2000
+  expected_district: 越秀区
+  expected_price_max: 2000
+  expected_amenities: [近地铁]
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-baiyun-studio-001
+  task: room_search
+  query: 白云区1000以内的单间
+  expected_district: 白云区
+  expected_price_max: 1000
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-baiyun-1500-001
+  task: room_search
+  query: 白云区1500以内带阳台的房子
+  expected_district: 白云区
+  expected_price_max: 1500
+  expected_amenities: [阳台]
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-liwan-cheap-001
+  task: room_search
+  query: 荔湾区1500以内的房子
+  expected_district: 荔湾区
+  expected_price_max: 1500
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-zengcheng-001
+  task: room_search
+  query: 增城区有没有便宜的房子
+  expected_district: 增城区
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-conghua-001
+  task: room_search
+  query: 从化区1000以内的房子
+  expected_district: 从化区
+  expected_price_max: 1000
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-huadu-001
+  task: room_search
+  query: 花都区有没有房子
+  expected_district: 花都区
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+# --- Multi-Filter Stress (5 cases) ---
+
+- id: room-multi-district-metro-facility-001
+  task: room_search
+  query: 海珠区近地铁1500以内带洗衣机的房子
+  expected_district: 海珠区
+  expected_price_max: 1500
+  expected_amenities: [近地铁, 洗衣机]
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-multi-payment-001
+  task: room_search
+  query: 番禺区2000以内可以月付的房子
+  expected_district: 番禺区
+  expected_price_max: 2000
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-multi-tianhe-3000-001
+  task: room_search
+  query: 天河区3000以内带空调可以做饭的房子
+  expected_district: 天河区
+  expected_price_max: 3000
+  expected_amenities: [空调, 厨房]
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-multi-baiyun-metro-001
+  task: room_search
+  query: 白云区嘉禾望岗附近1500以内的房子
+  expected_district: 白云区
+  expected_price_max: 1500
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-multi-huangpu-facility-001
+  task: room_search
+  query: 黄埔区1500以内带独立卫生间的房子
+  expected_district: 黄埔区
+  expected_price_max: 1500
+  expected_amenities: [独立卫生间]
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+# --- Fuzzy / Colloquial Expressions (5 cases) ---
+
+- id: room-any-studio-001
+  task: room_search
+  query: 有没有便宜点的单间
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-fuzzy-landmark-001
+  task: room_search
+  query: 离大学城近一点的房子
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-fuzzy-vague-001
+  task: room_search
+  query: 一个人住的小房间就行，便宜点的
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-fuzzy-kitchen-001
+  task: room_search
+  query: 想找可以做饭的房子，天河区的
+  expected_district: 天河区
+  expected_amenities: [厨房]
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-fuzzy-quiet-work-001
+  task: room_search
+  query: 我要安静一点的适合办公的房子
+  expected_amenities: [安静]
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+# --- Edge Cases (6 cases) ---
+
+- id: room-edge-no-filter-001
+  task: room_search
+  query: 有没有便宜的房子
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-edge-high-budget-001
+  task: room_search
+  query: 天河区5000以内的精装房
+  expected_district: 天河区
+  expected_price_max: 5000
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-edge-very-low-budget-001
+  task: room_search
+  query: 有没有500块以内的房子
+  expected_price_max: 500
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-edge-nonexistent-district-001
+  task: room_search
+  query: 深圳南山区有没有房子
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-edge-only-district-001
+  task: room_search
+  query: 南沙区
+  expected_district: 南沙区
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+- id: room-edge-same-query-different-phrasing-001
+  task: room_search
+  query: 番禺区月租不超过1500的安静房源
+  expected_district: 番禺区
+  expected_price_max: 1500
+  expected_amenities: [安静]
+  expected:
+    must_validate_with_lease: true
+    response_not_empty: true
+    latency_ok: true
+
+# ============================================================
+# KB QA CASES (60)
+# ============================================================
+
+# --- lease module (10 cases) ---
+
+- id: kb-lease-deposit-001
+  task: kb_qa
+  query: 押金不退怎么办
+  expected_doc_ids: [KB-LS-011, KB-POL-005, KB-LS-008]
+  risk_level: high
+  module_intent: lease
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-lease-terminate-001
+  task: kb_qa
+  query: 提前退租要赔多少钱
+  expected_doc_ids: [KB-LS-003, KB-LS-011, KB-PAY-010]
+  risk_level: high
+  module_intent: lease
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-lease-renewal-001
+  task: kb_qa
+  query: 续约流程是什么
+  expected_doc_ids: [KB-LS-004, KB-LS-006, KB-APPT-003]  # TODO: verify with live discovery
+  risk_level: high
+  module_intent: lease
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-lease-sublet-001
+  task: kb_qa
+  query: 可以转租吗
+  expected_doc_ids: [KB-LS-009, KB-LS-003, KB-POL-004]  # TODO: verify with live discovery
+  risk_level: high
+  module_intent: lease
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-lease-cooling-001
+  task: kb_qa
+  query: 签约后有冷静期吗
+  expected_doc_ids: [KB-LS-001, KB-LS-002, KB-POL-001]  # TODO: verify with live discovery
+  risk_level: high
+  module_intent: lease
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-lease-roommate-001
+  task: kb_qa
+  query: 可以找人合租吗
+  expected_doc_ids: [KB-LS-009, KB-LS-005, KB-POL-004]  # TODO: verify with live discovery
+  risk_level: high
+  module_intent: lease
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-lease-sublet-dispute-001
+  task: kb_qa
+  query: 转租后出问题谁负责
+  expected_doc_ids: [KB-LS-009, KB-LS-003, KB-POL-004]  # TODO: verify with live discovery
+  risk_level: high
+  module_intent: lease
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-lease-renewal-price-001
+  task: kb_qa
+  query: 续约涨价有上限吗
+  expected_doc_ids: [KB-LS-006, KB-LS-004, KB-PAY-002]  # TODO: verify with live discovery
+  risk_level: high
+  module_intent: lease
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-lease-term-limit-001
+  task: kb_qa
+  query: 最短租期是多久
+  expected_doc_ids: [KB-LS-001, KB-LS-002]  # TODO: verify with live discovery
+  risk_level: medium
+  module_intent: lease
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-lease-terminate-early-001
+  task: kb_qa
+  query: 合同没到期可以退吗
+  expected_doc_ids: [KB-LS-003, KB-LS-011, KB-PAY-010]  # TODO: verify with live discovery
+  risk_level: high
+  module_intent: lease
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+# --- payment module (10 cases) ---
+
+- id: kb-payment-refund-001
+  task: kb_qa
+  query: 租金可以退款吗
+  expected_doc_ids: [KB-POL-009, KB-PAY-003, KB-PAY-010]
+  risk_level: high
+  module_intent: payment
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-payment-method-001
+  task: kb_qa
+  query: 支持哪些付款方式
+  expected_doc_ids: [KB-PAY-001, KB-PAY-003, KB-PAY-008]  # TODO: verify with live discovery
+  risk_level: low
+  module_intent: payment
+  expected:
+    must_cite_source: true
+
+- id: kb-payment-late-001
+  task: kb_qa
+  query: 房租晚交几天会怎样
+  expected_doc_ids: [KB-PAY-005, KB-LS-003, KB-POL-002]  # TODO: verify with live discovery
+  risk_level: high
+  module_intent: payment
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-payment-deposit-amount-001
+  task: kb_qa
+  query: 押金一般交多少
+  expected_doc_ids: [KB-PAY-004, KB-PAY-006, KB-LS-008]  # TODO: verify with live discovery
+  risk_level: medium
+  module_intent: payment
+  expected:
+    must_cite_source: true
+
+- id: kb-payment-grace-period-001
+  task: kb_qa
+  query: 缴费有宽限期吗
+  expected_doc_ids: [KB-PAY-005, KB-POL-002, KB-LS-003]  # TODO: verify with live discovery
+  risk_level: medium
+  module_intent: payment
+  expected:
+    must_cite_source: true
+
+- id: kb-payment-late-penalty-001
+  task: kb_qa
+  query: 逾期交罚款多少
+  expected_doc_ids: [KB-PAY-005, KB-LS-003, KB-POL-002]  # TODO: verify with live discovery
+  risk_level: high
+  module_intent: payment
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-payment-rent-increase-001
+  task: kb_qa
+  query: 房租可以涨价吗
+  expected_doc_ids: [KB-PAY-002, KB-LS-006, KB-LS-004]  # TODO: verify with live discovery
+  risk_level: high
+  module_intent: payment
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-payment-method-change-001
+  task: kb_qa
+  query: 可以换付款方式吗
+  expected_doc_ids: [KB-PAY-001, KB-PAY-003, KB-PAY-008]  # TODO: verify with live discovery
+  risk_level: medium
+  module_intent: payment
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-payment-refund-process-001
+  task: kb_qa
+  query: 退款多久到账
+  expected_doc_ids: [KB-PAY-010, KB-POL-009, KB-PAY-003]  # TODO: verify with live discovery
+  risk_level: medium
+  module_intent: payment
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-payment-deposit-interest-001
+  task: kb_qa
+  query: 押金有利息吗
+  expected_doc_ids: [KB-PAY-004, KB-PAY-006, KB-LS-008]  # TODO: verify with live discovery
+  risk_level: low
+  module_intent: payment
+  expected:
+    must_cite_source: true
+
+# --- account module (10 cases) ---
+
+- id: kb-account-login-001
+  task: kb_qa
+  query: 忘记密码怎么办
+  expected_doc_ids: [KB-ACC-003, KB-ACC-005, KB-ACC-007]  # TODO: verify with live discovery
+  risk_level: high
+  module_intent: account
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-account-privacy-001
+  task: kb_qa
+  query: 我的个人信息安全吗
+  expected_doc_ids: [KB-ACC-008, KB-ACC-009, KB-POL-001]  # TODO: verify with live discovery
+  risk_level: high
+  module_intent: account
+  expected:
+    must_cite_source: true
+
+- id: kb-account-logout-001
+  task: kb_qa
+  query: 怎么注销账户
+  expected_doc_ids: [KB-ACC-008, KB-ACC-009, KB-ACC-006]  # TODO: verify with live discovery
+  risk_level: high
+  module_intent: account
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-account-data-001
+  task: kb_qa
+  query: 我的数据会被泄露吗
+  expected_doc_ids: [KB-ACC-008, KB-ACC-009, KB-POL-001]  # TODO: verify with live discovery
+  risk_level: high
+  module_intent: account
+  expected:
+    must_cite_source: true
+
+- id: kb-account-change-phone-001
+  task: kb_qa
+  query: 怎么更换绑定的手机号
+  expected_doc_ids: [KB-ACC-004, KB-ACC-005, KB-ACC-006]  # TODO: verify with live discovery
+  risk_level: medium
+  module_intent: account
+  expected:
+    must_cite_source: true
+
+- id: kb-account-real-name-001
+  task: kb_qa
+  query: 需要实名认证吗
+  expected_doc_ids: [KB-ACC-001, KB-ACC-002, KB-POL-001]  # TODO: verify with live discovery
+  risk_level: medium
+  module_intent: account
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-account-freeze-001
+  task: kb_qa
+  query: 账号被冻结了怎么办
+  expected_doc_ids: [KB-ACC-005, KB-ACC-006, KB-ACC-003]  # TODO: verify with live discovery
+  risk_level: high
+  module_intent: account
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-account-delete-data-001
+  task: kb_qa
+  query: 注销后数据还在吗
+  expected_doc_ids: [KB-ACC-008, KB-ACC-009, KB-POL-001]  # TODO: verify with live discovery
+  risk_level: high
+  module_intent: account
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-account-device-bind-001
+  task: kb_qa
+  query: 可以换手机登录吗
+  expected_doc_ids: [KB-ACC-004, KB-ACC-005, KB-ACC-006]  # TODO: verify with live discovery
+  risk_level: medium
+  module_intent: account
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-account-login-error-001
+  task: kb_qa
+  query: 登录一直失败怎么办
+  expected_doc_ids: [KB-ACC-003, KB-ACC-005, KB-ACC-007]  # TODO: verify with live discovery
+  risk_level: high
+  module_intent: account
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+# --- appointment module (10 cases) ---
+
+- id: kb-appointment-book-001
+  task: kb_qa
+  query: 怎么预约看房
+  expected_doc_ids: [KB-APPT-001, KB-APPT-002, KB-ACC-001]  # TODO: verify with live discovery
+  risk_level: medium
+  module_intent: appointment
+  expected:
+    must_cite_source: true
+
+- id: kb-appointment-cancel-001
+  task: kb_qa
+  query: 预约了看房可以取消吗
+  expected_doc_ids: [KB-APPT-004, KB-APPT-001, KB-POL-003]  # TODO: verify with live discovery
+  risk_level: medium
+  module_intent: appointment
+  expected:
+    must_cite_source: true
+
+- id: kb-appointment-change-001
+  task: kb_qa
+  query: 可以改预约时间吗
+  expected_doc_ids: [KB-APPT-003, KB-APPT-001, KB-POL-003]  # TODO: verify with live discovery
+  risk_level: medium
+  module_intent: appointment
+  expected:
+    must_cite_source: true
+
+- id: kb-appointment-no-show-001
+  task: kb_qa
+  query: 预约了没去会怎样
+  expected_doc_ids: [KB-APPT-005, KB-POL-003, KB-ACC-001]  # TODO: verify with live discovery
+  risk_level: medium
+  module_intent: appointment
+  expected:
+    must_cite_source: true
+
+- id: kb-appointment-online-001
+  task: kb_qa
+  query: 可以线上看房吗
+  expected_doc_ids: [KB-APPT-008, KB-APPT-010, KB-ACC-001]  # TODO: verify with live discovery
+  risk_level: low
+  module_intent: appointment
+  expected:
+    must_cite_source: true
+
+- id: kb-appointment-reschedule-001
+  task: kb_qa
+  query: 改期要提前多久
+  expected_doc_ids: [KB-APPT-003, KB-APPT-001, KB-POL-003]  # TODO: verify with live discovery
+  risk_level: medium
+  module_intent: appointment
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-appointment-cancel-refund-001
+  task: kb_qa
+  query: 取消预约退费吗
+  expected_doc_ids: [KB-APPT-004, KB-PAY-010, KB-POL-009]  # TODO: verify with live discovery
+  risk_level: medium
+  module_intent: appointment
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-appointment-reminder-001
+  task: kb_qa
+  query: 有预约提醒吗
+  expected_doc_ids: [KB-APPT-006, KB-APPT-001, KB-ACC-004]  # TODO: verify with live discovery
+  risk_level: low
+  module_intent: appointment
+  expected:
+    must_cite_source: true
+
+- id: kb-appointment-viewing-flow-001
+  task: kb_qa
+  query: 带看流程是什么
+  expected_doc_ids: [KB-APPT-007, KB-APPT-001, KB-POL-003]  # TODO: verify with live discovery
+  risk_level: medium
+  module_intent: appointment
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-appointment-online-sign-001
+  task: kb_qa
+  query: 可以线上签约吗
+  expected_doc_ids: [KB-APPT-010, KB-LS-001, KB-ACC-001]  # TODO: verify with live discovery
+  risk_level: high
+  module_intent: appointment
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+# --- policy module (10 cases) ---
+
+- id: kb-policy-pet-001
+  task: kb_qa
+  query: 可以养宠物吗
+  expected_doc_ids: [KB-POL-004, KB-POL-006, KB-LS-012]  # TODO: verify with live discovery
+  risk_level: medium
+  module_intent: policy
+  expected:
+    must_cite_source: true
+
+- id: kb-policy-visitor-001
+  task: kb_qa
+  query: 朋友可以来住几天吗
+  expected_doc_ids: [KB-POL-005, KB-POL-004, KB-ACC-001]  # TODO: verify with live discovery
+  risk_level: medium
+  module_intent: policy
+  expected:
+    must_cite_source: true
+
+- id: kb-policy-quiet-001
+  task: kb_qa
+  query: 晚上几点以后不能吵
+  expected_doc_ids: [KB-POL-008, KB-POL-006, KB-POL-007]  # TODO: verify with live discovery
+  risk_level: medium
+  module_intent: policy
+  expected:
+    must_cite_source: true
+
+- id: kb-policy-smoke-001
+  task: kb_qa
+  query: 房间里可以抽烟吗
+  expected_doc_ids: [KB-POL-006, KB-POL-004, KB-POL-008]  # TODO: verify with live discovery
+  risk_level: medium
+  module_intent: policy
+  expected:
+    must_cite_source: true
+
+- id: kb-policy-parking-001
+  task: kb_qa
+  query: 有停车位吗
+  expected_doc_ids: [KB-POL-009, KB-LIFE-005, KB-POL-006]  # TODO: verify with live discovery
+  risk_level: low
+  module_intent: policy
+  expected:
+    must_cite_source: true
+
+- id: kb-policy-renovation-001
+  task: kb_qa
+  query: 可以装修吗
+  expected_doc_ids: [KB-POL-004, KB-POL-006, KB-LS-012]  # TODO: verify with live discovery
+  risk_level: high
+  module_intent: policy
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-policy-noise-complaint-001
+  task: kb_qa
+  query: 邻居太吵可以投诉吗
+  expected_doc_ids: [KB-POL-008, KB-POL-006, KB-POL-007]  # TODO: verify with live discovery
+  risk_level: medium
+  module_intent: policy
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-policy-trash-sort-001
+  task: kb_qa
+  query: 垃圾怎么分类
+  expected_doc_ids: [KB-POL-010, KB-POL-006, KB-LIFE-002]  # TODO: verify with live discovery
+  risk_level: low
+  module_intent: policy
+  expected:
+    must_cite_source: true
+
+- id: kb-policy-delivery-001
+  task: kb_qa
+  query: 快递可以代收吗
+  expected_doc_ids: [KB-POL-009, KB-LIFE-005, KB-POL-006]  # TODO: verify with live discovery
+  risk_level: low
+  module_intent: policy
+  expected:
+    must_cite_source: true
+
+- id: kb-policy-visitor-register-001
+  task: kb_qa
+  query: 访客需要登记吗
+  expected_doc_ids: [KB-POL-005, KB-POL-001, KB-ACC-001]  # TODO: verify with live discovery
+  risk_level: medium
+  module_intent: policy
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+# --- life module (10 cases) ---
+
+- id: kb-life-maintenance-001
+  task: kb_qa
+  query: 房间设施坏了谁来修
+  expected_doc_ids: [KB-POL-007, KB-POL-006, KB-LS-012]
+  risk_level: low
+  module_intent: life
+  expected:
+    must_cite_source: true
+
+- id: kb-life-clean-001
+  task: kb_qa
+  query: 公共区域谁来打扫
+  expected_doc_ids: [KB-POL-006, KB-POL-007, KB-LIFE-002]  # TODO: verify with live discovery
+  risk_level: low
+  module_intent: life
+  expected:
+    must_cite_source: true
+
+- id: kb-life-laundry-001
+  task: kb_qa
+  query: 有洗衣机吗
+  expected_doc_ids: [KB-LIFE-004, KB-POL-006, KB-LIFE-001]  # TODO: verify with live discovery
+  risk_level: low
+  module_intent: life
+  expected:
+    must_cite_source: true
+
+- id: kb-life-internet-001
+  task: kb_qa
+  query: 有WiFi吗，网速怎么样
+  expected_doc_ids: [KB-LIFE-006, KB-POL-006, KB-LIFE-001]  # TODO: verify with live discovery
+  risk_level: low
+  module_intent: life
+  expected:
+    must_cite_source: true
+
+- id: kb-life-surrounding-001
+  task: kb_qa
+  query: 周边有什么配套设施
+  expected_doc_ids: [KB-LIFE-001, KB-LIFE-005, KB-POL-006]  # TODO: verify with live discovery
+  risk_level: low
+  module_intent: life
+  expected:
+    must_cite_source: true
+
+- id: kb-life-transport-001
+  task: kb_qa
+  query: 附近有地铁站吗
+  expected_doc_ids: [KB-LIFE-003, KB-LIFE-001, KB-POL-006]  # TODO: verify with live discovery
+  risk_level: low
+  module_intent: life
+  expected:
+    must_cite_source: true
+
+- id: kb-life-repair-001
+  task: kb_qa
+  query: 怎么报修
+  expected_doc_ids: [KB-POL-007, KB-POL-006, KB-LIFE-004]  # TODO: verify with live discovery
+  risk_level: low
+  module_intent: life
+  expected:
+    must_cite_source: true
+
+- id: kb-life-water-electric-001
+  task: kb_qa
+  query: 水电费怎么交
+  expected_doc_ids: [KB-LIFE-006, KB-PAY-001, KB-POL-006]  # TODO: verify with live discovery
+  risk_level: low
+  module_intent: life
+  expected:
+    must_cite_source: true
+
+- id: kb-life-moving-001
+  task: kb_qa
+  query: 搬家流程是什么
+  expected_doc_ids: [KB-LIFE-008, KB-LS-003, KB-PAY-010]  # TODO: verify with live discovery
+  risk_level: medium
+  module_intent: life
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true
+
+- id: kb-life-neighbor-dispute-001
+  task: kb_qa
+  query: 跟邻居有纠纷怎么办
+  expected_doc_ids: [KB-POL-008, KB-POL-006, KB-LIFE-009]  # TODO: verify with live discovery
+  risk_level: medium
+  module_intent: life
+  expected:
+    must_cite_source: true
+    must_not_make_unverified_commitment: true

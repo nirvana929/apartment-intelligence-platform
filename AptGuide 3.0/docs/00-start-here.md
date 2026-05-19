@@ -27,30 +27,21 @@ rentHouseH5
 
 The independent validation frontend is useful for Stage 1, but the final production entry is still the AptGuide main-system frontend through `rentHouseH5` and `lease`.
 
-## Completed Milestone
+## Completed Milestones
 
-Milestone 0 is complete: runnable scaffold.
+All 6 milestones are complete (2026-05-15):
 
-- Backend foundation: 36 tests, ruff clean.
-- LLM-first structured understanding.
-- Typed procedure runtime.
-- Procedures: clarify, room_search, kb_qa, appointment, lease, memory, handoff.
-- Integrations: LeaseClient, VectorClient, EmbeddingClient.
-- Persistence: in-memory session/memory/handoff repos.
-- Observability: trace events with console sink.
-- Frontend: Vue3 validation UI.
+- **M0 — Runnable scaffold**: 36 tests, ruff clean. LLM-first understanding, 7 procedures, integrations, in-memory persistence, console trace, Vue3 frontend.
+- **M1 — Independent backend backbone**: 55 tests. Database schema (11 tables), repository contracts, MySQL/Redis persistence, auth boundary, readiness checks.
+- **M2 — Live integration readiness**: 68 tests, 23 skipped. Docker-compose, skip-safe integration tests for all external services.
+- **M3 — Procedure integration**: 129 tests, 28 skipped. All 7 procedures wired with RepoBundle, audit writes, async /ready probes.
+- **M4 — LLM-first RAG upgrade**: 207 tests, 28 skipped. Room retrieval, 5-dimension ranking, KB retrieval, confidence gates, eval metrics, vector sync scripts.
+- **M5 — Frontend E2E + live RAG eval**: 175 tests. Playwright E2E, live dependency verification, live RAG integration, business scenario routing.
+- **M6 — LangSmith + diagnostics**: 22 tests. Opt-in LangSmith tracing, understanding diagnostics, rec-stage diagnostics, eval report integration.
 
 ## Current Engineering Objective
 
-Build the AptGuide 3.0 independent backend backbone:
-
-1. database schema and migration script;
-2. repository contracts for Agent state;
-3. MySQL durable state for sessions, messages, memories, handoff, traces, procedure runs, and audit;
-4. Redis hot state for active sessions and pending-action TTL;
-5. `ChatService` wired to durable persistence;
-6. auth boundary matching final AptGuide integration;
-7. readiness checks for MySQL, Redis, lease, Milvus, embeddings, and LLM config.
+Sync room/KB vectors to Milvus and re-run live RAG evaluation with diagnostics to identify optimization targets. The 4 seed eval cases now correctly route through the RAG pipeline (no longer stuck in clarify). Failures are at the vector recall stage (Milvus data missing, not code issues).
 
 ## Non-Goals For The First Milestone
 
@@ -65,5 +56,6 @@ Build the AptGuide 3.0 independent backend backbone:
 - Architecture: `docs/architecture.md`
 - Understanding contract: `docs/understanding-contract.md`
 - API contract: `docs/api-contract.md`
+- Deployment readiness: `docs/system/deployment-readiness.md`
 - Current plan: `docs/plans/current-plan.md`
-- Next implementation plan: `docs/plans/2026-05-15-aptguide3-independent-backend-backbone-plan.md`
+- Evaluation report: `docs/tests/evaluation-report.md`

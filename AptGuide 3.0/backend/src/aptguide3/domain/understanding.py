@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any, Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 RouteName = Literal[
     "rag", "appointment", "lease", "handoff", "memory", "capability", "clarify", "fallback",
@@ -31,21 +31,23 @@ ActionName = Literal[
     "unknown",
 ]
 RiskLevel = Literal["low", "medium", "high"]
-ResponseMode = Literal[
-    "normal_answer",
-    "kb_grounded_answer",
-    "authenticated_tool_query",
-    "template_answer",
-    "handoff_to_human",
-    "refuse",
-    "ask_clarification",
-]
+_VALID_RESPONSE_MODES = {
+    "normal_answer", "direct", "kb_grounded_answer", "authenticated_tool_query",
+    "template_answer", "handoff_to_human", "refuse", "ask_clarification",
+}
 
 
 class RiskDecision(BaseModel):
     level: RiskLevel = "low"
-    response_mode: ResponseMode = "normal_answer"
+    response_mode: str = "normal_answer"
     reason: str = ""
+
+    @field_validator("response_mode", mode="before")
+    @classmethod
+    def coerce_response_mode(cls, v: str) -> str:
+        if v in _VALID_RESPONSE_MODES:
+            return v
+        return "normal_answer"
 
 
 class Clarification(BaseModel):

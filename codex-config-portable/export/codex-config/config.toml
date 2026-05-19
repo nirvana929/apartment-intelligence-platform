@@ -1,0 +1,15 @@
+model = "gpt-5.5"
+model_reasoning_effort = "low"
+[mcp_servers]
+
+[mcp_servers.amap-maps]
+type = "stdio"
+command = "npx"
+args = ["-y", "@amap/amap-maps-mcp-server"]
+enabled = true
+
+[mcp_servers.amap-maps.env]
+AMAP_MAPS_API_KEY = "__REPLACE_ON_TARGET__"
+
+[projects."/home/chove/桌面/apartment-intelligence-platform"]
+trust_level = "trusted"

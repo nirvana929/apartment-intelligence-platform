@@ -8,6 +8,14 @@
 2. 进入目标子项目的文档中心。
 3. 按子项目 `docs/README.md` 中的推荐顺序阅读具体文档。
 
+## 平台级文档
+
+| 分类 | 说明 | 入口 |
+|------|------|------|
+| 数据库 | MySQL、Milvus、Redis 数据结构与连接信息 | [database/](database/README.md) |
+| API | 所有子项目的 API 接口文档 | [api/](api/README.md) |
+| Docker | 基础设施与应用服务启动指南 | [docker/](docker/README.md) |
+
 ## 子项目文档入口
 
 | 子项目 | 说明 | 文档入口 | 当前整理状态 |

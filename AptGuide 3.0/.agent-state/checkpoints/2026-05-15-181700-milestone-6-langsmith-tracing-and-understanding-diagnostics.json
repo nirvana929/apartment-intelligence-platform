@@ -1,0 +1,11 @@
+{
+  "status": "draft",
+  "task": "Milestone 6: LangSmith tracing and understanding diagnostics",
+  "checkpoint_doc": "docs/plans/checkpoints/2026-05-15-181700-milestone-6-langsmith-tracing-and-understanding-diagnostics.md",
+  "test_status": "not_run",
+  "created_at": "2026-05-15T18:17:00+08:00",
+  "updated_at": "2026-05-15T18:17:00+08:00",
+  "errors_recorded": [],
+  "verification": [],
+  "next_steps": []
+}

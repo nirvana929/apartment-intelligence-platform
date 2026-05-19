@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Docs Maintainer"
+  short_description: "Maintain distributed docs indexes."
+  default_prompt: "Use this skill to create, update, classify, and index project documentation without centralizing child project docs."

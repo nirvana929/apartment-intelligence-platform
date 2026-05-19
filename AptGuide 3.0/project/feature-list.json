@@ -6,26 +6,82 @@
       "name": "LLM-first structured understanding",
       "status": "completed",
       "passes": true,
-      "test_status": "36 passed, 2 skipped"
+      "test_status": "207 passed, 28 skipped (M4 baseline)"
     },
     {
       "id": "clarification_on_uncertainty",
       "name": "Clarification instead of keyword fallback",
       "status": "completed",
       "passes": true,
-      "test_status": "36 passed, 2 skipped"
+      "test_status": "anti-regression guardrail: 11 runtime files clean"
     },
     {
       "id": "typed_procedure_runtime",
       "name": "Typed procedure runtime",
       "status": "completed",
       "passes": true,
-      "test_status": "36 passed, 2 skipped"
+      "test_status": "7 procedures, 129 tests at M3"
     },
     {
       "id": "independent_backend_backbone",
       "name": "Independent backend backbone",
-      "status": "planned",
+      "status": "completed",
+      "passes": true,
+      "test_status": "55 passed, 2 skipped; ruff clean"
+    },
+    {
+      "id": "live_integration_readiness",
+      "name": "Live integration readiness",
+      "status": "completed",
+      "passes": true,
+      "test_status": "live verified: 21 integration passed, internal-header auth 6 passed, baseline 68 passed/23 skipped"
+    },
+    {
+      "id": "procedure_integration",
+      "name": "Procedure integration",
+      "status": "completed",
+      "passes": true,
+      "test_status": "129 passed, 28 skipped; RepoBundle, audit writes, async /ready probes"
+    },
+    {
+      "id": "llm_first_rag_pipeline",
+      "name": "LLM-first RAG pipeline",
+      "status": "completed",
+      "passes": true,
+      "test_status": "207 passed, 28 skipped; room retrieval, ranking, KB retrieval, confidence gates"
+    },
+    {
+      "id": "frontend_e2e_live_rag_eval",
+      "name": "Frontend E2E + live RAG evaluation",
+      "status": "completed",
+      "passes": true,
+      "test_status": "Playwright 3 passed, live deps 15 passed, live RAG 5/5 passed"
+    },
+    {
+      "id": "langsmith_tracing_diagnostics",
+      "name": "LangSmith tracing + understanding/rec diagnostics",
+      "status": "completed",
+      "passes": true,
+      "test_status": "22 diagnostic tests passed; opt-in LangSmith wrapping functional"
+    },
+    {
+      "id": "mysql_redis_persistence",
+      "name": "MySQL + Redis persistence",
+      "status": "completed",
+      "passes": true,
+      "test_status": "11 MySQL tables, RedisStateStore with TTL, RepoBundle for all 8 repo types"
+    },
+    {
+      "id": "auth_boundary",
+      "name": "Auth boundary (dev + internal_header)",
+      "status": "completed",
+      "passes": true,
+      "test_status": "6 internal-header auth tests passed"
+    },
+    {
+      "id": "main_system_integration",
+      "name": "Main-system integration",
+      "status": "deferred",
       "passes": false,
       "test_status": "not_run"
     }

@@ -10,8 +10,20 @@
     {
       "id": "sprint-002",
       "name": "Independent backend backbone",
-      "status": "planned",
+      "status": "completed",
       "plan": "docs/plans/2026-05-15-aptguide3-independent-backend-backbone-plan.md"
+    },
+    {
+      "id": "sprint-003",
+      "name": "Live integration readiness",
+      "status": "completed",
+      "plan": "docs/plans/2026-05-15-aptguide3-live-integration-readiness-plan.md"
+    },
+    {
+      "id": "sprint-004",
+      "name": "Procedure integration",
+      "status": "planned",
+      "plan": "docs/plans/2026-05-15-aptguide3-procedure-integration-execution-plan.md"
     }
   ]
 }

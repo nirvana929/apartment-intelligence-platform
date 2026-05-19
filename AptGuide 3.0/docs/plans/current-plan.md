@@ -2,32 +2,32 @@
 
 ## Active Objective
 
-AptGuide 3.0 Milestone 1: Independent Backend Backbone.
+AptGuide 3.0 评测系统全面改造 — **COMPLETED** (2026-05-16)
 
 ## Current State
 
-- Milestone 0 runnable scaffold: COMPLETE.
-- Backend: 36 tests passed, 2 skipped; ruff clean.
-- Procedures, integrations, in-memory persistence, observability, and validation frontend exist.
-- Production-grade Agent-state persistence does not exist yet.
-- AptGuide 3.0 is an AptGuide main-system upgrade: independently verifiable first, then integrated through `lease /app/ai/chat`.
+- T1 KB QA: 60 cases, all with `expected_doc_ids` (inferred, marked TODO for live discovery)
+- T1 Room Search: 30 cases, criteria-based evaluation (district/price/amenity), no Hit@5
+- T2 Understanding: 55 cases, all structured assertions, 10 risk cases with `expected_risk_level`, 12 entity cases with resolution fields
+- T3 Procedures: 55 cases, all structured assertions (no free-text), multi-turn session reuse, user_id passthrough
+- Total: 200 cases, smoke eval passes, 64 unit tests pass, ruff clean
+- Runner: criteria-based room search, multi-turn session reuse, entity resolution validation, latency_ok check
 
-## Active Plan
+## Completed Plan
 
-`docs/plans/2026-05-15-aptguide3-independent-backend-backbone-plan.md`
+`docs/plans/2026-05-16-aptguide3-eval-system-overhaul-plan.md` — all 4 waves done
+
+## Scope Boundary
+
+- Keep LLM-first understanding and no keyword fallback.
+- Milvus is recall index only; lease/database remains business truth.
+- T1 KB QA expected_doc_ids inferred from KB doc ID patterns; marked TODO for live discovery verification.
+- T1 Room Search uses criteria-based evaluation (response_not_empty, district_match, price_in_range, amenity_match, latency_ok).
+- T2/T3 all assertions are structured (no free-text `expected:`).
+- Do not tune ranking or prompts until eval infrastructure is production-grade.
 
 ## Next Work
 
-- Define MySQL schema and SQLAlchemy models for Agent state.
-- Define repository contracts for sessions, messages, pending actions, memories, handoff, trace events, procedure runs, and audit events.
-- Wire Redis hot state and pending-action TTL.
-- Persist ChatService messages, procedure runs, and trace events.
-- Add auth boundary for final `lease -> AptGuide 3.0` internal-header integration.
-- Add readiness checks.
-
-## Guardrails
-
-- No keyword fallback in understanding runtime
-- Deterministic safety hard boundaries only
-- Final production chain is `rentHouseH5 -> lease /app/ai/chat -> AptGuide 3.0 /api/chat`
-- lease remains source of truth for users, rooms, appointments, leases, contracts, and sensitive customer data
+1. Live discovery run to verify KB QA `expected_doc_ids`
+2. Live eval run to verify criteria-based room search works end-to-end
+3. Production hardening: retry, idempotency, rate limiting, metrics, alerting

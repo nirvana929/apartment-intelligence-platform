@@ -2,16 +2,14 @@
 
 ## Immediate
 
-1. Execute `docs/plans/2026-05-15-aptguide3-independent-backend-backbone-plan.md`.
-2. Add MySQL schema and SQLAlchemy models for Agent state.
-3. Add repository contracts before expanding business procedures.
-4. Wire Redis hot state and MySQL durable state.
-5. Persist messages, pending actions, procedure runs, and trace events.
-6. Add auth/readiness boundary for final `lease -> AptGuide 3.0` integration.
+1. Analyze live eval results (running now)
+2. Verify KB QA `expected_doc_ids` accuracy from live eval output
+3. Verify criteria-based room search from live eval output
 
-## Later
+## Deferred
 
-1. Integrate procedures against stable repositories and real services.
-2. Keep independent frontend as validation UI.
-3. Integrate through `rentHouseH5 -> lease /app/ai/chat -> AptGuide 3.0 /api/chat`.
-4. Add production operator flow and deployment hardening.
+1. Replace local eval seed mappings with reviewed real wechat→lease mappings before production claims.
+2. Enable LangSmith tracing or implement local trace recording (P2 trace_visibility).
+3. Triage the pre-existing full-suite asyncio runner failures.
+4. Production hardening: retry, idempotency, rate limiting, metrics, alerting, data retention, secret rotation.
+5. Fully async ChatService.

@@ -104,9 +104,9 @@ Owns pure business contracts: conversation frame, interaction intent, safety dec
 
 Owns business workflows. Procedures consume validated intent and return typed procedure results.
 
-### retrieval
+### rag
 
-Owns retrieval contracts and implementation-facing abstractions for room search and KB QA.
+Owns the structured RAG pipeline: retrieval planning, multi-query vector recall, room ranking (5-dimension weighted scoring), KB reranking (module-weighted), confidence gating, preference scoring, chunking, and evaluation metrics.
 
 ### integrations
 

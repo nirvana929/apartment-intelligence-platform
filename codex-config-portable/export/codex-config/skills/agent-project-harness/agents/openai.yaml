@@ -1,0 +1,6 @@
+interface:
+  display_name: "Agent Project Harness"
+  short_description: "Project memory for agent workflows"
+  default_prompt: "Use $agent-project-harness to plan, execute, clarify, or checkpoint project work."
+policy:
+  allow_implicit_invocation: true

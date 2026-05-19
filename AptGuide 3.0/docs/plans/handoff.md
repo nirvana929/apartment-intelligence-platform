@@ -2,38 +2,27 @@
 
 ## Status
 
-Milestone 0 runnable scaffold is complete. The next execution target is Milestone 1: Independent Backend Backbone.
+Eval system overhaul **COMPLETED** (2026-05-16). All 4 waves executed successfully.
 
 ## Completed
 
-- Clean LLM-first backend foundation.
-- 7 typed procedures.
-- Lease/vector/embedding client skeletons.
-- In-memory persistence defaults.
-- Console trace sink.
-- Vue3 validation frontend.
-- Verification: 36 tests passed, 2 skipped; ruff clean.
-
-## Active Plan
-
-`docs/plans/2026-05-15-aptguide3-independent-backend-backbone-plan.md`
-
-## Execution Focus
-
-Start with persistence as the blocker:
-
-1. database schema and models;
-2. repository contracts;
-3. MySQL/Redis implementations;
-4. ChatService persistence wiring;
-5. durable trace/procedure-run state;
-6. auth/readiness boundary.
-
-Do not expand business procedure behavior until the repository contracts are stable.
+- All 7 milestones (M0-M7) and RAG roadmap (6 plans) complete.
+- KB QA pipeline production-ready: 100% Hit@3, all high-risk criteria pass.
+- **Eval system overhaul (2026-05-16):**
+  - T1: 90 cases (30 room search criteria-based + 60 KB QA with expected_doc_ids)
+  - T2: 55 cases, all structured, risk_level + entity resolution fields
+  - T3: 55 cases, all structured, multi-turn session reuse, user_id passthrough
+  - Runner: criteria-based evaluation, latency_ok, entity resolution validation
+  - 64 unit tests pass, ruff clean, smoke eval outputs 200 cases
 
 ## Next Steps
 
-1. Execute Task 1 from the active plan.
-2. Implement database schema and SQLAlchemy models.
-3. Add repository contracts and in-memory compatibility adapters.
-4. Wire ChatService persistence and readiness checks.
+1. Live discovery run to verify KB QA `expected_doc_ids`
+2. Live eval run to verify criteria-based room search end-to-end
+3. Production hardening
+
+## Constraints
+
+- Do not touch RAG pipeline code (room_retrieval.py, kb_retrieval.py, ranking, confidence)
+- Do not touch understanding module
+- Keep LLM-first, no keyword fallback

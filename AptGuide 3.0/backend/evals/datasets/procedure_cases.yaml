@@ -1,0 +1,371 @@
+# Procedure Evaluation Dataset — T3 (55 cases)
+# Tests: non-RAG procedures (appointment, memory, handoff, lease, clarify, multi-turn)
+# Generated: 2026-05-16
+#
+# These cases test the full ChatService pipeline for non-RAG routes.
+# Assertions check phase, card presence, and metadata.
+
+# ============================================================
+# APPOINTMENT PROCEDURE (12 cases)
+# ============================================================
+
+# Standard booking flow
+- id: appt-create-001
+  task: appointment
+  query: 我想预约明天下午看天河智慧城公寓的房间
+  expected_phase: appointment
+  expected:
+    has_confirmation_or_success: true
+
+- id: appt-create-002
+  task: appointment
+  query: 帮我预约周六上午10点看番禺万博青年社区
+  expected_phase: appointment
+  expected:
+    has_confirmation_or_success: true
+
+- id: appt-create-003
+  task: appointment
+  query: 我想看海珠广场公寓的房子，明天有空吗
+  expected_phase: appointment
+  expected:
+    has_confirmation_or_success: true
+
+# Missing information
+- id: appt-no-apartment-001
+  task: appointment
+  query: 我想预约看房
+  expected_phase: clarify
+
+- id: appt-no-time-001
+  task: appointment
+  query: 我想看天河智慧城的房子
+  expected:
+    has_clarification_question: true
+
+# Edge cases
+- id: appt-past-time-001
+  task: appointment
+  query: 我想预约昨天看房
+  expected:
+    handles_past_time: true
+
+- id: appt-weekend-001
+  task: appointment
+  query: 周末可以看房吗
+  expected_phase: appointment
+
+- id: appt-tonight-001
+  task: appointment
+  query: 今晚8点可以看房吗
+  expected_phase: appointment
+
+- id: appt-multiple-rooms-001
+  task: appointment
+  query: 我想同时看天河和番禺的房子
+  expected_phase: appointment
+
+- id: appt-cancel-001
+  task: appointment
+  query: 取消我之前的看房预约
+  expected_phase: appointment
+
+- id: appt-change-time-001
+  task: appointment
+  query: 把看房时间改到后天
+  expected_phase: appointment
+
+- id: appt-no-rooms-available-001
+  task: appointment
+  query: 我想预约看从化温泉公寓的房子
+  expected_phase: appointment
+
+# ============================================================
+# MEMORY PROCEDURE (12 cases)
+# ============================================================
+
+# Save preferences
+- id: memory-save-001
+  task: memory
+  query: 记住我喜欢安静的房子
+  expected_phase: memory
+  expected:
+    action: update_preference
+
+- id: memory-save-002
+  task: memory
+  query: 记住我的预算是2000以内
+  expected_phase: memory
+  expected:
+    action: update_preference
+
+- id: memory-save-003
+  task: memory
+  query: 我喜欢天河区，帮我记住
+  expected_phase: memory
+  expected:
+    action: update_preference
+
+- id: memory-save-004
+  task: memory
+  query: 记住我要近地铁的
+  expected_phase: memory
+  expected:
+    action: update_preference
+
+- id: memory-save-005
+  task: memory
+  query: 帮我记住我要带阳台的房子
+  expected_phase: memory
+  expected:
+    action: update_preference
+
+# List preferences
+- id: memory-list-001
+  task: memory
+  query: 我之前设置了什么偏好
+  expected_phase: memory
+  expected:
+    action: list
+
+- id: memory-list-002
+  task: memory
+  query: 我的偏好有哪些
+  expected_phase: memory
+  expected:
+    action: list
+
+- id: memory-list-003
+  task: memory
+  query: 查看我的个人设置
+  expected_phase: memory
+  expected:
+    action: list
+
+# Delete preferences
+- id: memory-delete-001
+  task: memory
+  query: 把我的偏好删掉
+  expected_phase: memory
+  expected:
+    action: delete_preference
+
+- id: memory-delete-002
+  task: memory
+  query: 取消我之前设置的预算偏好
+  expected_phase: memory
+  expected:
+    action: delete_preference
+
+# Edge cases
+- id: memory-empty-001
+  task: memory
+  query: 记住
+  expected_phase: clarify
+
+- id: memory-contradict-001
+  task: memory
+  query: 记住我喜欢安静的，也记住我喜欢热闹的
+  expected_phase: memory
+
+# ============================================================
+# HANDOFF PROCEDURE (10 cases)
+# ============================================================
+
+- id: handoff-request-001
+  task: handoff
+  query: 帮我转人工客服
+  expected_phase: handoff
+  expected:
+    has_ticket_id: true
+
+- id: handoff-complaint-001
+  task: handoff
+  query: 我要投诉
+  expected_phase: handoff
+  expected:
+    has_ticket_id: true
+
+- id: handoff-complex-001
+  task: handoff
+  query: 我的问题比较复杂，需要找人工
+  expected_phase: handoff
+  expected:
+    has_ticket_id: true
+
+- id: handoff-urgent-001
+  task: handoff
+  query: 有紧急情况需要人工处理
+  expected_phase: handoff
+  expected:
+    has_ticket_id: true
+
+- id: handoff-not-satisfied-001
+  task: handoff
+  query: 你的回答不能解决我的问题
+  expected_phase: handoff
+
+- id: handoff-direct-human-001
+  task: handoff
+  query: 我要跟人说话
+  expected_phase: handoff
+
+- id: handoff-customer-service-001
+  task: handoff
+  query: 转接客服
+  expected_phase: handoff
+
+- id: handoff-escalate-001
+  task: handoff
+  query: 这个事情你处理不了
+  expected_phase: handoff
+
+- id: handoff-reason-001
+  task: handoff
+  query: 帮我转人工，我要问退租的事
+  expected_phase: handoff
+
+- id: handoff-polite-001
+  task: handoff
+  query: 请问可以帮我转接人工客服吗
+  expected_phase: handoff
+
+# ============================================================
+# LEASE PROCEDURE (8 cases)
+# ============================================================
+
+- id: lease-query-001
+  task: lease
+  query: 查看我的租约信息
+  expected_phase: lease
+  user_id: test-user-001
+
+- id: lease-expiry-001
+  task: lease
+  query: 我的租约什么时候到期
+  expected_phase: lease
+  user_id: test-user-001
+
+- id: lease-terms-001
+  task: lease
+  query: 我的租期是多久
+  expected_phase: lease
+  user_id: test-user-001
+
+- id: lease-rent-amount-001
+  task: lease
+  query: 我每个月租金多少
+  expected_phase: lease
+  user_id: test-user-001
+
+- id: lease-no-user-001
+  task: lease
+  query: 查看租约
+  expected_phase: clarify
+
+- id: lease-payment-history-001
+  task: lease
+  query: 我的缴费记录
+  expected_phase: lease
+  user_id: test-user-001
+
+- id: lease-next-payment-001
+  task: lease
+  query: 下次什么时候交租
+  expected_phase: lease
+  user_id: test-user-001
+
+- id: lease-status-001
+  task: lease
+  query: 我的租约状态
+  expected_phase: lease
+  user_id: test-user-001
+
+# ============================================================
+# CLARIFY PROCEDURE (5 cases)
+# ============================================================
+
+- id: clarify-ambiguous-001
+  task: clarify
+  query: 那个
+  expected_phase: clarify
+
+- id: clarify-vague-001
+  task: clarify
+  query: 帮我看看
+  expected_phase: clarify
+
+- id: clarify-incomplete-001
+  task: clarify
+  query: 我想
+  expected_phase: clarify
+
+- id: clarify-off-topic-001
+  task: clarify
+  query: 今天天气怎么样
+  expected_route: clarify
+
+- id: clarify-unknown-lang-001
+  task: clarify
+  query: こんにちは
+  expected_route: clarify
+
+# ============================================================
+# MULTI-TURN / CONTEXT (8 cases)
+# ============================================================
+
+- id: multi-turn-filter-001
+  task: room_search
+  query: 再便宜一点的呢
+  context: previous search was 天河区2000以内的房子
+  expected_phase: room_search
+  expected:
+    must_validate_with_lease: true
+
+- id: multi-turn-district-change-001
+  task: room_search
+  query: 那番禺区的呢
+  context: previous search was 天河区的房子
+  expected_phase: room_search
+  expected:
+    must_validate_with_lease: true
+
+- id: multi-turn-follow-kb-001
+  task: kb_qa
+  query: 那如果提前退租呢
+  context: previous question was about lease terms
+  expected_phase: kb_qa
+  risk_level: high
+
+- id: multi-turn-follow-appointment-001
+  task: appointment
+  query: 帮我预约看这套房子
+  context: previous search returned room cards
+  expected_phase: appointment
+
+- id: multi-turn-more-detail-001
+  task: kb_qa
+  query: 能详细说一下吗
+  context: previous answer was about deposit policy
+  expected_phase: kb_qa
+  risk_level: high
+
+- id: multi-turn-change-topic-001
+  task: room_search
+  query: 那天河区有没有近地铁的
+  context: previous search was 番禺区的房子
+  expected_phase: room_search
+  expected:
+    must_validate_with_lease: true
+
+- id: multi-turn-save-pref-001
+  task: memory
+  query: 帮我记住这个条件
+  context: previous search was 天河区2000以内近地铁
+  expected_phase: memory
+
+- id: multi-turn-book-after-search-001
+  task: appointment
+  query: 第一套不错，帮我预约看房
+  context: previous search returned room cards
+  expected_phase: appointment

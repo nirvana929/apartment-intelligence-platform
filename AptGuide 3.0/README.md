@@ -83,31 +83,44 @@ AptGuide 3.0 must call lease internal tools for business facts and writes. It mu
 
 ```text
 backend/src/aptguide3/
-  api/             FastAPI boundary and request/response schemas
-  application/     chat orchestration and procedure runtime
-  understanding/   LLM-first structured understanding
+  api/             FastAPI boundary, auth, readiness, dependency wiring
+  application/     chat orchestration, procedure runtime, response composition, safety
+  understanding/   LLM-first structured understanding, validation, diagnostics
   domain/          pure domain contracts and decisions
-  procedures/      business procedures
-  retrieval/       KB and room retrieval abstractions
-  integrations/    LLM, embedding, vector, lease, persistence adapters
-  observability/   trace events and logging
+  procedures/      7 typed business procedures
+  rag/             RAG pipeline: planning, retrieval, ranking, confidence, eval metrics
+  integrations/    LLM, embedding, vector (Milvus), lease HTTP clients
+  persistence/     repository contracts, in-memory + MySQL + Redis implementations
+  database/        SQLAlchemy models, schema.sql, engine factory
+  observability/   trace events, sinks (console, MySQL repository)
 ```
 
 ## Current State
 
-A runnable scaffold is complete:
+All 6 milestones are complete (2026-05-15):
 
-- LLM-first backend foundation;
-- `/health` and `/chat`;
-- 7 typed procedures;
-- lease/vector/embedding client skeletons;
-- in-memory repository defaults;
-- console trace sink;
-- Vue3 validation frontend;
-- 36 tests passed, 2 skipped;
-- ruff clean.
+| Milestone | Description | Tests |
+|-----------|-------------|-------|
+| 0 | Runnable scaffold | 36 passed |
+| 1 | Independent backend backbone (schema, repos, MySQL/Redis, auth, readiness) | 55 passed |
+| 2 | Live integration readiness (docker-compose, skip-safe integration tests) | 68 passed, 23 skipped |
+| 3 | Procedure integration (all 7 procedures wired, audit writes, RepoBundle) | 129 passed, 28 skipped |
+| 4 | LLM-first RAG upgrade (room retrieval, ranking, KB retrieval, confidence) | 207 passed, 28 skipped |
+| 5 | Frontend E2E + live RAG evaluation (Playwright, live dependency verification) | 175 passed, 33 skipped, 35 failed |
+| 6 | LangSmith tracing + understanding/rec diagnostics | 22 diagnostic tests passed |
 
-The next milestone is the independent backend backbone: database schema, repository contracts, MySQL/Redis persistence, durable trace/procedure state, auth boundary, and readiness checks.
+Key capabilities:
+- LLM-first structured understanding with no keyword fallback;
+- 7 typed procedures: clarify, room_search, kb_qa, appointment, lease, memory, handoff;
+- Full RAG pipeline: multi-query vector recall, 5-dimension ranking, confidence gates;
+- MySQL durable persistence (11 tables) + Redis TTL hot state;
+- Auth boundary: dev mode + internal_header mode for lease gateway integration;
+- LangSmith opt-in tracing + understanding/rec-stage diagnostics;
+- Playwright frontend E2E + live RAG evaluation runner;
+- `/health`, `/ready` (with `?live=true` probes), `/chat`;
+- Vue3 validation frontend with card rendering.
+
+Next phase: sync room/KB vectors to Milvus, re-run live RAG eval, then plan RAG optimization.
 
 Start here:
 
@@ -115,4 +128,4 @@ Start here:
 - `docs/architecture.md`
 - `docs/api-contract.md`
 - `docs/understanding-contract.md`
-- `docs/plans/2026-05-15-aptguide3-independent-backend-backbone-plan.md`
+- `docs/system/deployment-readiness.md`

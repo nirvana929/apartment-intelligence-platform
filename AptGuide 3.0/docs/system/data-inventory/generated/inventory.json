@@ -1,0 +1,103 @@
+{
+  "generated_at": "2026-05-15T11:03:21.979856+00:00",
+  "mode": "metadata-only",
+  "config": {
+    "environment": "local",
+    "service_name": "aptguide3",
+    "llm_base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+    "llm_model": "qwen-turbo-latest",
+    "embedding_base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+    "embedding_model": "text-embedding-v3",
+    "lease_base_url": "http://127.0.0.1:8081",
+    "vector_uri": "http://127.0.0.1:19530",
+    "auth_mode": "<redacted>",
+    "persistence_mode": "hybrid",
+    "redis_url": "<set>",
+    "langsmith_tracing": false,
+    "langsmith_project": "aptguide3-local",
+    "understanding_diagnostics_enabled": false
+  },
+  "mysql": {
+    "status": "error",
+    "error": "'cryptography' package is required for sha256_password or caching_sha2_password auth methods"
+  },
+  "redis": {
+    "status": "ok",
+    "total_keys": 0,
+    "key_types": {},
+    "sample_keys": []
+  },
+  "milvus": {
+    "status": "ok",
+    "collections": {
+      "apt_rental_kb": {
+        "description": "",
+        "num_entities": 70,
+        "fields": [
+          {
+            "name": "id",
+            "type": "21"
+          },
+          {
+            "name": "content",
+            "type": "21"
+          },
+          {
+            "name": "vector",
+            "type": "101"
+          },
+          {
+            "name": "category",
+            "type": "21"
+          },
+          {
+            "name": "title",
+            "type": "21"
+          }
+        ]
+      },
+      "room_index": {
+        "description": "",
+        "num_entities": 150,
+        "fields": [
+          {
+            "name": "id",
+            "type": "5"
+          },
+          {
+            "name": "title",
+            "type": "21"
+          },
+          {
+            "name": "description",
+            "type": "21"
+          },
+          {
+            "name": "vector",
+            "type": "101"
+          },
+          {
+            "name": "rent",
+            "type": "5"
+          },
+          {
+            "name": "district",
+            "type": "21"
+          },
+          {
+            "name": "tags",
+            "type": "21"
+          },
+          {
+            "name": "payment_type",
+            "type": "21"
+          },
+          {
+            "name": "status",
+            "type": "21"
+          }
+        ]
+      }
+    }
+  }
+}

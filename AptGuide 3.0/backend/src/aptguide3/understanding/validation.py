@@ -18,18 +18,25 @@ ALLOWED_PAYMENT_TYPES = {"MONTHLY", "QUARTERLY", "SEMI_ANNUAL", "ANNUAL"}
 ALLOWED_ROOM_TYPES = {"STUDIO", "ONE_BEDROOM", "TWO_BEDROOM", "SHARED", "WHOLE_RENT", "UNKNOWN"}
 
 
-def validate_or_clarify(result: UnderstandingResult, min_confidence: float) -> UnderstandingResult:
+def validation_failure_reason(result: UnderstandingResult, min_confidence: float) -> str:
     if result.confidence < min_confidence:
-        return clarification_result(result.raw_message, "low_confidence")
+        return "low_confidence"
     if result.clarification.needed or result.risk.response_mode == "ask_clarification":
-        return clarification_result(
-            result.raw_message, result.reason or "model_requested_clarification", result.clarification.question,
-        )
+        return result.reason or "model_requested_clarification"
     if not _shape_is_valid(result):
-        return clarification_result(result.raw_message, "invalid_route_task_shape")
+        return "invalid_route_task_shape"
     if not _hard_filters_are_valid(result.hard_filters):
-        return clarification_result(result.raw_message, "invalid_hard_filters")
-    return result
+        return "invalid_hard_filters"
+    return ""
+
+
+def validate_or_clarify(result: UnderstandingResult, min_confidence: float) -> UnderstandingResult:
+    reason = validation_failure_reason(result, min_confidence)
+    if not reason:
+        return result
+    if reason == (result.reason or "model_requested_clarification"):
+        return clarification_result(result.raw_message, reason, result.clarification.question)
+    return clarification_result(result.raw_message, reason)
 
 
 def clarification_result(raw_message: str, reason: str, question: str = "") -> UnderstandingResult:

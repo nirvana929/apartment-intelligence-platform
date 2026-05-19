@@ -1,5 +1,5 @@
-from aptguide3.domain.understanding import UnderstandingResult
-from aptguide3.understanding.validation import validate_or_clarify
+from aptguide3.domain.understanding import Clarification, RiskDecision, UnderstandingResult
+from aptguide3.understanding.validation import validate_or_clarify, validation_failure_reason
 
 
 def test_low_confidence_becomes_clarification():
@@ -70,3 +70,41 @@ def test_valid_understanding_passes_through():
 
     assert validated.route == "rag"
     assert validated.task == "room_search"
+
+
+def test_validation_failure_reason_low_confidence():
+    result = UnderstandingResult(
+        raw_message="找番禺1500以内安静一点的房子",
+        route="rag",
+        task="room_search",
+        confidence=0.5,
+    )
+
+    assert validation_failure_reason(result, 0.65) == "low_confidence"
+
+
+def test_validation_failure_reason_model_requested_clarification():
+    result = UnderstandingResult(
+        raw_message="我想租房",
+        route="clarify",
+        task="clarify",
+        action="ask_clarification",
+        confidence=0.8,
+        risk=RiskDecision(response_mode="ask_clarification"),
+        clarification=Clarification(needed=True, question="预算是多少？"),
+        reason="missing_budget",
+    )
+
+    assert validation_failure_reason(result, 0.65) == "missing_budget"
+
+
+def test_validation_failure_reason_invalid_hard_filters():
+    result = UnderstandingResult(
+        raw_message="找番禺1500以内安静一点的房子",
+        route="rag",
+        task="room_search",
+        confidence=0.9,
+        hard_filters={"max_rent": "1500"},
+    )
+
+    assert validation_failure_reason(result, 0.65) == "invalid_hard_filters"
