@@ -1,0 +1,114 @@
+<svg width="1280" height="900" viewBox="0 0 1280 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font: 700 34px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #172033; }
+      .subtitle { font: 400 17px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #667085; }
+      .section { font: 700 21px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #1F2937; }
+      .label { font: 700 17px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #263244; }
+      .small { font: 400 14px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #4B5563; }
+      .tiny { font: 400 12px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #667085; }
+      .note { font: 700 14px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #344054; }
+    </style>
+    <marker id="aptguide-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#475467"/>
+    </marker>
+    <marker id="aptguide-arrow-purple" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#7C3AED"/>
+    </marker>
+  </defs>
+
+  <rect width="1280" height="900" rx="30" fill="#F7F8FA"/>
+  <rect x="46" y="46" width="1188" height="808" rx="24" fill="#FFFFFF" stroke="#D7DCE2" stroke-width="2"/>
+
+  <text x="640" y="104" text-anchor="middle" class="title">AptGuide 3.0 智能找房助手架构</text>
+  <text x="640" y="137" text-anchor="middle" class="subtitle">租客侧 AI Agent：通过 lease 网关接入，负责对话状态、RAG、工具编排和确认式写操作</text>
+
+  <rect x="82" y="184" width="268" height="118" rx="16" fill="#ECFDF3" stroke="#8DD7A5" stroke-width="2"/>
+  <text x="216" y="224" text-anchor="middle" class="section">rentHouseH5</text>
+  <text x="216" y="253" text-anchor="middle" class="small">租客移动端入口</text>
+  <text x="216" y="278" text-anchor="middle" class="small">找房 / 预约 / AI 对话</text>
+
+  <rect x="82" y="350" width="268" height="150" rx="16" fill="#FFF7ED" stroke="#FDBA74" stroke-width="2"/>
+  <text x="216" y="390" text-anchor="middle" class="section">lease web-app</text>
+  <text x="216" y="421" text-anchor="middle" class="small">/app/ai/chat 统一入口</text>
+  <text x="216" y="447" text-anchor="middle" class="small">JWT 鉴权与用户解析</text>
+  <text x="216" y="473" text-anchor="middle" class="small">注入可信内部请求头</text>
+
+  <rect x="430" y="180" width="420" height="548" rx="20" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2"/>
+  <text x="640" y="222" text-anchor="middle" class="section">AptGuide 3.0 Agent Service</text>
+
+  <rect x="472" y="252" width="336" height="58" rx="12" fill="#EEF2FF" stroke="#A5B4FC"/>
+  <text x="640" y="287" text-anchor="middle" class="label">API 层：/api/chat 请求校验</text>
+
+  <rect x="472" y="338" width="336" height="66" rx="12" fill="#F5F3FF" stroke="#C4B5FD"/>
+  <text x="640" y="364" text-anchor="middle" class="label">ChatService 应用编排</text>
+  <text x="640" y="388" text-anchor="middle" class="small">安全边界 / Pending Action / Trace</text>
+
+  <rect x="472" y="432" width="336" height="72" rx="12" fill="#FEF3C7" stroke="#FBBF24"/>
+  <text x="640" y="459" text-anchor="middle" class="label">LLM-first Understanding</text>
+  <text x="640" y="483" text-anchor="middle" class="small">结构化意图理解，不确定则澄清</text>
+
+  <rect x="472" y="532" width="336" height="132" rx="14" fill="#FFFFFF" stroke="#C4B5FD" stroke-width="2"/>
+  <text x="640" y="562" text-anchor="middle" class="label">Procedure Runtime</text>
+  <rect x="494" y="582" width="86" height="30" rx="8" fill="#F3F4F6"/>
+  <text x="537" y="602" text-anchor="middle" class="tiny">clarify</text>
+  <rect x="592" y="582" width="106" height="30" rx="8" fill="#ECFDF3"/>
+  <text x="645" y="602" text-anchor="middle" class="tiny">room_search</text>
+  <rect x="710" y="582" width="76" height="30" rx="8" fill="#EFF6FF"/>
+  <text x="748" y="602" text-anchor="middle" class="tiny">kb_qa</text>
+  <rect x="494" y="622" width="104" height="30" rx="8" fill="#FFF7ED"/>
+  <text x="546" y="642" text-anchor="middle" class="tiny">appointment</text>
+  <rect x="610" y="622" width="74" height="30" rx="8" fill="#FDF2F8"/>
+  <text x="647" y="642" text-anchor="middle" class="tiny">lease</text>
+  <rect x="696" y="622" width="90" height="30" rx="8" fill="#F0FDF4"/>
+  <text x="741" y="642" text-anchor="middle" class="tiny">memory</text>
+
+  <rect x="472" y="692" width="336" height="58" rx="12" fill="#F0FDFA" stroke="#5EEAD4"/>
+  <text x="640" y="727" text-anchor="middle" class="label">ResponseComposer：消息 / 卡片 / 动作</text>
+
+  <rect x="938" y="184" width="268" height="118" rx="16" fill="#F5F3FF" stroke="#C4B5FD" stroke-width="2"/>
+  <text x="1072" y="222" text-anchor="middle" class="section">LLM 服务</text>
+  <text x="1072" y="253" text-anchor="middle" class="small">OpenAI-compatible</text>
+  <text x="1072" y="278" text-anchor="middle" class="small">结构化理解与回答生成</text>
+
+  <rect x="938" y="328" width="268" height="132" rx="16" fill="#EFF6FF" stroke="#93B5FD" stroke-width="2"/>
+  <text x="1072" y="366" text-anchor="middle" class="section">Milvus / RAG</text>
+  <text x="1072" y="397" text-anchor="middle" class="small">房源语义召回</text>
+  <text x="1072" y="423" text-anchor="middle" class="small">租房规则知识库检索</text>
+
+  <rect x="938" y="486" width="268" height="132" rx="16" fill="#FFF7ED" stroke="#FDBA74" stroke-width="2"/>
+  <text x="1072" y="524" text-anchor="middle" class="section">lease 内部工具</text>
+  <text x="1072" y="555" text-anchor="middle" class="small">房源 / 预约 / 租约事实</text>
+  <text x="1072" y="581" text-anchor="middle" class="small">最终业务写入由 lease 执行</text>
+
+  <rect x="938" y="644" width="268" height="118" rx="16" fill="#F0FDF4" stroke="#86EFAC" stroke-width="2"/>
+  <text x="1072" y="682" text-anchor="middle" class="section">Agent 状态存储</text>
+  <text x="1072" y="713" text-anchor="middle" class="small">MySQL：会话 / 消息 / 审计</text>
+  <text x="1072" y="739" text-anchor="middle" class="small">Redis：TTL / Pending Action</text>
+
+  <rect x="82" y="602" width="268" height="126" rx="16" fill="#F9FAFB" stroke="#CBD5E1" stroke-width="2"/>
+  <text x="216" y="640" text-anchor="middle" class="section">信任边界</text>
+  <text x="216" y="671" text-anchor="middle" class="small">前端 user_id 不可信</text>
+  <text x="216" y="697" text-anchor="middle" class="small">只信任 lease 注入的身份</text>
+
+  <rect x="96" y="780" width="1088" height="44" rx="12" fill="#FFFBEB" stroke="#FDE68A"/>
+  <text x="640" y="808" text-anchor="middle" class="note">关键规则：AptGuide 拥有 Agent 状态，lease 拥有业务事实；预约和记忆写入必须先生成 pending_action，用户确认后才执行。</text>
+
+  <path d="M216 302V350" stroke="#475467" stroke-width="3" marker-end="url(#aptguide-arrow)"/>
+  <path d="M350 425H430" stroke="#475467" stroke-width="3" marker-end="url(#aptguide-arrow)"/>
+  <path d="M640 310V338" stroke="#7C3AED" stroke-width="3" marker-end="url(#aptguide-arrow-purple)"/>
+  <path d="M640 404V432" stroke="#7C3AED" stroke-width="3" marker-end="url(#aptguide-arrow-purple)"/>
+  <path d="M640 504V532" stroke="#7C3AED" stroke-width="3" marker-end="url(#aptguide-arrow-purple)"/>
+  <path d="M640 664V692" stroke="#7C3AED" stroke-width="3" marker-end="url(#aptguide-arrow-purple)"/>
+  <path d="M850 282H938" stroke="#475467" stroke-width="3" marker-end="url(#aptguide-arrow)"/>
+  <path d="M850 394H938" stroke="#475467" stroke-width="3" marker-end="url(#aptguide-arrow)"/>
+  <path d="M850 552H938" stroke="#475467" stroke-width="3" marker-end="url(#aptguide-arrow)"/>
+  <path d="M850 704H938" stroke="#475467" stroke-width="3" marker-end="url(#aptguide-arrow)"/>
+  <path d="M430 692H350" stroke="#475467" stroke-width="3" marker-end="url(#aptguide-arrow)"/>
+
+  <text x="390" y="407" text-anchor="middle" class="tiny">可信转发</text>
+  <text x="894" y="264" text-anchor="middle" class="tiny">理解/生成</text>
+  <text x="894" y="376" text-anchor="middle" class="tiny">召回/证据</text>
+  <text x="894" y="534" text-anchor="middle" class="tiny">工具调用</text>
+  <text x="894" y="686" text-anchor="middle" class="tiny">状态写入</text>
+</svg>

@@ -1,0 +1,171 @@
+<svg width="1600" height="1180" viewBox="0 0 1600 1180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font: 700 38px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #172033; }
+      .subtitle { font: 400 18px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #667085; }
+      .lane-title { font: 700 22px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #1F2937; }
+      .node-title { font: 700 17px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #263244; }
+      .node-text { font: 400 13px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #4B5563; }
+      .tiny { font: 400 12px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #667085; }
+      .tag { font: 700 13px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #344054; }
+    </style>
+    <marker id="ag-flow-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#475467"/>
+    </marker>
+    <marker id="ag-flow-purple" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#7C3AED"/>
+    </marker>
+    <marker id="ag-flow-green" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#059669"/>
+    </marker>
+    <marker id="ag-flow-blue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563EB"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="1180" rx="32" fill="#F7F8FA"/>
+  <rect x="48" y="46" width="1504" height="1088" rx="26" fill="#FFFFFF" stroke="#D7DCE2" stroke-width="2"/>
+
+  <text x="800" y="105" text-anchor="middle" class="title">AptGuide 3.0 LangGraph 功能流程图</text>
+  <text x="800" y="140" text-anchor="middle" class="subtitle">模型优先理解、过程化分支、RAG 检索增强、确认式写操作和可追踪响应生成</text>
+
+  <rect x="86" y="188" width="210" height="74" rx="15" fill="#ECFDF3" stroke="#8DD7A5" stroke-width="2"/>
+  <text x="191" y="218" text-anchor="middle" class="node-title">用户消息</text>
+  <text x="191" y="243" text-anchor="middle" class="node-text">租客找房、咨询、预约</text>
+
+  <rect x="350" y="188" width="230" height="74" rx="15" fill="#F9FAFB" stroke="#CBD5E1" stroke-width="2"/>
+  <text x="465" y="218" text-anchor="middle" class="node-title">会话和安全边界</text>
+  <text x="465" y="243" text-anchor="middle" class="node-text">加载状态、拦截高风险输入</text>
+
+  <rect x="634" y="188" width="246" height="74" rx="15" fill="#F5F3FF" stroke="#C4B5FD" stroke-width="2"/>
+  <text x="757" y="218" text-anchor="middle" class="node-title">LLM-first 理解</text>
+  <text x="757" y="243" text-anchor="middle" class="node-text">意图、任务、偏好、风险</text>
+
+  <rect x="934" y="188" width="230" height="74" rx="15" fill="#FEF3C7" stroke="#FBBF24" stroke-width="2"/>
+  <text x="1049" y="218" text-anchor="middle" class="node-title">结构化校验</text>
+  <text x="1049" y="243" text-anchor="middle" class="node-text">低置信度或矛盾则澄清</text>
+
+  <rect x="1218" y="188" width="246" height="74" rx="15" fill="#EEF2FF" stroke="#A5B4FC" stroke-width="2"/>
+  <text x="1341" y="218" text-anchor="middle" class="node-title">Procedure Runtime</text>
+  <text x="1341" y="243" text-anchor="middle" class="node-text">按 route 和 task 分发节点</text>
+
+  <path d="M296 225H350" stroke="#475467" stroke-width="3" marker-end="url(#ag-flow-arrow)"/>
+  <path d="M580 225H634" stroke="#475467" stroke-width="3" marker-end="url(#ag-flow-arrow)"/>
+  <path d="M880 225H934" stroke="#475467" stroke-width="3" marker-end="url(#ag-flow-arrow)"/>
+  <path d="M1164 225H1218" stroke="#475467" stroke-width="3" marker-end="url(#ag-flow-arrow)"/>
+
+  <rect x="86" y="322" width="390" height="520" rx="22" fill="#F9FAFB" stroke="#CBD5E1" stroke-width="2"/>
+  <text x="281" y="360" text-anchor="middle" class="lane-title">通用业务分支</text>
+  <text x="281" y="386" text-anchor="middle" class="tiny">非 RAG 任务和兜底处理</text>
+
+  <rect x="128" y="424" width="306" height="58" rx="13" fill="#FFFFFF" stroke="#CBD5E1"/>
+  <text x="281" y="449" text-anchor="middle" class="node-title">Clarify</text>
+  <text x="281" y="470" text-anchor="middle" class="node-text">意图不清或信息不足时追问</text>
+
+  <rect x="128" y="508" width="306" height="58" rx="13" fill="#FFF7ED" stroke="#FDBA74"/>
+  <text x="281" y="533" text-anchor="middle" class="node-title">Appointment</text>
+  <text x="281" y="554" text-anchor="middle" class="node-text">预约创建或取消先生成待确认动作</text>
+
+  <rect x="128" y="592" width="306" height="58" rx="13" fill="#EFF6FF" stroke="#93B5FD"/>
+  <text x="281" y="617" text-anchor="middle" class="node-title">Lease Query</text>
+  <text x="281" y="638" text-anchor="middle" class="node-text">查询我的租约和合同状态</text>
+
+  <rect x="128" y="676" width="306" height="58" rx="13" fill="#F0FDF4" stroke="#86EFAC"/>
+  <text x="281" y="701" text-anchor="middle" class="node-title">Memory</text>
+  <text x="281" y="722" text-anchor="middle" class="node-text">偏好记忆需要用户确认后保存</text>
+
+  <rect x="128" y="760" width="306" height="58" rx="13" fill="#FEF2F2" stroke="#FCA5A5"/>
+  <text x="281" y="785" text-anchor="middle" class="node-title">Handoff</text>
+  <text x="281" y="806" text-anchor="middle" class="node-text">复杂或高风险事项转人工处理</text>
+
+  <rect x="536" y="322" width="488" height="600" rx="22" fill="#F0FDF4" stroke="#86EFAC" stroke-width="2"/>
+  <text x="780" y="360" text-anchor="middle" class="lane-title">Room Search RAG</text>
+  <text x="780" y="386" text-anchor="middle" class="tiny">找房推荐链路：召回、验证、排序、证据化房源卡片</text>
+
+  <rect x="584" y="424" width="392" height="52" rx="12" fill="#FFFFFF" stroke="#86EFAC"/>
+  <text x="780" y="456" text-anchor="middle" class="node-title">检索计划生成</text>
+
+  <rect x="584" y="500" width="392" height="52" rx="12" fill="#ECFDF3" stroke="#86EFAC"/>
+  <text x="780" y="532" text-anchor="middle" class="node-title">Query 改写和多查询扩展</text>
+
+  <rect x="584" y="576" width="392" height="52" rx="12" fill="#ECFDF3" stroke="#86EFAC"/>
+  <text x="780" y="608" text-anchor="middle" class="node-title">向量召回和条件放宽</text>
+
+  <rect x="584" y="652" width="392" height="52" rx="12" fill="#ECFDF3" stroke="#86EFAC"/>
+  <text x="780" y="684" text-anchor="middle" class="node-title">候选房源去重与合并</text>
+
+  <rect x="584" y="728" width="392" height="52" rx="12" fill="#ECFDF3" stroke="#86EFAC"/>
+  <text x="780" y="760" text-anchor="middle" class="node-title">房源身份映射和 lease 校验</text>
+
+  <rect x="584" y="804" width="392" height="52" rx="12" fill="#ECFDF3" stroke="#86EFAC"/>
+  <text x="780" y="836" text-anchor="middle" class="node-title">偏好评分和综合排序</text>
+
+  <rect x="584" y="880" width="392" height="52" rx="12" fill="#DCFCE7" stroke="#22C55E"/>
+  <text x="780" y="912" text-anchor="middle" class="node-title">房源卡片和证据等级</text>
+
+  <path d="M780 476V500" stroke="#059669" stroke-width="3" marker-end="url(#ag-flow-green)"/>
+  <path d="M780 552V576" stroke="#059669" stroke-width="3" marker-end="url(#ag-flow-green)"/>
+  <path d="M780 628V652" stroke="#059669" stroke-width="3" marker-end="url(#ag-flow-green)"/>
+  <path d="M780 704V728" stroke="#059669" stroke-width="3" marker-end="url(#ag-flow-green)"/>
+  <path d="M780 780V804" stroke="#059669" stroke-width="3" marker-end="url(#ag-flow-green)"/>
+  <path d="M780 856V880" stroke="#059669" stroke-width="3" marker-end="url(#ag-flow-green)"/>
+
+  <rect x="1084" y="322" width="430" height="600" rx="22" fill="#EFF6FF" stroke="#93B5FD" stroke-width="2"/>
+  <text x="1299" y="360" text-anchor="middle" class="lane-title">KB QA RAG</text>
+  <text x="1299" y="386" text-anchor="middle" class="tiny">规则问答链路：召回、重排、风险门控、基于证据回答</text>
+
+  <rect x="1128" y="424" width="342" height="52" rx="12" fill="#FFFFFF" stroke="#93B5FD"/>
+  <text x="1299" y="456" text-anchor="middle" class="node-title">检索计划生成</text>
+
+  <rect x="1128" y="500" width="342" height="52" rx="12" fill="#DBEAFE" stroke="#93B5FD"/>
+  <text x="1299" y="532" text-anchor="middle" class="node-title">Query 改写和 Step-back</text>
+
+  <rect x="1128" y="576" width="342" height="52" rx="12" fill="#DBEAFE" stroke="#93B5FD"/>
+  <text x="1299" y="608" text-anchor="middle" class="node-title">知识库向量召回</text>
+
+  <rect x="1128" y="652" width="342" height="52" rx="12" fill="#DBEAFE" stroke="#93B5FD"/>
+  <text x="1299" y="684" text-anchor="middle" class="node-title">Chunk 去重和来源整理</text>
+
+  <rect x="1128" y="728" width="342" height="52" rx="12" fill="#DBEAFE" stroke="#93B5FD"/>
+  <text x="1299" y="760" text-anchor="middle" class="node-title">知识片段重排</text>
+
+  <rect x="1128" y="804" width="342" height="52" rx="12" fill="#FEF3C7" stroke="#FBBF24"/>
+  <text x="1299" y="836" text-anchor="middle" class="node-title">置信度和风险门控</text>
+
+  <rect x="1128" y="880" width="342" height="52" rx="12" fill="#DBEAFE" stroke="#93B5FD"/>
+  <text x="1299" y="912" text-anchor="middle" class="node-title">来源卡片和证据回答</text>
+
+  <path d="M1299 476V500" stroke="#2563EB" stroke-width="3" marker-end="url(#ag-flow-blue)"/>
+  <path d="M1299 552V576" stroke="#2563EB" stroke-width="3" marker-end="url(#ag-flow-blue)"/>
+  <path d="M1299 628V652" stroke="#2563EB" stroke-width="3" marker-end="url(#ag-flow-blue)"/>
+  <path d="M1299 704V728" stroke="#2563EB" stroke-width="3" marker-end="url(#ag-flow-blue)"/>
+  <path d="M1299 780V804" stroke="#2563EB" stroke-width="3" marker-end="url(#ag-flow-blue)"/>
+  <path d="M1299 856V880" stroke="#2563EB" stroke-width="3" marker-end="url(#ag-flow-blue)"/>
+
+  <path d="M1341 262V292H281V322" stroke="#475467" stroke-width="3" marker-end="url(#ag-flow-arrow)"/>
+  <path d="M1341 262V292H780V322" stroke="#059669" stroke-width="3" marker-end="url(#ag-flow-green)"/>
+  <path d="M1341 262V292H1299V322" stroke="#2563EB" stroke-width="3" marker-end="url(#ag-flow-blue)"/>
+  <path d="M1049 262V292H281V424" stroke="#475467" stroke-width="2.5" stroke-dasharray="7 7" marker-end="url(#ag-flow-arrow)"/>
+  <text x="520" y="286" class="tiny">校验失败或意图不清</text>
+
+  <rect x="536" y="976" width="488" height="64" rx="15" fill="#F5F3FF" stroke="#C4B5FD" stroke-width="2"/>
+  <text x="780" y="1003" text-anchor="middle" class="node-title">Response Composer</text>
+  <text x="780" y="1026" text-anchor="middle" class="node-text">统一生成消息、卡片、动作、待确认状态和元数据</text>
+
+  <rect x="1084" y="976" width="430" height="64" rx="15" fill="#F9FAFB" stroke="#CBD5E1" stroke-width="2"/>
+  <text x="1299" y="1003" text-anchor="middle" class="node-title">Trace 和状态持久化</text>
+  <text x="1299" y="1026" text-anchor="middle" class="node-text">会话、消息、诊断、审计、过程运行记录</text>
+
+  <rect x="86" y="976" width="390" height="64" rx="15" fill="#ECFDF3" stroke="#8DD7A5" stroke-width="2"/>
+  <text x="281" y="1003" text-anchor="middle" class="node-title">Chat Response</text>
+  <text x="281" y="1026" text-anchor="middle" class="node-text">返回到 lease 网关和租客 H5 展示</text>
+
+  <path d="M281 842V1008H536" stroke="#475467" stroke-width="3" marker-end="url(#ag-flow-arrow)"/>
+  <path d="M780 932V976" stroke="#059669" stroke-width="3" marker-end="url(#ag-flow-green)"/>
+  <path d="M1299 932V976" stroke="#2563EB" stroke-width="3" marker-end="url(#ag-flow-blue)"/>
+  <path d="M1024 1008H1084" stroke="#475467" stroke-width="3" marker-end="url(#ag-flow-arrow)"/>
+  <path d="M536 1008H476" stroke="#475467" stroke-width="3" marker-end="url(#ag-flow-arrow)"/>
+
+  <rect x="113" y="1074" width="1374" height="42" rx="12" fill="#FFFBEB" stroke="#FDE68A"/>
+  <text x="800" y="1101" text-anchor="middle" class="tag">功能图重点：展示 LangGraph 节点和分支职责，不展开代码变量；RAG 子链路保留 Query 改写、向量召回、重排/排序、风险门控和证据输出。</text>
+</svg>

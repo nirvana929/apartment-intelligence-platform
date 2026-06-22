@@ -1,0 +1,110 @@
+<svg width="1280" height="900" viewBox="0 0 1280 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font: 700 34px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #172033; }
+      .subtitle { font: 400 17px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #667085; }
+      .section { font: 700 21px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #1F2937; }
+      .label { font: 700 16px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #263244; }
+      .small { font: 400 14px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #4B5563; }
+      .tiny { font: 400 12px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #667085; }
+      .note { font: 700 14px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #344054; }
+    </style>
+    <marker id="aptinsight-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#475467"/>
+    </marker>
+    <marker id="aptinsight-arrow-pink" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#BE185D"/>
+    </marker>
+  </defs>
+
+  <rect width="1280" height="900" rx="30" fill="#F7F8FA"/>
+  <rect x="46" y="46" width="1188" height="808" rx="24" fill="#FFFFFF" stroke="#D7DCE2" stroke-width="2"/>
+
+  <text x="640" y="104" text-anchor="middle" class="title">AptInsight 智能运营分析助手架构</text>
+  <text x="640" y="137" text-anchor="middle" class="subtitle">运营侧 AI Agent：自然语言经营问题转安全只读 SQL，并输出表格、图表和业务总结</text>
+
+  <rect x="82" y="186" width="268" height="116" rx="16" fill="#EFF6FF" stroke="#93B5FD" stroke-width="2"/>
+  <text x="216" y="224" text-anchor="middle" class="section">Vue3 管理后台</text>
+  <text x="216" y="255" text-anchor="middle" class="small">智能运营分析页面</text>
+  <text x="216" y="280" text-anchor="middle" class="small">对话 / SQL / 表格 / 图表</text>
+
+  <rect x="82" y="348" width="268" height="132" rx="16" fill="#FFF7ED" stroke="#FDBA74" stroke-width="2"/>
+  <text x="216" y="386" text-anchor="middle" class="section">Spring Boot web-admin</text>
+  <text x="216" y="417" text-anchor="middle" class="small">/admin/ai/chat</text>
+  <text x="216" y="443" text-anchor="middle" class="small">后台 JWT 鉴权</text>
+  <text x="216" y="469" text-anchor="middle" class="small">统一 Result&lt;T&gt; 包装</text>
+
+  <rect x="430" y="180" width="420" height="568" rx="20" fill="#FDF2F8" stroke="#F9A8D4" stroke-width="2"/>
+  <text x="640" y="222" text-anchor="middle" class="section">AptInsight FastAPI Agent</text>
+
+  <rect x="472" y="252" width="336" height="54" rx="12" fill="#FFFFFF" stroke="#F9A8D4"/>
+  <text x="640" y="285" text-anchor="middle" class="label">API 层：请求校验 / trace_id</text>
+
+  <rect x="472" y="328" width="336" height="60" rx="12" fill="#FCE7F3" stroke="#F9A8D4"/>
+  <text x="640" y="354" text-anchor="middle" class="label">normalize_question</text>
+  <text x="640" y="376" text-anchor="middle" class="small">规范化问题、时间范围、业务对象</text>
+
+  <rect x="472" y="410" width="336" height="82" rx="12" fill="#FEF3C7" stroke="#FBBF24"/>
+  <text x="640" y="438" text-anchor="middle" class="label">classify_intent</text>
+  <text x="640" y="462" text-anchor="middle" class="small">指标解释 / 不支持 / 需要 SQL</text>
+  <text x="640" y="482" text-anchor="middle" class="tiny">metric_explanation 与 unsupported 不进入查库链路</text>
+
+  <rect x="472" y="514" width="336" height="54" rx="12" fill="#F5F3FF" stroke="#C4B5FD"/>
+  <text x="640" y="547" text-anchor="middle" class="label">select_schema_context：表 / 字段 / 指标 / 示例</text>
+
+  <rect x="472" y="590" width="336" height="54" rx="12" fill="#EEF2FF" stroke="#A5B4FC"/>
+  <text x="640" y="623" text-anchor="middle" class="label">generate_sql：LLM 生成 SELECT SQL</text>
+
+  <rect x="472" y="666" width="336" height="54" rx="12" fill="#F0FDFA" stroke="#5EEAD4"/>
+  <text x="640" y="699" text-anchor="middle" class="label">write_answer：总结 / 口径 / 运营建议</text>
+
+  <rect x="938" y="184" width="268" height="130" rx="16" fill="#F5F3FF" stroke="#C4B5FD" stroke-width="2"/>
+  <text x="1072" y="222" text-anchor="middle" class="section">Schema / 指标知识库</text>
+  <text x="1072" y="253" text-anchor="middle" class="small">数据库字典</text>
+  <text x="1072" y="279" text-anchor="middle" class="small">指标口径与 few-shot</text>
+
+  <rect x="938" y="338" width="268" height="146" rx="16" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="2"/>
+  <text x="1072" y="376" text-anchor="middle" class="section">sqlglot SQL Guard</text>
+  <text x="1072" y="407" text-anchor="middle" class="small">单条 SELECT / WITH SELECT</text>
+  <text x="1072" y="433" text-anchor="middle" class="small">表白名单 / 字段限制</text>
+  <text x="1072" y="459" text-anchor="middle" class="small">拒绝 DDL / DML / 敏感字段</text>
+
+  <rect x="938" y="508" width="268" height="132" rx="16" fill="#ECFDF3" stroke="#8DD7A5" stroke-width="2"/>
+  <text x="1072" y="546" text-anchor="middle" class="section">只读 MySQL</text>
+  <text x="1072" y="577" text-anchor="middle" class="small">SQLAlchemy async + asyncmy</text>
+  <text x="1072" y="603" text-anchor="middle" class="small">超时 / 最大行数 / 只读账号</text>
+
+  <rect x="938" y="664" width="268" height="118" rx="16" fill="#EFF6FF" stroke="#93B5FD" stroke-width="2"/>
+  <text x="1072" y="702" text-anchor="middle" class="section">结果展示</text>
+  <text x="1072" y="733" text-anchor="middle" class="small">rows / columns / ECharts</text>
+  <text x="1072" y="759" text-anchor="middle" class="small">answer / summary / warnings</text>
+
+  <rect x="82" y="566" width="268" height="158" rx="16" fill="#F9FAFB" stroke="#CBD5E1" stroke-width="2"/>
+  <text x="216" y="604" text-anchor="middle" class="section">分析边界</text>
+  <text x="216" y="635" text-anchor="middle" class="small">不执行 INSERT / UPDATE / DELETE</text>
+  <text x="216" y="661" text-anchor="middle" class="small">不绕过 SQL Guard</text>
+  <text x="216" y="687" text-anchor="middle" class="small">不编造数据库外结论</text>
+
+  <rect x="96" y="780" width="1088" height="44" rx="12" fill="#FFFBEB" stroke="#FDE68A"/>
+  <text x="640" y="808" text-anchor="middle" class="note">关键规则：AptInsight 是只读分析助手，Spring Boot 负责鉴权，Python Agent 负责 Text-to-SQL、SQL 安全、查询、图表和总结。</text>
+
+  <path d="M216 302V348" stroke="#475467" stroke-width="3" marker-end="url(#aptinsight-arrow)"/>
+  <path d="M350 414H430" stroke="#475467" stroke-width="3" marker-end="url(#aptinsight-arrow)"/>
+  <path d="M640 306V328" stroke="#BE185D" stroke-width="3" marker-end="url(#aptinsight-arrow-pink)"/>
+  <path d="M640 388V410" stroke="#BE185D" stroke-width="3" marker-end="url(#aptinsight-arrow-pink)"/>
+  <path d="M640 492V514" stroke="#BE185D" stroke-width="3" marker-end="url(#aptinsight-arrow-pink)"/>
+  <path d="M640 568V590" stroke="#BE185D" stroke-width="3" marker-end="url(#aptinsight-arrow-pink)"/>
+  <path d="M640 644V666" stroke="#BE185D" stroke-width="3" marker-end="url(#aptinsight-arrow-pink)"/>
+
+  <path d="M850 541H922V249H938" stroke="#475467" stroke-width="3" marker-end="url(#aptinsight-arrow)"/>
+  <path d="M850 617H922V411H938" stroke="#475467" stroke-width="3" marker-end="url(#aptinsight-arrow)"/>
+  <path d="M1072 484V508" stroke="#475467" stroke-width="3" marker-end="url(#aptinsight-arrow)"/>
+  <path d="M1072 640V664" stroke="#475467" stroke-width="3" marker-end="url(#aptinsight-arrow)"/>
+  <path d="M938 724H850" stroke="#475467" stroke-width="3" marker-end="url(#aptinsight-arrow)"/>
+  <path d="M430 690H350" stroke="#475467" stroke-width="3" marker-end="url(#aptinsight-arrow)"/>
+
+  <text x="390" y="397" text-anchor="middle" class="tiny">鉴权后转发</text>
+  <text x="886" y="524" text-anchor="middle" class="tiny">取上下文</text>
+  <text x="886" y="599" text-anchor="middle" class="tiny">校验 SQL</text>
+  <text x="886" y="707" text-anchor="middle" class="tiny">返回结构化结果</text>
+</svg>

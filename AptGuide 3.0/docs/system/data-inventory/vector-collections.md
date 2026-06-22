@@ -42,7 +42,7 @@ Vectorized room listings for semantic search.
 
 Each room produces one vector record. The text representation is built by `build_room_vector_text()`:
 
-```
+```raw
 [room][{city_name}][{district_name}][{area_label}]
 Room {room_number}, in {apartment_name}. Monthly rent {rent}, payment: {payment_types}, lease terms: {lease_terms}.
 Layout: {layout}, area: {area}. Tags: {tags}. Facilities: {facilities}.
@@ -72,7 +72,7 @@ Knowledge-base chunks for policy/rule Q&A.
 
 Each knowledge-base rule produces one chunk. The text representation is built by `build_kb_chunk_text()`:
 
-```
+```raw
 [{module}][{doc_type}][{title}][{tags}][{risk_level}]
 {content}
 ```

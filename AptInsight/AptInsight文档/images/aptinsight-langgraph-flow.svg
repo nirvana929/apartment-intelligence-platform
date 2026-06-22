@@ -1,0 +1,140 @@
+<svg width="1500" height="1040" viewBox="0 0 1500 1040" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font: 700 38px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #172033; }
+      .subtitle { font: 400 18px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #667085; }
+      .lane-title { font: 700 22px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #1F2937; }
+      .node-title { font: 700 17px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #263244; }
+      .node-text { font: 400 13px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #4B5563; }
+      .tiny { font: 400 12px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #667085; }
+      .tag { font: 700 13px "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif; fill: #344054; }
+    </style>
+    <marker id="ai-flow-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#475467"/>
+    </marker>
+    <marker id="ai-flow-pink" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#BE185D"/>
+    </marker>
+    <marker id="ai-flow-red" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#DC2626"/>
+    </marker>
+    <marker id="ai-flow-green" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#059669"/>
+    </marker>
+  </defs>
+
+  <rect width="1500" height="1040" rx="32" fill="#F7F8FA"/>
+  <rect x="48" y="46" width="1404" height="948" rx="26" fill="#FFFFFF" stroke="#D7DCE2" stroke-width="2"/>
+
+  <text x="750" y="105" text-anchor="middle" class="title">AptInsight LangGraph 功能流程图</text>
+  <text x="750" y="140" text-anchor="middle" class="subtitle">运营分析 Agent：从自然语言问题到安全只读 SQL、表格图表和经营总结</text>
+
+  <rect x="96" y="188" width="230" height="72" rx="15" fill="#EFF6FF" stroke="#93B5FD" stroke-width="2"/>
+  <text x="211" y="217" text-anchor="middle" class="node-title">运营问题</text>
+  <text x="211" y="241" text-anchor="middle" class="node-text">预约、租约、房源、浏览、诊断</text>
+
+  <rect x="386" y="188" width="230" height="72" rx="15" fill="#F9FAFB" stroke="#CBD5E1" stroke-width="2"/>
+  <text x="501" y="217" text-anchor="middle" class="node-title">API 请求校验</text>
+  <text x="501" y="241" text-anchor="middle" class="node-text">参数校验、trace_id、日志入口</text>
+
+  <rect x="676" y="188" width="230" height="72" rx="15" fill="#FCE7F3" stroke="#F9A8D4" stroke-width="2"/>
+  <text x="791" y="217" text-anchor="middle" class="node-title">问题规范化</text>
+  <text x="791" y="241" text-anchor="middle" class="node-text">时间范围、业务对象、问法整理</text>
+
+  <rect x="966" y="188" width="230" height="72" rx="15" fill="#FEF3C7" stroke="#FBBF24" stroke-width="2"/>
+  <text x="1081" y="217" text-anchor="middle" class="node-title">意图分类</text>
+  <text x="1081" y="241" text-anchor="middle" class="node-text">指标解释、不支持、数据分析</text>
+
+  <path d="M326 224H386" stroke="#475467" stroke-width="3" marker-end="url(#ai-flow-arrow)"/>
+  <path d="M616 224H676" stroke="#475467" stroke-width="3" marker-end="url(#ai-flow-arrow)"/>
+  <path d="M906 224H966" stroke="#475467" stroke-width="3" marker-end="url(#ai-flow-arrow)"/>
+
+  <rect x="96" y="326" width="330" height="236" rx="22" fill="#F9FAFB" stroke="#CBD5E1" stroke-width="2"/>
+  <text x="261" y="364" text-anchor="middle" class="lane-title">非查询分支</text>
+  <text x="261" y="390" text-anchor="middle" class="tiny">不进入数据库执行链路</text>
+
+  <rect x="134" y="432" width="254" height="58" rx="13" fill="#FFFFFF" stroke="#CBD5E1"/>
+  <text x="261" y="457" text-anchor="middle" class="node-title">指标解释</text>
+  <text x="261" y="478" text-anchor="middle" class="node-text">直接说明口径和适用范围</text>
+
+  <rect x="134" y="512" width="254" height="58" rx="13" fill="#FEF2F2" stroke="#FCA5A5"/>
+  <text x="261" y="537" text-anchor="middle" class="node-title">拒答</text>
+  <text x="261" y="558" text-anchor="middle" class="node-text">非运营问题或 schema 不支持</text>
+
+  <rect x="512" y="326" width="476" height="594" rx="22" fill="#FDF2F8" stroke="#F9A8D4" stroke-width="2"/>
+  <text x="750" y="364" text-anchor="middle" class="lane-title">Text-to-SQL 分析链路</text>
+  <text x="750" y="390" text-anchor="middle" class="tiny">只有数据分析类问题进入该链路</text>
+
+  <rect x="570" y="432" width="360" height="54" rx="12" fill="#FFFFFF" stroke="#F9A8D4"/>
+  <text x="750" y="465" text-anchor="middle" class="node-title">选择 Schema 和指标上下文</text>
+
+  <rect x="570" y="512" width="360" height="54" rx="12" fill="#FCE7F3" stroke="#F9A8D4"/>
+  <text x="750" y="545" text-anchor="middle" class="node-title">生成只读 SQL</text>
+
+  <rect x="570" y="592" width="360" height="70" rx="12" fill="#FFF7ED" stroke="#FDBA74"/>
+  <text x="750" y="620" text-anchor="middle" class="node-title">SQL 安全校验</text>
+  <text x="750" y="644" text-anchor="middle" class="node-text">只读、单语句、白名单、敏感字段拦截</text>
+
+  <rect x="570" y="704" width="360" height="54" rx="12" fill="#ECFDF3" stroke="#8DD7A5"/>
+  <text x="750" y="737" text-anchor="middle" class="node-title">执行只读查询</text>
+
+  <rect x="570" y="784" width="360" height="54" rx="12" fill="#EFF6FF" stroke="#93B5FD"/>
+  <text x="750" y="817" text-anchor="middle" class="node-title">结果分析和图表构建</text>
+
+  <rect x="570" y="864" width="360" height="54" rx="12" fill="#F5F3FF" stroke="#C4B5FD"/>
+  <text x="750" y="897" text-anchor="middle" class="node-title">生成业务总结和建议</text>
+
+  <path d="M750 486V512" stroke="#BE185D" stroke-width="3" marker-end="url(#ai-flow-pink)"/>
+  <path d="M750 566V592" stroke="#BE185D" stroke-width="3" marker-end="url(#ai-flow-pink)"/>
+  <path d="M750 662V704" stroke="#059669" stroke-width="3" marker-end="url(#ai-flow-green)"/>
+  <text x="765" y="690" class="tiny">校验通过</text>
+  <path d="M750 758V784" stroke="#BE185D" stroke-width="3" marker-end="url(#ai-flow-pink)"/>
+  <path d="M750 838V864" stroke="#BE185D" stroke-width="3" marker-end="url(#ai-flow-pink)"/>
+
+  <rect x="1068" y="326" width="336" height="594" rx="22" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="2"/>
+  <text x="1236" y="364" text-anchor="middle" class="lane-title">安全和异常分支</text>
+  <text x="1236" y="390" text-anchor="middle" class="tiny">SQL 失败恢复、拒绝执行和错误返回</text>
+
+  <rect x="1110" y="502" width="252" height="62" rx="13" fill="#FFF7ED" stroke="#FDBA74"/>
+  <text x="1236" y="528" text-anchor="middle" class="node-title">SQL 修复一次</text>
+  <text x="1236" y="550" text-anchor="middle" class="node-text">可修复问题回到安全校验</text>
+
+  <rect x="1110" y="622" width="252" height="62" rx="13" fill="#FEF2F2" stroke="#FCA5A5"/>
+  <text x="1236" y="648" text-anchor="middle" class="node-title">拒绝执行</text>
+  <text x="1236" y="670" text-anchor="middle" class="node-text">不安全 SQL 或越界问题</text>
+
+  <rect x="1110" y="742" width="252" height="62" rx="13" fill="#F9FAFB" stroke="#CBD5E1"/>
+  <text x="1236" y="768" text-anchor="middle" class="node-title">空结果或查询失败</text>
+  <text x="1236" y="790" text-anchor="middle" class="node-text">说明原因并给出缩小范围建议</text>
+
+  <path d="M930 627H1110" stroke="#DC2626" stroke-width="3" marker-end="url(#ai-flow-red)"/>
+  <text x="986" y="611" class="tiny">可修复</text>
+  <path d="M1236 502V458H930" stroke="#DC2626" stroke-width="3" marker-end="url(#ai-flow-red)"/>
+  <text x="1190" y="448" class="tiny">重新校验</text>
+  <path d="M930 640H1000V653H1110" stroke="#DC2626" stroke-width="3" marker-end="url(#ai-flow-red)"/>
+  <text x="988" y="664" class="tiny">不安全</text>
+  <path d="M930 731H1110" stroke="#475467" stroke-width="3" stroke-dasharray="7 7" marker-end="url(#ai-flow-arrow)"/>
+  <text x="982" y="719" class="tiny">异常</text>
+
+  <path d="M1081 260V292H261V326" stroke="#475467" stroke-width="3" marker-end="url(#ai-flow-arrow)"/>
+  <text x="546" y="286" class="tiny">指标解释或不支持</text>
+  <path d="M1081 260V292H750V326" stroke="#BE185D" stroke-width="3" marker-end="url(#ai-flow-pink)"/>
+  <text x="902" y="286" class="tiny">数据分析</text>
+
+  <rect x="512" y="954" width="476" height="58" rx="15" fill="#F5F3FF" stroke="#C4B5FD" stroke-width="2"/>
+  <text x="750" y="978" text-anchor="middle" class="node-title">统一响应生成</text>
+  <text x="750" y="999" text-anchor="middle" class="node-text">中文回答、SQL、表格、ECharts、warning、error、trace_id</text>
+
+  <path d="M261 570V983H512" stroke="#475467" stroke-width="3" marker-end="url(#ai-flow-arrow)"/>
+  <path d="M750 918V954" stroke="#BE185D" stroke-width="3" marker-end="url(#ai-flow-pink)"/>
+  <path d="M1236 684V983H988" stroke="#DC2626" stroke-width="3" marker-end="url(#ai-flow-red)"/>
+  <path d="M1236 804V983H988" stroke="#475467" stroke-width="3" stroke-dasharray="7 7" marker-end="url(#ai-flow-arrow)"/>
+
+  <rect x="108" y="940" width="306" height="72" rx="15" fill="#ECFDF3" stroke="#8DD7A5" stroke-width="2"/>
+  <text x="261" y="969" text-anchor="middle" class="node-title">管理后台展示</text>
+  <text x="261" y="993" text-anchor="middle" class="node-text">对话、SQL、表格、图表和总结</text>
+  <path d="M512 983H414" stroke="#475467" stroke-width="3" marker-end="url(#ai-flow-arrow)"/>
+
+  <rect x="108" y="872" width="1290" height="42" rx="12" fill="#FFFBEB" stroke="#FDE68A"/>
+  <text x="753" y="899" text-anchor="middle" class="tag">功能图重点：展示 LangGraph 中的意图分支、Text-to-SQL 安全链路、一次修复机制、只读查询和结果表达，不展开代码字段。</text>
+</svg>
